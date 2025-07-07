@@ -116,6 +116,80 @@ section {
   gap: 2rem;
   justify-content: space-between;
 }
+@keyframes slideLoop {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-600vw); } /* 6 images × 100vw */
+}
+
+@media (max-width: 768px) {
+  .slider-track img {
+    height: 30vh;
+  }
+}
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      display: block;
+      height: 2px;
+      background: var(--accent);
+      transition: 0.3s;
+      width: 0;
+    }
+    nav a:hover::after { width: 100%; }
+
+    .floating-socials {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 999;
+    }
+    .floating-socials a img {
+      width: 28px;
+      height: 28px;
+      opacity: 0.7;
+      transition: 0.3s;
+      filter: grayscale(100%);
+    }
+    .floating-socials a:hover img {
+      opacity: 1;
+      transform: scale(1.1);
+      filter: grayscale(0%);
+    }
+
+    section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 4rem 2rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+* {
+  box-sizing: border-box;
+}
 
 .projet {
   flex: 1 1 calc(33.33% - 1.5rem);
@@ -532,15 +606,6 @@ body {
   width: 100%;
   max-width: 300px;
 }
-
-@media (max-width: 768px) {
-  .floating-socials,
-  .to-top {
-    display: none;
-  }
-}
-
-
 @media (max-width: 768px) {
   .chiffres {
     justify-content: center;
@@ -644,81 +709,6 @@ html {
   object-fit: cover;
   flex-shrink: 0;
 }
-
-@keyframes slideLoop {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-600vw); } /* 6 images × 100vw */
-}
-
-@media (max-width: 768px) {
-  .slider-track img {
-    height: 30vh;
-  }
-}
-
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      padding: 1rem;
-      background: #fff;
-      border-bottom: 1px solid #eee;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    nav a {
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 600;
-      position: relative;
-    }
-    nav a::after {
-      content: '';
-      display: block;
-      height: 2px;
-      background: var(--accent);
-      transition: 0.3s;
-      width: 0;
-    }
-    nav a:hover::after { width: 100%; }
-
-    .floating-socials {
-      position: fixed;
-      top: 50%;
-      right: 20px;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      z-index: 999;
-    }
-    .floating-socials a img {
-      width: 28px;
-      height: 28px;
-      opacity: 0.7;
-      transition: 0.3s;
-      filter: grayscale(100%);
-    }
-    .floating-socials a:hover img {
-      opacity: 1;
-      transform: scale(1.1);
-      filter: grayscale(0%);
-    }
-
-    section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 4rem 2rem;
-    }
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      font-weight: 700;
-    }
-* {
-  box-sizing: border-box;
-}
 </style>
 
   <nav>
@@ -741,6 +731,13 @@ html {
       <img src="Photo/Logo/linktree.png" alt="Linktree">
     </a>
   </div>
+    <style>@media (max-width: 768px) {
+  .floating-socials,
+  .to-top {
+    display: none;
+  }
+}</style>
+
 
   <section id="bienvenue">
     <h2>Bienvenue</h2>
@@ -1290,10 +1287,37 @@ document.querySelectorAll('.column').forEach(column => {
 
   <section id="contact">
     <h2>Contact & Réseaux</h2>
-    <p style="text-align:center;">
-      <strong>Email :</strong> <a href="mailto:maradantom@gmail.com">maradantom@gmail.com</a><br>
-      <strong>Téléphone :</strong> <a href="tel:+33672256783">+33 6 72 25 67 83</a>
+    <p class="coordonnees">
+      <strong>Email :</strong>
+      <a href="mailto:maradantom@gmail.com">maradantom@gmail.com</a><br>
+      <strong>Téléphone :</strong>
+      <a href="tel:+33672256783">+33 6 72 25 67 83</a>
     </p>
+  </section>
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .coordonnees {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      text-align: center;
+      color: var(--text); /* conserve ta variable s'il y en a */
+    }
+
+    .coordonnees a {
+      color: inherit;
+      text-decoration: underline dotted;
+      transition: 0.3s;
+    }
+
+    .coordonnees a:hover {
+      color: var(--accent);
+    }
+  </style>
+    
     <div class="socials">
       <a href="https://www.instagram.com/studiotm___" target="_blank">Instagram</a>
       <a href="https://www.linkedin.com/in/tom-maradan-554265235/" target="_blank">LinkedIn</a>
@@ -1314,7 +1338,7 @@ document.querySelectorAll('.column').forEach(column => {
 
 .image-container img {
   max-width: 100%;  /* L'image ne dépasse jamais la largeur de son conteneur */
-  height: 700px;
+  max-height: 80vh;
   border: 3px solid #ccc;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   border-radius: 12px;
