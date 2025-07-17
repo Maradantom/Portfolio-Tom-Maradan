@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tom Maradan — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+/* Styles mobiles par défaut */
+.container {
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Styles pour écrans plus larges */
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto 20px;
+  padding: 0 1rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+    /* Version ordinateur */
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+/* Version mobile */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+} 
+@media (max-width: 768px) {
+  /* Styles pour tablette et mobile */
+}
+
+@media (max-width: 480px) {
+  /* Styles spécifiques aux petits mobiles */
+}
+section {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 20px;
+  padding: 30px 5px;
+  box-sizing: border-box;
+}
+
+    :root {
+      --background: #ffffff;
+      --text: #242424;
+      --accent: #9999992d;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    header {
+      padding: 2rem;
+      text-align: center;
+      background: #efefef;
+      border-bottom: 1px solid #eee;
+      position: relative;
+    }
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+  }
+
+
+.extra-images {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.extra-images img {
+  width: 100px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.extra-images img:hover {
+  border-color: var(--accent);
+}
+
+
+.experience-section {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+}
+
+.experience-section h2 {
+  font-family: 'Outfit', sans-serif;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  object-fit: contain;
+  z-index: 1;
+}
+
+.content {
+  background-color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  flex: 1;
+  z-index: 1;
+}
+
+.content h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.date {
+  font-family: 'Outfit', sans-serif;
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+
+
+
+.gallery {
+  display: flex;
+  justify-content: space-between;
+  gap: 70px;
+  overflow: hidden;
+  height: 800px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.column {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    height: auto;
+  }
+
+  .column {
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .link-box:active,
+  .projet:active {
+    background: #f0f0f0;
+    transform: scale(0.98);
+  }
+}
+
+
+/* Défilement fluide vers le bas */
+@keyframes scroll-down {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+/* Défilement fluide vers le haut */
+@keyframes scroll-up {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+  .gallery {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .column {
+    height: 300px;
+    margin-bottom: 20px;
+  }
+
+  .scroll {
+    animation-duration: 15s;
+  }
+}
+
+@media (max-width: 768px) {
+  .chiffres {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .projet p {
+    text-align: center;
+  }
+}@media (max-width: 768px) {
+  .chiffres {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .projet p {
+    text-align: center;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="section-content"></div>
+    <h1>Portfolio Tom Maradan</h1>
+    <p>Architecture d’intérieur & design — CREAD </p>
+    <!-- HEADER AVEC LOGO -->
+<header class="site-header">
+  <div class="logo-container">
+    <img src="Photo/Logo/Studiotm-long.png" alt="Logo Tom Maradan">
+  </div>
+</header>
+
+<style>
+/* EN-TÊTE / LOGO */
+.site-header {
+  background-color: #efefef; 
+  padding: 20px 40px;
+  text-align: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap; /* pour qu’il reste propre sur mobile */
+}
+
+.logo-container img {
+  height: 60px; /* ajuste selon ton logo */
+  width: auto;
+}
+
+.logo-container h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.8rem;
+  color: #000;
+  margin: 0;
+}
+</style>
+
+<div class="slider">
+  <div class="slider-track">
+    <!-- 12 images -->
+    <img src="Photo/6 du début/EXT L 2.png" alt="1">
+    <img src="Photo/6 du début/Scène 7-2-C03.png" alt="2">
+    <img src="Photo/6 du début/Scène 3.png" alt="3">
+    <img src="Photo/6 du début/Villa_Enttrée.png" alt="4">
+    <img src="Photo/6 du début/Villa_PV cuisine.png" alt="5">
+    <img src="Photo/6 du début/Villa_8.png" alt="6">
+    <img src="Photo/6 du début/EXT L 2.png" alt="1b">
+    <img src="Photo/6 du début/Scène 7-2-C03.png" alt="2b">
+    <img src="Photo/6 du début/Scène 3.png" alt="3b">
+    <img src="Photo/6 du début/Villa_Enttrée.png" alt="4b">
+    <img src="Photo/6 du début/Villa_PV cuisine.png" alt="5b">
+    <img src="Photo/6 du début/Villa_8.png" alt="6b">
+    </div>
+  </div>
+  </header>
+<style>
+.slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider-track {
+  display: flex;
+  gap: 0px;
+  transform: translateX(0);
+}
+
+.slider-track img {
+  height: 180px;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: px;
+}
+
+/* Taille plus grande sur ordinateur */
+@media (min-width: 768px) {
+  .slider-track img {
+    height: 250px;
+  }
+}
+</style>
+<script>
+  const track = document.querySelector('.slider-track');
+  const images = Array.from(track.children);
+
+  // Clone les images pour créer l’effet infini
+  images.forEach(img => {
+    const clone = img.cloneNode(true);
+    track.appendChild(clone);
+  });
+
+  let scrollX = 0;
+  const speed = 2; // pixel/frame
+
+  function animate() {
+    scrollX += speed;
+    if (scrollX >= track.scrollWidth / 2) {
+      scrollX = 0; // revient au début sans saut
+    }
+    track.style.transform = `translateX(-${scrollX}px)`;
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+
+
+  <section id="bienvenue">
+    <h2>Bienvenue</h2>
+<div class="link-grid">
+  <a href="#histoire" class="link-box">Mon histoire & parcours</a>
+  <a href="#projets" class="link-box">Mes projets</a>
+  <a href="#experiences" class="link-box">Mes expériences</a>
+  <a href="#passion" class="link-box">Ma passion pour la photo</a>
+  <a href="#galerie" class="link-box">Galerie photo</a>
+  <a href="#contact" class="link-box">Me contacter</a>
+</div>
+  </section>
+<style>.link-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 par ligne par défaut */
+  gap: 2rem;
+  max-width: 900px;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .link-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 par ligne dès tablette/petit ordi */
+  }
+}
+
+.link-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: white;
+  transition: 0.3s;
+  min-width: 0;
+  word-wrap: break-word;
+  min-height: 120px;
+  text-decoration: none;       /* Important : pas de soulignement */
+  color: var(--text);          /* Couleur du texte */
+  font-weight: 600;
+}
+
+.link-box:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  background: #f0f0f0;
+}
+
+.link-box a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--text);
+}
+.socials {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .socials a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+      transition: 0.3s ease;
+      border: 1px solid #ccc;
+    }
+    .socials a:hover {
+      background-color: #e3e3e3;
+      transform: scale(1.08);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #707070;
+    }</style>
+
+  <section id="histoire">
+  <h2>Mon histoire et parcours</h2>
+  <div class="histoire-container">
+    <div class="histoire-texte">
+      <p>
+        Depuis toujours passionné par l’architecture, je poursuis mes études dans une école d'architecture pour concrétiser mon rêve de contribuer à la conception d’espaces.<br><br>
+        En parallèle, la photographie occupe une place importante dans ma vie, m’offrant une autre perspective pour capturer et comprendre les lignes, les formes et les lumières qui composent notre environnement.<br><br>
+        Mon ambition est de mêler ces deux passions pour créer des projets à la fois artistiques et fonctionnels.
+      </p>
+    </div>
+    <div class="histoire-image">
+      <img src="Photo/Passion photo/IMG_7398.jpeg" alt="Photo de Tom Maradan">
+    </div>
+  </div>
+</section>
+<style>.histoire-container {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.histoire-texte,
+.histoire-image {
+  flex: 1;
+  min-width: 300px;
+}
+
+.histoire-texte {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.histoire-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Sur mobile, on force en colonne */
+@media (max-width: 768px) {
+  .histoire-container {
+    flex-direction: column;
+  }
+}</style>
+
+
+
+  <section id="projets"><h2>Mes projets</h2></section>
+<section id="projets">
+  <div class="projets-grid">
+
+  <!-- Projet 1 -->
+ <div class="projet" onclick="openModal('modal1')">
+      <img src="Projet/1-Villa Annecy/EXT L 2.png" alt="Projet villa">
+      <div class="chiffres">
+        <span>295 m²</span><span>2ème année</span><span>Rénovation</span><span>Residentiel</span><span>Projet seul</span>
+      </div>
+      <p>Rénovation d’un ancien hangar en maison moderne au bord du lac d’Annecy</p>
+    </div>
+
+   <!-- Projet 2 -->
+ <div class="projet" onclick="openModal('modal2')">
+      <img src="Projet/2-Projet Maison/Maison__Drone.png" alt="Projet Maison">
+      <div class="chiffres">
+        <span>150 m²</span><span>2ème année</span><span>Construction</span><span>Residentiel</span><span>Projet seul</span>
+      </div>
+      <p>Maison familiale intégrée dans un cadre alpin, axée sur la lumière naturelle</p>
+    </div>
+
+  <!-- Projet 3 -->
+ <div class="projet" onclick="openModal('modal3')">
+      <img src="Projet/3-Projet appart Lyon /Cuisine:salon.png" alt="Projet Appartement">
+      <div class="chiffres">
+        <span>33 m²</span><span>2ème année</span><span>Rénovation</span><span>Residentiel</span><span>Projet de groupe</span>
+      </div>
+      <p>Deux studio à fusiuner en un sous les combles </p>
+    </div>
+
+  </div>
+
+<!-- MODALE 1 RECONSTRUITE -->
+<div id="modal1" class="modal">
+  <div class="modal-content large">
+    <!-- Bouton de fermeture -->
+    <button class="close" onclick="closeModal('modal1')" aria-label="Fermer">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M6 6L18 18M6 18L18 6" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <!-- CARROUSEL -->
+    <div class="carousel" data-carousel="1">
+      <button class="carousel-arrow prev" onclick="changeSlide(-1, 1)">
+        <svg viewBox="0 0 24 24"><path d="M15 18L9 12L15 6" stroke="#000" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+
+      <img src="Projet/1-Villa Annecy/3_EXT+.png" class="carousel-image c1 active">
+      <img src="Projet/1-Villa Annecy/4_Villa_canape.png" class="carousel-image c1">
+      <img src="Projet/1-Villa Annecy/EXT L 2.png" class="carousel-image c1">
+
+      <button class="carousel-arrow next" onclick="changeSlide(1, 1)">
+        <svg viewBox="0 0 24 24"><path d="M9 6L15 12L9 18" stroke="#000" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <!-- POINTS CLEFS -->
+    <div class="points-clefs">
+      <div class="point">295 m²</div>
+      <div class="point">2ème année</div>
+      <div class="point">Rénovation</div>
+      <div class="point">Résidentiel</div>
+      <div class="point">Projet seul</div>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="description">
+      <h3>Description</h3>
+      <p>Rénovation complète d’un hangar en résidence contemporaine, jouant sur les volumes industriels et l'ouverture sur le lac d’Annecy.</p>
+    </div>
+
+    <!-- GALERIE COMPLÉMENTAIRE -->
+    <div class="galerie-grid">
+<div class="galerie-grid">
+  <!-- GALERIE DE PLANS -->
+<div class="galerie-grid" id="plans1">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy87.jpg" alt="" onclick="openLightbox(1, 0)">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy88.jpg" alt="" onclick="openLightbox(1, 1)">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy89.jpg" alt="" onclick="openLightbox(1, 2)">
+</div>
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy88.jpg" alt="" onclick="openImageLightbox(this.src)">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy89.jpg" alt="" onclick="openImageLightbox(this.src)">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy90.jpg" alt="" onclick="openImageLightbox(this.src)">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy91.jpg" alt="" onclick="openImageLightbox(this.src)">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy92.jpg" alt="" onclick="openImageLightbox(this.src)">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy93.jpg" alt="" onclick="openImageLightbox(this.src)">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy94.jpg" alt="" onclick="openImageLightbox(this.src)">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy95.jpg" alt="" onclick="openImageLightbox(this.src)">
+</div>
+    </div>
+
+    <!-- TEXTE SUPPLÉMENTAIRE -->
+    <div class="description">
+      <h3>Détails</h3>
+      <p>Structure conservée et valorisée par des baies vitrées pleine hauteur, matériaux bruts (béton brut, acier patiné), intégration d’un patio végétalisé en cœur de maison.</p>
+    </div>
+  </div>
+</div>
+</script>
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <span class="close-lightbox" onclick="closeLightbox(event)">
+    <svg viewBox="0 0 24 24"><path d="M6 6L18 18M6 18L18 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+  </span>
+  <img id="lightbox-img" src="" alt="plan en grand">
+</div>
+
+<script>
+const slideIndices = { 1: 0 };
+
+function changeSlide(n, id) {
+  const slides = document.querySelectorAll(`.carousel-image.c${id}`);
+  slideIndices[id] = (slideIndices[id] + n + slides.length) % slides.length;
+  slides.forEach((img, i) => img.classList.toggle('active', i === slideIndices[id]));
+}
+
+function openModal(id) {
+  document.getElementById(id).style.display = "block";
+  const num = id.replace("modal", "");
+  changeSlide(0, num); // Reset carousel to first
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = "none";
+}
+function openImageLightbox(src) {
+  document.getElementById("lightbox-img").src = src;
+  document.getElementById("lightbox").style.display = "flex";
+}
+
+function closeLightbox(event) {
+  if (!event || event.target === document.getElementById("lightbox") || event.target.closest('.close-lightbox')) {
+    document.getElementById("lightbox").style.display = "none";
+  }
+}
+</script>
+
+<style>
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000; /* S'assure que la modale est tout en haut */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Fond noir semi-transparent */
+  backdrop-filter: blur(5px); /* Flou sur le fond */
+  overflow-y: auto;
+  padding: 3rem 1rem;
+  transition: opacity 0.3s ease;
+}
+
+.modal-content {
+  background: #f5f5f5;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  max-width: 1200px;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2); /* Ombre douce */
+}
+
+.modal-content.large {
+  max-width: 1200px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 9999;
+  padding: 0;
+}
+
+.close svg {
+  width: 24px;
+  height: 24px;
+  stroke: #000;
+}
+
+/* Carrousel */
+.carousel {
+  position: relative;
+  height: 500px;
+  margin-bottom: 2rem;
+}
+.carousel-arrow {
+  background: none !important; /* Supprime tout fond */
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 70px;
+  height: 70px;
+  padding: 0;
+}
+
+.carousel-arrow svg {
+  width: 100%;
+  height: 100%;
+  stroke: #000;
+  fill: none;
+}
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.carousel-image.active {
+  display: block;
+  position: relative;
+}
+
+/* Grille d’images complémentaires */
+.galerie-grid img {
+  width: 100%;
+  aspect-ratio: 1.41 / 1; /* Format paysage A3 */
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.galerie-grid img:hover {
+  transform: scale(1.03);
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.6);
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  cursor: pointer;
+  z-index: 2001;
+}
+.close-lightbox svg {
+  width: 32px;
+  height: 32px;
+  stroke: white;
+}
+
+
+/* Points clefs, description et galerie restent inchangés */
+.projets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.projet {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.projet:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.projet img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.chiffres {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.chiffres span {
+  background: var(--accent);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.projet p {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      display: block;
+      height: 2px;
+      background: var(--accent);
+      transition: 0.3s;
+      width: 0;
+    }
+    nav a:hover::after { width: 100%; }
+
+    section {
+      max-width: 1000px;
+      margin: 0 auto 20px;
+      padding: 4rem 2rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+* {
+  box-sizing: border-box;
+}
+
+
+/* Bouton Voir mes projets */
+.voir-projets-btn {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  background: var(--accent);
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+.voir-projets-btn:hover {
+  background: #f5dcb3;
+  transform: scale(1.05);
+}
+
+
+/* Carrousel */
+.carousel {
+  position: relative;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.carousel-image {
+  width: 100%;
+  display: none;
+  border-radius: 1rem;
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px;
+  color: white;
+  background-color: rgba(0,0,0,0.4);
+  border: none;
+  font-size: 24px;
+  z-index: 1;
+  border-radius: 50%;
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* Points clés */
+.points-clefs {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+.point {
+  background: #f0f0f0;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  margin: 5px;
+}
+
+/* Description */
+.description {
+  margin: 30px 0;
+}
+.description h3 {
+  margin-bottom: 10px;
+}
+
+/* Galerie de détails */
+.galerie-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.detail img {
+  width: 100%;
+  border-radius: 1rem;
+}
+.detail p {
+  margin-top: 10px;
+  text-align: center;
+}
+
+
+
+.slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-images {
+  width: 90%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-images img {
+  max-width: 90%;
+  max-height: 500px;
+  border-radius: 12px;
+  object-fit: contain;
+  display: none;
+}
+
+.slider-images img.active {
+  display: block;
+}
+
+.prev, .next {
+  background: rgba(0,0,0,0.3);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  user-select: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.modal-description {
+  margin-top: 1rem;
+  color: #333;
+}</style>
+
+  <div style="text-align: center; margin-top: 2rem;">
+    <a href="https://maradantom.github.io/Projet-Tom-Maradan/" class="voir-projets-btn">Voir mes projets</a>
+</div>
+
+
+
+
+</section>
+  <section id="experiences"><h2>Mes expériences</h2><p></p></section>
+  <!-- SECTION EXPÉRIENCE -->
+  <div class="timeline">
+
+<div class="timeline-item">
+  <a href="https://www.cread.fr/" target="_blank">
+    <img src="Photo/Logo/CREAD.png" alt="Logo CREAD" class="logo">
+  </a>
+  <div class="content">
+    <h3>CREAD</h3>
+    <h5>École d'architecture & de design</h5>
+    <p class="date">Septembre 2023 - Juillet 2028</p>
+  </div>
+</div>
+
+<div class="timeline-item">
+  <a href="https://www.samplesroom.fr" target="_blank">
+    <img src="Photo/Logo/Samples Room.png" alt="Logo Samples Room" class="logo">
+  </a>
+  <div class="content">
+    <h3>Samples Room</h3>
+    <h5>Stage CREAD 2ème année</h5>
+    <p class="date">Mai/Juillet 2025 - Stage & CDD</p>
+  </div>
+</div>
+
+<div class="timeline-item">
+  <a href="http://purconcept.com" target="_blank">
+    <img src="Photo/Logo/Pur Concept.png" alt="Logo Pur Concept" class="logo">
+  </a>
+  <div class="content">
+    <h3>Pur Concept</h3>
+    <h5>Stage CREAD 1ère année</h5>
+    <p class="date">Juin/Juillet 2024 - Stage & CDD</p>
+  </div>
+</div>
+
+<div class="timeline-item">
+  <a href="https://www.tetris-db.com/" target="_blank">
+    <img src="Photo/Logo/Tetris.png" alt="Logo Tetris" class="logo">
+  </a>
+  <div class="content">
+    <h3>Tetris</h3>
+    <h5>Stage Seconde</h5>
+    <p class="date">Avril 2022 - 1 semaine</p>
+  </div>
+</div>
+
+<div class="timeline-item">
+  <a href="https://www.aabc-architectes.fr/" target="_blank">
+    <img src="Photo/Logo/AABC Architecture.png" alt="Logo AABC" class="logo">
+  </a>
+  <div class="content">
+    <h3>AABC Architecture</h3>
+    <h5>Stage découverte 3ème</h5>
+    <p class="date">Janvier 2020 - 1 semaine</p>
+  </div>
+</div>
+
+  </div>
+<style>  .timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 0 20px; /* ← ajoute une marge intérieure à gauche et droite */
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 30px;
+  top: 0;
+  bottom: -40px;
+  width: 2px;
+  background: #ccc;
+  z-index: 0; /* en arrière-plan */
+}
+
+.logo {
+  position: relative;
+  z-index: 1; /* au-dessus du trait */
+}
+</style>
+
+
+
+</section>
+  <section id="passion"><h2>Ma passion pour les drones & la photo</h2></section>
+<section id="photo-passion" class="photo-section">
+  <p>
+    J'ai depuis plusieurs années pu mettre en valeur différents éléments architecturaux grâce à des prises de vue aériennes par drones (DJI Air 3 / Drones FPV).
+    La photo permet d'avoir un regard particulier sur une réalisation et apporte une touche et un point de vue unique.
+    Je réalise des montages et les publie sur les réseaux
+    <a href="https://www.instagram.com/_tpics._" target="_blank">(@_tpics._)</a>.
+  </p>
+
+  <div class="photo-grid">
+    <img src="Photo/Passion photo/DJI_20250529185722_0038_D.jpg" alt="Drone 1">
+    <img src="Photo/Passion photo/dji_fly_20250413_135444_0009_1744545593668_photo.jpg" alt="Drone 2">
+    <img src="Photo/Passion photo/DJI_0432.jpg" alt="Drone 3">
+    <img src="Photo/Passion photo/IMG_1087_jpg.jpg" alt="Drone 4">
+    <img src="Photo/Passion photo/IMG_9484_jpg.jpg" alt="Drone 5">
+  </div>
+</section>
+
+<style>
+/* SECTION PHOTO */
+.photo-section {
+  padding: 60px 20px;
+  background-color: #ffffff; /* couleur */
+  text-align: center;
+  font-family: 'Outfit', sans-serif;
+}
+
+.photo-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.photo-section p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+  color: #333;
+}
+
+.photo-section a {
+  color: #000;
+  text-decoration: underline;
+}
+
+.photo-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;           /* Ne pas passer à la ligne */
+  overflow-x: auto;            /* Scroll horizontal si besoin */
+  gap: 20px;
+  max-width: 100%;
+  padding-bottom: 10px;
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE */
+}
+
+.photo-grid::-webkit-scrollbar {
+  display: none;               /* Chrome/Safari */
+}
+
+.photo-grid img {
+  flex: 0 0 auto;              /* Fixe la largeur sans s'étirer */
+  width: 220px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.photo-grid img:hover {
+  transform: scale(1.05);
+}</style>
+
+
+
+  <section id="galerie"><h2>Galerie photo</h2><p></p></section>
+<section id="gallery" class="gallery-section">
+<div class="gallery">
+  <div class="column" data-direction="up">
+    <div class="scroll">
+    <img src="Photo/Galerie photo/1/EXT L 2.png" alt="Photo 1">
+    <img src="Photo/Galerie photo/1/IMG_0166.jpeg" alt="Photo 2">
+    <img src="Photo/Galerie photo/1/IMG_1085.jpg" alt="Photo 3">
+    <img src="Photo/Galerie photo/1/IMG_1093.jpg" alt="Photo 4">
+    <img src="Photo/Galerie photo/1/IMG_6187.jpeg" alt="Photo 5">
+    <img src="Photo/Galerie photo/1/IMG_6387.jpeg" alt="Photo 6">
+    <img src="Photo/Galerie photo/1/IMG_8161.jpeg" alt="Photo 7">
+    <img src="Photo/Galerie photo/1/IMG_8730.JPG" alt="Photo 8">
+    <img src="Photo/Galerie photo/1/Villa_6.png" alt="Photo 9">
+    <img src="Photo/Galerie photo/1/Villa_Enttrée.png" alt="Photo 10">
+    <!-- Doublons -->
+    <img src="Photo/Galerie photo/1/EXT L 2.png" alt="Photo 1">
+    <img src="Photo/Galerie photo/1/IMG_0166.jpeg" alt="Photo 2">
+    <img src="Photo/Galerie photo/1/IMG_1085.jpg" alt="Photo 3">
+    <img src="Photo/Galerie photo/1/IMG_1093.jpg" alt="Photo 4">
+    <img src="Photo/Galerie photo/1/IMG_6187.jpeg" alt="Photo 5">
+    <img src="Photo/Galerie photo/1/IMG_6387.jpeg" alt="Photo 6">
+    <img src="Photo/Galerie photo/1/IMG_8161.jpeg" alt="Photo 7">
+    <img src="Photo/Galerie photo/1/IMG_8730.JPG" alt="Photo 8">
+    <img src="Photo/Galerie photo/1/Villa_6.png" alt="Photo 9">
+    <img src="Photo/Galerie photo/1/Villa_Enttrée.png" alt="Photo 10">
+    </div>
+  </div>
+  <div class="column" data-direction="up">
+    <div class="scroll">
+    <img src="Photo/Galerie photo/2/IMG_0030.jpeg" alt="Photo 1">
+    <img src="Photo/Galerie photo/2/IMG_0525.jpeg" alt="Photo 2">
+    <img src="Photo/Galerie photo/2/IMG_1087.jpg" alt="Photo 3">
+    <img src="Photo/Galerie photo/2/IMG_5989.jpeg" alt="Photo 4">
+    <img src="Photo/Galerie photo/2/IMG_6386.jpeg" alt="Photo 5">
+    <img src="Photo/Galerie photo/2/IMG_6403.jpeg" alt="Photo 6">
+    <img src="Photo/Galerie photo/2/IMG_9072.jpeg" alt="Photo 7">
+    <img src="Photo/Galerie photo/2/Scène 1.png" alt="Photo 8">
+    <img src="Photo/Galerie photo/2/Scène 7-2-C03.jpg" alt="Photo 9">
+    <img src="Photo/Galerie photo/2/Villa_Artiste.png" alt="Photo 10">
+    <!-- Doublons -->
+    <img src="Photo/Galerie photo/2/IMG_0030.jpeg" alt="Photo 1">
+    <img src="Photo/Galerie photo/2/IMG_0525.jpeg" alt="Photo 2">
+    <img src="Photo/Galerie photo/2/IMG_1087.jpg" alt="Photo 3">
+    <img src="Photo/Galerie photo/2/IMG_5989.jpeg" alt="Photo 4">
+    <img src="Photo/Galerie photo/2/IMG_6386.jpeg" alt="Photo 5">
+    <img src="Photo/Galerie photo/2/IMG_6403.jpeg" alt="Photo 6">
+    <img src="Photo/Galerie photo/2/IMG_9072.jpeg" alt="Photo 7">
+    <img src="Photo/Galerie photo/2/Scène 1.png" alt="Photo 8">
+    <img src="Photo/Galerie photo/2/Scène 7-2-C03.jpg" alt="Photo 9">
+    <img src="Photo/Galerie photo/2/Villa_Artiste.png" alt="Photo 10">
+    </div>
+  </div>
+  <div class="column" data-direction="up">
+    <div class="scroll">
+    <img src="Photo/Galerie photo/3/6.png" alt="Photo 1">
+    <img src="Photo/Galerie photo/3/IMG_0036.jpeg" alt="Photo 2">
+    <img src="Photo/Galerie photo/3/IMG_0138.jpeg" alt="Photo 3">
+    <img src="Photo/Galerie photo/3/IMG_2581.jpeg" alt="Photo 4">
+    <img src="Photo/Galerie photo/3/IMG_5990.jpeg" alt="Photo 5">
+    <img src="Photo/Galerie photo/3/IMG_6337.jpeg" alt="Photo 6">
+    <img src="Photo/Galerie photo/3/IMG_7398.jpeg" alt="Photo 7">
+    <img src="Photo/Galerie photo/3/Scène 6.png" alt="Photo 8">
+    <img src="Photo/Galerie photo/3/Villa_8.png" alt="Photo 9">
+    <img src="Photo/Galerie photo/3/Villa_Dressing.png" alt="Photo 10">
+    <!-- Doublons -->
+    <img src="Photo/Galerie photo/3/6.png" alt="Photo 1">
+    <img src="Photo/Galerie photo/3/IMG_0036.jpeg" alt="Photo 2">
+    <img src="Photo/Galerie photo/3/IMG_0138.jpeg" alt="Photo 3">
+    <img src="Photo/Galerie photo/3/IMG_2581.jpeg" alt="Photo 4">
+    <img src="Photo/Galerie photo/3/IMG_5990.jpeg" alt="Photo 5">
+    <img src="Photo/Galerie photo/3/IMG_6337.jpeg" alt="Photo 6">
+    <img src="Photo/Galerie photo/3/IMG_7398.jpeg" alt="Photo 7">
+    <img src="Photo/Galerie photo/3/Scène 6.png" alt="Photo 8">
+    <img src="Photo/Galerie photo/3/Villa_8.png" alt="Photo 9">
+    <img src="Photo/Galerie photo/3/Villa_Dressing.png" alt="Photo 10">
+    </div>
+  </div>
+</div>
+  <style>.gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+  gap: 20px;
+  padding: 10px;
+}
+
+.column {
+  flex: 1 1 33.33%;
+  max-width: 33.33%;
+}
+
+.scroll {
+  display: flex;
+  flex-direction: column;
+  animation: scroll-down 30s linear infinite;
+}
+
+.column[data-direction="down"] .scroll {
+  animation: scroll-up 30s linear infinite;
+}
+
+@keyframes scroll-up {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes scroll-down {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}</style>
+</section>
+<script>
+document.querySelectorAll('.column').forEach(column => {
+  column.addEventListener('click', () => {
+    const direction = column.getAttribute('data-direction');
+    column.setAttribute('data-direction', direction === 'up' ? 'down' : 'up');
+  });
+});
+</script>
+
+  <section id="contact">
+    <h2>Contact & Réseaux</h2>
+    <p class="coordonnees">
+      <strong>Email :</strong>
+      <a href="mailto:maradantom@gmail.com">maradantom@gmail.com</a><br>
+      <strong>Téléphone :</strong>
+      <a href="tel:+33672256783">+33 6 72 25 67 83</a>
+    </p>
+  </section>
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .coordonnees {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      text-align: center;
+      color: var(--text); /* conserve ta variable s'il y en a */
+    }
+
+    .coordonnees a {
+      color: inherit;
+      text-decoration: underline dotted;
+      transition: 0.3s;
+    }
+
+    .coordonnees a:hover {
+      color: var(--accent);
+    }
+  </style>
+    
+<div class="socials">
+  <a href="https://www.instagram.com/studiotm___" target="_blank">Instagram</a>
+  <a href="https://www.linkedin.com/in/tom-maradan-554265235/" target="_blank">LinkedIn</a>
+  <a href="https://linktr.ee/studiotm___" target="_blank">Linktree</a>
+  <a href="https://www.youtube.com/channel/UCo0UnKLZDgU-94To-z9PJqQ" target="_blank">YouTube</a>
+</div>
+  </section>
+  <style>.socials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 1rem;
+}
+
+.socials a {
+  font-family: 'Outfit', sans-serif;
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  transition: 0.3s ease;
+  flex: 0 1 auto;                /* Ils prennent juste la taille du contenu */
+  max-width: 180px;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.socials a:hover {
+  background-color: #e3e3e3;
+  transform: scale(1.05);
+}</style>
+
+
+  <div class="image-container">
+    <img src="Photo/C.V Tom Maradan.jpg" >
+  </div>
+<style>
+.image-container {
+  text-align: center;
+  margin-top: 30px;
+  padding: 0 16px; /* petit padding horizontal pour éviter que ça touche les bords */
+}
+
+.image-container img {
+  max-width: 100%;  /* L'image ne dépasse jamais la largeur de son conteneur */
+  max-height: 90vh;
+  border: 3px solid #ccc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+}
+
+.image-caption {
+  font-style: italic;
+  color: #555;
+  margin-top: 8px;
+  font-size: 0.95rem;
+} 
+</style>
+
+
+<footer class="footer">
+  <img src="Photo/Logo/Studiotm.png" alt="Logo Tom Maradan" class="footer-logo">
+  <p>© 2025 Tom Maradan — Tous droits réservés</p>
+</footer>
+
+<style>
+  .footer {
+    flex: 0 33,33% 0;
+    text-align: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    color: #000000;
+  }
+
+  .footer-logo {
+    flex: 0 33,33% 0;
+    text-align: center;
+    padding: 0 20px;
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  .footer-logo:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    .hero-slider {
+      height: 220px;
+    }
+
+    .slider-track img {
+      height: 220px;
+    }
+  }
+</style>
+
+  <div class="floating-socials">
+    <a href="https://www.instagram.com/studiotm___" target="_blank">
+      <img src="Photo/Logo/insta.png" alt="Instagram">
+    </a>
+    <a href="https://www.linkedin.com/in/tom-maradan-554265235/" target="_blank">
+      <img src="Photo/Logo/Linkedin.png" alt="LinkedIn">
+    </a>
+    <a href="https://linktr.ee/studiotm___" target="_blank">
+      <img src="Photo/Logo/linktree.png" alt="Linktree">
+    </a>
+  </div>
+<style>    .floating-socials {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 999;
+    }
+    .floating-socials a img {
+      width: 28px;
+      height: 28px;
+      opacity: 0.7;
+      transition: 0.3s;
+      filter: grayscale(100%);
+    }
+    .floating-socials a:hover img {
+      opacity: 1;
+      transform: scale(1.1);
+      filter: grayscale(0%);
+    }</style>
+
+
+
+  <div id="dowm"></div> 
+    <a href="#top" class="to-top">↑</a>
+  
+  <style>
+ .to-top {
+  position: fixed;
+  bottom: 60px;
+  left: 15px;
+  font-size: 40px;
+  text-decoration: none;
+  color: #999;
+  z-index: 9999; /* plus élevé */
+}
+    .to-top:hover {
+  color: #000;
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}</style>
+
+
+</body>
+</html>
