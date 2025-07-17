@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galerie — Tom Maradan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-color: #111;
+      --bg-color: #fdfdfd;
+      --card-bg: white;
+      --accent-color: #eee;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-color);
+      color: var(--main-color);
+    }
+
+    header, nav, footer {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: var(--main-color);
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .filters select {
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+    }
+
+    .project {
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      margin-bottom: 4rem;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-banner {
+      width: 100%;
+      height: 400px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .project-content {
+      padding: 2rem;
+    }
+
+    .project-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .project-info span {
+      background: var(--accent-color);
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .project-description {
+      margin: 2rem 0;
+      line-height: 1.7;
+    }
+
+    .carousel, .gallery-row {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+    }
+
+    .carousel img, .gallery-row img {
+      height: 220px;
+      border-radius: 16px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .project-banner {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Galerie des Projets</h1>
+    <p>Rendus, maquettes numériques & expérimentations visuelles</p>
+  </header>
+
+  <main>
+    <div class="filters">
+      <select id="year-filter">
+        <option value="">Toutes les années</option>
+        <option value="2025">2025</option>
+        <option value="2024">2024</option>
+        <option value="2023">2023</option>
+      </select>
+      <select id="sector-filter">
+        <option value="">Tous les secteurs</option>
+        <option value="résidentiel">Résidentiel</option>
+        <option value="tertiaire">Tertiaire</option>
+      </select>
+      <select id="location-filter">
+        <option value="">Tous les lieux</option>
+        <option value="Annecy">Annecy</option>
+        <option value="Désert">Désert</option>
+        <option value="Faverges">Faverges</option>
+      </select>
+    </div>
+
+    <section class="project" data-year="2025" data-sector="tertiaire" data-location="Annecy">
+      <div class="project-banner" style="background-image: url('https://via.placeholder.com/1200x400');"></div>
+      <div class="project-content">
+        <div class="project-info">
+          <span>2025</span>
+          <span>Concept</span>
+          <span>Tertiaire</span>
+          <span>Durée : 6 mois</span>
+          <span>Studio personnel</span>
+        </div>
+        <p class="project-description">
+          Le projet Ribbon explore un mode de vie épuré et résilient. Le volume architectural s’inscrit dans un paysage naturel et mise sur des matériaux locaux et des solutions bioclimatiques.
+        </p>
+        <div class="carousel">
+          <img src="https://via.placeholder.com/300x200" alt="Ribbon 1">
+          <img src="https://via.placeholder.com/300x200" alt="Ribbon 2">
+          <img src="https://via.placeholder.com/300x200" alt="Ribbon 3">
+        </div>
+        <p class="project-description">
+          Ribbon symbolise un ruban architectural qui serpente le relief. La conception respecte l’environnement tout en créant une expérience immersive.
+        </p>
+        <div class="gallery-grid">
+          <img src="https://via.placeholder.com/400x300" alt="Image 1">
+          <img src="https://via.placeholder.com/400x300" alt="Image 2">
+          <img src="https://via.placeholder.com/400x300" alt="Image 3">
+        </div>
+        <div class="gallery-row">
+          <img src="https://via.placeholder.com/300x200" alt="Image supplémentaire">
+          <img src="https://via.placeholder.com/300x200" alt="Image supplémentaire">
+          <img src="https://via.placeholder.com/300x200" alt="Image supplémentaire">
+        </div>
+      </div>
+    </section>
+
+    <section class="project" data-year="2024" data-sector="tertiaire" data-location="Annecy">
+      <div class="project-banner" style="background-image: url('https://via.placeholder.com/1200x400');"></div>
+      <div class="project-content">
+        <div class="project-info">
+          <span>2024</span>
+          <span>Concept</span>
+          <span>Tertiaire</span>
+          <span>Durée : 6 mois</span>
+          <span>Maison personnel</span>
+        </div>
+        <p class="project-description">
+          Le projet Ribbon explore un mode de vie épuré et résilient. Le volume architectural s’inscrit dans un paysage naturel et mise sur des matériaux locaux et des solutions bioclimatiques.
+        </p>
+        <div class="carousel">
+          <img src="https://via.placeholder.com/300x200" alt="Ribbon 1">
+          <img src="https://via.placeholder.com/300x200" alt="Ribbon 2">
+          <img src="https://via.placeholder.com/300x200" alt="Ribbon 3">
+        </div>
+        <p class="project-description">
+          Ribbon symbolise un ruban architectural qui serpente le relief. La conception respecte l’environnement tout en créant une expérience immersive.
+        </p>
+        <div class="gallery-grid">
+          <img src="https://via.placeholder.com/400x300" alt="Image 1">
+          <img src="https://via.placeholder.com/400x300" alt="Image 2">
+          <img src="https://via.placeholder.com/400x300" alt="Image 3">
+        </div>
+        <div class="gallery-row">
+          <img src="https://via.placeholder.com/300x200" alt="Image supplémentaire">
+          <img src="https://via.placeholder.com/300x200" alt="Image supplémentaire">
+          <img src="https://via.placeholder.com/300x200" alt="Image supplémentaire">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <img src="Photo/Logo/Studiotm-long.png" alt="Logo Tom Maradan" class="footer-logo">
+  </footer>
+  <footer>
+    <p>© 2025 Tom Maradan</p>
+  </footer>
+
+  <script>
+    const yearFilter = document.getElementById("year-filter");
+    const sectorFilter = document.getElementById("sector-filter");
+    const locationFilter = document.getElementById("location-filter");
+    const projects = document.querySelectorAll(".project");
+
+    function filterProjects() {
+      const year = yearFilter.value;
+      const sector = sectorFilter.value;
+      const location = locationFilter.value;
+
+      projects.forEach(project => {
+        const matchYear = !year || project.dataset.year === year;
+        const matchSector = !sector || project.dataset.sector === sector;
+        const matchLocation = !location || project.dataset.location === location;
+
+        if (matchYear && matchSector && matchLocation) {
+          project.style.display = "block";
+        } else {
+          project.style.display = "none";
+        }
+      });
+    }
+
+    yearFilter.addEventListener("change", filterProjects);
+    sectorFilter.addEventListener("change", filterProjects);
+    locationFilter.addEventListener("change", filterProjects);
+  </script>
+</body>
+</html>
