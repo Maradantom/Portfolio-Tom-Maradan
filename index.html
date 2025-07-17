@@ -576,20 +576,16 @@ html {
       <p>Rénovation complète d’un hangar en résidence contemporaine, jouant sur les volumes industriels et l'ouverture sur le lac d’Annecy.</p>
     </div>
 
-    <!-- GALERIE COMPLÉMENTAIRE -->
-    <div class="galerie-grid">
-<div class="galerie-grid">
-  <!-- GALERIE DE PLANS -->
-<div class="galerie-grid" id="plans1">
-</div>
-  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy88.jpg" alt="" onclick="openImageLightbox(this.src)">
-  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy89.jpg" alt="" onclick="openImageLightbox(this.src)">
-  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy90.jpg" alt="" onclick="openImageLightbox(this.src)">
-  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy91.jpg" alt="" onclick="openImageLightbox(this.src)">
-  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy92.jpg" alt="" onclick="openImageLightbox(this.src)">
-  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy93.jpg" alt="" onclick="openImageLightbox(this.src)">
-  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy94.jpg" alt="" onclick="openImageLightbox(this.src)">
-  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy95.jpg" alt="" onclick="openImageLightbox(this.src)">
+<!-- GALERIE DE PLANS -->
+<div class="plans-grid" id="plans1">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy88.jpg" alt="" onclick="openLightbox(0)">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy89.jpg" alt="" onclick="openLightbox(1)">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy90.jpg" alt="" onclick="openLightbox(2)">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy91.jpg" alt="" onclick="openLightbox(3)">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy92.jpg" alt="" onclick="openLightbox(4)">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy93.jpg" alt="" onclick="openLightbox(5)">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy94.jpg" alt="" onclick="openLightbox(6)">
+  <img src="Projet/1-Villa Annecy/Tom Maradan - Projet Annecy95.jpg" alt="" onclick="openLightbox(7)">
 </div>
     </div>
 
@@ -601,11 +597,18 @@ html {
   </div>
 </div>
 </script>
-<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+
+<div id="lightbox" class="lightbox">
   <span class="close-lightbox" onclick="closeLightbox(event)">
     <svg viewBox="0 0 24 24"><path d="M6 6L18 18M6 18L18 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
   </span>
+  <button class="lightbox-nav prev" onclick="changeLightboxImage(-1)">
+    <svg viewBox="0 0 24 24"><path d="M15 18L9 12L15 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
   <img id="lightbox-img" src="" alt="plan en grand">
+  <button class="lightbox-nav next" onclick="changeLightboxImage(1)">
+    <svg viewBox="0 0 24 24"><path d="M9 6L15 12L9 18" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
 </div>
 
 <script>
@@ -626,9 +629,27 @@ function openModal(id) {
 function closeModal(id) {
   document.getElementById(id).style.display = "none";
 }
-function openImageLightbox(src) {
-  document.getElementById("lightbox-img").src = src;
+const lightboxImages = [
+  "Projet/1-Villa Annecy/Tom Maradan - Projet Annecy88.jpg",
+  "Projet/1-Villa Annecy/Tom Maradan - Projet Annecy89.jpg",
+  "Projet/1-Villa Annecy/Tom Maradan - Projet Annecy90.jpg",
+  "Projet/1-Villa Annecy/Tom Maradan - Projet Annecy91.jpg",
+  "Projet/1-Villa Annecy/Tom Maradan - Projet Annecy92.jpg",
+  "Projet/1-Villa Annecy/Tom Maradan - Projet Annecy93.jpg",
+  "Projet/1-Villa Annecy/Tom Maradan - Projet Annecy94.jpg",
+  "Projet/1-Villa Annecy/Tom Maradan - Projet Annecy95.jpg"
+];
+let currentLightboxIndex = 0;
+
+function openLightbox(index) {
+  currentLightboxIndex = index;
+  document.getElementById("lightbox-img").src = lightboxImages[index];
   document.getElementById("lightbox").style.display = "flex";
+}
+
+function changeLightboxImage(direction) {
+  currentLightboxIndex = (currentLightboxIndex + direction + lightboxImages.length) % lightboxImages.length;
+  document.getElementById("lightbox-img").src = lightboxImages[currentLightboxIndex];
 }
 
 function closeLightbox(event) {
@@ -636,6 +657,22 @@ function closeLightbox(event) {
     document.getElementById("lightbox").style.display = "none";
   }
 }
+
+function handleLightboxClick(event) {
+  const img = document.getElementById("lightbox-img");
+  if (!img.contains(event.target)) {
+    closeLightbox(event);
+  }
+}
+
+// Fermer la modale si clic hors contenu
+document.querySelectorAll(".modal").forEach(modal => {
+  modal.addEventListener("click", function (event) {
+    if (event.target.classList.contains("modal")) {
+      closeModal(modal.id);
+    }
+  });
+});
 </script>
 
 <style>
@@ -738,6 +775,23 @@ function closeLightbox(event) {
   transform: scale(1.03);
 }
 
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.plans-grid img {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+.plans-grid img:hover {
+  transform: scale(1.03);
+}
+
 .lightbox {
   display: none;
   position: fixed;
@@ -748,12 +802,36 @@ function closeLightbox(event) {
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(5px);
+  overflow: hidden;
 }
+
 .lightbox img {
   max-width: 90%;
   max-height: 90%;
   border-radius: 8px;
   box-shadow: 0 0 30px rgba(0,0,0,0.6);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  z-index: 2001;
+}
+.lightbox-nav svg {
+  width: 40px;
+  height: 40px;
+  stroke: white;
+}
+.lightbox-nav.prev {
+  left: 2rem;
+}
+.lightbox-nav.next {
+  right: 2rem;
 }
 
 .close-lightbox {
