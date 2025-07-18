@@ -1310,30 +1310,39 @@ document.querySelectorAll(".modal").forEach(modal => {
 
 /* === Mobile adjustments === */
 @media (max-width: 600px) {
-  /* 1. Réduction des marges verticales autour du carrousel */
+  /* 1. Réduction de la hauteur du carrousel (moins de vide) */
   .carousel {
-    height: 300px; /* ou ajuste la hauteur ici pour moins de vide */
+    height: auto;
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
 
-  /* 2. Flèches du carrousel plus petites sur mobile */
+  /* 2. Garder le format original des images du carrousel */
+  .carousel-image {
+    height: auto;
+    object-fit: contain; /* ✅ évite toute déformation */
+    max-height: 80vh;
+  }
+
+  /* 3. Flèches du carrousel plus petites */
   .carousel-arrow {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
   }
   .carousel-arrow svg {
     width: 100%;
     height: 100%;
   }
 
-  /* 3. Flèches du lightbox en noir sur mobile */
-  .lightbox-nav svg {
+  /* 4. Flèches du lightbox (plans en grand) en noir sur mobile */
+  .lightbox-nav svg,
+  .close-lightbox svg {
     stroke: black;
   }
 
-  .close-lightbox svg {
-    stroke: black;
+  /* 5. Réduction des marges entre les images dans la grille de plans */
+  .plans-grid {
+    gap: 0.5rem;
   }
 }
 
