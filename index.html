@@ -555,7 +555,8 @@ html {
 }</style>
   </div>
 
-<!-- MODALE 1 RECONSTRUITE -->
+
+<!-- MODALE 1 -->
 <div id="modal1" class="modal">
   <div class="modal-content large">
     <!-- Bouton de fermeture -->
@@ -613,7 +614,223 @@ html {
     </div>
 </div>
 </div>
+
+
+<!-- MODALE 2 -->
+<div id="modal2" class="modal">
+  <div class="modal-content large">
+    <button class="close" onclick="closeModal('modal2')" aria-label="Fermer">
+      <svg width="24" height="24"><path d="M6 6L18 18M6 18L18 6" stroke="#000" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+
+    <div class="carousel" data-carousel="2">
+      <button class="carousel-arrow prev" onclick="changeSlide(-1, 2)">
+        <svg viewBox="0 0 24 24"><path d="M15 18L9 12L15 6" stroke="#000" stroke-width="2"/></svg>
+      </button>
+      <!-- ✅ Première image avec .active -->
+      <img src="Projet/2-Projet Maison/Maison__Drone 1.png" class="carousel-image c2 active">
+      <img src="Projet/2-Projet Maison/Maison__Drone.png" class="carousel-image c2">
+      <img src="Projet/2-Projet Maison/Maison__Route entrée.png" class="carousel-image c2">
+      <img src="Projet/2-Projet Maison/Maison__Entrée.png" class="carousel-image c2">
+      <img src="Projet/2-Projet Maison/Maison__EXT G.png" class="carousel-image c2">
+      <img src="Projet/2-Projet Maison/Maison__EXT D.png" class="carousel-image c2">
+      <img src="Projet/2-Projet Maison/Maison__SAM.png" class="carousel-image c2">
+      <img src="Projet/2-Projet Maison/Maison__Canapé.png" class="carousel-image c2">
+      <img src="Projet/2-Projet Maison/Maison__Chambre parents.png" class="carousel-image c2">
+      <img src="Projet/2-Projet Maison/Maison__Chambre.png" class="carousel-image c2">
+
+      <button class="carousel-arrow next" onclick="changeSlide(1, 2)">
+        <svg viewBox="0 0 24 24"><path d="M9 6L15 12L9 18" stroke="#000" stroke-width="2"/></svg>
+      </button>
+    </div>
+
+    <div class="points-clefs">
+      <div class="point">150 m²</div><div class="point">2ème année</div>
+      <div class="point">Construction</div><div class="point">Résidentiel</div><div class="point">Projet seul</div>
+    </div>
+
+    <div class="description">
+      <h3>Un projet qui illustre ma vision d’une architecture contemporaine, lumineuse et en harmonie avec son site</h3>
+      <p>Située à La Biolle (73), cette maison de 150m², pensée pour une famille de 4 personnes, s’intègre harmonieusement 
+        dans son environnement naturel. Son orientation plein sud, ses grandes ouvertures et son architecture minimaliste 
+        favorisent une connexion fluide entre l’intérieur et l’extérieur. Dès les premières esquisses, l’accent a été mis 
+        sur une organisation des espaces optimisée, avec 3 chambres spacieuses, un séjour ouvert, une terrasse généreuse 
+        et un bassin pour offrir un cadre de vie à la fois fonctionnel et apaisant. Les plans techniques détaillent une 
+        conception rigoureuse, alliant esthétisme et rationalité. Enfin, les rendus 3D et la vidéo immersive donnent vie 
+        au projet, mettant en avant ses volumes épurés et sa relation forte avec le paysage environnant.</p>
+    </div>
+
+    <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+    <div class="plans-grid">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison.png" onclick="openLightbox2(0)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison2.png" onclick="openLightbox2(1)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison3.png" onclick="openLightbox2(2)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison4.png" onclick="openLightbox2(3)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison5.png" onclick="openLightbox2(4)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison6.png" onclick="openLightbox2(5)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison7.png" onclick="openLightbox2(6)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison8.png" onclick="openLightbox2(7)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison9.png" onclick="openLightbox2(8)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison10.png" onclick="openLightbox2(9)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison11.png" onclick="openLightbox2(10)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison12.png" onclick="openLightbox2(11)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison13.png" onclick="openLightbox2(12)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison14.png" onclick="openLightbox2(13)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison15.png" onclick="openLightbox2(14)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison16.png" onclick="openLightbox2(15)">
+    </div>
+
+    <div class="description">
+      <h3></h3>
+      <p></p>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Lightbox 2 -->
+<div id="lightbox2" class="lightbox" onclick="closeLightbox2(event)">
+  <span class="close-lightbox" onclick="closeLightbox2(event)">
+    <svg viewBox="0 0 24 24"><path d="M6 6L18 18M6 18L18 6" stroke="#fff" stroke-width="2"/></svg>
+  </span>
+  <button class="lightbox-nav prev" onclick="changeLightboxImage2(-1)">
+    <svg viewBox="0 0 24 24"><path d="M15 18L9 12L15 6" stroke="#fff" stroke-width="2"/></svg>
+  </button>
+  <img id="lightbox2-img" src="" alt="plan en grand">
+  <button class="lightbox-nav next" onclick="changeLightboxImage2(1)">
+    <svg viewBox="0 0 24 24"><path d="M9 6L15 12L9 18" stroke="#fff" stroke-width="2"/></svg>
+  </button>
+</div>
+<!-- ✅ Modif -->
+<script>
+const lightboxImages2 = [
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison2.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison3.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison4.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison5.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison6.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison7.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison8.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison9.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison10.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison11.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison12.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison13.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison14.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison15.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison16.png"
+];
+let currentLightboxIndex2 = 0;
+
+function openLightbox2(index) {
+  currentLightboxIndex2 = index;
+  document.getElementById("lightbox2-img").src = lightboxImages2[index];
+  document.getElementById("lightbox2").style.display = "flex";
+}
+
+function changeLightboxImage2(direction) {
+  currentLightboxIndex2 = (currentLightboxIndex2 + direction + lightboxImages2.length) % lightboxImages2.length;
+  document.getElementById("lightbox2-img").src = lightboxImages2[currentLightboxIndex2];
+}
+
+function closeLightbox2(event) {
+  if (!event || event.target === document.getElementById("lightbox2") || event.target.closest('.close-lightbox')) {
+    document.getElementById("lightbox2").style.display = "none";
+  }
+}
 </script>
+
+
+<!-- MODALE 3 -->
+<div id="modal3" class="modal">
+  <div class="modal-content large">
+    <button class="close" onclick="closeModal('modal3')" aria-label="Fermer">
+      <svg width="24" height="24"><path d="M6 6L18 18M6 18L18 6" stroke="#000" stroke-width="2"/></svg>
+    </button>
+
+    <div class="carousel" data-carousel="3">
+     <button class="carousel-arrow prev" onclick="changeSlide(-1, 3)">
+       <svg viewBox="0 0 24 24"><path d="M15 18L9 12L15 6" stroke="#000" stroke-width="2"/></svg>
+    </button>
+      <!-- ✅ Image active -->
+      <img src="Projet/2-Projet Maison/Maison__EXT D.png" class="carousel-image c3 active">
+      <img src="Projet/2-Projet Maison/Maison__SAM.png" class="carousel-image c3">
+      <img src="Projet/2-Projet Maison/Maison__Entrée.png" class="carousel-image c3">
+  <button class="carousel-arrow next" onclick="changeSlide(1, 3)">
+    <svg viewBox="0 0 24 24"><path d="M9 6L15 12L9 18" stroke="#000" stroke-width="2"/></svg>
+  </button>
+</div>
+
+    <div class="points-clefs">
+      <div class="point">33 m²</div>
+      <div class="point">2ème année</div>
+      <div class="point">Rénovation</div>
+      <div class="point">Résidentiel</div>
+      <div class="point">Projet de groupe</div>
+    </div>
+
+    <div class="description">
+      <h3>Description</h3>
+      <p>Fusion de deux studios sous les combles en un seul appartement lumineux et optimisé, situé en plein centre de Lyon.</p>
+    </div>
+
+    <!-- ✅ Galerie de plans avec onclick -->
+    <div class="plans-grid">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison14.png" onclick="openLightbox3(0)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison15.png" onclick="openLightbox3(1)">
+      <img src="Projet/2-Projet Maison/Tom Maradan - Projet Maison16.png" onclick="openLightbox3(2)">
+    </div>
+
+    <div class="description">
+      <h3>Détails</h3>
+      <p>Gestion des volumes complexes, mise en valeur de la charpente d’origine, lumière naturelle via des verrières de toit.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ LIGHTBOX 3 -->
+<div id="lightbox3" class="lightbox" onclick="closeLightbox3(event)">
+  <span class="close-lightbox" onclick="closeLightbox3(event)">
+    <svg viewBox="0 0 24 24"><path d="M6 6L18 18M6 18L18 6" stroke="#fff" stroke-width="2"/></svg>
+  </span>
+  <button class="lightbox-nav prev" onclick="changeLightboxImage3(-1)">
+    <svg viewBox="0 0 24 24"><path d="M15 18L9 12L15 6" stroke="#fff" stroke-width="2"/></svg>
+  </button>
+  <img id="lightbox3-img" src="" alt="plan en grand">
+  <button class="lightbox-nav next" onclick="changeLightboxImage3(1)">
+    <svg viewBox="0 0 24 24"><path d="M9 6L15 12L9 18" stroke="#fff" stroke-width="2"/></svg>
+  </button>
+</div>
+</script>
+<script>
+  
+// LIGHTBOX 3
+const lightboxImages3 = [
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison14.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison15.png",
+  "Projet/2-Projet Maison/Tom Maradan - Projet Maison16.png"
+];
+let currentLightboxIndex3 = 0;
+
+function openLightbox3(index) {
+  currentLightboxIndex3 = index;
+  document.getElementById("lightbox3-img").src = lightboxImages3[index];
+  document.getElementById("lightbox3").style.display = "flex";
+}
+
+function changeLightboxImage3(direction) {
+  currentLightboxIndex3 = (currentLightboxIndex3 + direction + lightboxImages3.length) % lightboxImages3.length;
+  document.getElementById("lightbox3-img").src = lightboxImages3[currentLightboxIndex3];
+}
+
+function closeLightbox3(event) {
+  if (!event || event.target === document.getElementById("lightbox3") || event.target.closest('.close-lightbox')) {
+    document.getElementById("lightbox3").style.display = "none";
+  }
+}
+</script>
+
+
 
 <div id="lightbox" class="lightbox">
   <span class="close-lightbox" onclick="closeLightbox(event)">
@@ -629,7 +846,7 @@ html {
 </div>
 
 <script>
-const slideIndices = { 1: 0 };
+const slideIndices = { 1: 0, 2: 0, 3: 0 };
 
 function changeSlide(n, id) {
   const slides = document.querySelectorAll(`.carousel-image.c${id}`);
@@ -764,19 +981,34 @@ document.querySelectorAll(".modal").forEach(modal => {
   stroke: #000;
   fill: none;
 }
-.carousel-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
+.carousel {
+  position: relative;
+  max-height: 70vh; /* empêche le carrousel de dépasser la hauteur de l'écran */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 2rem;
 }
+
+.carousel-image {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+  display: none;
+  border-radius: 12px;
+  position: relative;
+}
+
 .carousel-image.active {
   display: block;
-  position: relative;
+}
+
+@media (max-width: 768px) {
+  .carousel-image {
+    max-height: 70vh;
+  }
 }
 
 /* Grille d’images complémentaires */
