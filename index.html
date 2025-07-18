@@ -562,7 +562,7 @@ html {
     <!-- Bouton de fermeture -->
     <button class="close" onclick="closeModal('modal1')" aria-label="Fermer">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M6 6L18 18M6 18L18 6" stroke="black" stroke-width="2" stroke-linecap="round"/>
       </svg>
     </button>
 
@@ -620,7 +620,7 @@ html {
 <div id="modal2" class="modal">
   <div class="modal-content large">
     <button class="close" onclick="closeModal('modal2')" aria-label="Fermer">
-      <svg width="24" height="24"><path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg width="24" height="24"><path d="M6 6L18 18M6 18L18 6" stroke="black" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
 
     <div class="carousel" data-carousel="2">
@@ -948,6 +948,7 @@ document.querySelectorAll(".modal").forEach(modal => {
   cursor: pointer;
   z-index: 9999;
   padding: 0;
+  color: black !important;
 }
 
 .close svg {
