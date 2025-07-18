@@ -955,8 +955,12 @@ document.querySelectorAll(".modal").forEach(modal => {
   width: 24px;
   height: 24px;
   stroke: #000;
+  stroke: black !important;
 }
-
+/* Garde la croix des modales (bouton .close) en noir */
+.modal .close svg {
+  stroke: black !important;
+}
 /* Carrousel */
 .carousel {
   position: relative;
