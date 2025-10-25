@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tom Maradan | StudioTM - Merci</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+    <div class="slider">
+      <div class="slider-track">
+        <!-- 10 images -->
+        <img src="photo/début/BEL4.png" alt="1">
+        <img src="photo/début/C1.png" alt="2">
+        <img src="photo/début/IMG_0688.JPG" alt="3">
+        <img src="photo/début/E2.png" alt="4">
+        <img src="photo/début/EXT L 2.webp" alt="5">
+        <img src="photo/début/Scène 3.webp" alt="6">
+        <img src="photo/début/Scène 7-2-C03.webp" alt="7">
+        <img src="photo/début/Villa_8.webp" alt="8">
+        <img src="photo/début/Villa_Enttrée.webp" alt="9">
+        <img src="photo/début/Villa_PV cuisine.webp" alt="10">
+      </div>
+    </div>
+  </header>
+  <style>
+    .slider {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slider-track {
+      display: flex;
+      gap: 0px;
+      transform: translateX(0);
+    }
+
+    .slider-track img {
+      height: 180px;
+      width: auto;
+      flex-shrink: 0;
+      object-fit: cover;
+      border-radius: px;
+    }
+
+    /* Taille plus grande sur ordinateur */
+    @media (min-width: 768px) {
+      .slider-track img {
+        height: 250px;
+      }
+    }
+  </style>
+  <script>
+    const track = document.querySelector('.slider-track');
+    const images = Array.from(track.children);
+
+    // Clone les images pour créer l’effet infini
+    images.forEach(img => {
+      const clone = img.cloneNode(true);
+      track.appendChild(clone);
+    });
+
+    let scrollX = 0;
+    const speed = 2; // pixel/frame
+
+    function animate() {
+      scrollX += speed;
+      if (scrollX >= track.scrollWidth / 2) {
+        scrollX = 0; // revient au début sans saut
+      }
+      track.style.transform = `translateX(-${scrollX}px)`;
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+  </script>

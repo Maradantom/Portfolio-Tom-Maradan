@@ -1,0 +1,3211 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <!-- Icône Apple (iOS / macOS) -->
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon-v2.png">
+
+<!-- Favicons PNG -->
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96-v2.png">
+
+<!-- Favicon SVG (navigateurs récents) -->
+<link rel="icon" type="image/svg+xml" href="/favicon/favicon-v2.svg">
+
+<!-- Favicon ICO (compatibilité ancienne) -->
+<link rel="shortcut icon" href="/favicon/favicon.ico-v2">
+
+<!-- Manifest Web App -->
+<link rel="manifest" href="/favicon/site-v2.webmanifest">
+
+<!-- Icônes pour PWA (Android) -->
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon/web-app-manifest-192x192.png-v2">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon/web-app-manifest-512x512.png-v2">
+
+<!-- Thème pour navigateurs -->
+<meta name="theme-color" content="#ffffff">
+
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-5TXD68TR');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GFHBS8S2BH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-GFHBS8S2BH');
+    </script>
+
+  </head>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5TXD68TR" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+
+  <meta name="description" content="Site internet de Tom Maradan, architecte d’intérieur basé à Lyon.">
+  <meta name="google-site-verification" content="NeZlJppmijT2qp7ZVZu-EZVwxVvQLuAlR4TCEcOWRX8" />
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tom Maradan | StudioTM — Architecte d'intérieur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Styles mobiles par défaut */
+    .container {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* Styles pour écrans plus larges */
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: row;
+        gap: 2rem;
+      }
+    }
+
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto 20px;
+      padding: 0 1rem;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Version ordinateur */
+    .container {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+    }
+
+    /* Version mobile */
+    @media screen and (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* Styles pour tablette et mobile */
+    }
+
+    @media (max-width: 480px) {
+      /* Styles spécifiques aux petits mobiles */
+    }
+
+    section {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto 20px;
+      padding: 30px 5px;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --background: #ffffff;
+      --text: #242424;
+      --accent: #9999992d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* Classe pour fixer la page quand une modale est ouverte */
+    body.modal-open {
+      overflow: hidden;
+      position: fixed;
+      width: 100%;
+      top: var(--scroll-y, 0);
+    }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+      background: #efefef;
+      border-bottom: 1px solid #eee;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+
+    .extra-images {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .extra-images img {
+      width: 100px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .extra-images img:hover {
+      border-color: var(--accent);
+    }
+
+
+    .experience-section {
+      padding: 60px 20px;
+      background-color: #f9f9f9;
+    }
+
+    .experience-section h2 {
+      font-family: 'Outfit', sans-serif;
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      margin-right: 20px;
+      object-fit: contain;
+      z-index: 1;
+    }
+
+    .content {
+      background-color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      flex: 1;
+      z-index: 1;
+    }
+
+    .content h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    .date {
+      font-family: 'Outfit', sans-serif;
+      color: #666;
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+
+
+
+    .gallery {
+      display: flex;
+      justify-content: space-between;
+      gap: 70px;
+      overflow: hidden;
+      height: 800px;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+
+    .column {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      min-width: 0;
+    }
+
+    @media (max-width: 768px) {
+      .gallery {
+        height: auto;
+      }
+
+      .column {
+        height: auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      .link-box:active,
+      .projet:active {
+        background: #f0f0f0;
+        transform: scale(0.98);
+      }
+    }
+
+
+    /* Défilement fluide vers le bas */
+    @keyframes scroll-down {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-50%);
+      }
+    }
+
+    /* Défilement fluide vers le haut */
+    @keyframes scroll-up {
+      0% {
+        transform: translateY(-50%);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive pour mobile */
+    @media (max-width: 768px) {
+      .gallery {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .column {
+        height: 300px;
+        margin-bottom: 20px;
+      }
+
+      .scroll {
+        animation-duration: 15s;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .chiffres {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .projet p {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .chiffres {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .projet p {
+        text-align: center;
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="section-content"></div>
+    <h1>Tom Maradan</h1>
+    <p>Architecture intérieure & design — CREAD </p>
+    <!-- HEADER AVEC LOGO -->
+    <header class="site-header">
+      <div class="logo-container">
+        <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan">
+      </div>
+    </header>
+
+    <style>
+      /* EN-TÊTE / LOGO */
+      .site-header {
+        background-color: #efefef;
+        padding: 20px 40px;
+        text-align: center;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        /* pour qu’il reste propre sur mobile */
+      }
+
+      .logo-container img {
+        height: 30px;
+        /* ajuste selon ton logo */
+        width: auto;
+      }
+
+      .logo-container h1 {
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.8rem;
+        color: #000;
+        margin: 0;
+      }
+    </style>
+
+    <div class="slider">
+      <div class="slider-track">
+        <!-- 10 images -->
+        <img src="photo/début/BEL4.png" alt="1">
+        <img src="photo/début/C1.png" alt="2">
+        <img src="photo/début/IMG_0688.JPG" alt="3">
+        <img src="photo/début/E2.png" alt="4">
+        <img src="photo/début/EXT L 2.webp" alt="5">
+        <img src="photo/début/Scène 3.webp" alt="6">
+        <img src="photo/début/Scène 7-2-C03.webp" alt="7">
+        <img src="photo/début/Villa_8.webp" alt="8">
+        <img src="photo/début/Villa_Enttrée.webp" alt="9">
+        <img src="photo/début/Villa_PV cuisine.webp" alt="10">
+      </div>
+    </div>
+  </header>
+  <style>
+    .slider {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slider-track {
+      display: flex;
+      gap: 0px;
+      transform: translateX(0);
+    }
+
+    .slider-track img {
+      height: 180px;
+      width: auto;
+      flex-shrink: 0;
+      object-fit: cover;
+      border-radius: px;
+    }
+
+    /* Taille plus grande sur ordinateur */
+    @media (min-width: 768px) {
+      .slider-track img {
+        height: 250px;
+      }
+    }
+  </style>
+  <script>
+    const track = document.querySelector('.slider-track');
+    const images = Array.from(track.children);
+
+    // Clone les images pour créer l’effet infini
+    images.forEach(img => {
+      const clone = img.cloneNode(true);
+      track.appendChild(clone);
+    });
+
+    let scrollX = 0;
+    const speed = 1.5; // pixel/frame
+
+    function animate() {
+      scrollX += speed;
+      if (scrollX >= track.scrollWidth / 2) {
+        scrollX = 0; // revient au début sans saut
+      }
+      track.style.transform = `translateX(-${scrollX}px)`;
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+  </script>
+
+  <div class="scene">
+    <div class="card" id="card">
+      <div class="face front"></div>
+      <div class="face back"></div>
+    </div>
+  </div>
+
+  <style>
+    .scene {
+      width: 85mm;
+      height: 54mm;
+      perspective: 1000px;
+      margin: 40px auto;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out;
+      transform: rotateY(15deg) rotateX(10deg);
+      will-change: transform;
+      touch-action: none;
+    }
+
+    .face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      backface-visibility: hidden;
+    }
+
+    .front {
+      background-image: url('photo/logo/Carte de visite.webp');
+      /* Remplace par ton image */
+    }
+
+    .back {
+      background-image: url('photo/logo/Carte de visite2.webp');
+      /* Remplace par ton image */
+      transform: rotateY(180deg);
+    }
+  </style>
+
+
+  <script>
+    const card = document.getElementById('card');
+    let isDragging = false;
+    let startX, startY;
+    let currentX = 20, currentY = -15;
+    let targetX = currentX, targetY = currentY;
+    let baseX = currentX, baseY = currentY;
+    let animationId = null;
+    let autoRotate = true;
+    let autoSpeedX = 0.2; // vitesse de rotation horizontale
+    let autoSpeedY = 0;   // tu peux aussi mettre une rotation verticale lente si tu veux
+
+    function updateTransform() {
+      if (!isDragging && autoRotate) {
+        targetX += autoSpeedX;
+        targetY += autoSpeedY;
+      }
+
+      currentX += (targetX - currentX) * 0.1;
+      currentY += (targetY - currentY) * 0.1;
+      card.style.transform = `rotateY(${currentX}deg) rotateX(${-currentY}deg)`;
+      animationId = requestAnimationFrame(updateTransform);
+    }
+
+    function startAnimation() {
+      if (!animationId) {
+        animationId = requestAnimationFrame(updateTransform);
+      }
+    }
+
+    function stopAnimation() {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+
+function updateTarget(deltaX, deltaY) {
+  if (isBackFaceVisible()) {
+    deltaY = -deltaY; 
+  }
+  targetX = baseX + deltaX * 0.3;
+  targetY = baseY + deltaY * 0.3;
+}
+    function isBackFaceVisible() {
+  const y = (currentX % 360 + 360) % 360; 
+  return y > 90 && y < 270;
+}
+    // Souris
+    document.addEventListener('mousedown', (e) => {
+      if (e.target.closest('#card')) {
+        isDragging = true;
+        autoRotate = false;
+        startX = e.clientX;
+        startY = e.clientY;
+        baseX = currentX;
+        baseY = currentY;
+        startAnimation();
+      }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - startX;
+      const deltaY = e.clientY - startY;
+      updateTarget(deltaX, deltaY);
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      autoRotate = true;
+    });
+
+    // Mobile
+    card.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      autoRotate = false;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      baseX = currentX;
+      baseY = currentY;
+      startAnimation();
+      e.preventDefault();
+    }, { passive: false });
+
+    card.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.touches[0].clientX - startX;
+      const deltaY = e.touches[0].clientY - startY;
+      updateTarget(deltaX, deltaY);
+      e.preventDefault();
+    }, { passive: false });
+
+    card.addEventListener('touchend', () => {
+      isDragging = false;
+      autoRotate = true;
+    });
+
+    // Lancer l'animation au chargement
+    card.style.transform = `rotateY(${currentX}deg) rotateX(${-currentY}deg)`;
+    startAnimation();
+  </script>
+
+
+  <section id="bienvenue">
+    <h2>Bienvenue</h2>
+    <div class="link-grid">
+      <a href="#activité" class="link-box">Mon activité</a>
+      <a href="#histoire" class="link-box">Mon histoire & parcours</a>
+      <a href="projets.html" class="link-box">Mes projets</a>
+      <a href="#experiences" class="link-box">Mes expériences</a>
+      <a href="#passion" class="link-box">Ma passion pour la photo</a>
+      <a href="contact.html" class="link-box">Me contacter</a>
+    </div>
+  </section>
+  <style>
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      /* 2 par ligne par défaut */
+      gap: 2rem;
+      max-width: 900px;
+      width: 100%;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .link-grid {
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 par ligne dès tablette/petit ordi */
+      }
+    }
+
+    .link-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      background: white;
+      transition: 0.3s;
+      min-width: 0;
+      word-wrap: break-word;
+      min-height: 120px;
+      text-decoration: none;
+      /* Important : pas de soulignement */
+      color: var(--text);
+      /* Couleur du texte */
+      font-weight: 600;
+    }
+
+    .link-box:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      background: #f0f0f0;
+    }
+
+    .link-box a {
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .socials a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+      transition: 0.3s ease;
+      border: 1px solid #ccc;
+    }
+
+    .socials a:hover {
+      background-color: #e3e3e3;
+      transform: scale(1.08);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #707070;
+    }
+  </style>
+
+   <section id="activité" style="margin-bottom: -10px;">
+  <h2 style="margin-bottom: -2rem;">Mon activité</h2>
+</section>
+
+<section id="about" class="about-section" aria-labelledby="about-title" style="padding-top: 10px;">
+  <div class="about-card">
+    <figure class="about-image">
+      <img src="photo/logo/IMG_1901.webp" alt="Tom Maradan, architecte d'intérieur" width="600" height="600">
+    </figure>
+
+    <div class="about-text">
+      <h2 id="about-title">À propos de moi</h2>
+
+      <p class="lead">
+        Je m'appelle <strong>Tom Maradan</strong>, étudiant en 3<sup>ème</sup> année d’architecture d’intérieur à <strong>CREAD Lyon</strong>.  
+        En parallèle de mes études, je propose des prestations professionnelles : <strong>Plans techniques</strong>, 
+        <strong>modélisation 3D</strong> et <strong>rendus photo-réalistes</strong>.
+      </p>
+
+      <p>
+        Mon objectif est simple : <strong>transformer des idées en visuels clairs et inspirants</strong>, pour
+        permettre à chacun de mieux se projeter dans son futur espace. 
+        J’accorde une importance particulière à une </em>conception claire et structurée</em>, toujours enrichie d’une touche créative 
+        qui signe l’identité de chaque projet.
+      </p>
+ 
+      <p>
+        J’accompagne particuliers et professionnels avec rigueur technique et sensibilité esthétique — une
+        approche jeune, professionnelle et engagée.
+      </p>
+
+      <p class="cta">
+        <a class="btn" href="/contact.html" title="Contactez Tom">Discutons de votre projet</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section{
+    --bg-card: #f2f2f2; /* gris clair */
+    --text-local: #121212;
+    --muted: #4f4f4f;
+    --accent-local: #000;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .about-section{
+    padding: 20px 20px 60px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .about-card{
+    background: var(--bg-card);
+    border-radius: 24px;
+    padding: 40px;
+    max-width: 1100px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    flex-wrap: wrap;
+  }
+
+  .about-image {
+    flex: 0 0 280px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  }
+
+  .about-image img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-text{
+    flex: 1 1 400px;
+    color: var(--text-local);
+  }
+
+  .about-text h2{
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  .about-text .lead{
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+    color: var(--text-local);
+  }
+
+  .about-text p{
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .cta { margin-top: 18px; }
+  .btn{
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    background: transparent;
+    border: 1.5px solid var(--accent-local);
+    color: var(--accent-local);
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+  }
+  .btn:hover{
+    background: var(--accent-local);
+    color: #fff;
+  }
+
+  @media (max-width: 820px){
+    .about-card{ flex-direction: column; text-align: center; padding: 30px 20px; }
+    .about-text{ text-align: left; }
+    .about-text h2{ text-align: center; }
+    .about-image { flex: 0 0 180px; width: 180px; height: 180px; }
+  }
+</style>
+
+  <section id="histoire">
+    <h2>Mon histoire et parcours</h2>
+    <div class="histoire-container">
+      <div class="histoire-texte">
+        <p>
+          Animé par une véritable passion pour l’architecture, je poursuis mes études en école d’architecture afin de 
+          développer une expertise solide et contribuer à la création d’espaces.<br><br>
+          La photographie, que je pratique en parallèle, enrichit mon regard. Elle m’apprend à capter la lumière, les
+          matières et les lignes, autant d’éléments que je retrouve et valorise dans mes projets architecturaux.<br><br>
+          À travers cette double approche, je développe une sensibilité particulière à l’esthétique et à l’identité des
+          lieux. La photo ci-contre, prise à Megève devant la boutique AAllard — symbole d’élégance et de raffinement —
+          illustre cette recherche constante d’un équilibre entre exigence visuelle et cohérence architecturale.
+        </p>
+      </div>
+      <div class="histoire-image">
+        <img src="photo/passion-photo/IMG_7398.webp" alt="photo de Tom Maradan">
+      </div>
+    </div>
+  </section>
+  <style>
+    .histoire-container {
+      display: flex;
+      flex-direction: row;
+      gap: 3rem;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .histoire-texte,
+    .histoire-image {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .histoire-texte {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .histoire-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Sur mobile, on force en colonne */
+    @media (max-width: 768px) {
+      .histoire-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+
+
+
+  <section id="projets" style="margin-bottom: 0; padding-bottom: 0;">
+    <h2 style="margin-bottom: -2rem;">Mes projets</h2>
+  </section>
+  <section id="projets">
+    <div class="projets-grid">
+
+      <!-- Projet 1 -->
+      <div class="projet" onclick="openModal('modal1')">
+        <img src="projets/6-projet-villa-annecy-2025/3D/1.webp" alt="Projet villa">
+        <div class="chiffres">
+          <span>2025</span><span>Rénovation</span><span>Résidentiel</span><span>Annecy</span>
+        </div>
+        <p>Rénovation d’un ancien hangar en maison moderne au bord du lac d’Annecy</p>
+      </div>
+
+      <!-- Projet 2 -->
+      <div class="projet" onclick="openModal('modal2')">
+        <img src="projets/7-projet-showroom-2025/3D/Entrée/E1.webp" alt="Projet Showroom">
+        <div class="chiffres">
+          <span>2025</span><span>Construction</span><span>Tertiaire</span><span>Lyon</span>
+        </div>
+        <p>Création d'un nouveaux showroom pour SamplesRoom</p>
+      </div>
+
+      <!-- Projet 3 -->
+      <div class="projet" onclick="openModal('modal3')">
+        <img src="projets/4-projet-appartement-lyon-2024/3D/Cuisine-salon.webp" alt="Projet Appartement">
+        <div class="chiffres">
+          <span>2024</span><span>Rénovation</span><span>Résidentiel</span><span>Lyon</span>
+        </div>
+        <p>Deux studios à fusionner en un sous les combles</p>
+      </div>
+      <div></div>
+    </div>
+
+
+    <!-- MODALE 1 -->
+    <div id="modal1" class="modal">
+      <div class="modal-content large">
+        <!-- Bouton de fermeture -->
+        <button class="close" onclick="closeModal('modal1')" aria-label="Fermer">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M6 6L18 18M6 18L18 6" stroke="black" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+
+        <!-- CARROUSEL -->
+        <div class="carousel" data-carousel="1">
+          <button class="carousel-arrow prev" onclick="changeSlide(-1, 1)">
+            <svg viewBox="0 0 24 24">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+
+          <img src="projets/6-projet-villa-annecy-2025/3D/1.webp" class="carousel-image c1 active">
+          <img src="projets/6-projet-villa-annecy-2025/3D/2.webp" class="carousel-image c1">
+          <img src="projets/6-projet-villa-annecy-2025/3D/3.webp" class="carousel-image c1">
+          <img src="projets/6-projet-villa-annecy-2025/3D/4.webp" class="carousel-image c1">
+          <img src="projets/6-projet-villa-annecy-2025/3D/5.webp" class="carousel-image c1">
+          <img src="projets/6-projet-villa-annecy-2025/3D/6.webp" class="carousel-image c1">
+          <img src="projets/6-projet-villa-annecy-2025/3D/7.webp" class="carousel-image c1">
+          <img src="projets/6-projet-villa-annecy-2025/3D/8.webp" class="carousel-image c1">
+          <img src="projets/6-projet-villa-annecy-2025/3D/9.webp" class="carousel-image c1">
+          <img src="projets/6-projet-villa-annecy-2025/3D/10.webp" class="carousel-image c1">
+          <img src="projets/6-projet-villa-annecy-2025/3D/11.webp" class="carousel-image c1">
+          <img src="projets/6-projet-villa-annecy-2025/3D/12.webp" class="carousel-image c1">
+          <img src="projets/6-projet-villa-annecy-2025/3D/13.webp" class="carousel-image c1">
+          <img src="projets/6-projet-villa-annecy-2025/3D/14.webp" class="carousel-image c1">
+          <img src="projets/6-projet-villa-annecy-2025/3D/15.webp" class="carousel-image c1">
+          <img src="projets/6-projet-villa-annecy-2025/3D/16.webp" class="carousel-image c1">
+          <img src="projets/6-projet-villa-annecy-2025/3D/17.webp" class="carousel-image c1">
+
+          <button class="carousel-arrow next" onclick="changeSlide(1, 1)">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- POINTS CLEFS -->
+        <div class="points-clefs">
+          <div class="point">2025</div>
+          <div class="point">Rénovation</div>
+          <div class="point">Résidentiel</div>
+          <div class="point">Annecy</div>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>Documents initiaux</h3>
+          <p>Les documents initiaux regroupent le diagnostic du bâti existant, les relevés de l’état des lieux, les
+            contraintes du terrain ainsi que
+            les attentes précises des clients. Ils permettent de bien cerner le potentiel du site, d’identifier les
+            enjeux techniques et d’ancrer le
+            projet dans une démarche cohérente et sur-mesure dès les premières phases de conception.</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid" id="plans1">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy4.webp"
+            onclick="openLightbox1(0)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy5.webp"
+            onclick="openLightbox1(1)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy6.webp"
+            onclick="openLightbox1(2)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy10.webp"
+            onclick="openLightbox1(3)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy12.webp"
+            onclick="openLightbox1(4)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy13.webp"
+            onclick="openLightbox1(5)">
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>Étude esthétique & architecturale</h3>
+          <p>L’étude esthétique et architecturale explore les lignes, les volumes, les matériaux et les couleurs pour
+            définir une ambiance à
+            la fois contemporaine et contextuelle. Inspirée des architectures japonaise et scandinave, la composition
+            favorise la lumière
+            naturelle, les textures authentiques et une relation forte avec le paysage. Le projet vise une atmosphère
+            épurée, douce et raffinée.</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid" id="plans1">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy15.webp"
+            onclick="openLightbox1(6)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy16.webp"
+            onclick="openLightbox1(7)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy17.webp"
+            onclick="openLightbox1(8)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy18.webp"
+            onclick="openLightbox1(9)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy19.webp"
+            onclick="openLightbox1(10)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy20.webp"
+            onclick="openLightbox1(11)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy25.webp"
+            onclick="openLightbox1(12)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy26.webp"
+            onclick="openLightbox1(13)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy28.webp"
+            onclick="openLightbox1(14)">
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>Représentations volumétriques extérieures</h3>
+          <p>Ces vues 3D illustrent les intentions d’implantation, de matérialité et d’ambiance du projet. Elles
+            montrent comment les différents
+            volumes s’inscrivent dans le terrain, et comment les espaces extérieurs – jardin, terrasse, ponton –
+            prolongent naturellement
+            l’architecture. Le traitement paysager renforce la fluidité entre intérieur et extérieur.</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid" id="plans1">
+          <img
+            src="projets/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy31.webp"
+            onclick="openLightbox1(15)">
+          <img
+            src="projets/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy32.webp"
+            onclick="openLightbox1(16)">
+          <img
+            src="projets/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy33.webp"
+            onclick="openLightbox1(17)">
+          <img
+            src="projets/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy34.webp"
+            onclick="openLightbox1(18)">
+          <img
+            src="projets/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy35.webp"
+            onclick="openLightbox1(19)">
+          <img
+            src="projets/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy36.webp"
+            onclick="openLightbox1(20)">
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>Aménagement intérieur </h3>
+          <p>Présentation claire de la répartition des espaces : zones jour, nuit et techniques. Les plans révèlent une
+            organisation fluide,
+            pensée pour le confort et la vue sur le lac. Chaque pièce est optimisée selon son usage, avec de belles
+            hauteurs sous plafond et des
+            connexions cohérentes entre intérieur et extérieur.</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid" id="plans1">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy39.webp"
+            onclick="openLightbox1(21)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy40.webp"
+            onclick="openLightbox1(22)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy41.webp"
+            onclick="openLightbox1(23)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy42.webp"
+            onclick="openLightbox1(24)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy44.webp"
+            onclick="openLightbox1(25)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy45.webp"
+            onclick="openLightbox1(26)">
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>Carnets de Détails</h3>
+          <p>Les carnets de détails décomposent pièce par pièce les choix de revêtements, de mobilier et de luminaires.
+            Chaque espace est pensé
+            avec cohérence, en tenant compte de l’usage, du confort et de l’esthétique. Les matériaux nobles (bois,
+            cuir, pierre), les finitions
+            soignées et le mobilier design viennent affirmer l’identité haut de gamme et fonctionnelle de la maison.</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid" id="plans1">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy47.webp"
+            onclick="openLightbox1(27)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy48.webp"
+            onclick="openLightbox1(28)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy49.webp"
+            onclick="openLightbox1(29)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy51.webp"
+            onclick="openLightbox1(30)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy52.webp"
+            onclick="openLightbox1(31)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy53.webp"
+            onclick="openLightbox1(32)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy57.webp"
+            onclick="openLightbox1(33)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy59.webp"
+            onclick="openLightbox1(34)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy61.webp"
+            onclick="openLightbox1(35)">
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>Étude technique</h3>
+          <p>L’étude technique comprend l’ensemble des plans d’exécution : structure, plancher, cloisonnement,
+            plomberie, chauffage, VMC,
+            électricité et éclairage. Elle assure la faisabilité technique du projet, dans le respect des normes
+            actuelles et des exigences de
+            performance énergétique (RE2020, chauffage à granulés, planchers techniques isolés…).</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid" id="plans1">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy65.webp"
+            onclick="openLightbox1(36)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy66.webp"
+            onclick="openLightbox1(37)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy67.webp"
+            onclick="openLightbox1(38)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy75.webp"
+            onclick="openLightbox1(39)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy78.webp"
+            onclick="openLightbox1(40)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy79.webp"
+            onclick="openLightbox1(41)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy80.webp"
+            onclick="openLightbox1(42)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy82.webp"
+            onclick="openLightbox1(43)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy83.webp"
+            onclick="openLightbox1(44)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy84.webp"
+            onclick="openLightbox1(45)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy87.webp"
+            onclick="openLightbox1(46)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy88.webp"
+            onclick="openLightbox1(47)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy89.webp"
+            onclick="openLightbox1(48)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy90.webp"
+            onclick="openLightbox1(49)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy91.webp"
+            onclick="openLightbox1(50)">
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>Mobilier sur mesure</h3>
+          <p>Mobilier intégré conçu spécialement pour chaque espace : rangements, dressings, bureaux, meubles vasques…
+            Les formes et matériaux
+            prolongent l’architecture, alliant fonctionnalité, esthétisme et harmonie globale. Chaque élément renforce
+            l’identité élégante et
+            épurée du projet.</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid" id="plans1">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy129.webp"
+            onclick="openLightbox1(51)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy130.webp"
+            onclick="openLightbox1(52)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy131.webp"
+            onclick="openLightbox1(53)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy132.webp"
+            onclick="openLightbox1(54)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy133.webp"
+            onclick="openLightbox1(55)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy136.webp"
+            onclick="openLightbox1(56)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy137.webp"
+            onclick="openLightbox1(57)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy138.webp"
+            onclick="openLightbox1(58)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy139.webp"
+            onclick="openLightbox1(59)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy140.webp"
+            onclick="openLightbox1(60)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy141.webp"
+            onclick="openLightbox1(61)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy142.webp"
+            onclick="openLightbox1(62)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy143.webp"
+            onclick="openLightbox1(63)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy144.webp"
+            onclick="openLightbox1(64)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy145.webp"
+            onclick="openLightbox1(65)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy158.webp"
+            onclick="openLightbox1(66)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy159.webp"
+            onclick="openLightbox1(67)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy160.webp"
+            onclick="openLightbox1(68)">
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>3D</h3>
+          <p>Les rendus 3D immersifs permettent de projeter le client dans son futur lieu de vie. Ils valorisent les
+            volumes, les matériaux et les
+            ambiances lumineuses avec réalisme, en illustrant les choix architecturaux de manière vivante et expressive.
+            Ces images servent aussi
+            d’outil de communication essentiel tout au long du projet.</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid" id="plans1">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy165.webp" onclick="openLightbox1(69)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy166.webp" onclick="openLightbox1(70)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy167.webp" onclick="openLightbox1(71)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy168.webp" onclick="openLightbox1(72)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy170.webp" onclick="openLightbox1(73)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy171.webp" onclick="openLightbox1(74)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy172.webp" onclick="openLightbox1(75)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy173.webp" onclick="openLightbox1(76)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy174.webp" onclick="openLightbox1(77)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy175.webp" onclick="openLightbox1(78)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy176.webp" onclick="openLightbox1(79)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy177.webp" onclick="openLightbox1(80)">
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>Permis de construire</h3>
+          <p>Le dossier de permis de construire rassemble les pièces réglementaires nécessaires à l’obtention des
+            autorisations administratives.
+            Il comprend les plans, les coupes, les façades et les notices descriptives. Ce document officiel reflète
+            l’intention du projet tout
+            en respectant les contraintes d’urbanisme locales.</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid" id="plans1">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy179.webp"
+            onclick="openLightbox1(81)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy180.webp"
+            onclick="openLightbox1(82)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy181.webp"
+            onclick="openLightbox1(83)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy182.webp"
+            onclick="openLightbox1(84)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy183.webp"
+            onclick="openLightbox1(85)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy184.webp"
+            onclick="openLightbox1(86)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy185.webp"
+            onclick="openLightbox1(87)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy186.webp"
+            onclick="openLightbox1(88)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy187.webp"
+            onclick="openLightbox1(89)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy188.webp"
+            onclick="openLightbox1(90)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy189.webp"
+            onclick="openLightbox1(91)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy190.webp"
+            onclick="openLightbox1(92)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy191.webp"
+            onclick="openLightbox1(93)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy192.webp"
+            onclick="openLightbox1(94)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy193.webp"
+            onclick="openLightbox1(95)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy194.webp"
+            onclick="openLightbox1(96)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy195.webp"
+            onclick="openLightbox1(97)">
+          <img src="projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy196.webp"
+            onclick="openLightbox1(98)">
+        </div>
+      </div>
+    </div>
+    <!-- ✅ LIGHTBOX 1 -->
+    <div id="lightbox1" class="lightbox" onclick="closeLightbox1(event)">
+      <span class="close-lightbox" onclick="closeLightbox1(event)">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </span>
+      <button class="lightbox-nav prev" onclick="changeLightboxImage1(-1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+      <img id="lightbox1-img" src="" alt="plan en grand">
+      <button class="lightbox-nav next" onclick="changeLightboxImage1(1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+    </div>
+    </script>
+    <script>
+
+      // LIGHTBOX 1
+      const lightboxImages1 = [
+        // 1. Documents initiaux (6)
+        "projets/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy4.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy5.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy6.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy10.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy12.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy13.webp",
+
+        // 2. Étude esthétique & architecturale (9)
+        "projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy15.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy16.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy17.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy18.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy19.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy20.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy25.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy26.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy28.webp",
+
+        // 3. Représentations volumétriques extérieures (6)
+        "projets/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy31.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy32.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy33.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy34.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy35.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy36.webp",
+
+        // 4. Aménagement intérieur (6)
+        "projets/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy39.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy40.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy41.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy42.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy44.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy45.webp",
+
+        // 5. Carnets de détails (9)
+        "projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy47.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy48.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy49.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy51.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy52.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy53.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy57.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy59.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy61.webp",
+
+        // 6. Étude technique (15)
+        "projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy65.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy66.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy67.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy75.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy78.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy79.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy80.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy82.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy83.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy84.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy87.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy88.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy89.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy90.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy91.webp",
+
+        // 7. Mobilier sur mesure (18)
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy129.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy130.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy131.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy132.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy133.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy136.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy137.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy138.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy139.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy140.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy141.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy142.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy143.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy144.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy145.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy158.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy159.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy160.webp",
+
+        // 8. 3D (12)
+        "projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy165.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy166.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy167.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy168.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy170.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy171.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy172.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy173.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy174.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy175.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy176.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy177.webp",
+
+        // 9. Permis de construire (18)
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy179.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy180.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy181.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy182.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy183.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy184.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy185.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy186.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy187.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy188.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy189.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy190.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy191.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy192.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy193.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy194.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy195.webp",
+        "projets/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy196.webp"
+      ];
+      let currentLightboxIndex1 = 0;
+
+      function openLightbox1(index) {
+        if (!document.body.classList.contains('modal-open')) {
+          scrollY = window.scrollY;
+          document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
+        }
+        currentLightboxIndex1 = index;
+        document.getElementById("lightbox1-img").src = lightboxImages1[index];
+        document.getElementById("lightbox1").style.display = "flex";
+        document.body.classList.add('modal-open');
+      }
+
+      function changeLightboxImage1(direction) {
+        currentLightboxIndex1 = (currentLightboxIndex1 + direction + lightboxImages1.length) % lightboxImages1.length;
+        document.getElementById("lightbox1-img").src = lightboxImages1[currentLightboxIndex1];
+      }
+
+      function closeLightbox1(event) {
+        if (!event || event.target === document.getElementById("lightbox1") || event.target.closest('.close-lightbox')) {
+          document.getElementById("lightbox1").style.display = "none";
+          document.body.classList.remove('modal-open');
+          window.scrollTo(0, scrollY);
+        }
+      }
+    </script>
+
+    <!-- MODALE 2 -->
+    <div id="modal2" class="modal">
+      <div class="modal-content large">
+        <button class="close" onclick="closeModal('modal2')" aria-label="Fermer">
+          <svg width="24" height="24">
+            <path d="M6 6L18 18M6 18L18 6" stroke="black" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+
+        <div class="carousel" data-carousel="2">
+          <button class="carousel-arrow prev" onclick="changeSlide(-1, 2)">
+            <svg viewBox="0 0 24 24">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </button>
+          <!-- ✅ Première image avec .active -->
+          <img src="projets/7-projet-showroom-2025/3D/Entrée/E1.webp" class="carousel-image c2 active">
+          <img src="projets/7-projet-showroom-2025/3D/Entrée/E2.webp" class="carousel-image c2">
+          <img src="projets/7-projet-showroom-2025/3D/Cuisine/C1.webp" class="carousel-image c2">
+          <img src="projets/7-projet-showroom-2025/3D/Buster/B+P4.webp" class="carousel-image c2">
+          <img src="projets/7-projet-showroom-2025/3D/Bureau/BU4.webp" class="carousel-image c2">
+          <img src="projets/7-projet-showroom-2025/3D/Belgiqa/BEL4.webp" class="carousel-image c2">
+          <img src="projets/7-projet-showroom-2025/3D/Box/BOXR+1.webp" class="carousel-image c2">
+
+          <button class="carousel-arrow next" onclick="changeSlide(1, 2)">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="points-clefs">
+          <div class="point">2025</div>
+          <div class="point">Construction</div>
+          <div class="point">Tertiaire</div>
+          <div class="point">Lyon</div>
+        </div>
+
+        <div class="description">
+          <h3>Batiment
+          </h3>
+          <p></p>
+        </div>
+
+        <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+        <div class="plans-grid">
+          <img src="projets/7-projet-showroom-2025/3D/Bati/BATIMENT.webp"
+            onclick="openLightbox2(0)">
+          <img src="projets/7-projet-showroom-2025/3D/Bati/Devant.webp"
+            onclick="openLightbox2(1)">
+          <img src="projets/7-projet-showroom-2025/3D/Bati/Extérieur.webp"
+            onclick="openLightbox2(2)">
+          <img src="projets/7-projet-showroom-2025/3D/Bati/RDC.webp"
+            onclick="openLightbox2(3)">
+          <img src="projets/7-projet-showroom-2025/3D/Bati/R+1.webp"
+            onclick="openLightbox2(4)">
+          <img src="projets/7-projet-showroom-2025/3D/Bati/R+2.webp"
+            onclick="openLightbox2(5)">
+            
+
+        <h3>Entrée
+          </h3>
+          <p></p>
+        </div>
+
+        <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+        <div class="plans-grid">
+          <img src="projets/7-projet-showroom-2025/3D/Entrée/E2.webp"
+            onclick="openLightbox2(6)">
+          <img src="projets/7-projet-showroom-2025/3D/Entrée/E1.webp"
+            onclick="openLightbox2(7)">
+          <img src="projets/7-projet-showroom-2025/3D/Entrée/E3.webp"
+            onclick="openLightbox2(8)">
+
+        <h3>Cuisine
+          </h3>
+          <p></p>
+        </div>
+
+        <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+        <div class="plans-grid">
+          <img
+            src="projets/7-projet-showroom-2025/3D/Cuisine/C1.webp"
+            onclick="openLightbox2(9)">
+          <img
+            src="projets/7-projet-showroom-2025/3D/Cuisine/C2.webp"
+            onclick="openLightbox2(10)">
+          <img
+            src="projets/7-projet-showroom-2025/3D/Cuisine/C3.webp"
+            onclick="openLightbox2(11)">
+        </div>
+
+        <h3>Box
+          </h3>
+          <p></p>
+
+        <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+        <div class="plans-grid">
+          <img src="projets/7-projet-showroom-2025/3D/Box/BOX.webp"
+            onclick="openLightbox2(12)">
+          <img src="projets/7-projet-showroom-2025/3D/Box/BOXR+1.webp"
+            onclick="openLightbox2(13)">
+          <img src="projets/7-projet-showroom-2025/3D/Box/BOXR+2.webp"
+            onclick="openLightbox2(14)">
+        </div>
+
+        <h3>Bureaux
+          </h3>
+          <p></p>
+
+        <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+        <div class="plans-grid">
+          <img src="projets/7-projet-showroom-2025/3D/Bureau/BU1.webp"
+            onclick="openLightbox2(15)">
+          <img src="projets/7-projet-showroom-2025/3D/Bureau/BU2.webp"
+            onclick="openLightbox2(16)">
+          <img src="projets/7-projet-showroom-2025/3D/Bureau/BU3.webp"
+            onclick="openLightbox2(17)">
+          <img src="projets/7-projet-showroom-2025/3D/Bureau/BU4.webp"
+            onclick="openLightbox2(18)">
+          <img src="projets/7-projet-showroom-2025/3D/Bureau/BU5.webp"
+            onclick="openLightbox2(19)">
+          <img src="projets/7-projet-showroom-2025/3D/Bureau/BU6.webp"
+            onclick="openLightbox2(20)">
+         </div>
+
+        <h3>Buster and Punch
+          </h3>
+          <p></p>
+
+        <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+        <div class="plans-grid">
+          <img src="projets/7-projet-showroom-2025/3D/Buster/B+P1.webp"
+            onclick="openLightbox2(21)">
+          <img src="projets/7-projet-showroom-2025/3D/Buster/B+P4.webp"
+            onclick="openLightbox2(22)">
+          <img src="projets/7-projet-showroom-2025/3D/Buster/B+P3.webp"
+            onclick="openLightbox2(23)">
+        </div>
+
+        <h3>Belgiqa
+          </h3>
+          <p></p>
+
+        <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+        <div class="plans-grid">
+          <img src="projets/7-projet-showroom-2025/3D/Belgiqa/BEL1.webp"
+            onclick="openLightbox2(24)">
+          <img src="projets/7-projet-showroom-2025/3D/Belgiqa/BEL4.webp"
+            onclick="openLightbox2(25)">
+          <img src="projets/7-projet-showroom-2025/3D/Belgiqa/BEL3.webp"
+            onclick="openLightbox2(26)">
+        </div>
+
+        <h3>Présentation projet
+          </h3>
+          <p></p>
+
+        <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+        <div class="plans-grid">
+          <img src="projets/7-projet-showroom-2025/Rendu/2.webp"
+            onclick="openLightbox2(27)">
+          <img src="projets/7-projet-showroom-2025/Rendu/3.webp"
+            onclick="openLightbox2(28)">
+           <img src="projets/7-projet-showroom-2025/Rendu/4.webp"
+            onclick="openLightbox2(29)">
+          <img src="projets/7-projet-showroom-2025/Rendu/5.webp"
+            onclick="openLightbox2(30)">
+          <img src="projets/7-projet-showroom-2025/Rendu/6.webp"
+            onclick="openLightbox2(31)">
+          <img src="projets/7-projet-showroom-2025/Rendu/7.webp"
+            onclick="openLightbox2(32)">
+          <img src="projets/7-projet-showroom-2025/Rendu/8.webp"
+            onclick="openLightbox2(33)">
+          <img src="projets/7-projet-showroom-2025/Rendu/9.webp"
+            onclick="openLightbox2(34)">
+          <img src="projets/7-projet-showroom-2025/Rendu/10.webp"
+            onclick="openLightbox2(35)">
+          <img src="projets/7-projet-showroom-2025/Rendu/11.webp"
+            onclick="openLightbox2(36)">
+          <img src="projets/7-projet-showroom-2025/Rendu/12.webp"
+            onclick="openLightbox2(37)">
+            <img src="projets/7-projet-showroom-2025/Rendu/13.webp"
+            onclick="openLightbox2(38)">
+          <img src="projets/7-projet-showroom-2025/Rendu/14.webp"
+            onclick="openLightbox2(39)">
+          <img src="projets/7-projet-showroom-2025/Rendu/15.webp"
+            onclick="openLightbox2(40)">
+          <img src="projets/7-projet-showroom-2025/Rendu/16.webp"
+            onclick="openLightbox2(41)">
+          <img src="projets/7-projet-showroom-2025/Rendu/17.webp"
+            onclick="openLightbox2(42)">
+          <img src="projets/7-projet-showroom-2025/Rendu/18.webp"
+            onclick="openLightbox2(43)">
+          <img src="projets/7-projet-showroom-2025/Rendu/19.webp"
+            onclick="openLightbox2(44)">
+          <img src="projets/7-projet-showroom-2025/Rendu/20.webp"
+            onclick="openLightbox2(45)">
+            <img src="projets/7-projet-showroom-2025/Rendu/21.webp"
+            onclick="openLightbox2(46)">
+          <img src="projets/7-projet-showroom-2025/Rendu/22.webp"
+            onclick="openLightbox2(47)">
+          <img src="projets/7-projet-showroom-2025/Rendu/23.webp"
+            onclick="openLightbox2(48)">
+          <img src="projets/7-projet-showroom-2025/Rendu/24.webp"
+            onclick="openLightbox2(49)">
+          <img src="projets/7-projet-showroom-2025/Rendu/25.webp"
+            onclick="openLightbox2(50)">
+          <img src="projets/7-projet-showroom-2025/Rendu/26.webp"
+            onclick="openLightbox2(51)">
+          <img src="projets/7-projet-showroom-2025/Rendu/27.webp"
+            onclick="openLightbox2(52)">
+        </div>
+      </div>
+    </div>
+
+    <!-- ✅ Lightbox 2 -->
+    <div id="lightbox2" class="lightbox" onclick="closeLightbox2(event)">
+      <span class="close-lightbox" onclick="closeLightbox2(event)">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </span>
+      <button class="lightbox-nav prev" onclick="changeLightboxImage2(-1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+      <img id="lightbox2-img" src="" alt="plan en grand">
+      <button class="lightbox-nav next" onclick="changeLightboxImage2(1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+    </div>
+    <!-- ✅ Modif -->
+    <script>
+      const lightboxImages2 = [
+        // 1. Batiment (6)
+        "projets/7-projet-showroom-2025/3D/Bati/BATIMENT.webp",
+        "projets/7-projet-showroom-2025/3D/Bati/Devant.webp",
+        "projets/7-projet-showroom-2025/3D/Bati/Extérieur.webp",
+        "projets/7-projet-showroom-2025/3D/Bati/RDC.webp",
+        "projets/7-projet-showroom-2025/3D/Bati/R+1.webp",
+        "projets/7-projet-showroom-2025/3D/Bati/R+2.webp",
+
+        // 2. Entrée (3)
+        "projets/7-projet-showroom-2025/3D/Entrée/E2.webp",
+        "projets/7-projet-showroom-2025/3D/Entrée/E1.webp",
+        "projets/7-projet-showroom-2025/3D/Entrée/E3.webp",
+
+        // 3. Cuisine (3)
+        "projets/7-projet-showroom-2025/3D/Cuisine/C1.webp",
+        "projets/7-projet-showroom-2025/3D/Cuisine/C2.webp",
+        "projets/7-projet-showroom-2025/3D/Cuisine/C3.webp",
+
+        // 4. Box (3)
+        "projets/7-projet-showroom-2025/3D/Box/BOX.webp",
+        "projets/7-projet-showroom-2025/3D/Box/BOXR+1.webp",
+        "projets/7-projet-showroom-2025/3D/Box/BOXR+2.webp",
+
+        // 5. Bureaux (6)
+        "projets/7-projet-showroom-2025/3D/Bureau/BU1.webp",
+        "projets/7-projet-showroom-2025/3D/Bureau/BU2.webp",
+        "projets/7-projet-showroom-2025/3D/Bureau/BU3.webp",
+        "projets/7-projet-showroom-2025/3D/Bureau/BU4.webp",
+        "projets/7-projet-showroom-2025/3D/Bureau/BU5.webp",
+        "projets/7-projet-showroom-2025/3D/Bureau/BU6.webp",
+
+        // 6. Buster and Punch (3)
+        "projets/7-projet-showroom-2025/3D/Buster/B+P1.webp",
+        "projets/7-projet-showroom-2025/3D/Buster/B+P4.webp",
+        "projets/7-projet-showroom-2025/3D/Buster/B+P3.webp",
+
+        // 7. Belgiqa (3)
+        "projets/7-projet-showroom-2025/3D/Belgiqa/BEL1.webp",
+        "projets/7-projet-showroom-2025/3D/Belgiqa/BEL4.webp",
+        "projets/7-projet-showroom-2025/3D/Belgiqa/BEL3.webp",
+
+        // 8. Présentation (27)
+        "projets/7-projet-showroom-2025/Rendu/1.webp",
+        "projets/7-projet-showroom-2025/Rendu/2.webp",
+        "projets/7-projet-showroom-2025/Rendu/3.webp",
+        "projets/7-projet-showroom-2025/Rendu/4.webp",
+        "projets/7-projet-showroom-2025/Rendu/5.webp",
+        "projets/7-projet-showroom-2025/Rendu/6.webp",
+        "projets/7-projet-showroom-2025/Rendu/7.webp",
+        "projets/7-projet-showroom-2025/Rendu/8.webp",
+        "projets/7-projet-showroom-2025/Rendu/9.webp",
+        "projets/7-projet-showroom-2025/Rendu/10.webp",
+        "projets/7-projet-showroom-2025/Rendu/11.webp",
+        "projets/7-projet-showroom-2025/Rendu/12.webp",
+        "projets/7-projet-showroom-2025/Rendu/13.webp",
+        "projets/7-projet-showroom-2025/Rendu/14.webp",
+        "projets/7-projet-showroom-2025/Rendu/15.webp",
+        "projets/7-projet-showroom-2025/Rendu/16.webp",
+        "projets/7-projet-showroom-2025/Rendu/17.webp",
+        "projets/7-projet-showroom-2025/Rendu/18.webp",
+        "projets/7-projet-showroom-2025/Rendu/19.webp",
+        "projets/7-projet-showroom-2025/Rendu/20.webp",
+        "projets/7-projet-showroom-2025/Rendu/21.webp",
+        "projets/7-projet-showroom-2025/Rendu/22.webp",
+        "projets/7-projet-showroom-2025/Rendu/23.webp",
+        "projets/7-projet-showroom-2025/Rendu/24.webp",
+        "projets/7-projet-showroom-2025/Rendu/25.webp",
+        "projets/7-projet-showroom-2025/Rendu/26.webp",
+        "projets/7-projet-showroom-2025/Rendu/27.webp"
+      ];
+      let currentLightboxIndex2 = 0;
+
+      function openLightbox2(index) {
+        if (!document.body.classList.contains('modal-open')) {
+          scrollY = window.scrollY;
+          document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
+        }
+        currentLightboxIndex2 = index;
+        document.getElementById("lightbox2-img").src = lightboxImages2[index];
+        document.getElementById("lightbox2").style.display = "flex";
+        document.body.classList.add('modal-open');
+      }
+
+      function changeLightboxImage2(direction) {
+        currentLightboxIndex2 = (currentLightboxIndex2 + direction + lightboxImages2.length) % lightboxImages2.length;
+        document.getElementById("lightbox2-img").src = lightboxImages2[currentLightboxIndex2];
+      }
+
+      function closeLightbox2(event) {
+        if (!event || event.target === document.getElementById("lightbox2") || event.target.closest('.close-lightbox')) {
+          document.getElementById("lightbox2").style.display = "none";
+          document.body.classList.remove('modal-open');
+          window.scrollTo(0, scrollY);
+        }
+      }
+    </script>
+
+
+    <!-- MODALE 3 -->
+    <div id="modal3" class="modal">
+      <div class="modal-content large">
+        <button class="close" onclick="closeModal('modal3')" aria-label="Fermer">
+          <svg width="24" height="24">
+            <path d="M6 6L18 18M6 18L18 6" stroke="black" stroke-width="2" />
+          </svg>
+        </button>
+
+        <div class="carousel" data-carousel="3">
+          <button class="carousel-arrow prev" onclick="changeSlide(-1, 3)">
+            <svg viewBox="0 0 24 24">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </button>
+          <!-- ✅ Image active -->
+          <img src="projets/4-projet-appartement-lyon-2024/3D/Cuisine-salon.webp" class="carousel-image c3 active">
+          <img src="projets/4-projet-appartement-lyon-2024/3D/Cuisine.webp" class="carousel-image c3">
+          <img src="projets/4-projet-appartement-lyon-2024/3D/PV table à manger 1.webp" class="carousel-image c3">
+          <img src="projets/4-projet-appartement-lyon-2024/3D/PV table à manger 2.webp" class="carousel-image c3">
+          <img src="projets/4-projet-appartement-lyon-2024/3D/Salon.webp" class="carousel-image c3">
+          <img src="projets/4-projet-appartement-lyon-2024/3D/Salon 2.webp" class="carousel-image c3">
+          <img src="projets/4-projet-appartement-lyon-2024/3D/PV canapé.webp" class="carousel-image c3">
+          <img src="projets/4-projet-appartement-lyon-2024/3D/Chambre 1.webp" class="carousel-image c3">
+          <img src="projets/4-projet-appartement-lyon-2024/3D/Zoom tête de lit.webp" class="carousel-image c3">
+          <img src="projets/4-projet-appartement-lyon-2024/3D/PV lit.webp" class="carousel-image c3">
+          <img src="projets/4-projet-appartement-lyon-2024/3D/SDB.webp" class="carousel-image c3">
+          <button class="carousel-arrow next" onclick="changeSlide(1, 3)">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="points-clefs">
+          <div class="point">2024</div>
+          <div class="point">Rénovation</div>
+          <div class="point">Résidentiel</div>
+          <div class="point">Lyon</div>
+        </div>
+
+        <div class="description">
+          <h3>Shelter : Un cocon d’innovation au cœur de Lyon</h3>
+          <p>Le projet Shelter réinvente un appartement de 9,01 m² situé à Lyon. Pensé pour répondre aux défis des petits
+            espaces urbains, ce logement optimise chaque centimètre carré grâce à une conception à la fois fonctionnelle,
+            esthétique et durable. La démarche s’appuie sur un diagnostic précis du bâti existant, intégrant des solutions
+            modernes comme une isolation performante et des matériaux écologiques, tels que le bois lambrissé et le linoléum.
+            Le design s’inspire d’un minimalisme nordique, mêlant lignes épurées et teintes naturelles. Les murs en lambris
+            épicéa, associés à des sols en linoléum bleu indigo, instaurent une ambiance chaleureuse et contemporaine.
+            Chaque meuble a été choisi pour sa polyvalence, avec des éléments multifonctionnels permettant de libérer de
+            l’espace tout en restant élégants. L’étude technique comprend des aménagements comme une ventilation mécanique
+            contrôlée (VMC) optimisée et des plaques de plâtre acoustiques et hydrofuges pour une isolation thermique et
+            sonore irréprochable. Le système d’éclairage a été étudié pour offrir une luminosité adaptée à chaque zone de
+            l’appartement, maximisant le confort visuel. Shelter se distingue par son approche durable et son engagement à
+            offrir des espaces de vie agréables dans des environnements restreints. Ce projet témoigne de ma capacité à
+            allier réflexion architecturale, design soigné et solutions techniques innovantes.</p>
+        </div>
+
+        <!-- ✅ Galerie de plans avec onclick -->
+        <div class="plans-grid">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter1.webp" onclick="openLightbox3(0)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter2.webp" onclick="openLightbox3(1)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter3.webp" onclick="openLightbox3(2)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter4.webp" onclick="openLightbox3(3)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter5.webp" onclick="openLightbox3(4)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter6.webp" onclick="openLightbox3(5)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter7.webp" onclick="openLightbox3(6)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter8.webp" onclick="openLightbox3(7)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter9.webp" onclick="openLightbox3(8)">
+        </div>
+
+        <h3>Etude esthétique</h3>
+        <p>L’étude esthétique se concentre sur le choix des matériaux, des couleurs et du mobilier pour créer une
+          atmosphère harmonieuse, épurée et chaleureuse. Chaque pièce (entrée, pièce à vivre, chambre, salle de bain…) a
+          été pensée avec une palette cohérente (RAL, matières, textures), alliant confort et design minimaliste.
+          L’objectif est de proposer un espace contemporain, fonctionnel et accueillant, en accord avec les attentes du
+          client.</p>
+        <!-- ✅ Galerie de plans avec onclick -->
+        <div class="plans-grid">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter11.webp" onclick="openLightbox3(9)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter12.webp" onclick="openLightbox3(10)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter13.webp" onclick="openLightbox3(11)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter14.webp" onclick="openLightbox3(12)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter15.webp" onclick="openLightbox3(13)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter16.webp" onclick="openLightbox3(14)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter17.webp" onclick="openLightbox3(15)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter18.webp" onclick="openLightbox3(16)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter19.webp" onclick="openLightbox3(17)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter20.webp" onclick="openLightbox3(18)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter21.webp" onclick="openLightbox3(19)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter22.webp" onclick="openLightbox3(20)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter23.webp" onclick="openLightbox3(21)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter24.webp" onclick="openLightbox3(22)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter25.webp" onclick="openLightbox3(23)">
+        </div>
+
+        <h3>Etude technique</h3>
+        <p>L’étude technique comprend l’ensemble des plans d’exécution nécessaires à la réalisation du projet : plâtrerie,
+          menuiserie, électricité, plomberie et ventilation. Ces plans détaillent les dimensions, les matériaux techniques
+          (plaques BA13, isolants, réseaux électriques), les implantations des prises, interrupteurs, VMC, et équipements
+          sanitaires. Cette phase garantit la faisabilité et la conformité du projet aux normes en vigueur.</p>
+        <!-- ✅ Galerie de plans avec onclick -->
+        <div class="plans-grid">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter27.webp" onclick="openLightbox3(24)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter28.webp" onclick="openLightbox3(25)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter29.webp" onclick="openLightbox3(26)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter30.webp" onclick="openLightbox3(27)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter31.webp" onclick="openLightbox3(28)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter32.webp" onclick="openLightbox3(29)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter33.webp" onclick="openLightbox3(30)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter34.webp" onclick="openLightbox3(31)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter35.webp" onclick="openLightbox3(32)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter36.webp" onclick="openLightbox3(33)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter37.webp" onclick="openLightbox3(34)">
+        </div>
+
+        <div class="description">
+          <h3>Maquette</h3>
+          <p>La maquette permet de représenter physiquement le projet dans son volume global. Elle illustre les choix
+            d’agencement, de proportions et de matières dans un format réduit mais tangible. Elle sert à visualiser
+            concrètement l’espace imaginé, à tester la cohérence des choix esthétiques et à soutenir la présentation du
+            projet auprès de l’équipe pédagogique ou du client.</p>
+        </div>
+        <!-- ✅ Galerie de plans avec onclick -->
+        <div class="plans-grid">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette1.webp" onclick="openLightbox3(35)">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette2.webp" onclick="openLightbox3(36)">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette3.webp" onclick="openLightbox3(37)">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette4.webp" onclick="openLightbox3(38)">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette5.webp" onclick="openLightbox3(39)">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette6.webp" onclick="openLightbox3(40)">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette7.webp" onclick="openLightbox3(41)">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette8.webp" onclick="openLightbox3(42)">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette9.webp" onclick="openLightbox3(43)">
+        </div>
+      </div>
+    </div>
+
+    <!-- ✅ LIGHTBOX 3 -->
+    <div id="lightbox3" class="lightbox" onclick="closeLightbox3(event)">
+      <span class="close-lightbox" onclick="closeLightbox3(event)">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </span>
+      <button class="lightbox-nav prev" onclick="changeLightboxImage3(-1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+      <img id="lightbox3-img" src="" alt="plan en grand">
+      <button class="lightbox-nav next" onclick="changeLightboxImage3(1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+    </div>
+    </script>
+    <script>
+
+      // LIGHTBOX 3
+      const lightboxImages3 = [
+        // Rendu
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter1.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter2.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter3.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter4.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter5.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter6.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter7.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter8.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter9.webp",
+
+        // Etude esthétique
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter11.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter12.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter13.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter14.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter15.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter16.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter17.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter18.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter19.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter20.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter21.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter22.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter23.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter24.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter25.webp",
+
+        // Etude technique
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter27.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter28.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter29.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter30.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter31.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter32.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter33.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter34.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter35.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter36.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter37.webp",
+
+        // Maquette
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette1.webp",
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette2.webp",
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette3.webp",
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette4.webp",
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette5.webp",
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette6.webp",
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette7.webp",
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette8.webp",
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette9.webp"
+      ];
+      let currentLightboxIndex3 = 0;
+
+      function openLightbox3(index) {
+        if (!document.body.classList.contains('modal-open')) {
+          scrollY = window.scrollY;
+          document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
+        }
+        currentLightboxIndex3 = index;
+        document.getElementById("lightbox3-img").src = lightboxImages3[index];
+        document.getElementById("lightbox3").style.display = "flex";
+        document.body.classList.add('modal-open');
+      }
+
+      function changeLightboxImage3(direction) {
+        currentLightboxIndex3 = (currentLightboxIndex3 + direction + lightboxImages3.length) % lightboxImages3.length;
+        document.getElementById("lightbox3-img").src = lightboxImages3[currentLightboxIndex3];
+      }
+
+      function closeLightbox3(event) {
+        if (!event || event.target === document.getElementById("lightbox3") || event.target.closest('.close-lightbox')) {
+          document.getElementById("lightbox3").style.display = "none";
+          document.body.classList.remove('modal-open');
+          window.scrollTo(0, scrollY);
+        }
+      }
+    </script>
+
+
+
+    <div id="lightbox" class="lightbox">
+      <span class="close-lightbox" onclick="closeLightbox(event)">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </span>
+      <button class="lightbox-nav prev" onclick="changeLightboxImage(-1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </button>
+      <img id="lightbox-img" src="" alt="plan en grand">
+      <button class="lightbox-nav next" onclick="changeLightboxImage(1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+
+    <script>
+      const slideIndices = { 1: 0, 2: 0, 3: 0 };
+
+      function changeSlide(n, id) {
+        const slides = document.querySelectorAll(`.carousel-image.c${id}`);
+        slideIndices[id] = (slideIndices[id] + n + slides.length) % slides.length;
+        slides.forEach((img, i) => img.classList.toggle('active', i === slideIndices[id]));
+      }
+
+      let scrollY = 0;
+
+      function openModal(id) {
+        scrollY = window.scrollY;
+        document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
+        document.getElementById(id).style.display = "block";
+        document.body.classList.add('modal-open');
+        const num = id.replace("modal", "");
+        slideIndices[num] = 0; // Reset to first image
+        changeSlide(0, num); // Reset carousel to first
+      }
+
+      function closeModal(id) {
+        document.getElementById(id).style.display = "none";
+        document.body.classList.remove('modal-open');
+        window.scrollTo(0, scrollY);
+      }
+
+      function openLightbox(index) {
+        if (!document.body.classList.contains('modal-open')) {
+          scrollY = window.scrollY;
+          document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
+        }
+        currentLightboxIndex = index;
+        document.getElementById("lightbox-img").src = lightboxImages[index];
+        document.getElementById("lightbox").style.display = "flex";
+        document.body.classList.add('modal-open');
+      }
+
+      function changeLightboxImage(direction) {
+        currentLightboxIndex = (currentLightboxIndex + direction + lightboxImages.length) % lightboxImages.length;
+        document.getElementById("lightbox-img").src = lightboxImages[currentLightboxIndex];
+      }
+
+      function closeLightbox(event) {
+        if (!event || event.target === document.getElementById("lightbox") || event.target.closest('.close-lightbox')) {
+          document.getElementById("lightbox").style.display = "none";
+          document.body.classList.remove('modal-open');
+          window.scrollTo(0, scrollY);
+        }
+      }
+
+      function handleLightboxClick(event) {
+        const img = document.getElementById("lightbox-img");
+        if (!img.contains(event.target)) {
+          closeLightbox(event);
+        }
+      }
+
+      // Fermer la modale si clic hors contenu
+      document.querySelectorAll(".modal").forEach(modal => {
+        modal.addEventListener("click", function (event) {
+          if (event.target.classList.contains("modal")) {
+            closeModal(modal.id);
+          }
+        });
+      });
+
+      // Fermer les modales avec la touche Échap
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+          // Fermer toutes les modales ouvertes
+          document.querySelectorAll('.modal').forEach(modal => {
+            if (modal.style.display === 'block') {
+              closeModal(modal.id);
+            }
+          });
+          // Fermer toutes les lightbox ouvertes
+          document.querySelectorAll('.lightbox').forEach(lightbox => {
+            if (lightbox.style.display === 'flex') {
+              lightbox.style.display = 'none';
+              document.body.classList.remove('modal-open');
+              window.scrollTo(0, scrollY);
+            }
+          });
+        }
+      });
+    </script>
+
+    <style>
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        /* S'assure que la modale est tout en haut */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        /* Fond noir semi-transparent */
+        backdrop-filter: blur(5px);
+        /* Flou sur le fond */
+        overflow-y: auto;
+        padding: 3rem 1rem;
+        transition: opacity 0.3s ease;
+      }
+
+      .modal-content {
+        background: #f5f5f5;
+        margin: auto;
+        padding: 2rem;
+        border-radius: 1.5rem;
+        max-width: 1200px;
+        position: relative;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        /* Ombre douce */
+      }
+
+      .modal-content.large {
+        max-width: 1200px;
+      }
+
+      .close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 9999;
+        padding: 0;
+        color: black !important;
+      }
+
+      .close svg {
+        width: 24px;
+        height: 24px;
+        stroke: #000;
+        stroke: black !important;
+      }
+
+      /* Garde la croix des modales (bouton .close) en noir */
+      .modal .close svg {
+        stroke: black !important;
+      }
+
+      /* Carrousel */
+      .carousel {
+        position: relative;
+        height: 500px;
+        margin-bottom: 2rem;
+      }
+
+      .carousel-arrow {
+        background: none !important;
+        /* Supprime tout fond */
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        width: 60px;
+        height: 60px;
+        padding: 0;
+      }
+
+      .carousel-arrow svg {
+        width: 100%;
+        height: 100%;
+        stroke: #000;
+        fill: none;
+      }
+
+      .carousel-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .carousel-image.active {
+        display: block;
+        position: relative;
+      }
+
+      /* Grille d’images complémentaires */
+      .galerie-grid img {
+        width: 100%;
+        aspect-ratio: 1.41 / 1;
+        /* Format paysage A3 */
+        object-fit: cover;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+
+      .galerie-grid img:hover {
+        transform: scale(1.03);
+      }
+
+      .plans-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        /* Toujours 3 colonnes */
+        gap: 1rem;
+        margin: 2rem 0;
+      }
+
+      .plans-grid img {
+        width: 100%;
+        border-radius: 10px;
+        cursor: pointer;
+        object-fit: cover;
+        transition: transform 0.2s ease;
+      }
+
+      .plans-grid img:hover {
+        transform: scale(1.03);
+      }
+
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(5px);
+        overflow: hidden;
+      }
+
+      .lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 8px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+      }
+
+      .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        z-index: 2001;
+      }
+
+      .lightbox-nav svg {
+        width: 25px;
+        /* ✅ plus petit */
+        height: 25px;
+        stroke: white !important;
+        color: white !important;
+        stroke-width: 2;
+        fill: none;
+      }
+
+      .lightbox-nav.prev {
+        left: 2rem;
+      }
+
+      .lightbox-nav.next {
+        right: 2rem;
+      }
+
+      .close-lightbox {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        cursor: pointer;
+        z-index: 2001;
+      }
+
+      .close-lightbox svg {
+        width: 32px;
+        height: 32px;
+        stroke: white !important;
+        color: white !important;
+      }
+
+
+      /* Points clefs, description et galerie restent inchangés */
+      .projets-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .projet {
+        background: #fafafa;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      .projet:hover {
+        transform: scale(1.03);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .projet img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .chiffres {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      .chiffres span {
+        background: var(--accent);
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      /* Faire passer le dernier bouton (ville) à la ligne sur mobile */
+      @media (max-width: 768px) {
+        .chiffres span:nth-child(4) {
+          width: 25%;
+        }
+      }
+
+      .projet p {
+        text-align: center;
+        font-size: 0.95rem;
+        color: #555;
+      }
+
+
+
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 1rem;
+        background: #fff;
+        border-bottom: 1px solid #eee;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 600;
+        position: relative;
+      }
+
+      nav a::after {
+        content: '';
+        display: block;
+        height: 2px;
+        background: var(--accent);
+        transition: 0.3s;
+        width: 0;
+      }
+
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      section {
+        max-width: 1000px;
+        margin: 0 auto 20px;
+        padding: 4rem 2rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+
+      /* Carrousel */
+      .carousel {
+        position: relative;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .carousel-image {
+        width: 100%;
+        display: none;
+        border-radius: 1rem;
+      }
+
+      .prev,
+      .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 10px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.4);
+        border: none;
+        font-size: 24px;
+        z-index: 1;
+        border-radius: 50%;
+      }
+
+      .prev {
+        left: 10px;
+      }
+
+      .next {
+        right: 10px;
+      }
+
+      /* Points clés */
+      .points-clefs {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px 0;
+        flex-wrap: wrap;
+      }
+
+      .point {
+        background: #f0f0f0;
+        padding: 12px 20px;
+        border-radius: 50px;
+        font-size: 14px;
+        margin: 5px;
+      }
+
+      /* Description */
+      .description {
+        margin: 30px 0;
+      }
+
+      .description h3 {
+        margin-bottom: 10px;
+      }
+
+      /* Galerie de détails */
+      .galerie-detail {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .detail {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .detail img {
+        width: 100%;
+        border-radius: 1rem;
+      }
+
+      .detail p {
+        margin-top: 10px;
+        text-align: center;
+      }
+
+
+
+      .slider {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .slider-images {
+        width: 90%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .slider-images img {
+        max-width: 90%;
+        max-height: 500px;
+        border-radius: 12px;
+        object-fit: contain;
+        display: none;
+      }
+
+      .slider-images img.active {
+        display: block;
+      }
+
+      .prev,
+      .next {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        border-radius: 50%;
+        user-select: none;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+      }
+
+      .prev {
+        left: 10px;
+      }
+
+      .next {
+        right: 10px;
+      }
+
+      .modal-description {
+        margin-top: 1rem;
+        color: #333;
+      }
+
+      /* === Mobile adjustments === */
+      @media (max-width: 600px) {
+
+        /* 1. Réduction de la hauteur du carrousel (moins de vide) */
+        .carousel {
+          height: auto;
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+        }
+
+        /* 2. Garder le format original des images du carrousel */
+        .carousel-image {
+          height: auto;
+          object-fit: contain;
+          max-height: 80vh;
+        }
+
+        /* 3. Flèches du carrousel plus petites */
+        .carousel-arrow {
+          width: 60px;
+          height: 60px;
+        }
+
+        .carousel-arrow svg {
+          width: 100%;
+          height: 100%;
+        }
+
+        /* 4. Flèches du lightbox (plans en grand) en noir sur mobile */
+        #lightbox1 .lightbox-nav svg,
+        #lightbox2 .lightbox-nav svg,
+        #lightbox3 .lightbox-nav svg {
+          stroke: black !important;
+          color: black !important;
+        }
+
+        #lightbox .close-lightbox svg,
+        #lightbox2 .close-lightbox svg,
+        #lightbox3 .close-lightbox svg {
+          stroke: white !important;
+          color: white !important;
+          /* facultatif mais utile avec currentColor */
+        }
+
+        /* 5. Réduction des marges entre les images dans la grille de plans */
+        .plans-grid {
+          gap: 0.5rem;
+        }
+      }
+
+      .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 25px;
+        height: 0;
+        overflow: hidden;
+        border-radius: 12px;
+        margin-top: 2rem;
+      }
+
+      .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+      }
+    </style>
+      </script>
+
+      <div><div style="text-align: center; margin-top: 2rem;">
+    <a href="projets.html" class="voir-projets-btn"> Voir tous mes projets</a>
+</div></div>
+      <style>
+        /* Bouton Voir mes projets */
+        .voir-projets-btn {
+          display: inline-block;
+          padding: 0.8rem 1.6rem;
+          background: var(--accent);
+          color: var(--text);
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: 600;
+          transition: 0.3s ease;
+        }
+
+        .voir-projets-btn:hover {
+          background: #e0e0e0;
+          transform: scale(1.05);
+        }
+      </style>
+
+
+  </section>
+  <section id="experiences">
+    <h2 style="margin-bottom: -2rem;">Mes expériences</h2>
+    <p></p>
+  </section>
+  <!-- SECTION EXPÉRIENCE -->
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <a href="https://www.cread.fr/" target="_blank">
+        <img src="photo/logo/CREAD.webp" alt="Logo CREAD" class="logo">
+      </a>
+      <div class="content">
+        <h3>CREAD</h3>
+        <h5>École d'architecture & de design</h5>
+        <p class="date">Septembre 2023 - Juillet 2028</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <a href="https://www.samplesroom.fr" target="_blank">
+        <img src="photo/logo/Samples Room.webp" alt="Logo Samples Room" class="logo">
+      </a>
+      <div class="content">
+        <h3>Samples Room</h3>
+        <h5>Stage CREAD 2ème année</h5>
+        <p class="date">Mai/Juillet 2025 - Stage & CDD</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <a href="http://purconcept.com" target="_blank">
+        <img src="photo/logo/Pur Concept.webp" alt="Logo Pur Concept" class="logo">
+      </a>
+      <div class="content">
+        <h3>Pur Concept</h3>
+        <h5>Stage CREAD 1ère année</h5>
+        <p class="date">Juin/Juillet 2024 - Stage & CDD</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <a href="https://www.tetris-db.com/" target="_blank">
+        <img src="photo/logo/Tetris.webp" alt="Logo Tetris" class="logo">
+      </a>
+      <div class="content">
+        <h3>Tetris</h3>
+        <h5>Stage Seconde</h5>
+        <p class="date">Avril 2022 - 1 semaine</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <a href="" target="_blank">
+        <img src="photo/logo/AABC Architecture.webp" alt="Logo AABC" class="logo">
+      </a>
+      <div class="content">
+        <h3>AABC Architecture</h3>
+        <h5>Stage découverte 3ème</h5>
+        <p class="date">Janvier 2020 - 1 semaine</p>
+      </div>
+    </div>
+
+  </div>
+  <style>
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      padding: 0 20px;
+      /* ← ajoute une marge intérieure à gauche et droite */
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: -40px;
+      width: 2px;
+      background: #ccc;
+      z-index: 0;
+      /* en arrière-plan */
+    }
+
+    .logo {
+      position: relative;
+      z-index: 1;
+      /* au-dessus du trait */
+    }
+  </style>
+
+
+
+  </section>
+  <section id="passion" style="margin-bottom: 0; padding-bottom: 0;">
+    <h2 style="margin-bottom: 0.5rem;">Ma passion pour les drones & la photo</h2>
+  </section>
+  <section id="photo-passion" class="photo-section" style="padding-top: 10px;">
+    <p>
+      J'ai depuis plusieurs années pu mettre en valeur différents éléments architecturaux grâce à des prises de vue
+      aériennes par drones (DJI Air 3 / Drones FPV).
+      La photo permet d'avoir un regard particulier sur une réalisation et apporte une touche et un point de vue unique. 
+      Je réalise des montages et les publie sur les réseaux
+      <a href="https://www.instagram.com/_tpics._" target="_blank">(@_tpics._)</a>.
+    </p>
+
+<div class="photo-grid">
+  <div class="photo-item">
+    <div class="photo-container">
+      <video class="lazy-video" src="photo/passion-photo/Vidéo2.mp4" muted loop playsinline></video>
+    </div>
+    <span>@camping bois simonet</span>
+  </div>
+  <div class="photo-item">
+    <div class="photo-container">
+      <img src="photo/passion-photo/IMG_0292.jpeg" alt="Drone 2">
+    </div>
+    <span>@samplesroom</span>
+  </div>
+  <div class="photo-item">
+    <div class="photo-container">
+      <video class="lazy-video" src="photo/passion-photo/Vidéo1.mp4" muted loop playsinline></video>
+    </div>
+    <span>@work and play</span>
+  </div>
+  <div class="photo-item">
+    <div class="photo-container">
+      <img src="photo/passion-photo/DJI_0432.webp" alt="Drone 4">
+    </div>
+    <span>@privé</span>
+  </div>
+  <div class="photo-item">
+    <div class="photo-container">
+      <img src="photo/passion-photo/dji_fly_20250413_135444_0009_1744545593668_photo.webp" alt="Drone 5">
+    </div>
+    <span>@privé</span>
+  </div>
+</div>
+  </section>
+
+  <style>
+    /* SECTION photo */
+    .photo-section {
+      padding: 60px 20px;
+      background-color: #ffffff;
+      /* couleur */
+      text-align: center;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .photo-section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .photo-section p {
+      font-size: 1.1rem;
+      max-width: 900px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .photo-section a {
+      color: #000;
+      text-decoration: underline;
+    }
+
+    .photo-grid {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 20px;
+      max-width: 100%;
+      padding: 15px 15px 25px 15px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .photo-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .photo-item {
+      flex: 0 0 auto;
+      width: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .photo-container {
+      width: 100%;
+      height: 350px;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      will-change: transform;
+    }
+
+    .photo-container:hover {
+      transform: scale(1.05);
+    }
+
+    .photo-item video,
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-item span {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #333;
+      font-weight: 500;
+      font-family: 'Avenir', 'Avenir Next', 'Outfit', sans-serif;
+    }
+  </style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const videos = document.querySelectorAll(".lazy-video");
+
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5 // Vidéo jouée quand au moins 50% est visible
+    };
+
+    const callback = (entries, observer) => {
+      entries.forEach(entry => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+    videos.forEach(video => {
+      video.preload = "none"; // Ne charge pas tant que ce n'est pas visible
+      observer.observe(video);
+    });
+  });
+</script>
+
+  <section id="contact">
+    <h2>Contact & Réseaux</h2>
+    <p class="coordonnees">
+      <strong>Email :</strong>
+      <a href="mailto:maradantom@gmail.com">maradantom@gmail.com</a><br>
+      <strong>Téléphone :</strong>
+      <a href="tel:+33672256783">+33 6 72 25 67 83</a>
+  </section>
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .coordonnees {
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      line-height: 1.6;
+      text-align: center;
+      color: var(--text);
+      margin-bottom: -50px;
+      /* conserve ta variable s'il y en a */
+    }
+
+    .coordonnees a {
+      color: inherit;
+      text-decoration: underline dotted;
+      transition: 0.3s;
+    }
+
+    .coordonnees a:hover {
+      color: var(--accent);
+    }
+  </style>
+
+  <!-- Bouton Me contacter centré -->
+<div style="text-align: center; margin: -10px 0;">
+  <a href="contact.html" class="me-contacter-btn">Me contacter</a>
+</div>
+
+<style>
+/* Style du bouton Me contacter */
+.me-contacter-btn {
+    display: inline-block;
+    padding: 12px 30px;             /* Taille du bouton */
+    background-color: #f5f5f5;      /* Fond clair comme sur la page principale */
+    color: #000;                     /* Texte noir */
+    font-family: 'Outfit', sans-serif; 
+    font-size: 16px; 
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 8px;              /* Coins arrondis */
+    transition: all 0.3s ease;
+    text-align: center;
+    border: 1px solid #ddd;          /* Bordure légère pour plus de contraste */
+}
+
+/* Effet au survol */
+.me-contacter-btn:hover {
+    background-color: #e0e0e0;       /* Fond un peu plus foncé au hover */
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Responsive : ajustement du texte et padding sur mobile */
+@media (max-width: 768px) {
+    .me-contacter-btn {
+        padding: 10px 24px;
+        font-size: 15px;
+    }
+}
+</style>
+
+  <div class="socials">
+    <a href="https://www.instagram.com/studiotm___" target="_blank">Instagram</a>
+    <a href="https://www.linkedin.com/in/tom-maradan-554265235/" target="_blank">LinkedIn</a>
+    <a href="https://linktr.ee/studiotm___" target="_blank">Linktree</a>
+    <a href="https://www.youtube.com/channel/UCo0UnKLZDgU-94To-z9PJqQ" target="_blank">YouTube</a>
+  </div>
+  </section>
+  <style>
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 1rem;
+    }
+
+    .socials a {
+      font-family: 'Outfit', sans-serif;
+      text-decoration: none;
+      color: #000;
+      font-weight: 500;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f0f0f0;
+      transition: 0.3s ease;
+      max-width: 180px;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .socials a:hover {
+      background-color: #e3e3e3;
+      transform: scale(1.05);
+    }
+
+    /* Mobile : 2 boutons par ligne */
+    @media (max-width: 768px) {
+      .socials a {
+        flex: 0 0 auto;
+        width: calc(50% - 5px);
+      }
+    }
+  </style>
+
+
+  <div class="image-container">
+    <img src="photo/Stage - C.V Tom Maradan.jpg">
+  </div>
+  <style>
+    .image-container {
+      text-align: center;
+      margin-top: 30px;
+      padding: 0 16px;
+      /* petit padding horizontal pour éviter que ça touche les bords */
+    }
+
+    .image-container img {
+      max-width: 100%;
+      /* L'image ne dépasse jamais la largeur de son conteneur */
+      max-height: 90vh;
+      border: 3px solid #ccc;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+    }
+
+    .image-caption {
+      font-style: italic;
+      color: #555;
+      margin-top: 8px;
+      font-size: 0.95rem;
+    }
+  </style>
+
+
+  <footer class="footer">
+    <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan" class="footer-logo">
+    <p>© 2025 Tom Maradan — Tous droits réservés</p>
+  </footer>
+
+  <style>
+    .footer {
+      flex: 0 33, 33% 0;
+      text-align: center;
+      padding: 20 20px;
+      box-sizing: border-box;
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .footer-logo {
+      flex: 0 33, 33% 0;
+      text-align: center;
+      padding: 0 20px;
+      max-width: 200px;
+      width: auto;
+      height: 20px;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-logo:hover {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .hero-slider {
+        height: 220px;
+      }
+
+      .slider-track img {
+        height: 220px;
+      }
+    }
+  </style>
+
+  
+
+  <div class="floating-socials">
+    <a href="https://www.instagram.com/studiotm___" target="_blank">
+      <img src="photo/logo/insta.webp" alt="Instagram">
+    </a>
+    <a href="https://www.linkedin.com/in/tom-maradan-554265235/" target="_blank">
+      <img src="photo/logo/Linkedin.webp" alt="LinkedIn">
+    </a>
+    <a href="contact.html" target="_blank">
+      <img src="photo/logo/Mailapp.webp" alt="Mail">
+    </a>
+  </div>
+  <style>
+    .floating-socials {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 999;
+    }
+
+    .floating-socials a img {
+      width: 28px;
+      height: 28px;
+      opacity: 0.7;
+      transition: 0.3s;
+      filter: grayscale(100%);
+    }
+
+    .floating-socials a:hover img {
+      opacity: 1;
+      transform: scale(1.1);
+      filter: grayscale(0%);
+    }
+  </style>
+
+
+
+  <div id="dowm"></div>
+  <a href="#top" class="to-top">↑</a>
+
+  <style>
+    .to-top {
+      position: fixed;
+      bottom: 60px;
+      left: 15px;
+      font-size: 40px;
+      text-decoration: none;
+      color: #999;
+      z-index: 9999;
+      /* plus élevé */
+    }
+
+    .to-top:hover {
+      color: #000;
+      transform: scale(1.2);
+      transition: transform 0.3s ease;
+    }
+  </style>
+
+
+</body>
+
+</html>
