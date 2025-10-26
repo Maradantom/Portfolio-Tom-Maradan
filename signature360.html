@@ -308,8 +308,8 @@
       <div id="zones-rdc">
         <div class="zone" style="top: 80%; left: 43%;" onclick="loadScene('extérieur')"></div>
         <div class="zone" style="top: 60%; left: 5%;" onclick="loadScene('extérieur2')"></div>
-        <div class="zone" style="top: 60%; left: 28%;" onclick="loadScene('salleréunion')"></div>
-        <div class="zone" style="top: 40%; left: 28%;" onclick="loadScene('salleréunion2')"></div>
+        <div class="zone" style="top: 40%; left: 28%;" onclick="loadScene('salleréunion')"></div>
+        <div class="zone" style="top: 60%; left: 28%;" onclick="loadScene('salleréunion2')"></div>
         <div class="zone" style="top: 58%; left: 43%;" onclick="loadScene('cuisine')"></div>
         <div class="zone" style="top: 43%; left: 43%;" onclick="loadScene('wc')"></div>
         <div class="zone" style="top: 52%; left: 60%;" onclick="loadScene('salleréception')"></div>
@@ -369,17 +369,17 @@
               pitch: -2, yaw: -72, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/preview/extérieur2.webp" alt="extérieur2">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/extérieur.webp" alt="extérieur">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('extérieur2'); }
+              clickHandlerFunc: function(){ viewer.loadScene('extérieur'); }
             },
             {
               pitch: -10, yaw: -55, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréunion.webp" alt="salleréunion">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréunion2.webp" alt="salleréunion2">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('sallederéunion'); }
+              clickHandlerFunc: function(){ viewer.loadScene('salleréunion2'); }
             },
             {
               pitch: -10, yaw: 0, type: "info", text: "",
@@ -396,7 +396,7 @@
                 div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréception.webp" alt="salleréception">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('salleréception'); }
-            }
+            },
           ]
         },
         extérieur2 : {
@@ -406,20 +406,20 @@
           fadeOutDuration: 800,
           hotSpots: [
             {
-              pitch: -5, yaw: -5, type: "info", text: "",
+              pitch: -5, yaw: -35, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréunion.webp" alt="salleréunion">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('sallederéunion'); }
+              clickHandlerFunc: function(){ viewer.loadScene('salleréunion'); }
             },
             {
-              pitch: -5, yaw: -35, type: "info", text: "",
+              pitch: -5, yaw: -5, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréunion2.webp" alt="salleréunion2">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('sallederéunion2'); }
+              clickHandlerFunc: function(){ viewer.loadScene('salleréunion2'); }
             },
             {
               pitch: -5, yaw: 20, type: "info", text: "",
@@ -438,20 +438,52 @@
           fadeOutDuration: 800,
           hotSpots: [
             {
-              pitch: 0, yaw: 140, type: "info", text: "",
+              pitch: 0, yaw: -50, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/cuisine.webp" alt="Cuisine">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/wc.webp" alt="wc">`;
+              },
+              clickHandlerFunc: function(){ viewer.loadScene('wc'); }
+            },
+            {
+              pitch: 0, yaw: -35, type: "info", text: "",
+              createTooltipFunc: function(div){
+                div.classList.add('mini-thumb');
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréception.webp" alt="salleréception">`;
+              },
+              clickHandlerFunc: function(){ viewer.loadScene('salleréception'); }
+            },
+            {
+              pitch: 0, yaw: -25, type: "info", text: "",
+              createTooltipFunc: function(div){
+                div.classList.add('mini-thumb');
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/cuisine.webp" alt="cuisine">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('cuisine'); }
             },
             {
-              pitch: 0, yaw: -160, type: "info", text: "",
+              pitch: 0, yaw: 0, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/salon.webp" alt="Salon">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréunion2.webp" alt="salleréunion2">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('salon'); }
+              clickHandlerFunc: function(){ viewer.loadScene('salleréunion2'); }
+            },
+            {
+              pitch: 0, yaw: 10, type: "info", text: "",
+              createTooltipFunc: function(div){
+                div.classList.add('mini-thumb');
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/extérieur.webp" alt="extérieur">`;
+              },
+              clickHandlerFunc: function(){ viewer.loadScene('extérieur'); }
+            },
+            {
+              pitch: 0, yaw: 45, type: "info", text: "",
+              createTooltipFunc: function(div){
+                div.classList.add('mini-thumb');
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/extérieur2.webp" alt="extérieur2">`;
+              },
+              clickHandlerFunc: function(){ viewer.loadScene('extérieur2'); }
             }
           ]
         },
@@ -462,28 +494,52 @@
           fadeOutDuration: 800,
           hotSpots: [
             {
-              pitch: 0, yaw: -115, type: "info", text: "",
+              pitch: 0, yaw: 20, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/cuisine.webp" alt="Cuisine">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/wc.webp" alt="wc">`;
+              },
+              clickHandlerFunc: function(){ viewer.loadScene('wc'); }
+            },
+            {
+              pitch: 0, yaw: 30, type: "info", text: "",
+              createTooltipFunc: function(div){
+                div.classList.add('mini-thumb');
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréception.webp" alt="salleréception">`;
+              },
+              clickHandlerFunc: function(){ viewer.loadScene('salleréception'); }
+            },
+            {
+              pitch: 0, yaw: 40, type: "info", text: "",
+              createTooltipFunc: function(div){
+                div.classList.add('mini-thumb');
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/cuisine.webp" alt="cuisine">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('cuisine'); }
             },
             {
-              pitch: 0, yaw: -170, type: "info", text: "",
+              pitch: 20, yaw: 75, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/ext2.webp" alt="ext2">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/billard.webp" alt="billard">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('ext2'); }
+              clickHandlerFunc: function(){ viewer.loadScene('billard'); }
             },
             {
-              pitch: 0, yaw: 0, type: "info", text: "",
+              pitch: 0, yaw: 170, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/chambreP.webp" alt="chambreP">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/extérieur.webp" alt="extérieur">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('chambreP'); }
+              clickHandlerFunc: function(){ viewer.loadScene('extérieur'); }
+            },
+            {
+              pitch: 0, yaw: 250, type: "info", text: "",
+              createTooltipFunc: function(div){
+                div.classList.add('mini-thumb');
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/extérieur2.webp" alt="extérieur2">`;
+              },
+              clickHandlerFunc: function(){ viewer.loadScene('extérieur2'); }
             }
           ]
         },
@@ -494,28 +550,44 @@
           fadeOutDuration: 800,
           hotSpots: [
             {
-              pitch: 0, yaw: -30, type: "info", text: "",
+              pitch: 0, yaw: -80, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/ext1.webp" alt="ext1">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréunion2.webp" alt="salleréunion2">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('ext1'); }
+              clickHandlerFunc: function(){ viewer.loadScene('salleréunion2'); }
             },
             {
-              pitch: 0, yaw: 295, type: "info", text: "",
+              pitch: 0, yaw: -50, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/cuisine.webp" alt="cuisine">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréunion.webp" alt="salleréunion">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('cuisine'); }
+              clickHandlerFunc: function(){ viewer.loadScene('salleréunion'); }
             },
             {
-              pitch: 0, yaw: 265, type: "info", text: "",
+              pitch: 0, yaw: -10, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/salon.webp" alt="Salon">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/wc.webp" alt="wc">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('salon'); }
+              clickHandlerFunc: function(){ viewer.loadScene('wc'); }
+            },
+            {
+              pitch: 0, yaw: 70, type: "info", text: "",
+              createTooltipFunc: function(div){
+                div.classList.add('mini-thumb');
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréception.webp" alt="salleréception">`;
+              },
+              clickHandlerFunc: function(){ viewer.loadScene('salleréception'); }
+            },
+            {
+              pitch: 0, yaw: 180, type: "info", text: "",
+              createTooltipFunc: function(div){
+                div.classList.add('mini-thumb');
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/extérieur.webp" alt="extérieur">`;
+              },
+              clickHandlerFunc: function(){ viewer.loadScene('extérieur'); }
             }
           ]
         },
@@ -526,20 +598,28 @@
           fadeOutDuration: 800,
           hotSpots: [
             {
-              pitch: 0, yaw: 60, type: "info", text: "",
+              pitch: 0, yaw: -250, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/cuisine.webp" alt="Cuisine">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréception.webp" alt="salleréception">`;
+              },
+              clickHandlerFunc: function(){ viewer.loadScene('salleréception'); }
+            },
+            {
+              pitch: 0, yaw: -210, type: "info", text: "",
+              createTooltipFunc: function(div){
+                div.classList.add('mini-thumb');
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/cuisine.webp" alt="cuisine">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('cuisine'); }
             },
             {
-              pitch: 0, yaw: 0, type: "info", text: "",
+              pitch: 0, yaw: -120, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/ext1.webp" alt="ext1">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréunion2.webp" alt="salleréunion2">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('ext1'); }
+              clickHandlerFunc: function(){ viewer.loadScene('salleréunion2'); }
             }
           ]
         },
@@ -550,20 +630,36 @@
           fadeOutDuration: 800,
           hotSpots: [
             {
-              pitch: 0, yaw: 60, type: "info", text: "",
+              pitch: 0, yaw: -100, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/cuisine.webp" alt="Cuisine">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/extérieur.webp" alt="extérieur">`;
+              },
+              clickHandlerFunc: function(){ viewer.loadScene('extérieur'); }
+            },
+            {
+              pitch: 0, yaw: -15, type: "info", text: "",
+              createTooltipFunc: function(div){
+                div.classList.add('mini-thumb');
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/cuisine.webp" alt="cuisine">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('cuisine'); }
             },
             {
-              pitch: 0, yaw: 0, type: "info", text: "",
+              pitch: 0, yaw: 3, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/ext1.webp" alt="ext1">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréunion2.webp" alt="salleréunion2">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('ext1'); }
+              clickHandlerFunc: function(){ viewer.loadScene('salleréunion2'); }
+            },
+            {
+              pitch: 0, yaw: 15, type: "info", text: "",
+              createTooltipFunc: function(div){
+                div.classList.add('mini-thumb');
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/wc.webp" alt="wc">`;
+              },
+              clickHandlerFunc: function(){ viewer.loadScene('wc'); }
             }
           ]
         },
