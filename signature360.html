@@ -257,27 +257,27 @@
     <div style="position: relative;">
       <img id="plan-fullscreen-img" src="photo/visite360/prieuré/planRDC.webp" alt="Plan global">
       <div id="fullscreen-zones-rdc">
-        <div class="zone" style="top: 15%; left: 43%;" onclick="startVisit('extérieur')"></div>
-        <div class="zone" style="top: 40%; left: 75%;" onclick="startVisit('extérieur2')"></div>
-        <div class="zone" style="top: 35%; left: 60%;" onclick="startVisit('sallederéunion')"></div>
-        <div class="zone" style="top: 60%; left: 60%;" onclick="startVisit('sallederéunion2')"></div>
-        <div class="zone" style="top: 41%; left: 43%;" onclick="startVisit('cuisine')"></div>
-        <div class="zone" style="top: 55%; left: 44%;" onclick="startVisit('wc')"></div>
-        <div class="zone" style="top: 45%; left: 30%;" onclick="startVisit('salleréception')"></div>
+        <div class="zone" style="top: 80%; left: 43%;" onclick="startVisit('extérieur')"></div>
+        <div class="zone" style="top: 60%; left: 5%;" onclick="startVisit('extérieur2')"></div>
+        <div class="zone" style="top: 60%; left: 28%;" onclick="startVisit('salleréunion')"></div>
+        <div class="zone" style="top: 40%; left: 28%;" onclick="startVisit('salleréunion2')"></div>
+        <div class="zone" style="top: 58%; left: 43%;" onclick="startVisit('cuisine')"></div>
+        <div class="zone" style="top: 43%; left: 43%;" onclick="startVisit('wc')"></div>
+        <div class="zone" style="top: 52%; left: 60%;" onclick="startVisit('salleréception')"></div>
         
       </div>
       <div id="fullscreen-zones-r1" style="display: none;">
-        <div class="zone" style="top: 45%; left: 35%;" onclick="startVisit('billard')"></div>
-        <div class="zone" style="top: 45%; left: 25%;" onclick="startVisit('grandesalle')"></div>
-        <div class="zone" style="top: 43%; left: 45%;" onclick="startVisit('petitesalle')"></div>
-        <div class="zone" style="top: 58%; left: 45%;" onclick="startVisit('toilette')"></div>
-        <div class="zone" style="top: 55%; left: 58%;" onclick="startVisit('mezzanine')"></div>
+        <div class="zone" style="top: 62%; left: 50%;" onclick="startVisit('billard')"></div>
+        <div class="zone" style="top: 50%; left: 60%;" onclick="startVisit('grandesalle')"></div>
+        <div class="zone" style="top: 58%; left: 41%;" onclick="startVisit('petitesalle')"></div>
+        <div class="zone" style="top: 41%; left: 41%;" onclick="startVisit('toilette')"></div>
+        <div class="zone" style="top: 40%; left: 24%;" onclick="startVisit('mezzanine')"></div>
 
       </div>
       <div id="fullscreen-zones-rdj" style="display: none;">
-        <div class="zone" style="top: 45%; left: 25%;" onclick="startVisit('samplesroom')"></div>
-        <div class="zone" style="top: 50%; left: 58%;" onclick="startVisit('yoga')"></div>
-        <div class="zone" style="top: 70%; left: 15%;" onclick="startVisit('extérieur3')"></div>
+        <div class="zone" style="top: 50%; left: 60%;" onclick="startVisit('samplesroom')"></div>
+        <div class="zone" style="top: 50%; left: 28%;" onclick="startVisit('yoga')"></div>
+        <div class="zone" style="top: 30%; left: 70%;" onclick="startVisit('extérieur3')"></div>
       </div>
     </div>
     <!-- Sélecteur d'étage sur la page d'accueil -->
@@ -306,25 +306,27 @@
     <div style="position: relative;">
       <img id="plan-mini-img" src="photo/visite360/prieuré/planRDC.webp" alt="Plan miniature" onclick="isMobile() ? null : returnToFullPlan()" style="cursor: pointer;">
       <div id="zones-rdc">
-        <div class="zone" style="top: 15%; left: 43%;" onclick="startVisit('extérieur')"></div>
-        <div class="zone" style="top: 40%; left: 75%;" onclick="startVisit('extérieur2')"></div>
-        <div class="zone" style="top: 35%; left: 60%;" onclick="startVisit('sallederéunion')"></div>
-        <div class="zone" style="top: 60%; left: 60%;" onclick="startVisit('sallederéunion2')"></div>
-        <div class="zone" style="top: 41%; left: 43%;" onclick="startVisit('cuisine')"></div>
-        <div class="zone" style="top: 55%; left: 44%;" onclick="startVisit('wc')"></div>
-        <div class="zone" style="top: 45%; left: 30%;" onclick="startVisit('salleréception')"></div>
+        <div class="zone" style="top: 80%; left: 43%;" onclick="loadScene('extérieur')"></div>
+        <div class="zone" style="top: 60%; left: 5%;" onclick="loadScene('extérieur2')"></div>
+        <div class="zone" style="top: 60%; left: 28%;" onclick="loadScene('salleréunion')"></div>
+        <div class="zone" style="top: 40%; left: 28%;" onclick="loadScene('salleréunion2')"></div>
+        <div class="zone" style="top: 58%; left: 43%;" onclick="loadScene('cuisine')"></div>
+        <div class="zone" style="top: 43%; left: 43%;" onclick="loadScene('wc')"></div>
+        <div class="zone" style="top: 52%; left: 60%;" onclick="loadScene('salleréception')"></div>
+        
       </div>
       <div id="zones-r1" style="display: none;">
-        <div class="zone" style="top: 45%; left: 35%;" onclick="startVisit('billard')"></div>
-        <div class="zone" style="top: 45%; left: 25%;" onclick="startVisit('grandesalle')"></div>
-        <div class="zone" style="top: 43%; left: 45%;" onclick="startVisit('petitesalle')"></div>
-        <div class="zone" style="top: 58%; left: 45%;" onclick="startVisit('toilette')"></div>
-        <div class="zone" style="top: 55%; left: 58%;" onclick="startVisit('mezzanine')"></div>
+        <div class="zone" style="top: 62%; left: 50%;" onclick="loadScene('billard')"></div>
+        <div class="zone" style="top: 50%; left: 60%;" onclick="loadScene('grandesalle')"></div>
+        <div class="zone" style="top: 58%; left: 41%;" onclick="loadScene('petitesalle')"></div>
+        <div class="zone" style="top: 41%; left: 41%;" onclick="loadScene('toilette')"></div>
+        <div class="zone" style="top: 40%; left: 24%;" onclick="loadScene('mezzanine')"></div>
+
       </div>
       <div id="zones-rdj" style="display: none;">
-        <div class="zone" style="top: 45%; left: 25%;" onclick="startVisit('samplesroom')"></div>
-        <div class="zone" style="top: 50%; left: 58%;" onclick="startVisit('yoga')"></div>
-        <div class="zone" style="top: 70%; left: 15%;" onclick="startVisit('extérieur3')"></div>
+        <div class="zone" style="top: 50%; left: 60%;" onclick="loadScene('samplesroom')"></div>
+        <div class="zone" style="top: 50%; left: 28%;" onclick="loadScene('yoga')"></div>
+        <div class="zone" style="top: 30%; left: 70%;" onclick="loadScene('extérieur3')"></div>
       </div>
     </div>
   </div>
@@ -345,8 +347,8 @@
 
     // Initialisation Panellum
     const viewer = pannellum.viewer('panorama', {
+      autoLoad: true,
       default: { 
-        firstScene: 'extérieur', 
         sceneFadeDuration: 1000,
         showZoomCtrl: false,
         showFullscreenCtrl: false,
@@ -356,6 +358,7 @@
         friction: 0.15
       },
       scenes: {
+        // RDC
         extérieur : {
           panorama: "photo/visite360/prieuré/extérieur.webp",
           type: "equirectangular",
@@ -363,20 +366,36 @@
           fadeOutDuration: 800,
           hotSpots: [
             {
-              pitch: 0, yaw: 200, type: "info", text: "",
+              pitch: -2, yaw: -72, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/cuisine.webp" alt="Cuisine">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/extérieur2.webp" alt="extérieur2">`;
+              },
+              clickHandlerFunc: function(){ viewer.loadScene('extérieur2'); }
+            },
+            {
+              pitch: -10, yaw: -55, type: "info", text: "",
+              createTooltipFunc: function(div){
+                div.classList.add('mini-thumb');
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréunion.webp" alt="salleréunion">`;
+              },
+              clickHandlerFunc: function(){ viewer.loadScene('salleréunion'); }
+            },
+            {
+              pitch: -10, yaw: 0, type: "info", text: "",
+              createTooltipFunc: function(div){
+                div.classList.add('mini-thumb');
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/cuisine.webp" alt="Cuisine">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('cuisine'); }
             },
             {
-              pitch: 0, yaw: 130, type: "info", text: "",
+              pitch: -10, yaw: 50, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/entrée.webp" alt="Entrée">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréception.webp" alt="salleréception">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('entrée'); }
+              clickHandlerFunc: function(){ viewer.loadScene('salleréception'); }
             }
           ]
         },
@@ -387,36 +406,28 @@
           fadeOutDuration: 800,
           hotSpots: [
             {
-              pitch: 0, yaw: 110, type: "info", text: "",
+              pitch: -5, yaw: -35, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/salon.webp" alt="Salon">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréunion.webp" alt="salleréunion">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('salon'); }
+              clickHandlerFunc: function(){ viewer.loadScene('salleréunion'); }
             },
             {
-              pitch: 0, yaw: 130, type: "info", text: "",
+              pitch: -5, yaw: -5, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/entrée.webp" alt="Entrée">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréunion2.webp" alt="salleréunion2">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('entrée'); }
+              clickHandlerFunc: function(){ viewer.loadScene('salleréunion2'); }
             },
             {
-              pitch: 0, yaw: -110, type: "info", text: "",
+              pitch: -5, yaw: 20, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/ext1.webp" alt="ext1">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/extérieur.webp" alt="extérieur">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('ext1'); }
-            },
-            {
-              pitch: 0, yaw: 10, type: "info", text: "",
-              createTooltipFunc: function(div){
-                div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/ext2.webp" alt="ext2">`;
-              },
-              clickHandlerFunc: function(){ viewer.loadScene('ext2'); }
+              clickHandlerFunc: function(){ viewer.loadScene('extérieur'); }
             }
           ]
         },
@@ -430,7 +441,7 @@
               pitch: 0, yaw: 140, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/cuisine.webp" alt="Cuisine">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/cuisine.webp" alt="Cuisine">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('cuisine'); }
             },
@@ -438,7 +449,7 @@
               pitch: 0, yaw: -160, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/salon.webp" alt="Salon">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/salon.webp" alt="Salon">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('salon'); }
             }
@@ -454,7 +465,7 @@
               pitch: 0, yaw: -115, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/cuisine.webp" alt="Cuisine">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/cuisine.webp" alt="Cuisine">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('cuisine'); }
             },
@@ -462,7 +473,7 @@
               pitch: 0, yaw: -170, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/ext2.webp" alt="ext2">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/ext2.webp" alt="ext2">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('ext2'); }
             },
@@ -470,7 +481,7 @@
               pitch: 0, yaw: 0, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/chambreP.webp" alt="chambreP">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/chambreP.webp" alt="chambreP">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('chambreP'); }
             }
@@ -486,7 +497,7 @@
               pitch: 0, yaw: -30, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/ext1.webp" alt="ext1">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/ext1.webp" alt="ext1">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('ext1'); }
             },
@@ -494,7 +505,7 @@
               pitch: 0, yaw: 295, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/cuisine.webp" alt="cuisine">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/cuisine.webp" alt="cuisine">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('cuisine'); }
             },
@@ -502,14 +513,14 @@
               pitch: 0, yaw: 265, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/salon.webp" alt="Salon">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/salon.webp" alt="Salon">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('salon'); }
             }
           ]
         },
         wc : {
-          panorama: "photo/visite360/wc.webp",
+          panorama: "photo/visite360/prieuré/wc.webp",
           type: "equirectangular",
           fadeInDuration: 800,
           fadeOutDuration: 800,
@@ -518,7 +529,7 @@
               pitch: 0, yaw: 60, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/cuisine.webp" alt="Cuisine">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/cuisine.webp" alt="Cuisine">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('cuisine'); }
             },
@@ -526,7 +537,7 @@
               pitch: 0, yaw: 0, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/ext1.webp" alt="ext1">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/ext1.webp" alt="ext1">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('ext1'); }
             }
@@ -542,7 +553,7 @@
               pitch: 0, yaw: 60, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/cuisine.webp" alt="Cuisine">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/cuisine.webp" alt="Cuisine">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('cuisine'); }
             },
@@ -550,7 +561,7 @@
               pitch: 0, yaw: 0, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/ext1.webp" alt="ext1">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/ext1.webp" alt="ext1">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('ext1'); }
             }
@@ -569,7 +580,7 @@
               pitch: 0, yaw: 90, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/chambre2.webp" alt="Chambre 2">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/chambre2.webp" alt="Chambre 2">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('chambre2'); }
             },
@@ -577,7 +588,7 @@
               pitch: 0, yaw: 180, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/sdb.webp" alt="Salle de bain">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/sdb.webp" alt="Salle de bain">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('sdb'); }
             }
@@ -593,7 +604,7 @@
               pitch: 0, yaw: -90, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/chambre1.webp" alt="Chambre 1">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/chambre1.webp" alt="Chambre 1">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('chambre1'); }
             },
@@ -601,7 +612,7 @@
               pitch: 0, yaw: 0, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/sdb.webp" alt="Salle de bain">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/sdb.webp" alt="Salle de bain">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('sdb'); }
             }
@@ -617,7 +628,7 @@
               pitch: 0, yaw: 90, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/chambre1.webp" alt="Chambre 1">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/chambre1.webp" alt="Chambre 1">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('chambre1'); }
             },
@@ -625,7 +636,7 @@
               pitch: 0, yaw: -90, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/chambre2.webp" alt="Chambre 2">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/chambre2.webp" alt="Chambre 2">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('chambre2'); }
             }
@@ -641,7 +652,7 @@
               pitch: 0, yaw: 90, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/chambre1.webp" alt="Chambre 1">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/chambre1.webp" alt="Chambre 1">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('chambre1'); }
             },
@@ -649,7 +660,7 @@
               pitch: 0, yaw: -90, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/chambre2.webp" alt="Chambre 2">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/chambre2.webp" alt="Chambre 2">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('chambre2'); }
             }
@@ -665,7 +676,7 @@
               pitch: 0, yaw: 90, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/chambre1.webp" alt="Chambre 1">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/chambre1.webp" alt="Chambre 1">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('chambre1'); }
             },
@@ -673,7 +684,7 @@
               pitch: 0, yaw: -90, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/chambre2.webp" alt="Chambre 2">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/chambre2.webp" alt="Chambre 2">`;
               },
               clickHandlerFunc: function(){ viewer.loadScene('chambre2'); }
             }
@@ -693,17 +704,17 @@
               pitch: 0, yaw: 90, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/chambre5.webp" alt="Chambre 5">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/yoga.webp" alt="yoga">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('chambre5'); }
+              clickHandlerFunc: function(){ viewer.loadScene('yoga'); }
             },
             {
               pitch: 0, yaw: 180, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/bureau.webp" alt="Bureau">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/extérieur3.webp" alt="extérieur3">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('bureau'); }
+              clickHandlerFunc: function(){ viewer.loadScene('extérieur3'); }
             }
           ]
         },
@@ -714,20 +725,20 @@
           fadeOutDuration: 800,
           hotSpots: [
             {
-              pitch: 0, yaw: -90, type: "info", text: "",
+              pitch: 10, yaw: 60, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/chambre4.webp" alt="Chambre 4">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/samplesroom.webp" alt="samplesroom">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('chambre4'); }
+              clickHandlerFunc: function(){ viewer.loadScene('samplesroom'); }
             },
             {
-              pitch: 0, yaw: 0, type: "info", text: "",
+              pitch: 10, yaw: 40, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/bureau.webp" alt="Bureau">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/extérieur3.webp" alt="extérieur3">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('bureau'); }
+              clickHandlerFunc: function(){ viewer.loadScene('extérieur3'); }
             }
           ]
         },
@@ -738,20 +749,20 @@
           fadeOutDuration: 800,
           hotSpots: [
             {
-              pitch: 0, yaw: 90, type: "info", text: "",
+              pitch: -30, yaw: 5, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/chambre4.webp" alt="Chambre 4">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/samplesroom.webp" alt="samplesroom">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('chambre4'); }
+              clickHandlerFunc: function(){ viewer.loadScene('samplesroom'); }
             },
             {
-              pitch: 0, yaw: -90, type: "info", text: "",
+              pitch: -20, yaw: 25, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/maison/chambre5.webp" alt="Chambre 5">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/yoga.webp" alt="yoga">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('chambre5'); }
+              clickHandlerFunc: function(){ viewer.loadScene('yoga'); }
             }
           ]
         }
