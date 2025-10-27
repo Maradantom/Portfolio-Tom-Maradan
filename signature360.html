@@ -152,6 +152,70 @@
       color: #000;
     }
 
+    /* Section Image Samplesroom */
+    #samplesroom-section {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      z-index: 10;
+    }
+    #samplesroom-section img {
+      width: 90%;
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    #samplesroom-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 20px;
+      z-index: 11;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+    }
+    .nav-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      font-size: 20px;
+      z-index: 11;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      transition: background 0.3s;
+    }
+    .nav-button:hover {
+      background: rgba(255,255,255,1);
+    }
+    #nav-yoga {
+      left: 20px;
+    }
+    #nav-exterieur3 {
+      right: 80px;
+    }
+
     /* Sélecteur d'étage */
     #floor-selector {
       position: absolute;
@@ -303,6 +367,14 @@
       <source src="photo/visite360/prieuré/FPV16-9.mp4" type="video/mp4">
       Votre navigateur ne supporte pas la lecture vidéo.
     </video>
+  </div>
+
+  <!-- Section Image Samplesroom -->
+  <div id="samplesroom-section">
+    <button id="samplesroom-close" onclick="closeSamplesroom()">×</button>
+    <button id="nav-yoga" class="nav-button" onclick="loadScene('yoga')">←</button>
+    <button id="nav-exterieur3" class="nav-button" onclick="loadScene('extérieur3')">→</button>
+    <img src="photo/visite360/prieuré/samplesroom.webp" alt="Samples Room">
   </div>
 
   <!-- Plan réduit -->
@@ -833,13 +905,7 @@
 
 
 
-        // RDJ
-        samplesroom : {
-          type: "iframe",
-          iframe: "samplesroom.html",
-          fadeInDuration: 800,
-          fadeOutDuration: 800
-        },
+        // RDJ - samplesroom sera géré différemment
         yoga: {
           panorama: "photo/visite360/prieuré/yoga.webp",
           type: "equirectangular",
@@ -915,21 +981,30 @@
       plan.classList.add('fade-out');
       setTimeout(() => {
         plan.style.display = 'none';
-        document.getElementById('panorama').style.display = 'block';
-        document.getElementById('plan-mini').style.display = 'block';
-        document.getElementById('floor-selector').style.display = 'block';
         
-        // Synchroniser le mini plan avec l'étage actuel
-        updateMiniPlan();
-        updateFloorButtons();
-        
-        viewer.loadScene(scene);
+        if (scene === 'samplesroom') {
+          showSamplesroom();
+        } else {
+          document.getElementById('panorama').style.display = 'block';
+          document.getElementById('plan-mini').style.display = 'block';
+          document.getElementById('floor-selector').style.display = 'block';
+          
+          // Synchroniser le mini plan avec l'étage actuel
+          updateMiniPlan();
+          updateFloorButtons();
+          
+          viewer.loadScene(scene);
+        }
       }, 800);
     }
 
     // Changement de scène depuis le plan mini
     function loadScene(sceneName) {
-      viewer.loadScene(sceneName);
+      if (sceneName === 'samplesroom') {
+        showSamplesroom();
+      } else {
+        viewer.loadScene(sceneName);
+      }
     }
 
     // Mettre à jour le mini plan
@@ -1053,6 +1128,29 @@
       const video = videoSection.querySelector('video');
       video.pause();
       videoSection.style.display = 'none';
+    }
+
+    // Afficher samplesroom comme image normale
+    function showSamplesroom() {
+      document.getElementById('panorama').style.display = 'none';
+      document.getElementById('plan-mini').style.display = 'block';
+      document.getElementById('floor-selector').style.display = 'block';
+      document.getElementById('samplesroom-section').style.display = 'flex';
+      
+      // S'assurer que le plan mini affiche le bon étage
+      currentFloor = 'rdj';
+      updateMiniPlan();
+      updateFloorButtons();
+    }
+
+    // Fermer samplesroom
+    function closeSamplesroom() {
+      document.getElementById('samplesroom-section').style.display = 'none';
+      document.getElementById('plan-mini').style.display = 'none';
+      document.getElementById('floor-selector').style.display = 'none';
+      const plan = document.getElementById('plan-fullscreen');
+      plan.style.display = 'flex';
+      plan.classList.remove('fade-out');
     }
   </script>
 
