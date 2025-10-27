@@ -835,28 +835,10 @@
 
         // RDJ
         samplesroom : {
-          panorama: "photo/visite360/prieuré/samplesroom.webp",
-          type: "equirectangular",
+          type: "iframe",
+          iframe: "samplesroom.html",
           fadeInDuration: 800,
-          fadeOutDuration: 800,
-          hotSpots: [
-            {
-              pitch: 0, yaw: 90, type: "info", text: "",
-              createTooltipFunc: function(div){
-                div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/yoga.webp" alt="yoga">`;
-              },
-              clickHandlerFunc: function(){ viewer.loadScene('yoga'); }
-            },
-            {
-              pitch: 0, yaw: 180, type: "info", text: "",
-              createTooltipFunc: function(div){
-                div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/extérieur3.webp" alt="extérieur3">`;
-              },
-              clickHandlerFunc: function(){ viewer.loadScene('extérieur3'); }
-            }
-          ]
+          fadeOutDuration: 800
         },
         yoga: {
           panorama: "photo/visite360/prieuré/yoga.webp",

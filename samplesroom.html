@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samples Room</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('photo/visite360/prieuré/samplesroom.webp') center center no-repeat;
+      background-size: contain;
+      position: relative;
+      overflow: hidden;
+    }
+    .nav-btn {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: rgba(255,255,255,0.9);
+      border: 2px solid #333;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: transform 0.2s;
+    }
+    .nav-btn:hover {
+      transform: scale(1.1);
+    }
+    #yoga-btn {
+      top: 50%;
+      left: 20%;
+      transform: translateY(-50%);
+    }
+    #exterieur3-btn {
+      top: 50%;
+      right: 20%;
+      transform: translateY(-50%);
+    }
+  </style>
+</head>
+<body>
+  <div id="yoga-btn" class="nav-btn" onclick="goToYoga()">→</div>
+  <div id="exterieur3-btn" class="nav-btn" onclick="goToExterieur3()">→</div>
+
+  <script>
+    function goToYoga() {
+      window.parent.viewer.loadScene('yoga');
+    }
+    function goToExterieur3() {
+      window.parent.viewer.loadScene('extérieur3');
+    }
+  </script>
+</body>
+</html>
