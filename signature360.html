@@ -188,32 +188,35 @@
       justify-content: center;
       color: #000;
     }
-    .nav-button {
+    .nav-square {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.9);
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
+      border-radius: 5px;
+      border: 2px solid white;
       cursor: pointer;
-      font-size: 20px;
       z-index: 11;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #000;
-      transition: background 0.3s;
+      transition: transform 0.2s;
+      overflow: hidden;
     }
-    .nav-button:hover {
-      background: rgba(255,255,255,1);
+    .nav-square:hover {
+      transform: scale(1.2);
+    }
+    .nav-square img {
+      width: 100%;
+      height: 100%;
+      border-radius: 3px;
+      object-fit: cover;
+      display: block;
+    }
+    /* MODIFIEZ CES VALEURS POUR CHANGER LA POSITION DES CARRÉS */
+    #nav-exterieur3 {
+      top: 50%;  
+      left: 10%; 
     }
     #nav-yoga {
-      left: 20px;
-    }
-    #nav-exterieur3 {
-      right: 80px;
+      top: 50%;   
+      right: 10%; 
     }
 
     /* Sélecteur d'étage */
@@ -343,7 +346,7 @@
 
       </div>
       <div id="fullscreen-zones-rdj" style="display: none;">
-        <div class="zone" style="top: 50%; left: 60%;" onclick="startVisit('samplesroom')"></div>
+        <div class="zone" style="top: 50%; left: 60%;" onclick="startSamplesroomVisit()"></div>
         <div class="zone" style="top: 50%; left: 28%;" onclick="startVisit('yoga')"></div>
         <div class="zone" style="top: 30%; left: 70%;" onclick="startVisit('extérieur3')"></div>
       </div>
@@ -372,8 +375,12 @@
   <!-- Section Image Samplesroom -->
   <div id="samplesroom-section">
     <button id="samplesroom-close" onclick="closeSamplesroom()">×</button>
-    <button id="nav-yoga" class="nav-button" onclick="loadScene('yoga')">←</button>
-    <button id="nav-exterieur3" class="nav-button" onclick="loadScene('extérieur3')">→</button>
+    <div id="nav-exterieur3" class="nav-square" onclick="goToExterieur3()">
+      <img src="photo/visite360/prieuré/preview/extérieur3.webp" alt="Extérieur 3">
+    </div>
+    <div id="nav-yoga" class="nav-square" onclick="goToYoga()">
+      <img src="photo/visite360/prieuré/preview/yoga.webp" alt="Yoga">
+    </div>
     <img src="photo/visite360/prieuré/samplesroom.webp" alt="Samples Room">
   </div>
 
@@ -400,7 +407,7 @@
 
       </div>
       <div id="zones-rdj" style="display: none;">
-        <div class="zone" style="top: 50%; left: 60%;" onclick="loadScene('samplesroom')"></div>
+        <div class="zone" style="top: 50%; left: 60%;" onclick="showSamplesroom()"></div>
         <div class="zone" style="top: 50%; left: 28%;" onclick="loadScene('yoga')"></div>
         <div class="zone" style="top: 30%; left: 70%;" onclick="loadScene('extérieur3')"></div>
       </div>
@@ -969,31 +976,7 @@
 
 
 
-        // RDJ
-        samplesroom : {
-          panorama: "photo/visite360/prieuré/samplesroom.webp",
-          type: "equirectangular",
-          fadeInDuration: 800,
-          fadeOutDuration: 800,
-          hotSpots: [
-            {
-              pitch: 0, yaw: 90, type: "info", text: "",
-              createTooltipFunc: function(div){
-                div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/yoga.webp" alt="yoga">`;
-              },
-              clickHandlerFunc: function(){ viewer.loadScene('yoga'); }
-            },
-            {
-              pitch: 0, yaw: 180, type: "info", text: "",
-              createTooltipFunc: function(div){
-                div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/extérieur3.webp" alt="extérieur3">`;
-              },
-              clickHandlerFunc: function(){ viewer.loadScene('extérieur3'); }
-            }
-          ]
-        },
+        // RDJ - samplesroom maintenant gérée comme image normale
         yoga: {
           panorama: "photo/visite360/prieuré/yoga.webp",
           type: "equirectangular",
@@ -1006,7 +989,7 @@
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/samplesroom.webp" alt="samplesroom">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('samplesroom'); }
+              clickHandlerFunc: function(){ showSamplesroom(); }
             },
             {
               pitch: 10, yaw: 40, type: "info", text: "",
@@ -1030,7 +1013,7 @@
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/samplesroom.webp" alt="samplesroom">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('samplesroom'); }
+              clickHandlerFunc: function(){ showSamplesroom(); }
             },
             {
               pitch: -20, yaw: 25, type: "info", text: "",
@@ -1236,6 +1219,30 @@
       currentFloor = 'rdj';
       updateMiniPlan();
       updateFloorButtons();
+    }
+
+    // Début visite samplesroom depuis le plan plein écran
+    function startSamplesroomVisit() {
+      const plan = document.getElementById('plan-fullscreen');
+      plan.classList.add('fade-out');
+      setTimeout(() => {
+        plan.style.display = 'none';
+        showSamplesroom();
+      }, 800);
+    }
+
+    // Navigation depuis samplesroom vers yoga
+    function goToYoga() {
+      document.getElementById('samplesroom-section').style.display = 'none';
+      document.getElementById('panorama').style.display = 'block';
+      viewer.loadScene('yoga');
+    }
+
+    // Navigation depuis samplesroom vers extérieur3
+    function goToExterieur3() {
+      document.getElementById('samplesroom-section').style.display = 'none';
+      document.getElementById('panorama').style.display = 'block';
+      viewer.loadScene('extérieur3');
     }
 
     // Fermer samplesroom
