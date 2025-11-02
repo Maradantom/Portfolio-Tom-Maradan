@@ -617,6 +617,14 @@
               clickHandlerFunc: function(){ viewer.loadScene('mezzanine'); }
             },
             {
+              pitch: 0, yaw: -10, type: "info", text: "",
+              createTooltipFunc: function(div){
+                div.classList.add('mini-thumb');
+                div.innerHTML = `<img src="photo/visite360/prieuré/preview/salleréunion.webp" alt="salleréunion">`;
+              },
+              clickHandlerFunc: function(){ viewer.loadScene('salleréunion'); }
+            },
+            {
               pitch: 0, yaw: 20, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
