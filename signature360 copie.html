@@ -122,17 +122,34 @@
       top: 0; left: 0;
       width: 100%;
       height: 100%;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       background: #000;
       z-index: 10;
     }
     #video-section video {
-      width: 88%;
-      max-width: 88vw;
-      max-height:88vw;
+      width: 90%;
+      max-width: 90vw;
+      max-height: 90vh;
       border-radius: 10px;
+    }
+    #video-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 20px;
+      z-index: 11;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
     }
 
     /* Section Image Samplesroom */
@@ -306,8 +323,8 @@
 </head>
 <body>
 
-  <!-- Plan plein écran -->
-  <div id="plan-fullscreen" style="display: none;">
+  <!-- Plan plein écran au démarrage -->
+  <div id="plan-fullscreen">
     <div style="position: relative;">
       <img id="plan-fullscreen-img" src="photo/visite360/prieuré/planRDC.webp" alt="Plan global">
       <div id="fullscreen-zones-rdc">
@@ -348,13 +365,8 @@
 
   <!-- Section Vidéo -->
   <div id="video-section">
-    <!-- Sélecteur d'étage sur la vidéo -->
-    <div style="position: absolute; top: 20px; left: 20px;">
-      <button class="floor-btn" onclick="switchToFloor('r1')">R+1</button>
-      <button class="floor-btn" onclick="switchToFloor('rdc')">RDC</button>
-      <button class="floor-btn" onclick="switchToFloor('rdj')">RDJ</button>
-    </div>
-    <video controls autoplay muted>
+    <button id="video-close" onclick="closeVideo()">×</button>
+    <video controls>
       <source src="photo/visite360/prieuré/FPV16-9.mp4" type="video/mp4">
       Votre navigateur ne supporte pas la lecture vidéo.
     </video>
@@ -1121,9 +1133,6 @@
       const plan = document.getElementById('plan-fullscreen');
       plan.style.display = 'flex';
       plan.classList.remove('fade-out');
-      
-      // Afficher le bon étage dans le plan plein écran
-      switchFloorFullscreen(currentFloor);
     }
 
     // Changement d'étage sur la page d'accueil
@@ -1192,20 +1201,6 @@
 
     // Afficher la vidéo
     function showVideo() {
-      document.getElementById('plan-fullscreen').style.display = 'none';
-      document.getElementById('panorama').style.display = 'none';
-      document.getElementById('plan-mini').style.display = 'none';
-      document.getElementById('floor-selector').style.display = 'none';
-      document.getElementById('samplesroom-section').style.display = 'none';
-      
-      // Mettre à jour les onglets vidéo selon l'étage actuel
-      const videoButtons = document.querySelectorAll('#video-section .floor-btn');
-      videoButtons.forEach(btn => btn.classList.remove('active'));
-      
-      // Activer le bon onglet selon l'étage actuel
-      const activeBtn = document.querySelector(`#video-section .floor-btn[onclick*="'${currentFloor}'"]`);
-      if (activeBtn) activeBtn.classList.add('active');
-      
       const videoSection = document.getElementById('video-section');
       const video = videoSection.querySelector('video');
       video.currentTime = 0;
@@ -1213,29 +1208,12 @@
       video.play();
     }
 
-    // Afficher le plan
-    function showPlan() {
-      document.getElementById('video-section').style.display = 'none';
-      document.getElementById('panorama').style.display = 'none';
-      document.getElementById('plan-mini').style.display = 'none';
-      document.getElementById('floor-selector').style.display = 'none';
-      document.getElementById('samplesroom-section').style.display = 'none';
-      
-      const plan = document.getElementById('plan-fullscreen');
-      plan.style.display = 'flex';
-      plan.classList.remove('fade-out');
-    }
-
-    // Changer d'étage depuis la vidéo
-    function switchToFloor(floor) {
-      document.getElementById('video-section').style.display = 'none';
-      currentFloor = floor;
-      
-      const plan = document.getElementById('plan-fullscreen');
-      plan.style.display = 'flex';
-      plan.classList.remove('fade-out');
-      
-      switchFloorFullscreen(floor);
+    // Fermer la vidéo
+    function closeVideo() {
+      const videoSection = document.getElementById('video-section');
+      const video = videoSection.querySelector('video');
+      video.pause();
+      videoSection.style.display = 'none';
     }
 
     // Afficher samplesroom comme image normale
