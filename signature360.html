@@ -416,18 +416,21 @@
       return window.innerWidth <= 768;
     }
 
-    // Initialisation Panellum
-    const viewer = pannellum.viewer('panorama', {
-      autoLoad: true,
-      default: { 
-        sceneFadeDuration: 1000,
-        showZoomCtrl: false,
-        showFullscreenCtrl: false,
-        showControls: false,
-        mouseZoom: true,
-        orientationOnByDefault: false,
-        friction: 0.15
-      },
+    // Initialisation Panellum (différée)
+    let viewer;
+    
+    function initPanellum() {
+      viewer = pannellum.viewer('panorama', {
+        autoLoad: true,
+        default: { 
+          sceneFadeDuration: 1000,
+          showZoomCtrl: false,
+          showFullscreenCtrl: false,
+          showControls: false,
+          mouseZoom: true,
+          orientationOnByDefault: false,
+          friction: 0.15
+        },
       scenes: {
         // RDC
         extérieur : {
@@ -1054,12 +1057,18 @@
           ]
         }
       }
-    });
+      });
+    }
 
     let currentFloor = 'rdc';
 
     // Début visite depuis le plan plein écran
     function startVisit(scene) {
+      // Initialiser Panellum si pas encore fait
+      if (!viewer) {
+        initPanellum();
+      }
+      
       const plan = document.getElementById('plan-fullscreen');
       plan.classList.add('fade-out');
       setTimeout(() => {
@@ -1078,6 +1087,10 @@
 
     // Changement de scène depuis le plan mini
     function loadScene(sceneName) {
+      // Initialiser Panellum si pas encore fait
+      if (!viewer) {
+        initPanellum();
+      }
       viewer.loadScene(sceneName);
     }
 
@@ -1235,6 +1248,11 @@
       plan.style.display = 'flex';
       plan.classList.remove('fade-out');
       
+      // Initialiser Panellum si pas encore fait
+      if (!viewer) {
+        initPanellum();
+      }
+      
       switchFloorFullscreen(floor);
     }
 
@@ -1263,6 +1281,10 @@
 
     // Navigation depuis samplesroom vers yoga
     function goToYoga() {
+      // Initialiser Panellum si pas encore fait
+      if (!viewer) {
+        initPanellum();
+      }
       document.getElementById('samplesroom-section').style.display = 'none';
       document.getElementById('panorama').style.display = 'block';
       viewer.loadScene('yoga');
@@ -1270,6 +1292,10 @@
 
     // Navigation depuis samplesroom vers extérieur3
     function goToExterieur3() {
+      // Initialiser Panellum si pas encore fait
+      if (!viewer) {
+        initPanellum();
+      }
       document.getElementById('samplesroom-section').style.display = 'none';
       document.getElementById('panorama').style.display = 'block';
       viewer.loadScene('extérieur3');
