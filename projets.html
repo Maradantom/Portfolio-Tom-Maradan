@@ -33,15 +33,14 @@ h1 {
 }
 
 .filters {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
   padding: 1rem;
   background-color: white;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   border-radius: 12px;
-  max-width: 900px;
+  max-width: 600px;
   margin: auto;
 }
 
@@ -62,8 +61,7 @@ h1 {
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   transition: all 0.3s ease;
-  min-width: 150px; /* réduit un peu la largeur minimale */
-  max-width: 100%; /* ne dépasse jamais l'écran */
+  width: 100%;
   color: #111;
   -webkit-text-fill-color: #111;
   text-indent: 0.01px;
@@ -211,6 +209,11 @@ nav a {
 @media (max-width: 768px) {
   .titre {
     padding-top: 6rem; /* espace sous le header */
+  }
+  
+  .filters {
+    grid-template-columns: 1fr;
+    max-width: 400px;
   }
 }
   </style>

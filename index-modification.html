@@ -357,6 +357,11 @@
       transform: translateY(0);
     }
 
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
     .nav-logo img {
       height: 28px;
       width: auto;
@@ -384,9 +389,10 @@
     @media (max-width: 768px) {
       .fixed-nav {
         flex-direction: column;
-        padding: 8px 15px;
+        padding: 15px 15px;
         height: auto;
         gap: 8px;
+        padding-top: 20px;
       }
 
       .nav-logo img {
@@ -509,19 +515,28 @@
     const images = Array.from(track.children);
 
     // Clone les images pour créer l’effet infini
-    images.forEach(img => {
-      const clone = img.cloneNode(true);
-      track.appendChild(clone);
-    });
+    for(let i = 0; i < 3; i++) {
+      images.forEach(img => {
+        const clone = img.cloneNode(true);
+        track.appendChild(clone);
+      });
+    }
 
     let scrollX = 0;
-    const speed = 1.5; // pixel/frame
+    const speed = 1.5;
+    let totalWidth = 0;
 
     function animate() {
-      scrollX += speed;
-      if (scrollX >= track.scrollWidth / 2) {
-        scrollX = 0; // revient au début sans saut
+      if (totalWidth === 0) {
+        totalWidth = images[0].offsetWidth * images.length;
       }
+      
+      scrollX += speed;
+      
+      if (scrollX >= totalWidth) {
+        scrollX = 0;
+      }
+      
       track.style.transform = `translateX(-${scrollX}px)`;
       requestAnimationFrame(animate);
     }
@@ -2423,9 +2438,9 @@
   </div>
   <div class="photo-item">
     <div class="photo-container">
-      <img src="photo/passion-photo/IMG_0292.jpeg" alt="Drone 2">
+      <img src="photo/passion-photo/FPV.mp4" alt="Drone 2">
     </div>
-    <span>@samplesroom</span>
+    <span>@work and play</span>
   </div>
   <div class="photo-item">
     <div class="photo-container">
@@ -2435,9 +2450,9 @@
   </div>
   <div class="photo-item">
     <div class="photo-container">
-      <img src="photo/passion-photo/FPV.mp4" alt="Drone 4">
+      <img src="photo/passion-photo/IMG_0292.jpeg" alt="Drone 4">
     </div>
-    <span>@work and play</span>
+    <span>@samplesroom</span>
   </div>
   <div class="photo-item">
     <div class="photo-container">
