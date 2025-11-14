@@ -2114,10 +2114,13 @@
 
       /* Points clés */
       .points-clefs {
-        display: flex;
-        justify-content: space-around;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
         margin: 20px 0;
-        flex-wrap: wrap;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .point {
@@ -2125,7 +2128,7 @@
         padding: 12px 20px;
         border-radius: 50px;
         font-size: 14px;
-        margin: 5px;
+        text-align: center;
       }
 
       /* Description */
