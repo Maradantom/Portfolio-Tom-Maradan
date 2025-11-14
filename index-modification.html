@@ -334,6 +334,14 @@
       scroll-behavior: smooth;
     }
 
+    * {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      overflow-x: hidden;
+    }
+
     /* BANDEAU FIXE */
     .fixed-nav {
       position: fixed;
@@ -418,9 +426,9 @@
     </a>
     <div class="nav-links">
       <a href="index.html">ACCUEIL</a>
-      <a href="photo.html">PROJETS</a>
+      <a href="projets.html">PROJETS</a>
+      <a href="photo.html">PHOTO & DRONE</a>
       <a href="contact.html">CONTACT</a>
-      <a href="https://www.instagram.com/studiotm___/" target="_blank">INSTAGRAM</a>
     </div>
   </nav>
   <header>
@@ -2129,6 +2137,18 @@
         border-radius: 50px;
         font-size: 14px;
         text-align: center;
+      }
+
+      @media (max-width: 600px) {
+        .points-clefs {
+          gap: 8px;
+          max-width: 320px;
+        }
+        
+        .point {
+          padding: 10px 16px;
+          font-size: 13px;
+        }
       }
 
       /* Description */

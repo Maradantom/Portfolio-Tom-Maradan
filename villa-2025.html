@@ -26,49 +26,51 @@
       overflow-x: hidden;
     }
 
-    /* HEADER */
-    header {
+    /* BANDEAU FIXE */
+    .fixed-nav {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 1000;
-      background: transparent;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 2rem;
-      transition: background 0.3s ease;
+      padding: 12px 20px;
+      transition: all 0.3s ease;
+      height: 60px;
+      box-sizing: border-box;
     }
 
-    .logo img {
-      height: 30px;
-      width: auto;
-      object-fit: contain;
-      content: url('photo/logo/Blanc long.webp');
-      transition: content 0.3s ease;
-    }
-
-    nav {
+    .nav-logo {
       display: flex;
-      gap: 1.5rem;
+      align-items: center;
     }
 
-    nav a {
-      color: #fff;
+    .nav-logo img {
+      height: 28px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--main-color);
       text-decoration: none;
       font-size: 0.9rem;
-      letter-spacing: 1px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
       transition: color 0.3s ease;
     }
 
-    /* SCROLL HEADER */
-    header.scrolled nav a {
-      color: var(--main-color);
-    }
-
-    header.scrolled .logo img {
-      content: url('photo/logo/Noir long.webp');
+    .nav-links a:hover {
+      color: #666;
     }
 
     /* HERO IMAGE */
@@ -192,24 +194,24 @@
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
-      header {
-        padding: 1rem 1.5rem;
+      .fixed-nav {
         flex-direction: column;
-        align-items: flex-start;
+        padding: 15px 15px;
+        height: auto;
+        gap: 8px;
+        padding-top: 20px;
       }
 
-      .logo img {
-        height: 24px;
-        margin-bottom: 0.5rem;
+      .nav-logo img {
+        height: 20px;
       }
 
-      nav {
-        flex-wrap: wrap;
+      .nav-links {
         gap: 1rem;
       }
 
-      nav a {
-        font-size: 0.85rem;
+      .nav-links a {
+        font-size: 0.75rem;
       }
     }
 
@@ -319,32 +321,24 @@
     bg.style.transform = "translateY(" + scrollY * 0.4 + "px)";
   });
 
-  window.addEventListener("scroll", function () {
-    const header = document.querySelector("header");
-    const hero = document.querySelector(".hero-image");
-    const offset = hero.offsetHeight;
 
-    if (window.scrollY > offset - 100) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
-    }
-  });
 </script>
 
 </head>
 <body>
 
-  <header>
-    <a href="index.html" class="logo">
-      <img src="photo/logo/Noir long.png" alt="Logo Tom Maradan">
+  <!-- BANDEAU DE NAVIGATION FIXE -->
+  <nav id="fixed-nav" class="fixed-nav">
+    <a href="index.html" class="nav-logo">
+      <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan">
     </a>
-    <nav>
+    <div class="nav-links">
       <a href="index.html">ACCUEIL</a>
       <a href="projets.html">PROJETS</a>
       <a href="contact.html">CONTACT</a>
-    </nav>
-  </header>
+      <a href="https://www.instagram.com/studiotm___/" target="_blank">INSTAGRAM</a>
+    </div>
+  </nav>
 
   <div class="hero-image">
   <div class="parallax-bg"></div>
