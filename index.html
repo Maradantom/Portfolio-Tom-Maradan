@@ -333,97 +333,14 @@
     html {
       scroll-behavior: smooth;
     }
-
-    /* HEADER FIXE */
-    .fixed-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: #ffffff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0px 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-      transform: translateY(-100%);
-      transition: transform 0.3s ease;
-    }
-
-    .fixed-header.visible {
-      transform: translateY(0);
-    }
-
-    /* Logo */
-    .fixed-header .logo img {
-      height: 30px;
-      width: auto;
-
-      max-width: 100%;
-      object-fit: contain;
-    }
-
-    /* Navigation */
-    .fixed-header nav {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .fixed-header nav a {
-      color: #000000;
-      text-decoration: none;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      transition: color 0.3s ease;
-    }
-
-    /* RESPONSIVE - Mobile */
-    @media (max-width: 768px) {
-      .fixed-header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.6rem 1.2rem;
-      }
-
-      .fixed-header .logo img {
-        height: 24px;
-        margin-bottom: 0.5rem;
-      }
-
-      .fixed-header nav {
-        width: 100%;
-        gap: 1rem;
-        justify-content: flex-start;
-      }
-
-      .fixed-header nav a {
-        font-size: 0.85rem;
-      }
-    }
-  </style>
   </style>
 </head>
 
 <body>
-  <!-- BANDEAU DE NAVIGATION FIXE -->
-  <header id="fixed-header" class="fixed-header">
-    <a href="index.html" class="logo">
-      <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan">
-    </a>
-    <nav>
-      <a href="index.html">ACCUEIL</a>
-      <a href="contact.html">CONTACT</a>
-      <a href="https://www.instagram.com/studiotm___/">INSTAGRAM</a>
-    </nav>
-  </header>
   <header>
     <div class="section-content"></div>
     <h1>Tom Maradan</h1>
     <p>Architecture intérieure & design — CREAD </p>
-    
     <!-- HEADER AVEC LOGO -->
     <header class="site-header">
       <div class="logo-container">
@@ -531,6 +448,378 @@
 
   </script>
 
+  <div class="scene">
+    <div class="card" id="card">
+      <div class="face front"></div>
+      <div class="face back"></div>
+    </div>
+  </div>
+
+  <style>
+    .scene {
+      width: 85mm;
+      height: 54mm;
+      perspective: 1000px;
+      margin: 40px auto;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out;
+      transform: rotateY(15deg) rotateX(10deg);
+      will-change: transform;
+      touch-action: none;
+    }
+
+    .face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      backface-visibility: hidden;
+    }
+
+    .front {
+      background-image: url('photo/logo/Carte de visite.webp');
+      /* Remplace par ton image */
+    }
+
+    .back {
+      background-image: url('photo/logo/Carte de visite2.webp');
+      /* Remplace par ton image */
+      transform: rotateY(180deg);
+    }
+  </style>
+
+
+  <script>
+    const card = document.getElementById('card');
+    let isDragging = false;
+    let startX, startY;
+    let currentX = 20, currentY = -15;
+    let targetX = currentX, targetY = currentY;
+    let baseX = currentX, baseY = currentY;
+    let animationId = null;
+    let autoRotate = true;
+    let autoSpeedX = 0.2; // vitesse de rotation horizontale
+    let autoSpeedY = 0;   // tu peux aussi mettre une rotation verticale lente si tu veux
+
+    function updateTransform() {
+      if (!isDragging && autoRotate) {
+        targetX += autoSpeedX;
+        targetY += autoSpeedY;
+      }
+
+      currentX += (targetX - currentX) * 0.1;
+      currentY += (targetY - currentY) * 0.1;
+      card.style.transform = `rotateY(${currentX}deg) rotateX(${-currentY}deg)`;
+      animationId = requestAnimationFrame(updateTransform);
+    }
+
+    function startAnimation() {
+      if (!animationId) {
+        animationId = requestAnimationFrame(updateTransform);
+      }
+    }
+
+    function stopAnimation() {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+
+function updateTarget(deltaX, deltaY) {
+  if (isBackFaceVisible()) {
+    deltaY = -deltaY; 
+  }
+  targetX = baseX + deltaX * 0.3;
+  targetY = baseY + deltaY * 0.3;
+}
+    function isBackFaceVisible() {
+  const y = (currentX % 360 + 360) % 360; 
+  return y > 90 && y < 270;
+}
+    // Souris
+    document.addEventListener('mousedown', (e) => {
+      if (e.target.closest('#card')) {
+        isDragging = true;
+        autoRotate = false;
+        startX = e.clientX;
+        startY = e.clientY;
+        baseX = currentX;
+        baseY = currentY;
+        startAnimation();
+      }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - startX;
+      const deltaY = e.clientY - startY;
+      updateTarget(deltaX, deltaY);
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      autoRotate = true;
+    });
+
+    // Mobile
+    card.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      autoRotate = false;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      baseX = currentX;
+      baseY = currentY;
+      startAnimation();
+      e.preventDefault();
+    }, { passive: false });
+
+    card.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.touches[0].clientX - startX;
+      const deltaY = e.touches[0].clientY - startY;
+      updateTarget(deltaX, deltaY);
+      e.preventDefault();
+    }, { passive: false });
+
+    card.addEventListener('touchend', () => {
+      isDragging = false;
+      autoRotate = true;
+    });
+
+    // Lancer l'animation au chargement
+    card.style.transform = `rotateY(${currentX}deg) rotateX(${-currentY}deg)`;
+    startAnimation();
+  </script>
+
+
+  <section id="bienvenue">
+    <h2>Bienvenue</h2>
+    <div class="link-grid">
+      <a href="#activité" class="link-box">Mon activité</a>
+      <a href="#histoire" class="link-box">Mon histoire & parcours</a>
+      <a href="projets.html" class="link-box">Mes projets</a>
+      <a href="#experiences" class="link-box">Mes expériences</a>
+      <a href="#passion" class="link-box">Ma passion pour la photo</a>
+      <a href="contact.html" class="link-box">Me contacter</a>
+    </div>
+  </section>
+  <style>
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      /* 2 par ligne par défaut */
+      gap: 2rem;
+      max-width: 900px;
+      width: 100%;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .link-grid {
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 par ligne dès tablette/petit ordi */
+      }
+    }
+
+    .link-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      background: white;
+      transition: 0.3s;
+      min-width: 0;
+      word-wrap: break-word;
+      min-height: 120px;
+      text-decoration: none;
+      /* Important : pas de soulignement */
+      color: var(--text);
+      /* Couleur du texte */
+      font-weight: 600;
+    }
+
+    .link-box:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      background: #f0f0f0;
+    }
+
+    .link-box a {
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .socials a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+      transition: 0.3s ease;
+      border: 1px solid #ccc;
+    }
+
+    .socials a:hover {
+      background-color: #e3e3e3;
+      transform: scale(1.08);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #707070;
+    }
+  </style>
+
+   <section id="activité" style="margin-bottom: -10px;">
+  <h2 style="margin-bottom: -2rem;">Mon activité</h2>
+</section>
+
+<section id="about" class="about-section" aria-labelledby="about-title" style="padding-top: 10px;">
+  <div class="about-card">
+    <figure class="about-image">
+      <img src="photo/logo/IMG_1901.webp" alt="Tom Maradan, architecte d'intérieur" width="600" height="600">
+    </figure>
+
+    <div class="about-text">
+      <h2 id="about-title">À propos de moi</h2>
+
+      <p class="lead">
+        Je m'appelle <strong>Tom Maradan</strong>, étudiant en 3<sup>ème</sup> année d’architecture d’intérieur à <strong>CREAD Lyon</strong>.  
+        En parallèle de mes études, je propose des prestations professionnelles : <strong>Plans techniques</strong>, 
+        <strong>modélisation 3D</strong> et <strong>rendus photo-réalistes</strong>.
+      </p>
+
+      <p>
+        Mon objectif est simple : <strong>transformer des idées en visuels clairs et inspirants</strong>, pour
+        permettre à chacun de mieux se projeter dans son futur espace. 
+        J’accorde une importance particulière à une </em>conception claire et structurée</em>, toujours enrichie d’une touche créative 
+        qui signe l’identité de chaque projet.
+      </p>
+ 
+      <p>
+        J’accompagne particuliers et professionnels avec rigueur technique et sensibilité esthétique — une
+        approche jeune, professionnelle et engagée.
+      </p>
+
+      <p class="cta">
+        <a class="btn" href="/contact.html" title="Contactez Tom">Discutons de votre projet</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section{
+    --bg-card: #f2f2f2; /* gris clair */
+    --text-local: #121212;
+    --muted: #4f4f4f;
+    --accent-local: #000;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .about-section{
+    padding: 20px 20px 60px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .about-card{
+    background: var(--bg-card);
+    border-radius: 24px;
+    padding: 40px;
+    max-width: 1100px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    flex-wrap: wrap;
+  }
+
+  .about-image {
+    flex: 0 0 280px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  }
+
+  .about-image img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-text{
+    flex: 1 1 400px;
+    color: var(--text-local);
+  }
+
+  .about-text h2{
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  .about-text .lead{
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+    color: var(--text-local);
+  }
+
+  .about-text p{
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .cta { margin-top: 18px; }
+  .btn{
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    background: transparent;
+    border: 1.5px solid var(--accent-local);
+    color: var(--accent-local);
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+  }
+  .btn:hover{
+    background: var(--accent-local);
+    color: #fff;
+  }
+
+  @media (max-width: 820px){
+    .about-card{ flex-direction: column; text-align: center; padding: 30px 20px; }
+    .about-text{ text-align: left; }
+    .about-text h2{ text-align: center; }
+    .about-image { flex: 0 0 180px; width: 180px; height: 180px; }
+  }
+</style>
 
   <section id="histoire">
     <h2>Mon histoire et parcours</h2>
@@ -2274,22 +2563,22 @@
         border-radius: 12px;
       }
     </style>
+      </script>
 
-      <div><div style="text-align: center; margin-top: 0rem;">
-    <a href="photo.html" class="voir-projets-btn"> Voir tous mes projets</a>
+      <div><div style="text-align: center; margin-top: 2rem;">
+    <a href="projets.html" class="voir-projets-btn"> Voir tous mes projets</a>
 </div></div>
       <style>
         /* Bouton Voir mes projets */
         .voir-projets-btn {
           display: inline-block;
           padding: 0.8rem 1.6rem;
-          background: #f5f5f5;
-          color: #000;
+          background: var(--accent);
+          color: var(--text);
           text-decoration: none;
           border-radius: 8px;
           font-weight: 600;
           transition: 0.3s ease;
-          border: 1px solid #ddd;
         }
 
         .voir-projets-btn:hover {
@@ -2562,32 +2851,6 @@
   });
 </script>
 
-
-      <div><div style="text-align: center; margin-top: 0rem;">
-    <a href="photo.html" class="voir-projets-btn"> Explorer ma passion photo & drone</a>
-</div></div>
-      <style>
-        /* Bouton Voir mes projets */
-        .voir-projets-btn {
-          display: inline-block;
-          padding: 0.8rem 1.6rem;
-          background: #f5f5f5;
-          color: #000;
-          text-decoration: none;
-          border-radius: 8px;
-          font-weight: 600;
-          transition: 0.3s ease;
-          border: 1px solid #ddd;
-        }
-
-        .voir-projets-btn:hover {
-          background: #e0e0e0;
-          transform: scale(1.05);
-        }
-      </style>
-
-
-
   <section id="contact">
     <h2>Contact & Réseaux</h2>
     <p class="coordonnees">
@@ -2665,7 +2928,7 @@
 
   <div class="socials">
     <a href="https://www.instagram.com/studiotm___" target="_blank">Instagram</a>
-    <a href="https://www.linkedin.com/in/tom-maradan-554265235/" target="_blank">Linkedin</a>
+    <a href="https://www.linkedin.com/in/tom-maradan-554265235/" target="_blank">LinkedIn</a>
     <a href="https://linktr.ee/studiotm___" target="_blank">Linktree</a>
     <a href="https://www.youtube.com/channel/UCo0UnKLZDgU-94To-z9PJqQ" target="_blank">YouTube</a>
   </div>
@@ -2736,290 +2999,6 @@
       font-size: 0.95rem;
     }
   </style>
-
-
-<section id="activité" style="margin-bottom: -10px;">
-  <h2 style="margin-bottom: -2rem;">Mon activité</h2>
-</section>
-
-<section id="about" class="about-section" aria-labelledby="about-title" style="padding-top: 10px;">
-  <div class="about-card">
-    <figure class="about-image">
-      <img src="photo/logo/IMG_1901.webp" alt="Tom Maradan, architecte d'intérieur" width="600" height="600">
-    </figure>
-
-    <div class="about-text">
-      <h2 id="about-title">À propos de moi</h2>
-
-      <p class="lead">
-        Je m'appelle <strong>Tom Maradan</strong>, étudiant en 3<sup>ème</sup> année d’architecture d’intérieur à <strong>CREAD Lyon</strong>.  
-        En parallèle de mes études, je propose des prestations professionnelles : <strong>Plans techniques</strong>, 
-        <strong>modélisation 3D</strong> et <strong>rendus photo-réalistes</strong>.
-      </p>
-
-      <p>
-        Mon objectif est simple : <strong>transformer des idées en visuels clairs et inspirants</strong>, pour
-        permettre à chacun de mieux se projeter dans son futur espace. 
-        J’accorde une importance particulière à une </em>conception claire et structurée</em>, toujours enrichie d’une touche créative 
-        qui signe l’identité de chaque projet.
-      </p>
- 
-      <p>
-        J’accompagne particuliers et professionnels avec rigueur technique et sensibilité esthétique — une
-        approche jeune, professionnelle et engagée.
-      </p>
-
-      <p class="cta">
-        <a class="btn" href="/contact.html" title="Contactez Tom">Discutons de votre projet</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<style>
-  .about-section{
-    --bg-card: #f2f2f2; /* gris clair */
-    --text-local: #121212;
-    --muted: #4f4f4f;
-    --accent-local: #000;
-    font-family: 'Outfit', sans-serif;
-  }
-
-  .about-section{
-    padding: 20px 20px 60px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .about-card{
-    background: var(--bg-card);
-    border-radius: 24px;
-    padding: 40px;
-    max-width: 1100px;
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
-    flex-wrap: wrap;
-  }
-
-  .about-image {
-    flex: 0 0 280px;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  }
-
-  .about-image img{
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .about-text{
-    flex: 1 1 400px;
-    color: var(--text-local);
-  }
-
-  .about-text h2{
-    font-size: 1.8rem;
-    margin-bottom: 16px;
-    font-weight: 700;
-  }
-
-  .about-text .lead{
-    font-size: 1.05rem;
-    margin-bottom: 12px;
-    color: var(--text-local);
-  }
-
-  .about-text p{
-    color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 12px;
-  }
-
-  .cta { margin-top: 18px; }
-  .btn{
-    display: inline-block;
-    padding: 10px 18px;
-    border-radius: 12px;
-    text-decoration: none;
-    background: transparent;
-    border: 1.5px solid var(--accent-local);
-    color: var(--accent-local);
-    font-weight: 600;
-    transition: all 0.2s ease-in-out;
-  }
-  .btn:hover{
-    background: var(--accent-local);
-    color: #fff;
-  }
-
-  @media (max-width: 820px){
-    .about-card{ flex-direction: column; text-align: center; padding: 30px 20px; }
-    .about-text{ text-align: left; }
-    .about-text h2{ text-align: center; }
-    .about-image { flex: 0 0 180px; width: 180px; height: 180px; }
-  }
-</style>
-
-
-
-
-
-  <div class="scene">
-    <div class="card" id="card">
-      <div class="face front"></div>
-      <div class="face back"></div>
-    </div>
-  </div>
-
-  <style>
-    .scene {
-      width: 85mm;
-      height: 54mm;
-      perspective: 1000px;
-      margin: 40px auto;
-    }
-
-    .card {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.1s ease-out;
-      transform: rotateY(15deg) rotateX(10deg);
-      will-change: transform;
-      touch-action: none;
-    }
-
-    .face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 16px;
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-      backface-visibility: hidden;
-    }
-
-    .front {
-      background-image: url('photo/logo/Carte de visite.webp');
-      /* Remplace par ton image */
-    }
-
-    .back {
-      background-image: url('photo/logo/Carte de visite2.webp');
-      /* Remplace par ton image */
-      transform: rotateY(180deg);
-    }
-  </style>
-
-
-  <script>
-    const card = document.getElementById('card');
-    let isDragging = false;
-    let startX, startY;
-    let currentX = 20, currentY = -15;
-    let targetX = currentX, targetY = currentY;
-    let baseX = currentX, baseY = currentY;
-    let animationId = null;
-    let autoRotate = true;
-    let autoSpeedX = 0.2; // vitesse de rotation horizontale
-    let autoSpeedY = 0;   // tu peux aussi mettre une rotation verticale lente si tu veux
-
-    function updateTransform() {
-      if (!isDragging && autoRotate) {
-        targetX += autoSpeedX;
-        targetY += autoSpeedY;
-      }
-
-      currentX += (targetX - currentX) * 0.1;
-      currentY += (targetY - currentY) * 0.1;
-      card.style.transform = `rotateY(${currentX}deg) rotateX(${-currentY}deg)`;
-      animationId = requestAnimationFrame(updateTransform);
-    }
-
-    function startAnimation() {
-      if (!animationId) {
-        animationId = requestAnimationFrame(updateTransform);
-      }
-    }
-
-    function stopAnimation() {
-      cancelAnimationFrame(animationId);
-      animationId = null;
-    }
-
-function updateTarget(deltaX, deltaY) {
-  if (isBackFaceVisible()) {
-    deltaY = -deltaY; 
-  }
-  targetX = baseX + deltaX * 0.3;
-  targetY = baseY + deltaY * 0.3;
-}
-    function isBackFaceVisible() {
-  const y = (currentX % 360 + 360) % 360; 
-  return y > 90 && y < 270;
-}
-    // Souris
-    document.addEventListener('mousedown', (e) => {
-      if (e.target.closest('#card')) {
-        isDragging = true;
-        autoRotate = false;
-        startX = e.clientX;
-        startY = e.clientY;
-        baseX = currentX;
-        baseY = currentY;
-        startAnimation();
-      }
-    });
-
-    document.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      const deltaX = e.clientX - startX;
-      const deltaY = e.clientY - startY;
-      updateTarget(deltaX, deltaY);
-    });
-
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
-      autoRotate = true;
-    });
-
-    // Mobile
-    card.addEventListener('touchstart', (e) => {
-      isDragging = true;
-      autoRotate = false;
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-      baseX = currentX;
-      baseY = currentY;
-      startAnimation();
-      e.preventDefault();
-    }, { passive: false });
-
-    card.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      const deltaX = e.touches[0].clientX - startX;
-      const deltaY = e.touches[0].clientY - startY;
-      updateTarget(deltaX, deltaY);
-      e.preventDefault();
-    }, { passive: false });
-
-    card.addEventListener('touchend', () => {
-      isDragging = false;
-      autoRotate = true;
-    });
-
-    // Lancer l'animation au chargement
-    card.style.transform = `rotateY(${currentX}deg) rotateX(${-currentY}deg)`;
-    startAnimation();
-  </script>
-
 
 
   <footer class="footer">
@@ -3127,30 +3106,6 @@ function updateTarget(deltaX, deltaY) {
     }
   </style>
 
-  <!-- Script pour faire apparaître le bandeau fixe -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const fixedHeader = document.getElementById('fixed-header');
-      const slider = document.querySelector('.slider');
-      
-      function checkSliderPosition() {
-        if (slider) {
-          const sliderRect = slider.getBoundingClientRect();
-          // Quand le haut du slider atteint le haut de l'écran
-          if (sliderRect.top <= 0) {
-            fixedHeader.classList.add('visible');
-          } else {
-            fixedHeader.classList.remove('visible');
-          }
-        }
-      }
-      
-      // Vérifier la position au scroll
-      window.addEventListener('scroll', checkSliderPosition);
-      // Vérifier la position au chargement
-      checkSliderPosition();
-    });
-  </script>
 
 </body>
 
