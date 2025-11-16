@@ -28,10 +28,16 @@
   
   <style>
     :root {
-      --background: #ffffff;
-      --text: #242424;
-      --accent: #9999992d;
-      --main-color: #111;
+      --primary-color: #111;
+      --secondary-color: #666;
+      --accent-color: #f8f9fa;
+      --white: #ffffff;
+      --shadow-light: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-medium: 0 8px 32px rgba(0,0,0,0.12);
+      --shadow-heavy: 0 16px 48px rgba(0,0,0,0.15);
+      --border-radius: 16px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --nav-height: 70px;
     }
 
     * {
@@ -40,17 +46,15 @@
       box-sizing: border-box;
     }
 
-    html, body {
-      width: 100%;
-      height: 100%;
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       font-family: 'Outfit', sans-serif;
-      background: var(--background);
-      color: var(--text);
+      background: var(--white);
+      color: var(--primary-color);
       line-height: 1.6;
-      scroll-behavior: smooth;
       overflow-x: hidden;
     }
 
@@ -61,16 +65,20 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      background: #ffffff;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 12px 20px;
-      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       height: 60px;
       box-sizing: border-box;
-      backdrop-filter: blur(10px);
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+    }
+
+    .fixed-nav.visible {
+      transform: translateY(0);
     }
 
     .nav-logo {
@@ -90,7 +98,7 @@
     }
 
     .nav-links a {
-      color: var(--main-color);
+      color: #000;
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
@@ -102,38 +110,38 @@
       color: #666;
     }
 
-    /* HERO SECTION */
+    /* ===== HERO SECTION ===== */
     .hero {
       height: 100vh;
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
-      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('photo/passion-photo/DJI_20250529185722_0038_D.webp') no-repeat center center;
-      background-size: cover;
-      background-attachment: fixed;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                  url('photo/passion-photo/DJI_20250529185722_0038_D.webp') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: white;
+      color: var(--white);
+      position: relative;
     }
 
-    .hero-content h1 {
-      font-size: 3.5rem;
+    .hero-content {
+      max-width: 800px;
+      padding: 0 2rem;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 5rem);
       font-weight: 700;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     }
 
-    .hero-content p {
-      font-size: 1.3rem;
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
       font-weight: 300;
-      max-width: 600px;
-      margin: 0 auto 2rem;
+      margin-bottom: 2rem;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+      opacity: 0.9;
     }
 
     .hero-scroll {
@@ -141,65 +149,64 @@
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
-      color: white;
+      color: var(--white);
       font-size: 2rem;
+      cursor: pointer;
       animation: bounce 2s infinite;
     }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-      40% { transform: translateX(-50%) translateY(-10px); }
-      60% { transform: translateX(-50%) translateY(-5px); }
+    /* ===== SECTIONS ===== */
+    .section {
+      padding: 5rem 0;
     }
 
-    /* SECTIONS */
-    section {
+    .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 4rem 2rem;
+      padding: 0 2rem;
     }
 
-    h2 {
-      font-size: 2.5rem;
+    .section-title {
+      font-size: clamp(2rem, 5vw, 2.8rem);
       font-weight: 700;
-      margin-bottom: 2rem;
       text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--primary-color);
     }
 
     .intro-text {
       font-size: 1.2rem;
       text-align: center;
       max-width: 800px;
-      margin: 0 auto 3rem;
-      color: #555;
+      margin: 0 auto;
+      color: var(--secondary-color);
       line-height: 1.8;
     }
 
-    /* GALERIE PHOTO */
-    .photo-gallery {
+    /* ===== GALERIE PHOTO ===== */
+    .gallery {
       columns: 3;
       column-gap: 2rem;
-      margin: 3rem 0;
+      margin-top: 4rem;
     }
 
-    @media (max-width: 1024px) {
-      .photo-gallery {
-        columns: 2;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .photo-gallery {
-        columns: 1;
-      }
-    }
-
-    .photo-item {
+    .gallery-item {
       position: relative;
-      border-radius: 16px;
+      border-radius: var(--border-radius);
       overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: var(--shadow-light);
+      transition: var(--transition);
       cursor: pointer;
       break-inside: avoid;
       margin-bottom: 2rem;
@@ -207,131 +214,109 @@
       width: 100%;
     }
 
-    .photo-item:hover {
+    .gallery-item:hover {
       transform: translateY(-8px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+      box-shadow: var(--shadow-heavy);
     }
 
-    .photo-item img, .photo-item video {
+    .gallery-media {
       width: 100%;
       height: auto;
-      transition: transform 0.3s ease;
       display: block;
+      transition: var(--transition);
     }
 
-    .photo-item:hover img, .photo-item:hover video {
+    .gallery-item:hover .gallery-media {
       transform: scale(1.05);
     }
 
-    .photo-overlay {
+    .gallery-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
       background: linear-gradient(transparent, rgba(0,0,0,0.8));
-      color: white;
+      color: var(--white);
       padding: 2rem 1.5rem 1.5rem;
       transform: translateY(100%);
-      transition: transform 0.3s ease;
+      transition: var(--transition);
     }
 
-    .photo-item:hover .photo-overlay {
+    .gallery-item:hover .gallery-overlay {
       transform: translateY(0);
     }
 
-    .photo-overlay h3 {
+    .gallery-title {
       font-size: 1.2rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
     }
 
-    .photo-overlay p {
+    .gallery-description {
       font-size: 0.9rem;
       opacity: 0.9;
     }
 
-    /* SECTION ÉQUIPEMENT */
+    /* ===== SECTION ÉQUIPEMENT ===== */
     .equipment-section {
-      background: #f8f9fa;
-      padding: 4rem 0;
-      margin: 4rem 0;
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
-    }
-
-    .equipment-section > h2 {
-      text-align: center;
-      max-width: 1200px;
-      margin: 0 auto 2rem;
-      padding: 0 2rem;
-    }
-
-    .equipment-section .equipment-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
+      background: var(--accent-color);
+      padding: 5rem 0;
     }
 
     .equipment-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .equipment-card {
-      background: white;
-      padding: 2rem;
-      border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease;
-    }
-
-    .equipment-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .equipment-card h3 {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: var(--main-color);
-    }
-
-    .equipment-card p {
-      color: #666;
-      line-height: 1.6;
-    }
-
-    /* SECTION SERVICES */
-    .services-section {
-      text-align: center;
-    }
-
-    .services-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
       margin-top: 3rem;
     }
 
-    .service-card {
-      background: white;
+    .equipment-card {
+      background: var(--white);
       padding: 2.5rem 2rem;
-      border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: var(--border-radius);
+      text-align: center;
+      box-shadow: var(--shadow-light);
+      transition: var(--transition);
+    }
+
+    .equipment-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .equipment-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    .equipment-description {
+      color: var(--secondary-color);
+      line-height: 1.6;
+    }
+
+    /* ===== SERVICES ===== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-light);
+      transition: var(--transition);
+      text-align: center;
       border: 1px solid #f0f0f0;
     }
 
     .service-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+      box-shadow: var(--shadow-medium);
     }
 
     .service-icon {
@@ -339,19 +324,19 @@
       margin-bottom: 1.5rem;
     }
 
-    .service-card h3 {
-      font-size: 1.4rem;
+    .service-title {
+      font-size: 1.3rem;
       font-weight: 600;
       margin-bottom: 1rem;
-      color: var(--main-color);
+      color: var(--primary-color);
     }
 
-    .service-card p {
-      color: #666;
+    .service-description {
+      color: var(--secondary-color);
       line-height: 1.7;
     }
 
-    /* LIGHTBOX */
+    /* ===== LIGHTBOX ===== */
     .lightbox {
       display: none;
       position: fixed;
@@ -359,14 +344,14 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.95);
       z-index: 2000;
       justify-content: center;
       align-items: center;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(10px);
     }
 
-    .lightbox img, .lightbox video {
+    .lightbox-media {
       max-width: 90%;
       max-height: 90%;
       border-radius: 8px;
@@ -377,7 +362,7 @@
       position: absolute;
       top: 2rem;
       right: 2rem;
-      color: white;
+      color: var(--white);
       font-size: 2rem;
       cursor: pointer;
       z-index: 2001;
@@ -388,21 +373,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.3s ease;
+      transition: var(--transition);
     }
 
     .lightbox-close:hover {
       background: rgba(0,0,0,0.8);
     }
 
-
-
-    /* FOOTER */
-    footer {
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--accent-color);
       text-align: center;
-      padding: 2rem;
-      background: #f8f9fa;
-      margin-top: 4rem;
+      padding: 3rem 2rem;
     }
 
     .footer-logo {
@@ -412,11 +394,103 @@
       margin-bottom: 1rem;
     }
 
-    /* RESPONSIVE */
+    .footer-text {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--secondary-color);
+    }
+
+    .footer-link {
+      color: #4e4e4e;
+      text-decoration: none;
+    }
+
+    /* ===== FLOATING ELEMENTS ===== */
+    .floating-socials {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 999;
+    }
+
+    .social-link img {
+      width: 32px;
+      height: 32px;
+      opacity: 0.7;
+      transition: var(--transition);
+      filter: grayscale(100%);
+    }
+
+    .social-link:hover img {
+      opacity: 1;
+      transform: scale(1.1);
+      filter: grayscale(0%);
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      font-size: 2rem;
+      text-decoration: none;
+      color: var(--secondary-color);
+      z-index: 999;
+      transition: var(--transition);
+    }
+
+    .back-to-top:hover {
+      color: var(--primary-color);
+      transform: scale(1.2);
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .gallery {
+        columns: 2;
+        column-gap: 1.5rem;
+      }
+      
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .equipment-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 768px) {
       .fixed-nav {
         flex-direction: column;
-        padding: 15px;
+        padding: 15px 15px;
         height: auto;
         gap: 8px;
         padding-top: 20px;
@@ -435,54 +509,34 @@
       }
 
       .hero {
-        height: 80vh;
-        padding: 0 1rem;
+        height: 100vh;
+        background-attachment: scroll;
       }
 
-      .hero-content h1 {
-        font-size: 2.5rem;
+      .section {
+        padding: 3rem 0;
       }
 
-      .hero-content p {
-        font-size: 1.1rem;
+      .gallery {
+        columns: 1;
+        column-gap: 1rem;
       }
-
-      section {
-        padding: 3rem 1rem;
-      }
-
-      h2 {
-        font-size: 2rem;
-      }
-
-
-
-
 
       .equipment-grid {
         grid-template-columns: 1fr;
       }
 
       .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        grid-template-columns: 1fr;
       }
 
-      .service-card {
-        padding: 1.5rem 1rem;
+      .floating-socials {
+        right: 15px;
       }
 
-      .service-icon {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-      }
-
-      .service-card h3 {
-        font-size: 1.1rem;
-      }
-
-      .service-card p {
-        font-size: 0.9rem;
+      .social-link img {
+        width: 28px;
+        height: 28px;
       }
 
       .lightbox-close {
@@ -494,54 +548,35 @@
       }
     }
 
-    /* FLOATING SOCIALS */
-    .floating-socials {
-      position: fixed;
-      top: 50%;
-      right: 20px;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      z-index: 999;
-    }
+    @media (max-width: 480px) {
 
-    .floating-socials a img {
-      width: 28px;
-      height: 28px;
-      opacity: 0.7;
-      transition: 0.3s;
-      filter: grayscale(100%);
-    }
+      .container {
+        padding: 0 1rem;
+      }
 
-    .floating-socials a:hover img {
-      opacity: 1;
-      transform: scale(1.1);
-      filter: grayscale(0%);
-    }
+      .hero-content {
+        padding: 0 1rem;
+      }
 
-    /* BACK TO TOP */
-    .to-top {
-      position: fixed;
-      bottom: 60px;
-      left: 15px;
-      font-size: 40px;
-      text-decoration: none;
-      color: #999;
-      z-index: 9999;
-      transition: all 0.3s ease;
-    }
+      .gallery {
+        column-gap: 0.5rem;
+      }
 
-    .to-top:hover {
-      color: #000;
-      transform: scale(1.2);
+      .gallery-item {
+        margin-bottom: 1rem;
+      }
+
+      .equipment-card,
+      .service-card {
+        padding: 2rem 1.5rem;
+      }
     }
   </style>
 </head>
 
 <body>
   <!-- BANDEAU DE NAVIGATION FIXE -->
-  <nav class="fixed-nav">
+  <nav id="fixed-nav" class="fixed-nav">
     <a href="index.html" class="nav-logo">
       <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan">
     </a>
@@ -549,199 +584,209 @@
       <a href="index.html">ACCUEIL</a>
       <a href="projets.html">PROJETS</a>
       <a href="contact.html">CONTACT</a>
-      <a href="https://www.instagram.com/studiotm___/">INSTAGRAM</a>
+      <a href="https://www.instagram.com/studiotm___/" target="_blank">INSTAGRAM</a>
     </div>
   </nav>
 
   <!-- HERO SECTION -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Photo & Drone</h1>
-      <p>Capturer l'architecture sous un angle unique grâce à la photographie aérienne et terrestre</p>
+      <h1 class="hero-title">Photo & Drone</h1>
+      <p class="hero-subtitle">Capturer l'architecture sous un angle unique grâce à la photographie aérienne et terrestre</p>
     </div>
-    <div class="hero-scroll">↓</div>
+    <div class="hero-scroll" id="heroScroll">↓</div>
   </section>
 
   <!-- INTRODUCTION -->
-  <section>
-    <h2>Ma passion pour l'image</h2>
-    <p class="intro-text">
-      Depuis plusieurs années, j'explore l'architecture à travers l'objectif de mes appareils photo et drones. 
-      Cette passion me permet d'avoir un regard particulier sur les réalisations architecturales et d'apporter 
-      une touche unique à chaque projet. La photographie aérienne révèle des perspectives inédites et met en 
-      valeur l'intégration des bâtiments dans leur environnement.
-    </p>
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Ma passion pour l'image</h2>
+      <p class="intro-text">
+        Depuis plusieurs années, j'explore l'architecture à travers l'objectif de mes appareils photo et drones. 
+        Cette passion me permet d'avoir un regard particulier sur les réalisations architecturales et d'apporter 
+        une touche unique à chaque projet. La photographie aérienne révèle des perspectives inédites et met en 
+        valeur l'intégration des bâtiments dans leur environnement.
+      </p>
+    </div>
   </section>
 
   <!-- GALERIE PHOTO -->
-  <section>
-    <h2>Mes réalisations</h2>
-    <div class="photo-gallery">
-      <div class="photo-item" onclick="openLightbox('photo/passion-photo/DJI_0432.webp', 'image')">
-        <img src="photo/passion-photo/DJI_0432.webp" alt="Vue aérienne architecture">
-        <div class="photo-overlay">
-          <h3>Architecture résidentielle</h3>
-          <p>Vue aérienne mettant en valeur l'intégration paysagère</p>
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Mes réalisations</h2>
+      <div class="gallery">
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/DJI_0432.webp', 'image')">
+          <img src="photo/passion-photo/DJI_0432.webp" alt="Vue aérienne architecture" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Architecture résidentielle</h3>
+            <p class="gallery-description">Vue aérienne mettant en valeur l'intégration paysagère</p>
+          </div>
         </div>
-      </div>
 
-      <div class="photo-item" onclick="openLightbox('photo/passion-photo/Vidéo2.mp4', 'video')">
-        <video src="photo/passion-photo/Vidéo2.mp4" muted loop playsinline></video>
-        <div class="photo-overlay">
-          <h3>Camping Bois Simonet</h3>
-          <p>Séquence vidéo aérienne dynamique</p>
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/Vidéo2.mp4', 'video')">
+          <video src="photo/passion-photo/Vidéo2.mp4" muted loop playsinline class="gallery-media"></video>
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Camping Bois Simonet</h3>
+            <p class="gallery-description">Séquence vidéo aérienne dynamique</p>
+          </div>
         </div>
-      </div>
 
-      <div class="photo-item" onclick="openLightbox('photo/passion-photo/IMG_0292.jpeg', 'image')">
-        <img src="photo/passion-photo/IMG_0292.jpeg" alt="Samples Room">
-        <div class="photo-overlay">
-          <h3>Samples Room</h3>
-          <p>Photographie d'architecture commerciale</p>
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0292.jpeg', 'image')">
+          <img src="photo/passion-photo/IMG_0292.jpeg" alt="Samples Room" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Samples Room</h3>
+            <p class="gallery-description">Photographie d'architecture commerciale</p>
+          </div>
         </div>
-      </div>
 
-      <div class="photo-item" onclick="openLightbox('photo/passion-photo/Vidéo1.mp4', 'video')">
-        <video src="photo/passion-photo/Vidéo1.mp4" muted loop playsinline></video>
-        <div class="photo-overlay">
-          <h3>Work and Play</h3>
-          <p>Mouvement cinématographique en drone FPV</p>
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/Vidéo1.mp4', 'video')">
+          <video src="photo/passion-photo/Vidéo1.mp4" muted loop playsinline class="gallery-media"></video>
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Work and Play</h3>
+            <p class="gallery-description">Mouvement cinématographique en drone FPV</p>
+          </div>
         </div>
-      </div>
 
-      <div class="photo-item" onclick="openLightbox('photo/passion-photo/dji_fly_20250413_135444_0009_1744545593668_photo.webp', 'image')">
-        <img src="photo/passion-photo/dji_fly_20250413_135444_0009_1744545593668_photo.webp" alt="Paysage aérien">
-        <div class="photo-overlay">
-          <h3>Paysage naturel</h3>
-          <p>Exploration des territoires par drone</p>
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/dji_fly_20250413_135444_0009_1744545593668_photo.webp', 'image')">
+          <img src="photo/passion-photo/dji_fly_20250413_135444_0009_1744545593668_photo.webp" alt="Paysage aérien" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Paysage naturel</h3>
+            <p class="gallery-description">Exploration des territoires par drone</p>
+          </div>
         </div>
-      </div>
 
-      <div class="photo-item" onclick="openLightbox('photo/passion-photo/IMG_7398.webp', 'image')">
-        <img src="photo/passion-photo/IMG_7398.webp" alt="Portrait architectural">
-        <div class="photo-overlay">
-          <h3>Megève - Boutique AAllard</h3>
-          <p>Photographie de rue et architecture commerciale</p>
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_7398.webp', 'image')">
+          <img src="photo/passion-photo/IMG_7398.webp" alt="Portrait architectural" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Megève - Boutique AAllard</h3>
+            <p class="gallery-description">Photographie de rue et architecture commerciale</p>
+          </div>
         </div>
-      </div>
 
-      <div class="photo-item" onclick="openLightbox('photo/passion-photo/IMG_0593_jpg.webp', 'image')">
-        <img src="photo/passion-photo/IMG_0593_jpg.webp" alt="Détail architectural">
-        <div class="photo-overlay">
-          <h3>Détail architectural</h3>
-          <p>Focus sur les matériaux et textures</p>
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0593_jpg.webp', 'image')">
+          <img src="photo/passion-photo/IMG_0593_jpg.webp" alt="Détail architectural" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Détail architectural</h3>
+            <p class="gallery-description">Focus sur les matériaux et textures</p>
+          </div>
         </div>
-      </div>
 
-      <div class="photo-item" onclick="openLightbox('photo/passion-photo/IMG_0687.webp', 'image')">
-        <img src="photo/passion-photo/IMG_0687.webp" alt="Composition urbaine">
-        <div class="photo-overlay">
-          <h3>Composition urbaine</h3>
-          <p>Jeu de lignes et perspectives</p>
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0687.webp', 'image')">
+          <img src="photo/passion-photo/IMG_0687.webp" alt="Composition urbaine" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Composition urbaine</h3>
+            <p class="gallery-description">Jeu de lignes et perspectives</p>
+          </div>
         </div>
-      </div>
 
-      <div class="photo-item" onclick="openLightbox('photo/passion-photo/IMG_1087_jpg.webp', 'image')">
-        <img src="photo/passion-photo/IMG_1087_jpg.webp" alt="Architecture moderne">
-        <div class="photo-overlay">
-          <h3>Architecture contemporaine</h3>
-          <p>Mise en valeur des volumes modernes</p>
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1087_jpg.webp', 'image')">
+          <img src="photo/passion-photo/IMG_1087_jpg.webp" alt="Architecture moderne" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Architecture contemporaine</h3>
+            <p class="gallery-description">Mise en valeur des volumes modernes</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ÉQUIPEMENT -->
-  <div class="equipment-section">
-    <h2>Mon équipement</h2>
-    <div class="equipment-grid">
-      <div class="equipment-card">
-        <h3>DJI Air 3</h3>
-        <p>Drone professionnel pour prises de vue aériennes haute définition. Double caméra avec zoom optique pour une polyvalence maximale.</p>
-      </div>
-      <div class="equipment-card">
-        <h3>Drones FPV</h3>
-        <p>Drones de course pour séquences dynamiques et mouvements cinématographiques impossibles avec un drone classique.</p>
-      </div>
-      <div class="equipment-card">
-        <h3>Appareils photo</h3>
-        <p>Équipement photographique professionnel pour captures terrestres et détails architecturaux en haute résolution.</p>
-      </div>
-      <div class="equipment-card">
-        <h3>Post-production</h3>
-        <p>Logiciels de montage et retouche professionnels pour sublimer chaque image et créer des contenus uniques.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- SERVICES -->
-  <section class="services-section">
-    <h2>Mes services photo & drone</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">📸</div>
-        <h3>Photographie architecturale</h3>
-        <p>Mise en valeur de vos réalisations architecturales avec un regard professionnel et une approche esthétique soignée.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🚁</div>
-        <h3>Prises de vue aériennes</h3>
-        <p>Perspectives uniques par drone pour révéler l'intégration paysagère et les volumes de vos projets.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🎬</div>
-        <h3>Vidéos promotionnelles</h3>
-        <p>Création de contenus vidéo dynamiques pour présenter vos projets avec impact et modernité.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">✨</div>
-        <h3>Post-production</h3>
-        <p>Retouche et montage professionnel pour sublimer vos images et créer une identité visuelle forte.</p>
+  <section class="equipment-section">
+    <div class="container">
+      <h2 class="section-title">Mon équipement</h2>
+      <div class="equipment-grid">
+        <div class="equipment-card">
+          <h3 class="equipment-title">DJI Air 3</h3>
+          <p class="equipment-description">Drone professionnel pour prises de vue aériennes haute définition. Double caméra avec zoom optique pour une polyvalence maximale.</p>
+        </div>
+        <div class="equipment-card">
+          <h3 class="equipment-title">Drones FPV</h3>
+          <p class="equipment-description">Drones de course pour séquences dynamiques et mouvements cinématographiques impossibles avec un drone classique.</p>
+        </div>
+        <div class="equipment-card">
+          <h3 class="equipment-title">Appareils photo</h3>
+          <p class="equipment-description">Équipement photographique professionnel pour captures terrestres et détails architecturaux en haute résolution.</p>
+        </div>
+        <div class="equipment-card">
+          <h3 class="equipment-title">Post-production</h3>
+          <p class="equipment-description">Logiciels de montage et retouche professionnels pour sublimer chaque image et créer des contenus uniques.</p>
+        </div>
       </div>
     </div>
   </section>
 
-
+  <!-- SERVICES -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Mes services photo & drone</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">📸</div>
+          <h3 class="service-title">Photographie architecturale</h3>
+          <p class="service-description">Mise en valeur de vos réalisations architecturales avec un regard professionnel et une approche esthétique soignée.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🚁</div>
+          <h3 class="service-title">Prises de vue aériennes</h3>
+          <p class="service-description">Perspectives uniques par drone pour révéler l'intégration paysagère et les volumes de vos projets.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎬</div>
+          <h3 class="service-title">Vidéos promotionnelles</h3>
+          <p class="service-description">Création de contenus vidéo dynamiques pour présenter vos projets avec impact et modernité.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">✨</div>
+          <h3 class="service-title">Post-production</h3>
+          <p class="service-description">Retouche et montage professionnel pour sublimer vos images et créer une identité visuelle forte.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- LIGHTBOX -->
   <div id="lightbox" class="lightbox" onclick="closeLightbox()">
     <div class="lightbox-close" onclick="closeLightbox()">×</div>
-    <img id="lightbox-img" src="" alt="" style="display: none;">
-    <video id="lightbox-video" controls style="display: none;"></video>
+    <img id="lightboxImg" src="" alt="" class="lightbox-media" style="display: none;">
+    <video id="lightboxVideo" controls class="lightbox-media" style="display: none;"></video>
   </div>
 
   <!-- FOOTER -->
-  <footer>
-    <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan" class="footer-logo">
-    <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
-      Suivez mes créations photo sur 
-      <a href="https://www.instagram.com/_tpics._" target="_blank" style="color: #4e4e4e; text-decoration: none;">@_tpics._</a>
-    </p>
-    <p>© 2025 Tom Maradan — Tous droits réservés</p>
+  <footer class="footer">
+    <div class="container">
+      <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan" class="footer-logo">
+      <p class="footer-text">
+        Suivez mes créations photo sur 
+        <a href="https://www.instagram.com/_tpics._" target="_blank" class="footer-link">@_tpics._</a>
+      </p>
+      <p>© 2025 Tom Maradan — Tous droits réservés</p>
+    </div>
   </footer>
 
   <!-- FLOATING SOCIALS -->
   <div class="floating-socials">
-    <a href="https://www.instagram.com/studiotm___" target="_blank">
+    <a href="https://www.instagram.com/studiotm___" target="_blank" class="social-link">
       <img src="photo/logo/insta.webp" alt="Instagram Studio">
     </a>
-    <a href="https://www.linkedin.com/in/tom-maradan-554265235/" target="_blank">
+    <a href="https://www.linkedin.com/in/tom-maradan-554265235/" target="_blank" class="social-link">
       <img src="photo/logo/Linkedin.webp" alt="LinkedIn">
     </a>
-    <a href="contact.html">
+    <a href="contact.html" class="social-link">
       <img src="photo/logo/Mailapp.webp" alt="Mail">
     </a>
   </div>
 
   <!-- BACK TO TOP -->
-  <a href="#top" class="to-top">↑</a>
+  <a href="#" class="back-to-top" id="backToTop">↑</a>
 
   <script>
-    // Lightbox functionality
+
+
+    // Lightbox
     function openLightbox(src, type) {
       const lightbox = document.getElementById('lightbox');
-      const img = document.getElementById('lightbox-img');
-      const video = document.getElementById('lightbox-video');
+      const img = document.getElementById('lightboxImg');
+      const video = document.getElementById('lightboxVideo');
       
       if (type === 'image') {
         img.src = src;
@@ -759,53 +804,87 @@
 
     function closeLightbox() {
       const lightbox = document.getElementById('lightbox');
-      const video = document.getElementById('lightbox-video');
+      const video = document.getElementById('lightboxVideo');
       
       lightbox.style.display = 'none';
       video.pause();
       document.body.style.overflow = 'auto';
     }
 
-    // Video autoplay on scroll
-    document.addEventListener("DOMContentLoaded", function () {
-      const videos = document.querySelectorAll(".photo-item video");
-
-      const options = {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.5
-      };
-
-      const callback = (entries, observer) => {
-        entries.forEach(entry => {
-          const video = entry.target;
-          if (entry.isIntersecting) {
-            video.play();
-          } else {
-            video.pause();
-          }
-        });
-      };
-
-      const observer = new IntersectionObserver(callback, options);
-      videos.forEach(video => {
-        video.preload = "metadata";
-        observer.observe(video);
+    // Gestion des vidéos avec Intersection Observer
+    const videos = document.querySelectorAll('.gallery-item video');
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+          video.play();
+        } else {
+          video.pause();
+        }
       });
+    }, { threshold: 0.5 });
+
+    videos.forEach(video => {
+      video.preload = 'metadata';
+      videoObserver.observe(video);
     });
 
-    // Smooth scroll for hero arrow
-    document.querySelector('.hero-scroll').addEventListener('click', function() {
-      document.querySelector('section:nth-of-type(2)').scrollIntoView({
+
+
+    // Scroll fluide pour la flèche hero
+    document.getElementById('heroScroll').addEventListener('click', () => {
+      document.querySelector('.section').scrollIntoView({
         behavior: 'smooth'
       });
     });
 
-    // Keyboard navigation for lightbox
-    document.addEventListener('keydown', function(event) {
+    // Back to top
+    const backToTop = document.getElementById('backToTop');
+    
+    // Combiné avec le scroll du bandeau pour optimiser
+    window.addEventListener('scroll', () => {
+      const heroBottom = hero.offsetTop + hero.offsetHeight;
+      const scrollY = window.pageYOffset;
+      
+      // Bandeau
+      if (scrollY >= heroBottom) {
+        fixedNav.classList.add('visible');
+      } else {
+        fixedNav.classList.remove('visible');
+      }
+      
+      // Back to top
+      if (scrollY > 300) {
+        backToTop.style.opacity = '1';
+        backToTop.style.visibility = 'visible';
+      } else {
+        backToTop.style.opacity = '0';
+        backToTop.style.visibility = 'hidden';
+      }
+    });
+
+    backToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Navigation au clavier pour lightbox
+    document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
         closeLightbox();
       }
+    });
+
+    // Prévenir la propagation du clic sur les médias lightbox
+    document.getElementById('lightboxImg').addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+
+    document.getElementById('lightboxVideo').addEventListener('click', (e) => {
+      e.stopPropagation();
     });
   </script>
 </body>
