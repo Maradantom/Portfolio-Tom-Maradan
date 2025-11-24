@@ -379,19 +379,35 @@
       display: flex;
       gap: 2rem;
       align-items: center;
+      height: 100%;
     }
 
     .nav-links a {
       color: #000;
       text-decoration: none;
       font-size: 0.9rem;
-      font-weight: 500;
+      font-weight: 400;
       letter-spacing: 0.5px;
       transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      position: relative;
     }
 
-    .nav-links a:hover {
-      color: #666;
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #ccc;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     @media (max-width: 768px) {
@@ -425,9 +441,9 @@
       <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan">
     </a>
     <div class="nav-links">
-      <a href="index.html">ACCUEIL</a>
       <a href="projets.html">PROJETS</a>
       <a href="photo.html">PHOTO & DRONE</a>
+      <a href="studiotm.html">ACTIVITE</a>
       <a href="contact.html">CONTACT</a>
     </div>
   </nav>
@@ -2485,7 +2501,7 @@
   </div>
   <div class="photo-item">
     <div class="photo-container">
-      <img src="photo/passion-photo/IMG_0292.jpeg" alt="Drone 4">
+      <img src="photo/passion-photo/IMG_0292.webp" alt="Drone 4">
     </div>
     <span>@samplesroom</span>
   </div>
@@ -2884,7 +2900,7 @@
       width: 85mm;
       height: 54mm;
       perspective: 1000px;
-      margin: 40px auto;
+      margin: -50px auto 50px auto;
     }
 
     .card {
@@ -3109,24 +3125,31 @@ function updateTarget(deltaX, deltaY) {
 
 
   <div id="dowm"></div>
-  <a href="#top" class="to-top">↑</a>
+  <a href="#top" class="back-to-top">↑</a>
 
   <style>
-    .to-top {
+    .back-to-top {
       position: fixed;
-      bottom: 60px;
-      left: 15px;
-      font-size: 40px;
+      bottom: 2rem;
+      left: 2rem;
+      font-size: 2rem;
       text-decoration: none;
-      color: #999;
-      z-index: 9999;
-      /* plus élevé */
+      color: var(--secondary-color);
+      z-index: 999;
+      transition: var(--transition);
     }
 
-    .to-top:hover {
-      color: #000;
+    .back-to-top:hover {
+      color: var(--primary-color);
       transform: scale(1.2);
-      transition: transform 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      /* Autres styles... */
+    }
+
+    @media (max-width: 480px) {
+      /* Autres styles... */
     }
   </style>
 

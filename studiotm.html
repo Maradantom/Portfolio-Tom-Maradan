@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <!-- Icône Apple (iOS / macOS) -->
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon-v2.png">
+
+<!-- Favicons PNG -->
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96-v2.png">
+
+<!-- Favicon SVG (navigateurs récents) -->
+<link rel="icon" type="image/svg+xml" href="/favicon/favicon-v2.svg">
+
+<!-- Favicon ICO (compatibilité ancienne) -->
+<link rel="shortcut icon" href="/favicon/favicon.ico-v2">
+
+<!-- Manifest Web App -->
+<link rel="manifest" href="/favicon/site-v2.webmanifest">
+
+<!-- Icônes pour PWA (Android) -->
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon/web-app-manifest-192x192.png-v2">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon/web-app-manifest-512x512.png-v2">
+
+<!-- Thème pour navigateurs -->
+<meta name="theme-color" content="#ffffff">
+
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-5TXD68TR');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GFHBS8S2BH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-GFHBS8S2BH');
+  </script>
+
+  <meta name="description" content="Services professionnels de Tom Maradan - Architecture d'intérieur, modélisation 3D, plans techniques et rendus photo-réalistes.">
+  <meta name="google-site-verification" content="NeZlJppmijT2qp7ZVZu-EZVwxVvQLuAlR4TCEcOWRX8" />
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tom Maradan | StudioTM — Micro-entreprise</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --background: #ffffff;
+      --text: #242424;
+      --accent: #9999992d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* BANDEAU FIXE */
+    .fixed-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+      height: 60px;
+      box-sizing: border-box;
+    }
+
+    .fixed-nav.visible {
+      transform: translateY(0);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo img {
+      height: 28px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      height: 100%;
+    }
+
+    .nav-links a {
+      color: #000;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #ccc;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* HEADER */
+    header {
+      height: 50vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('photo/passion-photo/IMG_1087_jpg.webp');
+      background-size: cover;
+      background-position: center ;
+      background-attachment: fixed;
+      border-bottom: 1px solid #eee;
+      color: white;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* SERVICES GRID */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .service-card {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      transition: 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .service-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* TARIFS */
+    .tarifs-container {
+      background: #f5f5f5;
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 3rem 0;
+    }
+
+    .tarifs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .tarif-item {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid #333;
+    }
+
+    .tarif-item h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .tarif-item .prix {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .tarif-item .description {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* PROCESSUS */
+    .processus-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+    }
+
+    .step-number {
+      width: 50px;
+      height: 50px;
+      background: #333;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin: 0 auto 1rem;
+    }
+
+    .step h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .step p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* CONTACT CTA */
+    .contact-cta {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+      border-radius: 20px;
+      margin: 4rem 0;
+    }
+
+    .contact-cta h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-cta p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: white;
+      color: #333;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #f9f9f9;
+      border-top: 1px solid #eee;
+    }
+
+    .footer-logo {
+      height: 20px;
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+
+
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .fixed-nav {
+        flex-direction: column;
+        padding: 15px 15px;
+        height: auto;
+        gap: 8px;
+        padding-top: 20px;
+      }
+
+      .nav-logo img {
+        height: 20px;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .nav-links a {
+        font-size: 0.75rem;
+      }
+
+      header {
+        height: 50vh;
+        min-height: 300px;
+        background-position: center 200%;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      section {
+        padding: 2rem 1rem;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .service-card {
+        padding: 1.5rem;
+      }
+
+      .service-card h3 {
+        font-size: 1.1rem;
+      }
+
+      .service-card p {
+        font-size: 0.9rem;
+      }
+
+      .tarifs-container {
+        padding: 2rem 1rem;
+      }
+
+      .contact-cta {
+        padding: 3rem 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5TXD68TR" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- BANDEAU DE NAVIGATION FIXE -->
+  <nav id="fixed-nav" class="fixed-nav">
+    <a href="index.html" class="nav-logo">
+      <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">ACCUEIL</a>
+      <a href="projets.html">PROJETS</a>
+      <a href="photo.html">PHOTO & DRONE</a>
+      <a href="contact.html">CONTACT</a>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header>
+    <h1>Services Professionnels</h1>
+    <p>Architecture d'intérieur • Modélisation 3D • Plans techniques</p>
+  </header>
+
+  <!-- PRÉSENTATION -->
+  <section>
+    <h2>StudioTM - Micro-entreprise</h2>
+    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+      <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
+        En parallèle de mes études en architecture d'intérieur à CREAD Lyon, j'ai créé <strong>StudioTM</strong>, 
+        ma micro-entreprise spécialisée dans l'accompagnement de projets architecturaux et de design d'intérieur.
+      </p>
+      <p style="font-size: 1rem; line-height: 1.7; color: #666;">
+        Mon objectif est de transformer vos idées en visuels clairs et inspirants, en alliant rigueur technique 
+        et sensibilité esthétique. Je propose des solutions sur-mesure pour particuliers et professionnels, 
+        avec une approche jeune, moderne et engagée.
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section>
+    <h2>Mes Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📐</div>
+        <h3>Plans Techniques</h3>
+        <p>Conception de plans d'aménagement, de distribution et techniques. Plans de permis de construire, coupes, façades et détails d'exécution conformes aux normes en vigueur.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <h3>Modélisation 3D</h3>
+        <p>Création de modèles 3D précis et détaillés de vos espaces. Modélisation architecturale complète pour visualiser votre projet sous tous les angles.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📸</div>
+        <h3>Rendus Photo-réalistes</h3>
+        <p>Images de synthèse haute qualité pour présenter vos projets. Rendus d'ambiance, de matériaux et d'éclairage pour une projection optimale dans l'espace.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <h3>Conseil en Aménagement</h3>
+        <p>Accompagnement dans vos choix d'aménagement intérieur. Conseils en décoration, optimisation d'espaces et sélection de matériaux et mobilier.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <h3>Dossiers Réglementaires</h3>
+        <p>Constitution de dossiers administratifs : permis de construire, déclarations préalables, dossiers de consultation d'entreprises.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>Mobilier Sur-mesure</h3>
+        <p>Conception et plans de mobilier intégré. Rangements, dressings, cuisines et éléments sur-mesure adaptés à vos besoins spécifiques.</p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- PROCESSUS -->
+  <section>
+    <h2>Mon Processus de Travail</h2>
+    <div class="processus-steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h4>Premier Contact</h4>
+        <p>Échange sur vos besoins, vos attentes et définition du périmètre du projet.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <h4>Analyse & Devis</h4>
+        <p>Étude de faisabilité, analyse des contraintes et proposition d'un devis détaillé.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <h4>Conception</h4>
+        <p>Élaboration des plans, modélisation 3D et présentation des premières propositions.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">4</div>
+        <h4>Validation</h4>
+        <p>Ajustements selon vos retours et validation finale des documents.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">5</div>
+        <h4>Livraison</h4>
+        <p>Remise des livrables finaux et accompagnement pour la suite du projet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section style="margin-top: -10rem;">
+    <div class="contact-cta" style="background-color: #f2f2f2; padding: 2rem; border-radius: 12px; text-align: center; margin-bottom: 4rem; color: #000;">
+      <h3>Prêt à donner vie à votre projet ?</h3>
+      <p>Contactez-moi pour discuter de vos besoins et obtenir un devis personnalisé.</p>
+      <a href="contact.html" class="btn" style="border: 2px solid #000; color: #000; padding: 10px 20px; border-radius: 8px; text-decoration: none; display: inline-block; margin-top: 1rem; background: transparent;">Me Contacter</a>
+    </div>
+  </section>
+
+
+    <div class="scene">
+    <div class="card" id="card">
+      <div class="face front"></div>
+      <div class="face back"></div>
+    </div>
+  </div>
+
+  <style>
+    .scene {
+      width: 85mm;
+      height: 54mm;
+      perspective: 1000px;
+      margin: -50px auto 50px auto;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out;
+      transform: rotateY(15deg) rotateX(10deg);
+      will-change: transform;
+      touch-action: none;
+    }
+
+    .face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      backface-visibility: hidden;
+    }
+
+    .front {
+      background-image: url('photo/logo/Carte de visite.webp');
+      /* Remplace par ton image */
+    }
+
+    .back {
+      background-image: url('photo/logo/Carte de visite2.webp');
+      /* Remplace par ton image */
+      transform: rotateY(180deg);
+    }
+  </style>
+
+
+  <script>
+    const card = document.getElementById('card');
+    let isDragging = false;
+    let startX, startY;
+    let currentX = 20, currentY = -15;
+    let targetX = currentX, targetY = currentY;
+    let baseX = currentX, baseY = currentY;
+    let animationId = null;
+    let autoRotate = true;
+    let autoSpeedX = 0.2; // vitesse de rotation horizontale
+    let autoSpeedY = 0;   // tu peux aussi mettre une rotation verticale lente si tu veux
+
+    function updateTransform() {
+      if (!isDragging && autoRotate) {
+        targetX += autoSpeedX;
+        targetY += autoSpeedY;
+      }
+
+      currentX += (targetX - currentX) * 0.1;
+      currentY += (targetY - currentY) * 0.1;
+      card.style.transform = `rotateY(${currentX}deg) rotateX(${-currentY}deg)`;
+      animationId = requestAnimationFrame(updateTransform);
+    }
+
+    function startAnimation() {
+      if (!animationId) {
+        animationId = requestAnimationFrame(updateTransform);
+      }
+    }
+
+    function stopAnimation() {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+
+function updateTarget(deltaX, deltaY) {
+  if (isBackFaceVisible()) {
+    deltaY = -deltaY; 
+  }
+  targetX = baseX + deltaX * 0.3;
+  targetY = baseY + deltaY * 0.3;
+}
+    function isBackFaceVisible() {
+  const y = (currentX % 360 + 360) % 360; 
+  return y > 90 && y < 270;
+}
+    // Souris
+    document.addEventListener('mousedown', (e) => {
+      if (e.target.closest('#card')) {
+        isDragging = true;
+        autoRotate = false;
+        startX = e.clientX;
+        startY = e.clientY;
+        baseX = currentX;
+        baseY = currentY;
+        startAnimation();
+      }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - startX;
+      const deltaY = e.clientY - startY;
+      updateTarget(deltaX, deltaY);
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      autoRotate = true;
+    });
+
+    // Mobile
+    card.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      autoRotate = false;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      baseX = currentX;
+      baseY = currentY;
+      startAnimation();
+      e.preventDefault();
+    }, { passive: false });
+
+    card.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.touches[0].clientX - startX;
+      const deltaY = e.touches[0].clientY - startY;
+      updateTarget(deltaX, deltaY);
+      e.preventDefault();
+    }, { passive: false });
+
+    card.addEventListener('touchend', () => {
+      isDragging = false;
+      autoRotate = true;
+    });
+
+    // Lancer l'animation au chargement
+    card.style.transform = `rotateY(${currentX}deg) rotateX(${-currentY}deg)`;
+    startAnimation();
+  </script>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan" class="footer-logo">
+    <p>© 2025 Tom Maradan — StudioTM — Tous droits réservés</p>
+    <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
+      Micro-entreprise • SIRET : 99180546600018 • Lyon, France
+    </p>
+  </footer>
+
+  <!-- BOUTON RETOUR EN HAUT -->
+  <a href="#top" class="back-to-top">↑</a>
+
+  <style>
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      font-size: 2rem;
+      text-decoration: none;
+      color: var(--secondary-color);
+      z-index: 999;
+      transition: var(--transition);
+    }
+    .back-to-top:hover {
+      color: var(--primary-color);
+      transform: scale(1.2);
+    }
+    @media (max-width: 768px) {
+      /* Autres styles... */
+    }
+    @media (max-width: 480px) {
+      /* Autres styles... */
+    }
+  </style>
+
+  <!-- Script pour le bandeau fixe -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const fixedNav = document.getElementById('fixed-nav');
+      
+      function checkScrollPosition() {
+        // Vous pouvez ajuster cette condition selon vos besoins
+        // Par exemple, afficher le bandeau après 200px de scroll
+        if (window.scrollY > 200) {
+          fixedNav.classList.add('visible');
+        } else {
+          fixedNav.classList.remove('visible');
+        }
+      }
+      
+      window.addEventListener('scroll', checkScrollPosition);
+      checkScrollPosition();
+    });
+  </script>
+
+</body>
+</html>

@@ -71,10 +71,10 @@
       align-items: center;
       padding: 12px 20px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      height: 60px;
-      box-sizing: border-box;
       transform: translateY(-100%);
       transition: transform 0.3s ease;
+      height: 60px;
+      box-sizing: border-box;
     }
 
     .fixed-nav.visible {
@@ -95,19 +95,35 @@
       display: flex;
       gap: 2rem;
       align-items: center;
+      height: 100%;
     }
 
     .nav-links a {
       color: #000;
       text-decoration: none;
       font-size: 0.9rem;
-      font-weight: 500;
+      font-weight: 400;
       letter-spacing: 0.5px;
       transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      position: relative;
     }
 
-    .nav-links a:hover {
-      color: #666;
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #ccc;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     @media (max-width: 768px) {
@@ -326,15 +342,15 @@
       line-height: 1.6;
     }
 
-    /* ===== SERVICES ===== */
-    .services-grid {
+    /* ===== SECTION UNIFIÉE ===== */
+    .unified-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
       margin-top: 3rem;
     }
 
-    .service-card {
+    .unified-card {
       background: var(--white);
       padding: 2.5rem 2rem;
       border-radius: var(--border-radius);
@@ -344,7 +360,7 @@
       border: 1px solid #f0f0f0;
     }
 
-    .service-card:hover {
+    .unified-card:hover {
       transform: translateY(-8px);
       box-shadow: var(--shadow-medium);
     }
@@ -364,6 +380,44 @@
     .service-description {
       color: var(--secondary-color);
       line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .equipment-detail {
+      background: var(--accent-color);
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--secondary-color);
+      margin-top: 1rem;
+    }
+
+    .equipment-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .equipment-item {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-light);
+      text-align: center;
+    }
+
+    .equipment-item h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    .equipment-item p {
+      font-size: 0.9rem;
+      color: var(--secondary-color);
+      line-height: 1.5;
     }
 
     /* ===== LIGHTBOX ===== */
@@ -447,15 +501,15 @@
       z-index: 999;
     }
 
-    .social-link img {
-      width: 32px;
-      height: 32px;
+    .floating-socials a img {
+      width: 28px;
+      height: 28px;
       opacity: 0.7;
-      transition: var(--transition);
+      transition: 0.3s;
       filter: grayscale(100%);
     }
 
-    .social-link:hover img {
+    .floating-socials a:hover img {
       opacity: 1;
       transform: scale(1.1);
       filter: grayscale(0%);
@@ -559,7 +613,7 @@
         right: 15px;
       }
 
-      .social-link img {
+      .floating-socials a img {
         width: 28px;
         height: 28px;
       }
@@ -595,6 +649,15 @@
       .service-card {
         padding: 2rem 1.5rem;
       }
+      
+      .equipment-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem;
+      }
+      
+      .equipment-card {
+        min-height: 300px;
+      }
     }
   </style>
 </head>
@@ -607,9 +670,9 @@
     </a>
     <div class="nav-links">
       <a href="index.html">ACCUEIL</a>
+      <a href="studiotm.html">ACTIVITE</a>
       <a href="projets.html">PROJETS</a>
       <a href="contact.html">CONTACT</a>
-      <a href="https://www.instagram.com/studiotm___/" target="_blank">INSTAGRAM</a>
     </div>
   </nav>
 
@@ -640,59 +703,59 @@
     <div class="container">
       <h2 class="section-title">Mes réalisations</h2>
       <div class="gallery">
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/DJI_0432.webp', 'image')">
-          <img src="photo/passion-photo/DJI_0432.webp" alt="Vue aérienne architecture" class="gallery-media">
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/contact.webp', 'image')">
+          <img src="photo/passion-photo/contact.webp" alt="Contact" class="gallery-media">
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Architecture résidentielle</h3>
-            <p class="gallery-description">Vue aérienne mettant en valeur l'intégration paysagère</p>
+            <h3 class="gallery-title">Contact</h3>
+            <p class="gallery-description">Photographie</p>
           </div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/Vidéo2.mp4', 'video')">
-          <video src="photo/passion-photo/Vidéo2.mp4" muted loop playsinline class="gallery-media"></video>
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1085_jpg.webp', 'image')">
+          <img src="photo/passion-photo/IMG_1085_jpg.webp" alt="Environnement" class="gallery-media">
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Camping Bois Simonet</h3>
-            <p class="gallery-description">Séquence vidéo aérienne dynamique</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0292.webp', 'image')">
-          <img src="photo/passion-photo/IMG_0292.webp" alt="Samples Room" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Samples Room</h3>
-            <p class="gallery-description">Photographie d'architecture commerciale</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/Vidéo1.mp4', 'video')">
-          <video src="photo/passion-photo/Vidéo1.mp4" muted loop playsinline class="gallery-media"></video>
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Work and Play</h3>
-            <p class="gallery-description">Mouvement cinématographique en drone FPV</p>
+            <h3 class="gallery-title">Environnement</h3>
+            <p class="gallery-description">Photographie</p>
           </div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox('photo/passion-photo/FPV.mp4', 'video')">
-          <video src="photo/passion-photo/FPV.mp4" muted loop playsinline class="gallery-media"></video>
+          <img src="photo/passion-photo/IMG_0292.webp" alt="Vidéo FPV" class="gallery-media">
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Drone FPV</h3>
-            <p class="gallery-description">Vol immersif en première personne</p>
+            <h3 class="gallery-title">Vidéo FPV</h3>
+            <p class="gallery-description">Drone FPV</p>
           </div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/DJI_20250529185722_0038_D.webp', 'image')">
-          <img src="photo/passion-photo/DJI_20250529185722_0038_D.webp" alt="Paysage aérien" class="gallery-media">
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0687.webp', 'image')">
+          <img src="photo/passion-photo/IMG_0687.webp" alt="Perspective" class="gallery-media">
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Paysage naturel</h3>
-            <p class="gallery-description">Exploration des territoires par drone</p>
+            <h3 class="gallery-title">Perspective</h3>
+            <p class="gallery-description">Photographie</p>
           </div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_7398.webp', 'image')">
-          <img src="photo/passion-photo/IMG_7398.webp" alt="Portrait architectural" class="gallery-media">
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/DJI_0432.webp', 'image')">
+          <img src="photo/passion-photo/DJI_0432.webp" alt="Vue aérienne" class="gallery-media">
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Megève - Boutique AAllard</h3>
-            <p class="gallery-description">Photographie de rue et architecture commerciale</p>
+            <h3 class="gallery-title">Vue aérienne</h3>
+            <p class="gallery-description">Photographie drone</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_2372.webp', 'image')">
+          <img src="photo/passion-photo/IMG_2372.webp" alt="Ombres" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Ombres</h3>
+            <p class="gallery-description">Photographie</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/dji_fly_20250806_194504_0116_1754524262201_video_hlg.mov', 'video')">
+          <img src="photo/passion-photo/DJI_0432.webp" alt="Vidéo drone HLG" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Vidéo drone HLG</h3>
+            <p class="gallery-description">Vidéo drone</p>
           </div>
         </div>
 
@@ -700,143 +763,183 @@
           <img src="photo/passion-photo/IMG_0593_jpg.webp" alt="Détail architectural" class="gallery-media">
           <div class="gallery-overlay">
             <h3 class="gallery-title">Détail architectural</h3>
-            <p class="gallery-description">Focus sur les matériaux et textures</p>
+            <p class="gallery-description">Photographie</p>
           </div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0687.webp', 'image')">
-          <img src="photo/passion-photo/IMG_0687.webp" alt="Composition urbaine" class="gallery-media">
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1703.webp', 'image')">
+          <img src="photo/passion-photo/IMG_1703.webp" alt="Reflets" class="gallery-media">
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Composition urbaine</h3>
-            <p class="gallery-description">Jeu de lignes et perspectives</p>
+            <h3 class="gallery-title">Reflets</h3>
+            <p class="gallery-description">Photographie</p>
           </div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1087_jpg.webp', 'image')">
-          <img src="photo/passion-photo/IMG_1087_jpg.webp" alt="Architecture moderne" class="gallery-media">
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_6386.webp', 'image')">
+          <img src="photo/passion-photo/IMG_6386.webp" alt="Angle" class="gallery-media">
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Architecture contemporaine</h3>
-            <p class="gallery-description">Mise en valeur des volumes modernes</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/contact.webp', 'image')">
-          <img src="photo/passion-photo/contact.webp" alt="Contact" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Contact</h3>
-            <p class="gallery-description">Image de contact</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/dji_fly_20231014_185918_424_1697302803916_photo_optimized.webp', 'image')">
-          <img src="photo/passion-photo/dji_fly_20231014_185918_424_1697302803916_photo_optimized.webp" alt="Vue drone" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Vue aérienne</h3>
-            <p class="gallery-description">Perspective drone optimisée</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/dji_fly_20241110_164104_0086_1731254296138_photo.webp', 'image')">
-          <img src="photo/passion-photo/dji_fly_20241110_164104_0086_1731254296138_photo.webp" alt="Vue aérienne automne" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Vue d'automne</h3>
-            <p class="gallery-description">Couleurs automnales vues du ciel</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/dji_fly_20250413_135430_0008_1744545595106_photo.webp', 'image')">
-          <img src="photo/passion-photo/dji_fly_20250413_135430_0008_1744545595106_photo.webp" alt="Paysage printemps" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Paysage de printemps</h3>
-            <p class="gallery-description">Renouveau printanier capturé par drone</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0036.webp', 'image')">
-          <img src="photo/passion-photo/IMG_0036.webp" alt="Architecture" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Architecture</h3>
-            <p class="gallery-description">Étude architecturale</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0688.webp', 'image')">
-          <img src="photo/passion-photo/IMG_0688.webp" alt="Composition" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Composition</h3>
-            <p class="gallery-description">Jeu de formes et lumières</p>
+            <h3 class="gallery-title">Angle</h3>
+            <p class="gallery-description">Photographie</p>
           </div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0695.webp', 'image')">
-          <img src="photo/passion-photo/IMG_0695.webp" alt="Détail" class="gallery-media">
+          <img src="photo/passion-photo/IMG_0695.webp" alt="Géométrie" class="gallery-media">
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Détail</h3>
-            <p class="gallery-description">Focus sur les détails</p>
+            <h3 class="gallery-title">Géométrie</h3>
+            <p class="gallery-description">Photographie</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1221.webp', 'image')">
+          <img src="photo/passion-photo/IMG_1221.webp" alt="Minimalisme" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Minimalisme</h3>
+            <p class="gallery-description">Photographie</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_3238.webp', 'image')">
+          <img src="photo/passion-photo/IMG_3238.webp" alt="Horizon" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Horizon</h3>
+            <p class="gallery-description">Photographie</p>
           </div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0712.webp', 'image')">
-          <img src="photo/passion-photo/IMG_0712.webp" alt="Perspective" class="gallery-media">
+          <img src="photo/passion-photo/IMG_0712.webp" alt="Lumière naturelle" class="gallery-media">
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Perspective</h3>
-            <p class="gallery-description">Jeu de perspectives</p>
+            <h3 class="gallery-title">Lumière naturelle</h3>
+            <p class="gallery-description">Photographie</p>
           </div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0763.webp', 'image')">
-          <img src="photo/passion-photo/IMG_0763.webp" alt="Lumière" class="gallery-media">
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/dji_fly_20250806_194518_0117_1754524260619_video_hlg.mov', 'video')">
+          <img src="photo/passion-photo/DJI_20250529185722_0038_D.webp" alt="Vidéo drone 2" class="gallery-media">
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Jeu de lumière</h3>
-            <p class="gallery-description">Contraste et luminosité</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0799.webp', 'image')">
-          <img src="photo/passion-photo/IMG_0799.webp" alt="Architecture moderne" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Modernité</h3>
-            <p class="gallery-description">Architecture contemporaine</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0805.webp', 'image')">
-          <img src="photo/passion-photo/IMG_0805.webp" alt="Structure" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Structure</h3>
-            <p class="gallery-description">Étude structurelle</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0807.webp', 'image')">
-          <img src="photo/passion-photo/IMG_0807.webp" alt="Géométrie" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Géométrie</h3>
-            <p class="gallery-description">Formes géométriques</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1085_jpg.webp', 'image')">
-          <img src="photo/passion-photo/IMG_1085_jpg.webp" alt="Cadrage" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Cadrage</h3>
-            <p class="gallery-description">Composition soignée</p>
+            <h3 class="gallery-title">Vidéo drone 2</h3>
+            <p class="gallery-description">Vidéo drone</p>
           </div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1086.webp', 'image')">
-          <img src="photo/passion-photo/IMG_1086.webp" alt="Texture" class="gallery-media">
+          <img src="photo/passion-photo/IMG_1086.webp" alt="Intégration" class="gallery-media">
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Texture</h3>
-            <p class="gallery-description">Matériaux et textures</p>
+            <h3 class="gallery-title">Intégration</h3>
+            <p class="gallery-description">Photographie</p>
           </div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1091.webp', 'image')">
-          <img src="photo/passion-photo/IMG_1091.webp" alt="Contraste" class="gallery-media">
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0799.webp', 'image')">
+          <img src="photo/passion-photo/IMG_0799.webp" alt="Modernité" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Modernité</h3>
+            <p class="gallery-description">Photographie</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_2373.webp', 'image')">
+          <img src="photo/passion-photo/IMG_2373.webp" alt="Lumière" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Lumière</h3>
+            <p class="gallery-description">Photographie</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0688.webp', 'image')">
+          <img src="photo/passion-photo/IMG_0688.webp" alt="Structure" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Structure</h3>
+            <p class="gallery-description">Photographie</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/Vidéo2.mp4', 'video')">
+          <img src="photo/passion-photo/IMG_5738.webp" alt="Vidéo 2" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Vidéo 2</h3>
+            <p class="gallery-description">Vidéo</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1560.webp', 'image')">
+          <img src="photo/passion-photo/IMG_1560.webp" alt="Matériaux" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Matériaux</h3>
+            <p class="gallery-description">Photographie</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0763.webp', 'image')">
+          <img src="photo/passion-photo/IMG_0763.webp" alt="Composition" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Composition</h3>
+            <p class="gallery-description">Photographie</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/DJI_20250529185722_0038_D.webp', 'image')">
+          <img src="photo/passion-photo/DJI_20250529185722_0038_D.webp" alt="Vue drone" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Vue drone</h3>
+            <p class="gallery-description">Photographie drone</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1708.webp', 'image')">
+          <img src="photo/passion-photo/IMG_1708.webp" alt="Transparence" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Transparence</h3>
+            <p class="gallery-description">Photographie</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0805.webp', 'image')">
+          <img src="photo/passion-photo/IMG_0805.webp" alt="Contraste" class="gallery-media">
           <div class="gallery-overlay">
             <h3 class="gallery-title">Contraste</h3>
-            <p class="gallery-description">Jeu de contrastes</p>
+            <p class="gallery-description">Photographie</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1087_jpg.webp', 'image')">
+          <img src="photo/passion-photo/IMG_1087_jpg.webp" alt="Paysage urbain" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Paysage urbain</h3>
+            <p class="gallery-description">Photographie</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_2399.webp', 'image')">
+          <img src="photo/passion-photo/IMG_2399.webp" alt="Dynamisme" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Dynamisme</h3>
+            <p class="gallery-description">Photographie</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_0807.webp', 'image')">
+          <img src="photo/passion-photo/IMG_0807.webp" alt="Texture" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Texture</h3>
+            <p class="gallery-description">Photographie</p>
+          </div>
+        </div>
+
+                <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_3239.webp', 'image')">
+          <img src="photo/passion-photo/IMG_3239.webp" alt="Perspective" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Perspective</h3>
+            <p class="gallery-description">Photographie</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_5738.webp', 'image')">
+          <img src="photo/passion-photo/IMG_5738.webp" alt="Cadrage" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Cadrage</h3>
+            <p class="gallery-description">Photographie</p>
           </div>
         </div>
 
@@ -844,7 +947,15 @@
           <img src="photo/passion-photo/IMG_1093_jpg.webp" alt="Symétrie" class="gallery-media">
           <div class="gallery-overlay">
             <h3 class="gallery-title">Symétrie</h3>
-            <p class="gallery-description">Équilibre et symétrie</p>
+            <p class="gallery-description">Photographie</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1222.webp', 'image')">
+          <img src="photo/passion-photo/IMG_1222.webp" alt="Épurement" class="gallery-media">
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">Épurement</h3>
+            <p class="gallery-description">Photographie</p>
           </div>
         </div>
 
@@ -852,263 +963,75 @@
           <img src="photo/passion-photo/IMG_1096.webp" alt="Élégance" class="gallery-media">
           <div class="gallery-overlay">
             <h3 class="gallery-title">Élégance</h3>
-            <p class="gallery-description">Raffinement architectural</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1221.webp', 'image')">
-          <img src="photo/passion-photo/IMG_1221.webp" alt="Urbain" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Urbain</h3>
-            <p class="gallery-description">Paysage urbain</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1222.webp', 'image')">
-          <img src="photo/passion-photo/IMG_1222.webp" alt="Dynamisme" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Dynamisme</h3>
-            <p class="gallery-description">Mouvement et énergie</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1249.webp', 'image')">
-          <img src="photo/passion-photo/IMG_1249.webp" alt="Atmosphère" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Atmosphère</h3>
-            <p class="gallery-description">Ambiance particulière</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1344.webp', 'image')">
-          <img src="photo/passion-photo/IMG_1344.webp" alt="Créativité" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Créativité</h3>
-            <p class="gallery-description">Vision créative</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1560.webp', 'image')">
-          <img src="photo/passion-photo/IMG_1560.webp" alt="Innovation" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Innovation</h3>
-            <p class="gallery-description">Approche innovante</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1703.webp', 'image')">
-          <img src="photo/passion-photo/IMG_1703.webp" alt="Harmonie" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Harmonie</h3>
-            <p class="gallery-description">Équilibre harmonieux</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1708.webp', 'image')">
-          <img src="photo/passion-photo/IMG_1708.webp" alt="Finesse" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Finesse</h3>
-            <p class="gallery-description">Détails raffinés</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1728.webp', 'image')">
-          <img src="photo/passion-photo/IMG_1728.webp" alt="Caractère" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Caractère</h3>
-            <p class="gallery-description">Personnalité unique</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1738.webp', 'image')">
-          <img src="photo/passion-photo/IMG_1738.webp" alt="Expression" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Expression</h3>
-            <p class="gallery-description">Expression artistique</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_2372.webp', 'image')">
-          <img src="photo/passion-photo/IMG_2372.webp" alt="Modernité" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Modernité</h3>
-            <p class="gallery-description">Architecture moderne</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_2373.webp', 'image')">
-          <img src="photo/passion-photo/IMG_2373.webp" alt="Style" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Style</h3>
-            <p class="gallery-description">Style architectural</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_2399.webp', 'image')">
-          <img src="photo/passion-photo/IMG_2399.webp" alt="Esthétique" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Esthétique</h3>
-            <p class="gallery-description">Beauté esthétique</p>
+            <p class="gallery-description">Photographie</p>
           </div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_2581.webp', 'image')">
-          <img src="photo/passion-photo/IMG_2581.webp" alt="Conception" class="gallery-media">
+          <img src="photo/passion-photo/IMG_2581.webp" alt="Mouvement" class="gallery-media">
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Conception</h3>
-            <p class="gallery-description">Design conceptuel</p>
+            <h3 class="gallery-title">Mouvement</h3>
+            <p class="gallery-description">Photographie</p>
           </div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_2594.webp', 'image')">
-          <img src="photo/passion-photo/IMG_2594.webp" alt="Réalisation" class="gallery-media">
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_1738.webp', 'image')">
+          <img src="photo/passion-photo/IMG_1738.webp" alt="Volumes" class="gallery-media">
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Réalisation</h3>
-            <p class="gallery-description">Projet réalisé</p>
+            <h3 class="gallery-title">Volumes</h3>
+            <p class="gallery-description">Photographie</p>
           </div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_3071.webp', 'image')">
-          <img src="photo/passion-photo/IMG_3071.webp" alt="Précision" class="gallery-media">
+
+
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/FPV.mp4', 'video')">
+          <video class="gallery-media" muted loop>
+            <source src="photo/passion-photo/FPV.mp4" type="video/mp4">
+          </video>
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Précision</h3>
-            <p class="gallery-description">Travail de précision</p>
+            <h3 class="gallery-title">Vidéo FPV</h3>
+            <p class="gallery-description">Drone FPV</p>
           </div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_3238.webp', 'image')">
-          <img src="photo/passion-photo/IMG_3238.webp" alt="Qualité" class="gallery-media">
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/Vidéo1.mp4', 'video')">
+          <video class="gallery-media" muted loop>
+            <source src="photo/passion-photo/Vidéo1.mp4" type="video/mp4">
+          </video>
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Qualité</h3>
-            <p class="gallery-description">Excellence qualitative</p>
+            <h3 class="gallery-title">Vidéo 1</h3>
+            <p class="gallery-description">Vidéo</p>
           </div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_3239.webp', 'image')">
-          <img src="photo/passion-photo/IMG_3239.webp" alt="Perfection" class="gallery-media">
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/Vidéo2.mp4', 'video')">
+          <video class="gallery-media" muted loop>
+            <source src="photo/passion-photo/Vidéo2.mp4" type="video/mp4">
+          </video>
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Perfection</h3>
-            <p class="gallery-description">Recherche de perfection</p>
+            <h3 class="gallery-title">Vidéo 2</h3>
+            <p class="gallery-description">Vidéo</p>
           </div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_3246.webp', 'image')">
-          <img src="photo/passion-photo/IMG_3246.webp" alt="Maîtrise" class="gallery-media">
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/dji_fly_20250806_194504_0116_1754524262201_video_hlg.mov', 'video')">
+          <video class="gallery-media" muted loop>
+            <source src="photo/passion-photo/dji_fly_20250806_194504_0116_1754524262201_video_hlg.mov" type="video/mp4">
+          </video>
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Maîtrise</h3>
-            <p class="gallery-description">Savoir-faire maîtrisé</p>
+            <h3 class="gallery-title">Vidéo drone HLG</h3>
+            <p class="gallery-description">Vidéo drone</p>
           </div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_4708.webp', 'image')">
-          <img src="photo/passion-photo/IMG_4708.webp" alt="Expertise" class="gallery-media">
+        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/dji_fly_20250806_194518_0117_1754524260619_video_hlg.mov', 'video')">
+          <video class="gallery-media" muted loop>
+            <source src="photo/passion-photo/dji_fly_20250806_194518_0117_1754524260619_video_hlg.mov" type="video/mp4">
+          </video>
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Expertise</h3>
-            <p class="gallery-description">Expertise professionnelle</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_5736.webp', 'image')">
-          <img src="photo/passion-photo/IMG_5736.webp" alt="Savoir-faire" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Savoir-faire</h3>
-            <p class="gallery-description">Compétence technique</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_5738.webp', 'image')">
-          <img src="photo/passion-photo/IMG_5738.webp" alt="Professionnalisme" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Professionnalisme</h3>
-            <p class="gallery-description">Approche professionnelle</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_6386.webp', 'image')">
-          <img src="photo/passion-photo/IMG_6386.webp" alt="Excellence" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Excellence</h3>
-            <p class="gallery-description">Recherche d'excellence</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_6394.webp', 'image')">
-          <img src="photo/passion-photo/IMG_6394.webp" alt="Performance" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Performance</h3>
-            <p class="gallery-description">Haute performance</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_6429.webp', 'image')">
-          <img src="photo/passion-photo/IMG_6429.webp" alt="Efficacité" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Efficacité</h3>
-            <p class="gallery-description">Efficacité optimale</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_7453.webp', 'image')">
-          <img src="photo/passion-photo/IMG_7453.webp" alt="Succès" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Succès</h3>
-            <p class="gallery-description">Succès architectural</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_8161.webp', 'image')">
-          <img src="photo/passion-photo/IMG_8161.webp" alt="Aboutissement" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Aboutissement</h3>
-            <p class="gallery-description">Aboutissement créatif</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_8730.webp', 'image')">
-          <img src="photo/passion-photo/IMG_8730.webp" alt="Finalité" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Finalité</h3>
-            <p class="gallery-description">Finalité du projet</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_8900.webp', 'image')">
-          <img src="photo/passion-photo/IMG_8900.webp" alt="Concrétisation" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Concrétisation</h3>
-            <p class="gallery-description">Idée concrétisée</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_9072.webp', 'image')">
-          <img src="photo/passion-photo/IMG_9072.webp" alt="Matérialisation" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Matérialisation</h3>
-            <p class="gallery-description">Vision matérialisée</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_9484.webp', 'image')">
-          <img src="photo/passion-photo/IMG_9484.webp" alt="Réalité" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Réalité</h3>
-            <p class="gallery-description">Projet devenu réalité</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/IMG_9489.webp', 'image')">
-          <img src="photo/passion-photo/IMG_9489.webp" alt="Création" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Création</h3>
-            <p class="gallery-description">Œuvre créative</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox('photo/passion-photo/Scène 7-2-C05.webp', 'image')">
-          <img src="photo/passion-photo/Scène 7-2-C05.webp" alt="Scène" class="gallery-media">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Scène architecturale</h3>
-            <p class="gallery-description">Mise en scène du bâti</p>
+            <h3 class="gallery-title">Vidéo drone 2</h3>
+            <p class="gallery-description">Vidéo drone</p>
           </div>
         </div>
       </div>
@@ -1118,60 +1041,32 @@
   <!-- ÉQUIPEMENT -->
   <section class="equipment-section">
     <div class="container">
-      <h2 class="section-title">Mon équipement</h2>
+      <h2 class="section-title">Mes services & équipement</h2>
+      <p class="intro-text" style="margin-bottom: 3rem; color: var(--secondary-color);">
+        Une approche complète alliant équipement professionnel et expertise technique pour des résultats d'exception.
+      </p>
       <div class="equipment-grid">
         <div class="equipment-card">
-          <h3 class="equipment-title">DJI Air 3</h3>
-          <p class="equipment-description">Drone professionnel dédié aux prises de vue aériennes haute définition.
-            Sa double caméra — grand-angle et téléobjectif — permet des compositions variées, 
-            des mouvements fluides et une vraie polyvalence dans toutes les situations.</p>
+          <h3 class="equipment-title">Drone stabilisé</h3>
+          <p class="equipment-description">Le DJI Air 3 assure des prises de vue aériennes stables et précises. Grâce à sa double caméra (grand-angle et téléobjectif), il est extrêmement polyvalent : plans larges, compositions détaillées et mouvements fluides. C'est l’outil idéal pour des images extérieures propres, contrôlées et cinématographiques.</p>
         </div>
         <div class="equipment-card">
-          <h3 class="equipment-title">Drones FPV</h3>
-          <p class="equipment-description">Drones immersifs capables de voler à grande vitesse et dans des espaces étroits.
-            Ils me permettent de filmer l’intérieur de bâtiments de manière cinématographique, 
-            en offrant des mouvements impossibles à réaliser avec un drone traditionnel.</p>
+          <h3 class="equipment-title">Drone FPV</h3>
+          <p class="equipment-description">Mes drones FPV (Nazgul, C30) créent des images immersives et dynamiques avec des trajectoires impossibles pour un drone classique. Parfaits pour l'intérieur, les mouvements rapides ou les passages serrés. Équipés de la GoPro Hero 12, ils offrent une qualité optimale, conservant l'énergie et la liberté du vol FPV.</p>
         </div>
         <div class="equipment-card">
-          <h3 class="equipment-title">Appareils photo</h3>
-          <p class="equipment-description">Équipement photographique professionnel pour captures terrestres et détails architecturaux en haute résolution.</p>
+          <h3 class="equipment-title">Caméras</h3>
+          <p class="equipment-description">Pour les prises de vue au sol, j’utilise l’iPhone 15 Pro pour sa qualité d'image et sa polyvalence (photos et vidéos naturelles, nettes). La GoPro Hero 12 complète l'ensemble pour l'immersion : plans embarqués et séquences dynamiques. Ensemble, ces caméras garantissent des images fluides et expressives adaptées à tout contexte.</p>
         </div>
         <div class="equipment-card">
           <h3 class="equipment-title">Post-production</h3>
-          <p class="equipment-description">Logiciels de montage et retouche professionnels pour sublimer chaque image et créer des contenus uniques.</p>
+          <p class="equipment-description">Chaque image bénéficie d'un post-traitement. Je travaille les photos dans Lightroom (couleurs, ambiances) et Photoshop (détails) pour un rendu parfait. J'utilise Premiere Pro pour des montages vidéo fluides, l'étalonnage, et pour donner cohérence et rythme. Cette approche transforme le contenu brut en une image finale soignée et professionnelle.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Mes services photo & drone</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">📸</div>
-          <h3 class="service-title">Photographie architecturale</h3>
-          <p class="service-description">Mise en valeur de vos réalisations architecturales avec un regard professionnel et une approche esthétique soignée.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🚁</div>
-          <h3 class="service-title">Prises de vue aériennes</h3>
-          <p class="service-description">Perspectives uniques par drone pour révéler l'intégration paysagère et les volumes de vos projets.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🎬</div>
-          <h3 class="service-title">Vidéos promotionnelles</h3>
-          <p class="service-description">Création de contenus vidéo dynamiques pour présenter vos projets avec impact et modernité.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">✨</div>
-          <h3 class="service-title">Post-production</h3>
-          <p class="service-description">Retouche et montage professionnel pour sublimer vos images et créer une identité visuelle forte.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <!-- LIGHTBOX -->
   <div id="lightbox" class="lightbox" onclick="closeLightbox()">
@@ -1192,15 +1087,15 @@
     </div>
   </footer>
 
-  <!-- FLOATING SOCIALS -->
+  <!-- ICÔNES RÉSEAUX SOCIAUX FLOTTANTES -->
   <div class="floating-socials">
-    <a href="https://www.instagram.com/studiotm___" target="_blank" class="social-link">
-      <img src="photo/logo/insta.webp" alt="Instagram Studio">
+    <a href="https://www.instagram.com/studiotm___" target="_blank">
+      <img src="photo/logo/insta.webp" alt="Instagram">
     </a>
-    <a href="https://www.linkedin.com/in/tom-maradan-554265235/" target="_blank" class="social-link">
+    <a href="https://www.linkedin.com/in/tom-maradan-554265235/" target="_blank">
       <img src="photo/logo/Linkedin.webp" alt="LinkedIn">
     </a>
-    <a href="contact.html" class="social-link">
+    <a href="contact.html" target="_blank">
       <img src="photo/logo/Mailapp.webp" alt="Mail">
     </a>
   </div>
@@ -1274,17 +1169,22 @@
     const hero = document.querySelector('.hero');
     const fixedNav = document.getElementById('fixed-nav');
     
-    // Combiné avec le scroll du bandeau pour optimiser
-    window.addEventListener('scroll', () => {
-      const heroBottom = hero.offsetTop + hero.offsetHeight;
-      const scrollY = window.pageYOffset;
-      
-      // Bandeau
-      if (scrollY >= heroBottom) {
+    // Script pour le bandeau fixe
+    function checkScrollPosition() {
+      // Afficher le bandeau après 200px de scroll
+      if (window.scrollY > 200) {
         fixedNav.classList.add('visible');
       } else {
         fixedNav.classList.remove('visible');
       }
+    }
+    
+    // Combiné avec le scroll du bandeau pour optimiser
+    window.addEventListener('scroll', () => {
+      const scrollY = window.pageYOffset;
+      
+      // Bandeau
+      checkScrollPosition();
       
       // Back to top
       if (scrollY > 300) {
@@ -1295,6 +1195,9 @@
         backToTop.style.visibility = 'hidden';
       }
     });
+    
+    // Vérifier la position au chargement
+    checkScrollPosition();
 
     backToTop.addEventListener('click', (e) => {
       e.preventDefault();
