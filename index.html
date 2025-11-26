@@ -228,6 +228,18 @@
       margin-top: 4px;
     }
 
+    .location {
+      font-family: 'Outfit', sans-serif;
+      color: #888;
+      font-size: 0.8rem;
+      margin: 0;
+      font-style: italic;
+    }
+
+    .description {
+      font-style: normal;
+    }
+
 
 
 
@@ -2136,10 +2148,10 @@
         right: 10px;
       }
 
-      /* Points clés - Force 2x2 avec flexbox */
+      /* Points clés - Force 2x2 avec grid */
       .points-clefs {
-        display: flex !important;
-        flex-wrap: wrap !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
         gap: 10px !important;
         margin: 20px 0;
         max-width: 400px;
@@ -2153,7 +2165,6 @@
         border-radius: 50px;
         font-size: 14px;
         text-align: center;
-        width: calc(50% - 5px) !important;
         box-sizing: border-box !important;
       }
 
@@ -2166,7 +2177,6 @@
         .point {
           padding: 10px 16px;
           font-size: 13px;
-          width: calc(50% - 4px) !important;
         }
       }
 
@@ -2309,13 +2319,7 @@
           gap: 0.5rem;
         }
 
-        /* Force 2x2 sur mobile */
-        .points-clefs {
-          display: grid !important;
-          grid-template-columns: 1fr 1fr !important;
-          grid-template-rows: 1fr 1fr !important;
-          gap: 8px !important;
-        }
+
       }
 
       .video-wrapper {
@@ -2379,6 +2383,7 @@
         <h3>CREAD Lyon</h3>
         <h5>École d'architecture & de design</h5>
         <p class="date">Septembre 2023 - Juillet 2028</p>
+        <p class="location">Lyon, (69003)<br><span class="description">Formation en architecture d’intérieur centrée sur la conception d’espaces, la modélisation 3D, les matériaux, l’esthétique et la compréhension technique des projets. Développement de compétences en création de concepts, élaboration de plans, réalisation de visuels et gestion complète d’un projet d’aménagement.</span></p>
       </div>
     </div>
 
@@ -2390,6 +2395,7 @@
         <h3>Samples Room</h3>
         <h5>Stage CREAD 2ème année</h5>
         <p class="date">Mai/Juillet 2025 - Stage & CDD</p>
+        <p class="location">genas, (69740)<br><span class="description">Réalisation d’un showroom, conception de visuels 3D pour les clients et élaboration de plans techniques. Participation à la recherche de matériaux, à la modélisation et au suivi de projet.</span></p>
       </div>
     </div>
 
@@ -2401,6 +2407,7 @@
         <h3>Pur Concept</h3>
         <h5>Stage CREAD 1ère année</h5>
         <p class="date">Juin/Juillet 2024 - Stage & CDD</p>
+        <p class="location">Décines-Charpieu, (69150)<br><span class="description">Réalisation de différentes missions sur chantiers : menuiserie, peinture, charpente, électricité, ragréage, placo et manutention. Découverte et application des techniques du bâtiment dans divers corps de métier.</span></p>
       </div>
     </div>
 
@@ -2412,6 +2419,7 @@
         <h3>Tetris</h3>
         <h5>Stage Première</h5>
         <p class="date">Avril 2022 - 1 semaine</p>
+        <p class="location">Lyon, (69002)<br><span class="description">Visites de chantiers à Grenoble et Lyon pour analyse de l’avancement et des contraintes d’aménagement. Travail sur plans d’agencement et modélisations (SketchUp).</span></p>
       </div>
     </div>
 
@@ -2423,6 +2431,7 @@
         <h3>AABC Architecture</h3>
         <h5>Stage découverte 3ème</h5>
         <p class="date">Janvier 2020 - 1 semaine</p>
+        <p class="location">Albi, (81004)<br><span class="description">Visites de chantiers dans la région albigeoise pour observation des différentes phases de construction. Modélisation d’une maison (Archicad, SketchUp) et découverte du métier d’architecte et du suivi de travaux.</span></p>
       </div>
     </div>
 
