@@ -2345,7 +2345,7 @@
   </section>
   
   <!-- Bouton Voir tous mes projets -->
-  <div style="text-align: center; margin: -2rem 0 1rem 0;">
+  <div style="text-align: center; margin: -3rem 0 3rem 0;">
     <a href="projets.html" class="voir-projets-btn">Voir tous mes projets</a>
   </div>
   
@@ -2419,7 +2419,7 @@
         <h3>Tetris</h3>
         <h5>Stage Première</h5>
         <p class="date">Avril 2022 - 1 semaine</p>
-        <p class="location">Lyon, (69002)<br><span class="description">Visites de chantiers à Grenoble et Lyon pour analyse de l’avancement et des contraintes d’aménagement. Travail sur plans d’agencement et modélisations (SketchUp).</span></p>
+        <p class="location">Lyon, (69002)<br><span class="description">Visites de chantiers à Grenoble et Lyon pour analyse de l’avancement et des contraintes d’aménagement. Travail sur plans d’agencement et modélisations.</span></p>
       </div>
     </div>
 
@@ -2431,7 +2431,7 @@
         <h3>AABC Architecture</h3>
         <h5>Stage découverte 3ème</h5>
         <p class="date">Janvier 2020 - 1 semaine</p>
-        <p class="location">Albi, (81004)<br><span class="description">Visites de chantiers dans la région albigeoise pour observation des différentes phases de construction. Modélisation d’une maison (Archicad, SketchUp) et découverte du métier d’architecte et du suivi de travaux.</span></p>
+        <p class="location">Albi, (81004)<br><span class="description">Visites de chantiers dans la région albigeoise pour observation des différentes phases de construction. Modélisation d’une maison et découverte du métier d’architecte et du suivi de travaux.</span></p>
       </div>
     </div>
 
@@ -2661,84 +2661,6 @@
 
 
 
-  <section id="contact">
-    <h2>Contact & Réseaux</h2>
-    <p class="coordonnees">
-      <strong>Email :</strong>
-      <a href="mailto:maradantom@gmail.com">maradantom@gmail.com</a><br>
-      <strong>Téléphone :</strong>
-      <a href="tel:+33672256783">+33 6 72 25 67 83</a>
-  </section>
-  <style>
-    body {
-      font-family: 'Outfit', sans-serif;
-    }
-
-    .coordonnees {
-      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-      font-size: 1rem;
-      font-weight: 400;
-      letter-spacing: 0.3px;
-      line-height: 1.6;
-      text-align: center;
-      color: var(--text);
-      margin-bottom: -50px;
-      /* conserve ta variable s'il y en a */
-    }
-
-    .coordonnees a {
-      color: inherit;
-      text-decoration: underline dotted;
-      transition: 0.3s;
-    }
-
-    .coordonnees a:hover {
-      color: var(--accent);
-    }
-  </style>
-
-  <!-- Boutons Me contacter et Mon CV centrés -->
-<div style="text-align: center; margin: -10px 0; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-  <a href="contact.html" class="me-contacter-btn">Me contacter</a>
-  <a href="photo/Stage - C.V Tom Maradan.pdf" download="photo/Stage - C.V Tom Maradan.pdf" class="me-contacter-btn">Mon CV</a>
-</div>
-
-<style>
-/* Style du bouton Me contacter */
-.me-contacter-btn {
-    display: inline-block;
-    padding: 12px 30px;             /* Taille du bouton */
-    background-color: #f5f5f5;      /* Fond clair comme sur la page principale */
-    color: #000;                     /* Texte noir */
-    font-family: 'Outfit', sans-serif; 
-    font-size: 16px; 
-    font-weight: 500;
-    text-decoration: none;
-    border-radius: 8px;              /* Coins arrondis */
-    transition: all 0.3s ease;
-    text-align: center;
-    border: 1px solid #ddd;          /* Bordure légère pour plus de contraste */
-}
-
-/* Effet au survol */
-.me-contacter-btn:hover {
-    background-color: #e0e0e0;       /* Fond un peu plus foncé au hover */
-    color: #000;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-/* Responsive : ajustement du texte et padding sur mobile */
-@media (max-width: 768px) {
-    .me-contacter-btn {
-        padding: 10px 24px;
-        font-size: 15px;
-    }
-}
-</style>
-
-
-
 <section id="activité" style="margin-bottom: -10px;">
   <h2 style="margin-bottom: -2rem;">Mon activité</h2>
 </section>
@@ -2866,10 +2788,6 @@
   }
 </style>
 
-
-
-
-
   <div class="scene">
     <div class="card" id="card">
       <div class="face front"></div>
@@ -2882,7 +2800,7 @@
       width: 85mm;
       height: 54mm;
       perspective: 1000px;
-      margin: -50px auto 50px auto;
+      margin: 20px auto 50px auto;
     }
 
     .card {
@@ -2918,7 +2836,6 @@
       transform: rotateY(180deg);
     }
   </style>
-
 
   <script>
     const card = document.getElementById('card');
@@ -3021,6 +2938,81 @@ function updateTarget(deltaX, deltaY) {
     startAnimation();
   </script>
 
+  <section id="contact">
+    <h2>Contact & Réseaux</h2>
+    <p class="coordonnees">
+      <strong>Email :</strong>
+      <a href="mailto:maradantom@gmail.com">maradantom@gmail.com</a><br>
+      <strong>Téléphone :</strong>
+      <a href="tel:+33672256783">+33 6 72 25 67 83</a>
+  </section>
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .coordonnees {
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      line-height: 1.6;
+      text-align: center;
+      color: var(--text);
+      margin-bottom: -10px;
+    }
+
+    .coordonnees a {
+      color: inherit;
+      text-decoration: underline dotted;
+      transition: 0.3s;
+    }
+
+    .coordonnees a:hover {
+      color: var(--accent);
+    }
+  </style>
+
+  <!-- Boutons Me contacter et Mon CV centrés -->
+<div style="text-align: center; margin: -20px 0 20px 0; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+  <a href="contact.html" class="me-contacter-btn">Me contacter</a>
+  <a href="photo/Stage - C.V Tom Maradan.pdf" download="photo/Stage - C.V Tom Maradan.pdf" class="me-contacter-btn">Mon CV</a>
+</div>
+
+<style>
+/* Style du bouton Me contacter */
+.me-contacter-btn {
+    display: inline-block;
+    padding: 12px 30px;             /* Taille du bouton */
+    background-color: #f5f5f5;      /* Fond clair comme sur la page principale */
+    color: #000;                     /* Texte noir */
+    font-family: 'Outfit', sans-serif; 
+    font-size: 16px; 
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 8px;              /* Coins arrondis */
+    transition: all 0.3s ease;
+    text-align: center;
+    border: 1px solid #ddd;          /* Bordure légère pour plus de contraste */
+}
+
+/* Effet au survol */
+.me-contacter-btn:hover {
+    background-color: #e0e0e0;       /* Fond un peu plus foncé au hover */
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Responsive : ajustement du texte et padding sur mobile */
+@media (max-width: 768px) {
+    .me-contacter-btn {
+        padding: 10px 24px;
+        font-size: 15px;
+    }
+}
+</style>
+
 
 
   <footer class="footer">
@@ -3030,18 +3022,17 @@ function updateTarget(deltaX, deltaY) {
 
   <style>
     .footer {
-      flex: 0 33, 33% 0;
       text-align: center;
-      padding: 20 20px;
+      padding: 40px 20px;
       box-sizing: border-box;
       background-color: #ffffff;
       color: #000000;
+      margin-top: 40px;
     }
 
     .footer-logo {
-      flex: 0 33, 33% 0;
-      text-align: center;
-      padding: 0 20px;
+      display: block;
+      margin: 0 auto 15px auto;
       max-width: 200px;
       width: auto;
       height: 20px;
