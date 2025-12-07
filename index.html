@@ -53,7 +53,7 @@
   <!-- End Google Tag Manager (noscript) -->
 
 
-  <meta name="description" content="Site internet de Tom Maradan, architecte d’intérieur basé à Lyon.">
+  <meta name="description" content="Site internet de Tom Maradan, architecte d’intérieure basé à Lyon.">
   <meta name="google-site-verification" content="NeZlJppmijT2qp7ZVZu-EZVwxVvQLuAlR4TCEcOWRX8" />
 
   <meta charset="UTF-8" />
@@ -664,7 +664,7 @@
         <div class="chiffres">
           <span>2025</span><span>Construction</span><span>Tertiaire</span><span>Lyon</span>
         </div>
-        <p>Création d'un nouveaux showroom pour SamplesRoom</p>
+        <p>Création d'un nouveau showroom pour SamplesRoom</p>
       </div>
 
       <!-- Projet 3 -->
@@ -2033,11 +2033,11 @@
       }
 
       .chiffres {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 0.5rem;
         margin: 1rem 0;
+        justify-items: center;
       }
 
       .chiffres span {
@@ -2046,12 +2046,19 @@
         border-radius: 6px;
         font-weight: 600;
         font-size: 0.9rem;
+        text-align: center;
+        width: 100%;
       }
 
-      /* Faire passer le dernier bouton (ville) à la ligne sur mobile */
-      @media (max-width: 768px) {
-        .chiffres span:nth-child(4) {
-          width: 25%;
+      @media (min-width: 769px) {
+        .chiffres {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        
+        .chiffres span {
+          width: auto;
         }
       }
 
@@ -2148,30 +2155,38 @@
         right: 10px;
       }
 
-      /* Points clés - Force 2x2 avec grid */
+      /* Points clés */
       .points-clefs {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 10px !important;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
         margin: 20px 0;
-        max-width: 400px;
+        max-width: 600px;
         margin-left: auto;
         margin-right: auto;
       }
 
       .point {
         background: #f0f0f0;
-        padding: 12px 20px;
-        border-radius: 50px;
-        font-size: 14px;
+        padding: 16px 30px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
         text-align: center;
-        box-sizing: border-box !important;
+        box-sizing: border-box;
+        flex: 1;
+        min-width: 120px;
       }
 
-      @media (max-width: 600px) {
+      @media (max-width: 768px) {
         .points-clefs {
+          display: grid !important;
+          grid-template-columns: 1fr 1fr !important;
           gap: 8px !important;
           max-width: 320px;
+          margin-left: auto;
+          margin-right: auto;
         }
         
         .point {
@@ -2383,7 +2398,7 @@
         <h3>CREAD Lyon</h3>
         <h5>École d'architecture & de design</h5>
         <p class="date">Septembre 2023 - Juillet 2028</p>
-        <p class="location">Lyon, (69003)<br><span class="description">Formation en architecture d’intérieur centrée sur la conception d’espaces, la modélisation 3D, les matériaux, l’esthétique et la compréhension technique des projets. Développement de compétences en création de concepts, élaboration de plans, réalisation de visuels et gestion complète d’un projet d’aménagement.</span></p>
+        <p class="location">Lyon, (69003)<br><span class="description">Formation en architecture d’intérieure centrée sur la conception d’espaces, la modélisation 3D, les matériaux, l’esthétique et la compréhension technique des projets. Développement de compétences en création de concepts, élaboration de plans, réalisation de visuels et gestion complète d’un projet d’aménagement.</span></p>
       </div>
     </div>
 
@@ -2395,7 +2410,7 @@
         <h3>Samples Room</h3>
         <h5>Stage CREAD 2ème année</h5>
         <p class="date">Mai/Juillet 2025 - Stage & CDD</p>
-        <p class="location">genas, (69740)<br><span class="description">Réalisation d’un showroom, conception de visuels 3D pour les clients et élaboration de plans techniques. Participation à la recherche de matériaux, à la modélisation et au suivi de projet.</span></p>
+        <p class="location">Genas, (69740)<br><span class="description">Réalisation d’un showroom, conception de visuels 3D pour les clients et élaboration de plans techniques. Participation à la recherche de matériaux, à la modélisation et au suivi de projet.</span></p>
       </div>
     </div>
 
@@ -2431,7 +2446,7 @@
         <h3>AABC Architecture</h3>
         <h5>Stage découverte 3ème</h5>
         <p class="date">Janvier 2020 - 1 semaine</p>
-        <p class="location">Albi, (81004)<br><span class="description">Visites de chantiers dans la région albigeoise pour observation des différentes phases de construction. Modélisation d’une maison et découverte du métier d’architecte et du suivi de travaux.</span></p>
+        <p class="location">Albi, (81000)<br><span class="description">Visites de chantiers dans la région Albigeoise pour observation des différentes phases de construction. Modélisation d’une maison et découverte du métier d’architecte et du suivi de travaux.</span></p>
       </div>
     </div>
 
@@ -2675,7 +2690,7 @@
       <h2 id="about-title">À propos de moi</h2>
 
       <p class="lead">
-        Je m'appelle <strong>Tom Maradan</strong>, étudiant en 3<sup>ème</sup> année d’architecture d’intérieur à <strong>CREAD Lyon</strong>.  
+        Je m'appelle <strong>Tom Maradan</strong>, étudiant en 3<sup>ème</sup> année d’architecture d’intérieure à <strong>CREAD Lyon</strong>.  
         En parallèle de mes études, je propose des prestations professionnelles : <strong>Plans techniques</strong>, 
         <strong>modélisation 3D</strong> et <strong>rendus photo-réalistes</strong>.
       </p>
@@ -2787,6 +2802,30 @@
     .about-image { flex: 0 0 180px; width: 180px; height: 180px; }
   }
 </style>
+
+      <div><div style="text-align: center; margin-top: -2rem; margin-bottom: 3rem;">
+    <a href="studiotm.html" class="voir-projets-btn"> Mes services</a>
+</div></div>
+      <style>
+        /* Bouton Voir mes projets */
+        .voir-projets-btn {
+          display: inline-block;
+          padding: 0.8rem 1.6rem;
+          background: #f5f5f5;
+          color: #000;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: 600;
+          transition: 0.3s ease;
+          border: 1px solid #ddd;
+        }
+
+        .voir-projets-btn:hover {
+          background: #e0e0e0;
+          transform: scale(1.05);
+        }
+      </style>
+
 
   <div class="scene">
     <div class="card" id="card">
