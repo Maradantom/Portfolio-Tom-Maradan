@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informations pratiques - AirHub</title>
+    <meta name="description" content="Toutes les informations pratiques pour votre visite à AirHub : adresse, horaires, accès, contact, FAQ et réglementation drone.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-logo"><a href="index.html" style="text-decoration: none; color: inherit;">AirHub</a></div>
+            <ul class="nav-menu">
+                <li><a href="lieu.html" class="nav-link">Le lieu</a></li>
+                <li><a href="experiences.html" class="nav-link">Expériences</a></li>
+                <li><a href="formations.html" class="nav-link">Formations</a></li>
+                <li><a href="evenements.html" class="nav-link">Événements</a></li>
+                <li><a href="boutique.html" class="nav-link">Boutique</a></li>
+                <li><a href="infos.html" class="nav-link" style="color: var(--accent);">Infos pratiques</a></li>
+                <li><a href="#contact" class="nav-link cta-btn">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" style="min-height: 60vh;">
+        <div class="container">
+            <div class="hero-content" style="grid-template-columns: 1fr; text-align: center;">
+                <div class="hero-text">
+                    <h1>Informations pratiques</h1>
+                    <p>Tout ce que vous devez savoir pour préparer votre visite à AirHub.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adresse et Accès -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Adresse & Accès</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+                <div>
+                    <div class="card">
+                        <h3>📍 Notre adresse</h3>
+                        <p style="font-size: 1.1rem; margin: 1rem 0;">
+                            <strong>AirHub</strong><br>
+                            [Adresse à définir]<br>
+                            [Code postal] [Ville]<br>
+                            France
+                        </p>
+                        
+                        <h4 style="margin-top: 2rem;">🚗 En voiture</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• Parking gratuit sur site (50 places)</li>
+                            <li>• Accès autoroute A[X] sortie [X]</li>
+                            <li>• GPS : [Coordonnées à définir]</li>
+                        </ul>
+                        
+                        <h4 style="margin-top: 1.5rem;">🚌 Transports en commun</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• Bus ligne [X] - Arrêt [Nom]</li>
+                            <li>• Métro/Tram ligne [X] - Station [Nom]</li>
+                            <li>• Gare SNCF à [X] km</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <div style="background: var(--bg-secondary); height: 400px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary);">
+                        🗺️ Carte interactive<br>
+                        (Google Maps à intégrer)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horaires -->
+    <section class="bg-light">
+        <div class="container">
+            <h2 class="section-title">Horaires d'ouverture</h2>
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                <div class="card">
+                    <h3>🕒 Horaires généraux</h3>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 0.5rem 0; font-weight: 500;">Lundi</td>
+                            <td style="padding: 0.5rem 0; text-align: right;">9h00 - 19h00</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 0.5rem 0; font-weight: 500;">Mardi</td>
+                            <td style="padding: 0.5rem 0; text-align: right;">9h00 - 19h00</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 0.5rem 0; font-weight: 500;">Mercredi</td>
+                            <td style="padding: 0.5rem 0; text-align: right;">9h00 - 19h00</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 0.5rem 0; font-weight: 500;">Jeudi</td>
+                            <td style="padding: 0.5rem 0; text-align: right;">9h00 - 19h00</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 0.5rem 0; font-weight: 500;">Vendredi</td>
+                            <td style="padding: 0.5rem 0; text-align: right;">9h00 - 19h00</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 0.5rem 0; font-weight: 500;">Samedi</td>
+                            <td style="padding: 0.5rem 0; text-align: right;">9h00 - 18h00</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.5rem 0; font-weight: 500;">Dimanche</td>
+                            <td style="padding: 0.5rem 0; text-align: right;">10h00 - 17h00</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="card">
+                    <h3>🎯 Activités spécifiques</h3>
+                    <div style="margin-bottom: 1rem;">
+                        <h4 style="color: var(--accent);">Simulateurs</h4>
+                        <p style="font-size: 0.9rem;">Tous les jours aux horaires d'ouverture<br>
+                        Réservation recommandée</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <h4 style="color: var(--accent);">Vols extérieurs</h4>
+                        <p style="font-size: 0.9rem;">Mer-Dim : 10h-17h<br>
+                        (Selon conditions météo)</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <h4 style="color: var(--accent);">Formations</h4>
+                        <p style="font-size: 0.9rem;">Lun-Ven : 9h-17h<br>
+                        Sam : 9h-16h</p>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: var(--accent);">Boutique</h4>
+                        <p style="font-size: 0.9rem;">Aux horaires d'ouverture<br>
+                        Click & collect 24h/24</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 1rem; border-radius: 8px; margin-top: 2rem; text-align: center;">
+                <p><strong>⚠️ Attention :</strong> Les vols extérieurs peuvent être annulés en cas de mauvaises conditions météorologiques. Nous vous contacterons en cas de modification.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>📞 Téléphone</h3>
+                    <p style="font-size: 1.2rem; color: var(--accent); font-weight: 600;">
+                        [Numéro à définir]
+                    </p>
+                    <p style="color: var(--text-secondary);">
+                        Lun-Ven : 9h-18h<br>
+                        Sam : 9h-17h
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <h3>✉️ Email</h3>
+                    <p style="font-size: 1.1rem; color: var(--accent); font-weight: 600;">
+                        contact@airhub.fr
+                    </p>
+                    <p style="color: var(--text-secondary);">
+                        Réponse sous 24h<br>
+                        (jours ouvrés)
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <h3>💬 Réseaux sociaux</h3>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <a href="#" style="color: var(--accent);">Instagram</a>
+                        <a href="#" style="color: var(--accent);">LinkedIn</a>
+                        <a href="#" style="color: var(--accent);">YouTube</a>
+                        <a href="#" style="color: var(--accent);">Facebook</a>
+                    </div>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Suivez notre actualité
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-light">
+        <div class="container">
+            <h2 class="section-title">Questions fréquentes</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="card" style="margin-bottom: 1rem;">
+                    <h4 style="color: var(--accent);">Dois-je réserver pour visiter AirHub ?</h4>
+                    <p>La visite libre du showroom et de l'espace d'exposition ne nécessite pas de réservation. Cependant, pour les activités (simulateurs, vols, formations), la réservation est obligatoire.</p>
+                </div>
+                
+                <div class="card" style="margin-bottom: 1rem;">
+                    <h4 style="color: var(--accent);">Quel âge minimum pour les activités ?</h4>
+                    <p>Les simulateurs sont accessibles dès 8 ans accompagné d'un adulte. Pour les vols réels, l'âge minimum est de 12 ans. Les formations certifiantes sont ouvertes à partir de 16 ans.</p>
+                </div>
+                
+                <div class="card" style="margin-bottom: 1rem;">
+                    <h4 style="color: var(--accent);">Faut-il apporter son propre drone ?</h4>
+                    <p>Non, tout le matériel est fourni pour les activités et formations. Vous pouvez cependant apporter votre drone pour des conseils personnalisés ou du service après-vente.</p>
+                </div>
+                
+                <div class="card" style="margin-bottom: 1rem;">
+                    <h4 style="color: var(--accent);">Les activités sont-elles maintenues par mauvais temps ?</h4>
+                    <p>Les activités intérieures (simulateurs, formations théoriques) sont maintenues. Les vols extérieurs peuvent être reportés selon les conditions météo. Nous vous prévenons au minimum 2h avant.</p>
+                </div>
+                
+                <div class="card" style="margin-bottom: 1rem;">
+                    <h4 style="color: var(--accent);">Proposez-vous des tarifs de groupe ?</h4>
+                    <p>Oui, nous proposons des tarifs préférentiels à partir de 6 personnes. Contactez-nous pour un devis personnalisé selon vos besoins.</p>
+                </div>
+                
+                <div class="card">
+                    <h4 style="color: var(--accent);">Comment annuler ou modifier ma réservation ?</h4>
+                    <p>Les annulations sont gratuites jusqu'à 24h avant l'activité. Pour les modifications, contactez-nous par téléphone ou email. Les formations peuvent être reportées jusqu'à 48h avant.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Réglementation -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Réglementation drone</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>📋 Réglementation française</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>• Enregistrement obligatoire dès 250g</li>
+                        <li>• Formation en ligne obligatoire</li>
+                        <li>• Respect des zones interdites</li>
+                        <li>• Hauteur maximale : 120m</li>
+                        <li>• Vol à vue uniquement</li>
+                        <li>• Assurance responsabilité civile</li>
+                    </ul>
+                    <a href="https://www.ecologie.gouv.fr/drones-civils" target="_blank" class="btn btn-primary" style="margin-top: 1rem;">
+                        Réglementation officielle
+                    </a>
+                </div>
+                
+                <div class="card">
+                    <h3>🎓 Formation obligatoire</h3>
+                    <p>Depuis 2021, une formation en ligne gratuite est obligatoire pour tous les pilotes de drone de loisir.</p>
+                    <ul style="list-style: none; padding: 0; margin: 1rem 0;">
+                        <li>• Durée : 30 minutes</li>
+                        <li>• QCM de 20 questions</li>
+                        <li>• Certificat valable 5 ans</li>
+                        <li>• Gratuit sur AlphaTango</li>
+                    </ul>
+                    <a href="https://fox-alphatango.aviation-civile.gouv.fr/" target="_blank" class="btn btn-primary">
+                        Passer la formation
+                    </a>
+                </div>
+                
+                <div class="card">
+                    <h3>🗺️ Zones de vol</h3>
+                    <p>Vérifiez toujours les zones autorisées avant de voler avec l'application Géoportail.</p>
+                    <ul style="list-style: none; padding: 0; margin: 1rem 0;">
+                        <li>• Zones vertes : vol autorisé</li>
+                        <li>• Zones orange : restrictions</li>
+                        <li>• Zones rouges : vol interdit</li>
+                        <li>• Aéroports : zone interdite</li>
+                    </ul>
+                    <a href="https://www.geoportail.gouv.fr/donnees/restrictions-uas-categorie-ouverte" target="_blank" class="btn btn-primary">
+                        Consulter la carte
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accessibilité -->
+    <section class="bg-light">
+        <div class="container">
+            <h2 class="section-title">Accessibilité</h2>
+            <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <p style="margin-bottom: 2rem;">AirHub est accessible à tous. Nous nous engageons à accueillir les personnes en situation de handicap dans les meilleures conditions.</p>
+                
+                <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="card text-center">
+                        <span class="card-icon">♿</span>
+                        <h4>Mobilité réduite</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9rem;">
+                            <li>• Accès PMR</li>
+                            <li>• Ascenseur</li>
+                            <li>• Toilettes adaptées</li>
+                            <li>• Places de parking</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card text-center">
+                        <span class="card-icon">👁️</span>
+                        <h4>Déficience visuelle</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9rem;">
+                            <li>• Guidage audio</li>
+                            <li>• Surfaces podotactiles</li>
+                            <li>• Accompagnement</li>
+                            <li>• Matériel adapté</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 2rem; color: var(--text-secondary);">
+                    Pour toute demande spécifique, contactez-nous avant votre visite afin que nous puissions vous accueillir dans les meilleures conditions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>AirHub</h4>
+                    <p>Le premier lieu dédié à la culture du drone en France.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="lieu.html">Le lieu</a></li>
+                        <li><a href="experiences.html">Expériences</a></li>
+                        <li><a href="formations.html">Formations</a></li>
+                        <li><a href="evenements.html">Événements</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>📍 Adresse à définir</li>
+                        <li>📞 Téléphone à définir</li>
+                        <li>✉️ contact@airhub.fr</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Suivez-nous</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AirHub - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
