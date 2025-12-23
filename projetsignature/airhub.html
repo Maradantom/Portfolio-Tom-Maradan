@@ -16,7 +16,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <div class="nav-logo">AirHub</div>
+            <div class="nav-logo"><img src="images/logo-nom.webp" alt="AirHub"></div>
             <ul class="nav-menu">
                 <li><a href="lieu.html" class="nav-link">Le lieu</a></li>
                 <li><a href="experiences.html" class="nav-link">Expériences</a></li>
@@ -30,22 +30,19 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" style="background: url('images/lieu-post.webp'); background-size: cover; background-position: center;">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>L'univers du drone dans un lieu unique</h1>
-                    <p>Découvrez, apprenez et expérimentez le drone dans un espace innovant mêlant technologie, formation et événementiel. Du simulateur au vol réel, vivez une expérience complète.</p>
+                    <h1 style="color: white;">L'univers du drone dans un lieu unique</h1>
+                    <p style="color: rgba(255,255,255,0.9);">Découvrez, apprenez et expérimentez le drone dans un espace innovant mêlant technologie, formation et événementiel. Du simulateur au vol réel, vivez une expérience complète.</p>
                     <div class="hero-buttons">
                         <a href="#reservation" class="btn btn-primary">Réserver une expérience</a>
-                        <a href="lieu.html" class="btn btn-secondary">Découvrir le lieu</a>
+                        <a href="lieu.html" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); color: white; border-color: white;">Découvrir le lieu</a>
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <!-- Placeholder pour image/vidéo drone -->
-                    <div style="background: var(--bg-secondary); height: 400px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary);">
-                        🚁 Vidéo/Image drone
-                    </div>
+                    <img src="images/inspire-3.webp" alt="Drone en vol" style="width: 100%; height: 400px; object-fit: cover; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); filter: none;">
                 </div>
             </div>
         </div>
@@ -58,18 +55,24 @@
             <p class="section-subtitle">AirHub révolutionne l'approche du drone en créant un parcours progressif du sol vers l'air, accessible à tous les publics.</p>
             
             <div class="grid">
-                <div class="card">
-                    <span class="card-icon">🎯</span>
+                <div class="card" style="background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(248,249,250,0.7)), url('images/Formation-Drone-jcpieriformation-4.webp'); background-size: cover;">
+                    <div style="background: rgba(0,44,75,0.1); padding: 1rem; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <span style="font-size: 2.5rem;">🎯</span>
+                    </div>
                     <h3>Découverte</h3>
                     <p>Initiez-vous au monde du drone dans un environnement sécurisé et pédagogique.</p>
                 </div>
-                <div class="card">
-                    <span class="card-icon">🎓</span>
+                <div class="card" style="background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(248,249,250,0.7)), url('images/515118770_714211254563134_4866003600871857827_n.webp'); background-size: cover;">
+                    <div style="background: rgba(0,44,75,0.1); padding: 1rem; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <span style="font-size: 2.5rem;">🎓</span>
+                    </div>
                     <h3>Formation</h3>
                     <p>Formations certifiantes du niveau débutant au professionnel avec instructeurs qualifiés.</p>
                 </div>
-                <div class="card">
-                    <span class="card-icon">🚀</span>
+                <div class="card" style="background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(248,249,250,0.7)), url('images/yulii-shtel-3PJNIvkf-Tw-unsplash.webp'); background-size: cover;">
+                    <div style="background: rgba(0,44,75,0.1); padding: 1rem; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <span style="font-size: 2.5rem;">🚀</span>
+                    </div>
                     <h3>Expérimentation</h3>
                     <p>Testez les dernières technologies dans nos espaces dédiés intérieurs et extérieurs.</p>
                 </div>
@@ -84,60 +87,78 @@
             <p class="section-subtitle">Une offre complète pour tous les niveaux et tous les besoins</p>
             
             <div class="grid">
-                <div class="card">
-                    <span class="card-icon">🎮</span>
-                    <h3>Simulateurs de drone</h3>
-                    <p>Découverte et entraînement sur simulateurs dernière génération</p>
-                    <ul style="list-style: none; padding: 0;">
-                        <li>• Initiation grand public</li>
-                        <li>• Entraînement libre</li>
-                        <li>• Simulateurs professionnels</li>
-                    </ul>
+                <div class="card" style="position: relative; overflow: hidden;">
+                    <img src="images/what-is-an-fpv-drone.webp" alt="Simulateur drone" style="position: absolute; top: 0; left: 0; width: 100%; height: 200px; object-fit: cover; opacity: 0.3;">
+                    <div style="position: relative; z-index: 2;">
+                        <div style="background: rgba(0,44,75,0.1); padding: 1rem; border-radius: 50%; width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                            <span style="font-size: 2rem;">🎮</span>
+                        </div>
+                        <h3>Simulateurs de drone</h3>
+                        <p>Découverte et entraînement sur simulateurs dernière génération</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• Initiation grand public</li>
+                            <li>• Entraînement libre</li>
+                            <li>• Simulateurs professionnels</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <div class="card">
-                    <span class="card-icon">✈️</span>
-                    <h3>Vols & démonstrations</h3>
-                    <p>Expériences de vol encadrées en intérieur et extérieur</p>
-                    <ul style="list-style: none; padding: 0;">
-                        <li>• Vols découverte</li>
-                        <li>• Démonstrations publiques</li>
-                        <li>• Sessions privées</li>
-                    </ul>
+                <div class="card" style="position: relative; overflow: hidden;">
+                    <img src="images/2025-11-17-15-34-34_Fourviere1080.webp" alt="Vol de drone" style="position: absolute; top: 0; left: 0; width: 100%; height: 200px; object-fit: cover; opacity: 0.3;">
+                    <div style="position: relative; z-index: 2;">
+                        <div style="background: rgba(0,44,75,0.1); padding: 1rem; border-radius: 50%; width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                            <span style="font-size: 2rem;">✈️</span>
+                        </div>
+                        <h3>Vols & démonstrations</h3>
+                        <p>Expériences de vol encadrées en intérieur et extérieur</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• Vols découverte</li>
+                            <li>• Démonstrations publiques</li>
+                            <li>• Sessions privées</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <div class="card">
-                    <span class="card-icon">🎪</span>
-                    <h3>Événements</h3>
-                    <p>Soirées, conférences et événements corporate</p>
-                    <ul style="list-style: none; padding: 0;">
-                        <li>• Lancements produits</li>
-                        <li>• Conférences tech</li>
-                        <li>• Privatisation d'espaces</li>
-                    </ul>
+                <div class="card" style="position: relative; overflow: hidden;">
+                    <img src="images/Évènementiel-scaled.webp" alt="Événement drone" style="position: absolute; top: 0; left: 0; width: 100%; height: 200px; object-fit: cover; opacity: 0.3;">
+                    <div style="position: relative; z-index: 2;">
+                        <div style="background: rgba(0,44,75,0.1); padding: 1rem; border-radius: 50%; width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                            <span style="font-size: 2rem;">🎪</span>
+                        </div>
+                        <h3>Événements</h3>
+                        <p>Soirées, conférences et événements corporate</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• Lancements produits</li>
+                            <li>• Conférences tech</li>
+                            <li>• Privatisation d'espaces</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Événements à venir -->
-    <section class="bg-light">
+    <section class="bg-light" style="background: linear-gradient(135deg, rgba(248,249,250,0.9), rgba(233,236,239,0.9)), url('images/events-bg.jpg'); background-size: cover; background-attachment: fixed;">
         <div class="container">
             <h2 class="section-title">Événements à venir</h2>
             <div class="grid">
-                <div class="card">
+                <div class="card" style="backdrop-filter: blur(10px); background: rgba(255,255,255,0.9);">
+                    <img src="images/AdobeStock_194972775.webp" alt="Soirée découverte" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
                     <h3>Soirée découverte</h3>
                     <p><strong>15 Mars 2024</strong></p>
                     <p>Venez découvrir l'univers du drone lors de notre soirée d'inauguration.</p>
                     <a href="evenements.html" class="btn btn-primary">En savoir plus</a>
                 </div>
-                <div class="card">
+                <div class="card" style="backdrop-filter: blur(10px); background: rgba(255,255,255,0.9);">
+                    <img src="images/20210702_123940-scaled 2.webp" alt="Formation télépilote" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
                     <h3>Formation télépilote</h3>
                     <p><strong>22-24 Mars 2024</strong></p>
                     <p>Formation certifiante sur 3 jours pour obtenir votre brevet de télépilote.</p>
                     <a href="formations.html" class="btn btn-primary">S'inscrire</a>
                 </div>
-                <div class="card">
+                <div class="card" style="backdrop-filter: blur(10px); background: rgba(255,255,255,0.9);">
+                    <img src="images/Photo-lancement-drone-1170x630-1-1024x551.webp" alt="Conférence innovation" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
                     <h3>Conférence innovation</h3>
                     <p><strong>5 Avril 2024</strong></p>
                     <p>Les dernières innovations dans le secteur du drone civil et professionnel.</p>
@@ -148,21 +169,21 @@
     </section>
 
     <!-- Réservation rapide -->
-    <section id="reservation">
+    <section id="reservation" style="background: linear-gradient(135deg, rgba(0,44,75,0.95), rgba(0,44,75,0.85)), url('images/reservation-bg.jpg'); background-size: cover; background-attachment: fixed; color: white;">
         <div class="container">
-            <h2 class="section-title">Réservez votre expérience</h2>
+            <h2 class="section-title" style="color: white;">Réservez votre expérience</h2>
             <div style="max-width: 600px; margin: 0 auto;">
-                <form class="reservation-form">
+                <form id="reservation-form" style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; backdrop-filter: blur(10px);">
                     <div class="form-group">
-                        <label for="nom">Nom complet</label>
+                        <label for="nom" style="color: white;">Nom complet</label>
                         <input type="text" id="nom" name="nom" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email" style="color: white;">Email</label>
                         <input type="email" id="email" name="email" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="activite">Type d'activité</label>
+                        <label for="activite" style="color: white;">Type d'activité</label>
                         <select id="activite" name="activite" class="form-control" required>
                             <option value="">Choisir une activité</option>
                             <option value="decouverte">Découverte drone</option>
@@ -172,14 +193,14 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="date">Date souhaitée</label>
+                        <label for="date" style="color: white;">Date souhaitée</label>
                         <input type="date" id="date" name="date" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="message">Message (optionnel)</label>
+                        <label for="message" style="color: white;">Message (optionnel)</label>
                         <textarea id="message" name="message" class="form-control" rows="4"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer la demande</button>
+                    <button type="submit" class="btn" style="width: 100%; background: white; color: var(--accent); font-weight: 600;">Envoyer la demande</button>
                 </form>
             </div>
         </div>
@@ -205,9 +226,9 @@
                 <div class="footer-section">
                     <h4>Contact</h4>
                     <ul>
-                        <li>📍 Adresse à définir</li>
-                        <li>📞 Téléphone à définir</li>
-                        <li>✉️ contact@airhub.fr</li>
+                        <li>📍 5 rue Hector Berlioz, Genas</li>
+                        <li>📞 06 72 25 67 83</li>
+                        <li>✉️ maradantom@gmail.com</li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -227,5 +248,33 @@
 
     <!-- JavaScript -->
     <script src="js/main.js"></script>
+    
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        emailjs.init("R8B3JSxI6kY5aOU1T");
+
+        document.getElementById('reservation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const button = this.querySelector('button');
+            button.textContent = 'Envoi en cours...';
+            button.disabled = true;
+            
+            emailjs.sendForm('service_tm', 'template_kv2vrxc', this)
+                .then(function() {
+                    alert('Demande de réservation envoyée avec succès !');
+                    document.getElementById('reservation-form').reset();
+                })
+                .catch(function(error) {
+                    console.error('Erreur:', error);
+                    alert('Erreur d\'envoi. Réessayez.');
+                })
+                .finally(function() {
+                    button.textContent = 'Envoyer la demande';
+                    button.disabled = false;
+                });
+        });
+    </script>
 </body>
 </html>
