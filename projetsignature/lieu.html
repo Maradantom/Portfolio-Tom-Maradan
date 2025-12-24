@@ -116,15 +116,22 @@
         <div class="container">
             <h2 class="section-title">Galerie du lieu</h2>
             <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-                <img src="images/2025-11-17-15-34-34_Fourviere1080.webp" alt="Vue extérieure" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;">
-                <img src="images/lieu-post.webp" alt="Espace accueil" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;">
-                <img src="images/what-is-an-fpv-drone.webp" alt="Simulateurs" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;">
-                <img src="images/yulii-shtel-3PJNIvkf-Tw-unsplash.webp" alt="Zone de vol" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;">
-                <img src="images/formation-drone-perpignan-24.webp" alt="Salle formation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;">
-                <img src="images/647ef99472fa62a3b4b94a0e_Mavic_3_Pro_lifestyle_12.webp" alt="Boutique" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;">
+                <img src="images/2025-11-17-15-34-34_Fourviere1080.webp" alt="Vue extérieure" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; cursor: pointer;" onclick="openModal(this)">
+                <img src="images/lieu-post.webp" alt="Espace accueil" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; cursor: pointer;" onclick="openModal(this)">
+                <img src="images/what-is-an-fpv-drone.webp" alt="Simulateurs" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; cursor: pointer;" onclick="openModal(this)">
+                <img src="images/yulii-shtel-3PJNIvkf-Tw-unsplash.webp" alt="Zone de vol" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; cursor: pointer;" onclick="openModal(this)">
+                <img src="images/formation-drone-perpignan-24.webp" alt="Salle formation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; cursor: pointer;" onclick="openModal(this)">
+                <img src="images/647ef99472fa62a3b4b94a0e_Mavic_3_Pro_lifestyle_12.webp" alt="Boutique" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; cursor: pointer;" onclick="openModal(this)">
             </div>
         </div>
     </section>
+
+    <!-- Modal pour galerie -->
+    <div id="imageModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9);" onclick="closeModal()">
+        <span style="position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer;" onclick="closeModal()">&times;</span>
+        <img id="modalImage" style="margin: auto; display: block; width: 80%; max-width: 700px; margin-top: 5%;">
+        <div id="caption" style="margin: auto; display: block; width: 80%; max-width: 700px; text-align: center; color: #ccc; padding: 10px 0; height: 150px;"></div>
+    </div>
 
     <!-- Plans et schémas -->
     <section class="bg-light">
@@ -235,5 +242,26 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+        function openModal(img) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const captionText = document.getElementById('caption');
+            
+            modal.style.display = 'block';
+            modalImg.src = img.src;
+            captionText.innerHTML = img.alt;
+        }
+        
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+        
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
