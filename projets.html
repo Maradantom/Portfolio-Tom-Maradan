@@ -567,9 +567,13 @@ function updateTarget(deltaX, deltaY) {
   }
 </style>
 
-  <footer>
-    <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan" class="footer-logo">
-    <p>© 2026 Tom Maradan — Tous droits réservés</p>
+  <footer class="footer">
+   <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan" class="footer-logo">
+   <p>© <span id="year"></span> Tom Maradan – Tous droits réservés</p>
+
+   <script>
+   document.getElementById("year").textContent = new Date().getFullYear();
+   </script>
   </footer>
 
     <div class="floating-socials">

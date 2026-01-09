@@ -564,9 +564,13 @@
     <a href="../projets.html" class="voir-projets-btn">← Retour à tous les projets</a>
   </main>
 
-  <footer>
+  <footer class="footer">
     <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan" class="footer-logo">
-    <p>© 2026 Tom Maradan — Tous droits réservés</p>
+    <p>© <span id="year"></span> Tom Maradan – Tous droits réservés</p>
+
+    <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
   </footer>
 
 </body>
