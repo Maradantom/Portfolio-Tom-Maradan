@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Flyer A4 paysage – Recto / Verso</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: #ededed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Outfit', sans-serif;
+}
+
+.scene {
+  width: 1200px;
+  height: 700px;
+  perspective: 1600px;
+}
+
+.flyer {
+  position: relative;
+  width: 900px;
+  height: 350px;
+  transform-style: preserve-3d;
+  cursor: grab;
+}
+
+/* PANNEAUX */
+.panel {
+  position: absolute;
+  height: 350px;
+  transform-style: preserve-3d;
+}
+
+/* Dimensions */
+.center { width: 450px; left: 225px; }
+.side   { width: 225px; }
+
+/* Faces */
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: white;
+  border: 1px solid #dcdcdc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  backface-visibility: hidden;
+}
+
+/* Verso */
+.back {
+  transform: rotateY(180deg);
+  background: #fafafa;
+}
+
+/* Position panneaux */
+.left {
+  left: 0;
+  transform-origin: right center;
+  transform: rotateY(25deg);
+}
+
+.right {
+  right: 0;
+  transform-origin: left center;
+  transform: rotateY(-25deg);
+}
+
+/* Labels temporaires */
+.face span {
+  opacity: 0.5;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+  <div class="flyer" id="flyer">
+
+    <!-- Demi gauche -->
+    <div class="panel side left">
+      <div class="face"><span>Demi A4 gauche<br>RECTO</span></div>
+      <div class="face back"><span>Demi A4 gauche<br>VERSO</span></div>
+    </div>
+
+    <!-- Centre -->
+    <div class="panel center">
+      <div class="face"><span>A4 central<br>RECTO</span></div>
+      <div class="face back"><span>A4 central<br>VERSO</span></div>
+    </div>
+
+    <!-- Demi droite -->
+    <div class="panel side right">
+      <div class="face"><span>Demi A4 droite<br>RECTO</span></div>
+      <div class="face back"><span>Demi A4 droite<br>VERSO</span></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const flyer = document.getElementById('flyer');
+
+let isDragging = false;
+let startX, startY;
+let rotX = -10;
+let rotY = 20;
+
+flyer.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+
+document.addEventListener('mousedown', e => {
+  isDragging = true;
+  startX = e.clientX;
+  startY = e.clientY;
+});
+
+document.addEventListener('mouseup', () => isDragging = false);
+
+document.addEventListener('mousemove', e => {
+  if (!isDragging) return;
+
+  const dx = e.clientX - startX;
+  const dy = e.clientY - startY;
+
+  rotY += dx * 0.35;
+  rotX -= dy * 0.35;
+
+  flyer.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+
+  startX = e.clientX;
+  startY = e.clientY;
+});
+</script>
+
+</body>
+</html>
