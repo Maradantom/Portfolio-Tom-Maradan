@@ -12,11 +12,16 @@
       box-sizing: border-box;
     }
 
+    html {
+      overflow-x: hidden;
+    }
+
     body {
       font-family: 'Noto Sans', sans-serif;
       background: #fefefe;
       color: #111;
       line-height: 1.5;
+      overflow-x: hidden;
     }
 
     .top-banner {
@@ -61,6 +66,69 @@
       border-radius: 50%;
     }
 
+    .language-selector {
+      position: relative;
+      margin-left: 16px;
+    }
+
+    .language-btn {
+      background: none;
+      border: 2px solid #0058a3;
+      color: #0058a3;
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .language-btn:hover {
+      background: #0058a3;
+      color: white;
+    }
+
+    .language-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: none;
+      min-width: 120px;
+      z-index: 1000;
+    }
+
+    .language-dropdown.active {
+      display: block;
+    }
+
+    .language-option {
+      padding: 12px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 0.2s ease;
+    }
+
+    .language-option:last-child {
+      border-bottom: none;
+    }
+
+    .language-option:hover {
+      background: #f5f5f5;
+    }
+
+    .language-option.active {
+      background: #0058a3;
+      color: white;
+    }
+
     .breadcrumb {
       max-width: 1400px;
       margin: 0 auto;
@@ -82,6 +150,8 @@
       grid-template-columns: 1fr 400px;
       gap: 48px;
       margin-bottom: 48px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .product-images {
@@ -92,6 +162,7 @@
 
     .main-image {
       width: 100%;
+      max-width: 100%;
       aspect-ratio: 16/9;
       border-radius: 4px;
       object-fit: cover;
@@ -99,6 +170,7 @@
 
     .main-video {
       width: 100%;
+      max-width: 100%;
       aspect-ratio: 16/9;
       border-radius: 4px;
       display: none;
@@ -687,31 +759,294 @@
       font-size: 14px;
     }
 
-    @media (max-width: 768px) {
+    /* Tablettes et écrans moyens */
+    @media (max-width: 1024px) {
       .main-content {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 32px;
+        padding: 0 20px;
       }
-      
-      .nav-content {
-        flex-direction: column;
-        gap: 16px;
+
+      .product-info {
+        order: 2;
       }
-      
-      .product-name {
-        font-size: 24px;
+
+      .product-images {
+        order: 1;
+      }
+
+      .header-content {
+        padding: 0 20px;
+      }
+
+      .breadcrumb {
+        padding: 16px 20px;
+      }
+
+      .product-tabs {
+        padding: 0 20px;
+      }
+
+      .recommendations {
+        padding: 48px 20px;
+      }
+
+      .footer-content {
+        padding: 0 20px;
+      }
+    }
+
+    /* Smartphones et petits écrans */
+    @media (max-width: 768px) {
+      * {
+        max-width: 100%;
       }
 
       .header-content {
         flex-direction: column;
         gap: 16px;
+        padding: 0 16px;
+        width: 100%;
+      }
+
+      .logo {
+        font-size: 28px;
+      }
+
+      .breadcrumb {
+        padding: 12px 16px;
+        font-size: 11px;
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 100%;
+      }
+
+      .main-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 0 16px;
+        width: 100%;
+        margin: 0;
+      }
+
+      .product-images {
+        width: 100%;
+      }
+
+      .product-info {
+        width: 100%;
+      }
+
+      .product-name {
+        font-size: 24px;
+      }
+
+      .price {
+        font-size: 28px;
+      }
+
+      .thumbnail-row {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        width: 100%;
+      }
+
+      .thumbnail {
+        width: 80px;
+        height: 60px;
+        flex-shrink: 0;
+      }
+
+      .tab-nav {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        gap: 8px;
+        width: 100%;
+      }
+
+      .tab-button {
+        padding: 12px 16px;
+        font-size: 13px;
+        min-width: 120px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .spec-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .rating-overview {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .recommendations {
+        padding: 32px 16px;
+        width: 100%;
+      }
+
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        padding: 0 16px;
+        width: 100%;
+      }
+
+      .product-tabs {
+        padding: 0 16px;
+        width: 100%;
+      }
+
+      .lightbox-nav {
+        font-size: 18px;
+        padding: 8px 12px;
+      }
+
+      .lightbox-prev {
+        left: 10px;
+      }
+
+      .lightbox-next {
+        right: 10px;
+      }
+    }
+
+    /* Très petits écrans */
+    @media (max-width: 480px) {
+      .top-banner {
+        font-size: 11px;
+        padding: 6px;
+        width: 100%;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .header-icons {
+        gap: 16px;
+      }
+
+      .icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      .language-selector {
+        margin-left: 8px;
+      }
+
+      .language-btn {
+        padding: 6px 10px;
+        font-size: 11px;
+      }
+
+      .main-content {
+        padding: 0 12px;
+        gap: 20px;
+        width: 100%;
+        margin: 0;
+      }
+
+      .product-name {
+        font-size: 20px;
+      }
+
+      .price {
+        font-size: 24px;
+      }
+
+      .thumbnail {
+        width: 70px;
+        height: 50px;
+      }
+
+      .tab-nav {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+      }
+
+      .tab-button {
+        padding: 10px 12px;
+        font-size: 12px;
+        min-width: 100px;
+        flex-shrink: 0;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 12px;
+        width: 100%;
+      }
+
+      .product-tabs {
+        padding: 0 12px;
+        width: 100%;
+      }
+
+      .recommendations {
+        padding: 24px 12px;
+        width: 100%;
+      }
+
+      .breadcrumb {
+        padding: 10px 12px;
+        font-size: 10px;
+        width: 100%;
+      }
+
+      .delivery-info {
+        padding: 12px;
+        font-size: 13px;
+      }
+
+      .service-item {
+        font-size: 13px;
+      }
+
+      .detail-row {
+        font-size: 13px;
+      }
+    }
+
+    /* Écrans extra larges */
+    @media (min-width: 1400px) {
+      .main-content {
+        max-width: 1600px;
+      }
+
+      .product-tabs {
+        max-width: 1600px;
+      }
+
+      .recommendations {
+        max-width: 1600px;
+      }
+
+      .footer-content {
+        max-width: 1600px;
       }
     }
   </style>
 </head>
 <body>
   <div class="top-banner">
-    Livraison gratuite à partir de 200€ d'achat
+    Livraison gratuite à partir de 20 000€ d'achat
   </div>
 
   <div class="header">
@@ -722,6 +1057,16 @@
         <div class="icon"></div>
         <div class="icon"></div>
         <div class="icon"></div>
+        <div class="language-selector">
+          <button class="language-btn" onclick="toggleLanguageDropdown()">
+            <span id="currentLang">FR</span>
+            <span>▼</span>
+          </button>
+          <div class="language-dropdown" id="languageDropdown">
+            <div class="language-option active" onclick="changeLanguage('fr')">🇫🇷 Français</div>
+            <div class="language-option" onclick="changeLanguage('en')">🇬🇧 English</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -757,7 +1102,7 @@
       
       <div class="rating">
         <span class="stars">★★★★★</span>
-        <span class="rating-text">(823)</span>
+        <span class="rating-text">(123)</span>
       </div>
 
       <div class="price">Sur devis</div>
@@ -773,16 +1118,12 @@
           <span>Huile naturelle</span>
         </div>
         <div class="detail-row">
-          <span>Largeur</span>
-          <span>Sur mesure</span>
-        </div>
-        <div class="detail-row">
-          <span>Profondeur</span>
-          <span>Sur mesure</span>
-        </div>
-        <div class="detail-row">
           <span>Hauteur</span>
-          <span>Sur mesure</span>
+          <span>180 cm</span>
+        </div>
+        <div class="detail-row">
+          <span>Diamètre</span>
+          <span>100 cm</span>
         </div>
       </div>
 
@@ -827,16 +1168,21 @@
       <button class="tab-button" onclick="showTab('dimensions')">Dimensions et poids</button>
       <button class="tab-button" onclick="showTab('materials')">Matériaux et entretien</button>
       <button class="tab-button" onclick="showTab('assembly')">Montage et installation</button>
-      <button class="tab-button" onclick="showTab('reviews')">Avis clients (823)</button>
+      <button class="tab-button" onclick="showTab('reviews')">Avis clients (123)</button>
     </div>
 
     <div id="description" class="tab-content active">
       <h2>Description du produit</h2>
-      <p>DRÜNKAR est une collection de mobilier sur mesure conçue pour s'adapter parfaitement à votre espace de vie. Chaque pièce est fabriquée artisanalement en chêne massif européen, offrant une durabilité exceptionnelle et un caractère unique.</p>
+      <p>Le design au service de vos grands crus.</p>
       
-      <p>La finition à l'huile naturelle met en valeur le veinage naturel du bois tout en le protégeant des agressions quotidiennes. Cette collection allie esthétique contemporaine et fonctionnalité optimale, créant des solutions de rangement intelligentes et élégantes.</p>
+      <p>Découvrez l'équilibre parfait entre l'esthétique et la fonctionnalité. Ce meuble de rangement unique, inspiré par la forme iconique du tire-bouchon, transforme vos bouteilles en une véritable œuvre d'art verticale.</p>
       
-      <p>Chaque projet débute par une étude personnalisée de vos besoins et de votre espace, suivie d'une modélisation 3D pour vous permettre de visualiser le résultat final avant la fabrication.</p>
+      <p>Les points forts :</p>
+        <p>Design Unique : Une structure en spirale qui attire tous les regards.</p>
+        <p>Gain de place : Stockez jusqu'à 24 bouteilles sur une surface au sol très réduite.</p>
+        <p>Éclairage intégré : Un socle lumineux (LED) pour sublimer vos étiquettes, même dans la pénombre.</p>
+        <p>Matériaux Premium : Fabriqué en bois massif et finitions métalliques pour une stabilité parfaite.</p>
+      </p>
     </div>
 
     <div id="dimensions" class="tab-content">
@@ -845,15 +1191,14 @@
         <div class="spec-section">
           <h3>Dimensions</h3>
           <ul class="spec-list">
-            <li><span>Largeur</span><span>Sur mesure</span></li>
-            <li><span>Profondeur</span><span>Sur mesure</span></li>
-            <li><span>Hauteur</span><span>Sur mesure</span></li>
+            <li><span>Hauteur</span><span>180 cm</span></li>
+            <li><span>Diamètre</span><span>100 cm</span></li>
           </ul>
         </div>
         <div class="spec-section">
           <h3>Poids et emballage</h3>
           <ul class="spec-list">
-            <li><span>Poids</span><span>Variable selon dimensions</span></li>
+            <li><span>Poids</span><span>250 Kg</span></li>
             <li><span>Emballage</span><span>Protection renforcée</span></li>
           </ul>
         </div>
@@ -919,7 +1264,7 @@
             <div class="rating-bar">
               <span>5 étoiles</span>
               <div class="bar"><div class="fill" style="width: 97%"></div></div>
-              <span>823</span>
+              <span>123</span>
             </div>
             <div class="rating-bar">
               <span>4 étoiles</span>
@@ -1196,6 +1541,469 @@ on m'avait beaucoup parlé des caves à vins, et je dois dire que celle ci est g
         
         input.value = value;
       });
+    });
+
+    // Language selector
+    function toggleLanguageDropdown() {
+      const dropdown = document.getElementById('languageDropdown');
+      dropdown.classList.toggle('active');
+    }
+
+    function changeLanguage(lang) {
+      const currentLang = document.getElementById('currentLang');
+      const dropdown = document.getElementById('languageDropdown');
+      const options = dropdown.querySelectorAll('.language-option');
+      
+      // Update button text
+      currentLang.textContent = lang.toUpperCase();
+      
+      // Update active option
+      options.forEach(option => {
+        option.classList.remove('active');
+        if (option.onclick.toString().includes(lang)) {
+          option.classList.add('active');
+        }
+      });
+      
+      // Close dropdown
+      dropdown.classList.remove('active');
+      
+      // Here you can add logic to translate the page content
+      translatePage(lang);
+    }
+
+    function translatePage(lang) {
+      // Basic translation logic - you can expand this
+      if (lang === 'en') {
+        // Translate to English
+        document.querySelector('.top-banner').textContent = 'Free delivery from €20,000 purchase';
+        document.querySelector('.breadcrumb').innerHTML = '<a href="index.html">Home</a> > <a href="projets.html">Projects</a> > <a href="#">Furniture</a> > DRÜNKAR';
+        document.querySelector('.product-description').textContent = 'Custom furniture, solid oak';
+        document.querySelector('.price').textContent = 'On quote';
+        document.querySelector('.price-note').textContent = 'Price including VAT';
+        document.querySelector('.add-to-cart').textContent = 'REQUEST A QUOTE';
+        document.querySelector('.wishlist-btn').textContent = '♡ Add to my list';
+        
+        // Update detail rows
+        const detailRows = document.querySelectorAll('.detail-row');
+        if (detailRows[0]) detailRows[0].innerHTML = '<span>Material</span><span>Solid oak</span>';
+        if (detailRows[1]) detailRows[1].innerHTML = '<span>Finish</span><span>Natural oil</span>';
+        if (detailRows[2]) detailRows[2].innerHTML = '<span>Height</span><span>180 cm</span>';
+        if (detailRows[3]) detailRows[3].innerHTML = '<span>Diameter</span><span>100 cm</span>';
+        
+        // Update quantity selector
+        document.querySelector('.quantity-selector span').textContent = 'Quantity';
+        
+        // Update delivery info
+        document.querySelector('.delivery-info').innerHTML = '<strong>Delivery and assembly</strong><br>Manufacturing time: 8-12 weeks<br>Installation included in Lyon region';
+        
+        // Update services
+        const services = document.querySelectorAll('.service-item span');
+        if (services[0]) services[0].textContent = '10-year structural warranty';
+        if (services[1]) services[1].textContent = 'Free 3D design';
+        if (services[2]) services[2].textContent = 'French artisanal manufacturing';
+        
+        // Update tabs
+        const tabButtons = document.querySelectorAll('.tab-button');
+        if (tabButtons[0]) tabButtons[0].textContent = 'Product description';
+        if (tabButtons[1]) tabButtons[1].textContent = 'Dimensions and weight';
+        if (tabButtons[2]) tabButtons[2].textContent = 'Materials and care';
+        if (tabButtons[3]) tabButtons[3].textContent = 'Assembly and installation';
+        if (tabButtons[4]) tabButtons[4].textContent = 'Customer reviews (123)';
+        
+        // Update tab content
+        const descriptionTab = document.getElementById('description');
+        if (descriptionTab) {
+          descriptionTab.innerHTML = `
+            <h2>Product description</h2>
+            <p>Design at the service of your great wines.</p>
+            <p>Discover the perfect balance between aesthetics and functionality. This unique storage furniture, inspired by the iconic corkscrew shape, transforms your bottles into a true vertical work of art.</p>
+            <p>Key features:</p>
+            <p>Unique Design: A spiral structure that catches everyone's eye.</p>
+            <p>Space saving: Store up to 24 bottles on a very small floor area.</p>
+            <p>Integrated lighting: A luminous base (LED) to enhance your labels, even in dim light.</p>
+            <p>Premium Materials: Made of solid wood and metal finishes for perfect stability.</p>
+          `;
+        }
+        
+        const dimensionsTab = document.getElementById('dimensions');
+        if (dimensionsTab) {
+          dimensionsTab.innerHTML = `
+            <h2>Dimensions and weight</h2>
+            <div class="spec-grid">
+              <div class="spec-section">
+                <h3>Dimensions</h3>
+                <ul class="spec-list">
+                  <li><span>Height</span><span>180 cm</span></li>
+                  <li><span>Diameter</span><span>100 cm</span></li>
+                </ul>
+              </div>
+              <div class="spec-section">
+                <h3>Weight and packaging</h3>
+                <ul class="spec-list">
+                  <li><span>Weight</span><span>250 Kg</span></li>
+                  <li><span>Packaging</span><span>Reinforced protection</span></li>
+                </ul>
+              </div>
+            </div>
+          `;
+        }
+        
+        const materialsTab = document.getElementById('materials');
+        if (materialsTab) {
+          materialsTab.innerHTML = `
+            <h2>Materials and care</h2>
+            <div class="spec-grid">
+              <div class="spec-section">
+                <h3>Materials</h3>
+                <ul class="spec-list">
+                  <li><span>Structure</span><span>European solid oak</span></li>
+                  <li><span>Finish</span><span>Matte natural oil</span></li>
+                  <li><span>Hardware</span><span>Stainless steel</span></li>
+                </ul>
+              </div>
+              <div class="spec-section">
+                <h3>Care</h3>
+                <ul class="spec-list">
+                  <li><span>Cleaning</span><span>Damp cloth</span></li>
+                  <li><span>Maintenance</span><span>Oil 1x/year</span></li>
+                  <li><span>Warranty</span><span>10 years structure</span></li>
+                </ul>
+              </div>
+            </div>
+          `;
+        }
+        
+        const assemblyTab = document.getElementById('assembly');
+        if (assemblyTab) {
+          assemblyTab.innerHTML = `
+            <h2>Assembly and installation</h2>
+            <p>The installation of your DRÜNKAR furniture is carried out by our specialized teams:</p>
+            <div class="spec-grid">
+              <div class="spec-section">
+                <h3>Installation process</h3>
+                <ul class="spec-list">
+                  <li><span>Step 1</span><span>On-site delivery</span></li>
+                  <li><span>Step 2</span><span>Professional assembly</span></li>
+                  <li><span>Step 3</span><span>Final adjustments</span></li>
+                  <li><span>Step 4</span><span>Site cleanup</span></li>
+                </ul>
+              </div>
+              <div class="spec-section">
+                <h3>Practical information</h3>
+                <ul class="spec-list">
+                  <li><span>Duration</span><span>1-2 days depending on project</span></li>
+                  <li><span>Team</span><span>2 technicians</span></li>
+                  <li><span>Tools</span><span>Provided by us</span></li>
+                </ul>
+              </div>
+            </div>
+          `;
+        }
+        
+        const reviewsTab = document.getElementById('reviews');
+        if (reviewsTab) {
+          reviewsTab.querySelector('h2').textContent = 'Customer reviews';
+          reviewsTab.querySelector('.load-more-btn').textContent = 'See more reviews';
+          
+          // Translate review content
+          const reviewItems = reviewsTab.querySelectorAll('.review-item');
+          if (reviewItems[0]) {
+            reviewItems[0].querySelector('.review-content p').textContent = 'Superb product, which I can no longer do without. I had been told a lot about wine cellars, and I must say that this one is great, very easy to use and the conservation of bottles with the display of their dates is really a function I could no longer do without. In addition, the "advice" function to choose the best bottle is a real asset!! it\'s really great! I recommend!! ✌️';
+          }
+          if (reviewItems[1]) {
+            reviewItems[1].querySelector('.review-content p').textContent = 'Delighted with my purchase, it corresponds exactly to my expectations, incredible as in the photos. We are enjoying it well now during our well-watered evenings';
+          }
+          if (reviewItems[2]) {
+            reviewItems[2].querySelector('.review-content p').textContent = 'Delighted with my new advent calendar, every day a new discovery!';
+          }
+          if (reviewItems[3]) {
+            reviewItems[3].querySelector('.review-content p').textContent = 'Having already bought wine cellars, this one far exceeds the others, by the price and the shape similar to my pole dance bar. You can very easily add racks when there is not enough space for your wine bottles. It\'s great thank you father-in-law.';
+          }
+          if (reviewItems[4]) {
+            reviewItems[4].querySelector('.review-content p').textContent = 'Magnificent work! The integrated desk completely transforms our living room. The 3D modeling allowed us to visualize the project well before realization. Talented craftsman!';
+          }
+        }
+        
+        // Update recommendations
+        const recommendationsTitle = document.querySelector('.recommendations h2');
+        if (recommendationsTitle) recommendationsTitle.textContent = 'You might also like';
+        
+        const productCards = document.querySelectorAll('.product-card-name');
+        if (productCards[0]) productCards[0].textContent = 'Coffee table';
+        if (productCards[1]) productCards[1].textContent = 'Stool';
+        if (productCards[2]) productCards[2].textContent = 'Wall console';
+        if (productCards[3]) productCards[3].textContent = 'Coat rack';
+        
+        const productPrices = document.querySelectorAll('.product-card-price');
+        productPrices.forEach(price => price.textContent = 'On quote');
+        
+        // Update footer
+        const footerSections = document.querySelectorAll('.footer-section');
+        if (footerSections[0]) {
+          footerSections[0].innerHTML = `
+            <h3>Services</h3>
+            <ul>
+              <li><a href="#">3D Design</a></li>
+              <li><a href="#">Custom manufacturing</a></li>
+              <li><a href="#">Installation</a></li>
+              <li><a href="#">After-sales service</a></li>
+            </ul>
+          `;
+        }
+        if (footerSections[1]) {
+          footerSections[1].innerHTML = `
+            <h3>Help</h3>
+            <ul>
+              <li><a href="#">How to order</a></li>
+              <li><a href="#">Delivery</a></li>
+              <li><a href="#">Returns</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          `;
+        }
+        if (footerSections[2]) {
+          footerSections[2].innerHTML = `
+            <h3>About</h3>
+            <ul>
+              <li><a href="#">Our story</a></li>
+              <li><a href="#">Our values</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Press</a></li>
+            </ul>
+          `;
+        }
+        if (footerSections[3]) {
+          footerSections[3].innerHTML = `
+            <h3>Contact</h3>
+            <ul>
+              <li><a href="#">Customer service</a></li>
+              <li><a href="#">Stores</a></li>
+              <li><a href="#">Professionals</a></li>
+            </ul>
+          `;
+        }
+        
+      } else {
+        // Translate back to French
+        document.querySelector('.top-banner').textContent = 'Livraison gratuite à partir de 20 000€ d\'achat';
+        document.querySelector('.breadcrumb').innerHTML = '<a href="index.html">Accueil</a> > <a href="projets.html">Projets</a> > <a href="#">Mobilier</a> > DRÜNKAR';
+        document.querySelector('.product-description').textContent = 'Mobilier sur mesure, chêne massif';
+        document.querySelector('.price').textContent = 'Sur devis';
+        document.querySelector('.price-note').textContent = 'Prix incluant la TVA';
+        document.querySelector('.add-to-cart').textContent = 'Demander un devis';
+        document.querySelector('.wishlist-btn').textContent = '♡ Ajouter à ma liste';
+        
+        // Update detail rows
+        const detailRows = document.querySelectorAll('.detail-row');
+        if (detailRows[0]) detailRows[0].innerHTML = '<span>Matériau</span><span>Chêne massif</span>';
+        if (detailRows[1]) detailRows[1].innerHTML = '<span>Finition</span><span>Huile naturelle</span>';
+        if (detailRows[2]) detailRows[2].innerHTML = '<span>Hauteur</span><span>180 cm</span>';
+        if (detailRows[3]) detailRows[3].innerHTML = '<span>Diamètre</span><span>100 cm</span>';
+        
+        // Update quantity selector
+        document.querySelector('.quantity-selector span').textContent = 'Quantité';
+        
+        // Update delivery info
+        document.querySelector('.delivery-info').innerHTML = '<strong>Livraison et montage</strong><br>Délai de fabrication : 8-12 semaines<br>Installation incluse dans la région lyonnaise';
+        
+        // Update services
+        const services = document.querySelectorAll('.service-item span');
+        if (services[0]) services[0].textContent = 'Garantie 10 ans structure';
+        if (services[1]) services[1].textContent = 'Conception 3D gratuite';
+        if (services[2]) services[2].textContent = 'Fabrication artisanale française';
+        
+        // Update tabs
+        const tabButtons = document.querySelectorAll('.tab-button');
+        if (tabButtons[0]) tabButtons[0].textContent = 'Description du produit';
+        if (tabButtons[1]) tabButtons[1].textContent = 'Dimensions et poids';
+        if (tabButtons[2]) tabButtons[2].textContent = 'Matériaux et entretien';
+        if (tabButtons[3]) tabButtons[3].textContent = 'Montage et installation';
+        if (tabButtons[4]) tabButtons[4].textContent = 'Avis clients (123)';
+        
+        // Restore original French content for tabs
+        const descriptionTab = document.getElementById('description');
+        if (descriptionTab) {
+          descriptionTab.innerHTML = `
+            <h2>Description du produit</h2>
+            <p>Le design au service de vos grands crus.</p>
+            <p>Découvrez l'équilibre parfait entre l'esthétique et la fonctionnalité. Ce meuble de rangement unique, inspiré par la forme iconique du tire-bouchon, transforme vos bouteilles en une véritable œuvre d'art verticale.</p>
+            <p>Les points forts :</p>
+            <p>Design Unique : Une structure en spirale qui attire tous les regards.</p>
+            <p>Gain de place : Stockez jusqu'à 24 bouteilles sur une surface au sol très réduite.</p>
+            <p>Éclairage intégré : Un socle lumineux (LED) pour sublimer vos étiquettes, même dans la pénombre.</p>
+            <p>Matériaux Premium : Fabriqué en bois massif et finitions métalliques pour une stabilité parfaite.</p>
+          `;
+        }
+        
+        const dimensionsTab = document.getElementById('dimensions');
+        if (dimensionsTab) {
+          dimensionsTab.innerHTML = `
+            <h2>Dimensions et poids</h2>
+            <div class="spec-grid">
+              <div class="spec-section">
+                <h3>Dimensions</h3>
+                <ul class="spec-list">
+                  <li><span>Hauteur</span><span>180 cm</span></li>
+                  <li><span>Diamètre</span><span>100 cm</span></li>
+                </ul>
+              </div>
+              <div class="spec-section">
+                <h3>Poids et emballage</h3>
+                <ul class="spec-list">
+                  <li><span>Poids</span><span>250 Kg</span></li>
+                  <li><span>Emballage</span><span>Protection renforcée</span></li>
+                </ul>
+              </div>
+            </div>
+          `;
+        }
+        
+        const materialsTab = document.getElementById('materials');
+        if (materialsTab) {
+          materialsTab.innerHTML = `
+            <h2>Matériaux et entretien</h2>
+            <div class="spec-grid">
+              <div class="spec-section">
+                <h3>Matériaux</h3>
+                <ul class="spec-list">
+                  <li><span>Structure</span><span>Chêne massif européen</span></li>
+                  <li><span>Finition</span><span>Huile naturelle mate</span></li>
+                  <li><span>Quincaillerie</span><span>Acier inoxydable</span></li>
+                </ul>
+              </div>
+              <div class="spec-section">
+                <h3>Entretien</h3>
+                <ul class="spec-list">
+                  <li><span>Nettoyage</span><span>Chiffon humide</span></li>
+                  <li><span>Entretien</span><span>Huile 1x/an</span></li>
+                  <li><span>Garantie</span><span>10 ans structure</span></li>
+                </ul>
+              </div>
+            </div>
+          `;
+        }
+        
+        const assemblyTab = document.getElementById('assembly');
+        if (assemblyTab) {
+          assemblyTab.innerHTML = `
+            <h2>Montage et installation</h2>
+            <p>L'installation de votre mobilier DRÜNKAR est réalisée par nos équipes spécialisées :</p>
+            <div class="spec-grid">
+              <div class="spec-section">
+                <h3>Processus d'installation</h3>
+                <ul class="spec-list">
+                  <li><span>Étape 1</span><span>Livraison sur site</span></li>
+                  <li><span>Étape 2</span><span>Montage professionnel</span></li>
+                  <li><span>Étape 3</span><span>Ajustements finaux</span></li>
+                  <li><span>Étape 4</span><span>Nettoyage du chantier</span></li>
+                </ul>
+              </div>
+              <div class="spec-section">
+                <h3>Informations pratiques</h3>
+                <ul class="spec-list">
+                  <li><span>Durée</span><span>1-2 jours selon projet</span></li>
+                  <li><span>Équipe</span><span>2 techniciens</span></li>
+                  <li><span>Outils</span><span>Fournis par nos soins</span></li>
+                </ul>
+              </div>
+            </div>
+          `;
+        }
+        
+        const reviewsTab = document.getElementById('reviews');
+        if (reviewsTab) {
+          reviewsTab.querySelector('h2').textContent = 'Avis clients';
+          reviewsTab.querySelector('.load-more-btn').textContent = 'Voir plus d\'avis';
+          
+          // Restore French review content
+          const reviewItems = reviewsTab.querySelectorAll('.review-item');
+          if (reviewItems[0]) {
+            reviewItems[0].querySelector('.review-content p').textContent = 'Superbe produit, dont je ne peux plus me passer\non m\'avait beaucoup parlé des caves à vins, et je dois dire que celle ci est génial très simple d\'utilisation et la conservation des bouteilles avec l\'affichage de la date de ces dernières est vraiment une fonction dont je ne pourrai plus me passer. De plus, la fonction « conseils » pour choisir la meilleure bouteille est un vrai atout !! c\'est vraiment top ! Je recommande !! ✌️';
+          }
+          if (reviewItems[1]) {
+            reviewItems[1].querySelector('.review-content p').textContent = 'Ravie de mon achat il correspond tout à fait à mes attentes, incroyable comme sur les photos. Nous en profitons bien maintenant durant nos soirées bien arrosées';
+          }
+          if (reviewItems[2]) {
+            reviewItems[2].querySelector('.review-content p').textContent = 'Ravie de mon nouveau calendrier de l\'avent, chaque jour une nouvelle découverte !';
+          }
+          if (reviewItems[3]) {
+            reviewItems[3].querySelector('.review-content p').textContent = 'Ayant déjà acheté des caves à vin, celle la dépasse de loin les autres, par le prix et la forme semblable à ma barre de pole dance. Vous pouvez rajouter très facilement des racks quand il n\'y a pas assez de places pour vos bouteilles de vins. C\'est génial merci beau papa.';
+          }
+          if (reviewItems[4]) {
+            reviewItems[4].querySelector('.review-content p').textContent = 'Magnifique travail ! Le bureau intégré transforme complètement notre salon. La modélisation 3D nous a permis de bien visualiser le projet avant réalisation. Artisan de talent !';
+          }
+        }
+        
+        // Update recommendations
+        const recommendationsTitle = document.querySelector('.recommendations h2');
+        if (recommendationsTitle) recommendationsTitle.textContent = 'Vous pourriez aussi aimer';
+        
+        const productCards = document.querySelectorAll('.product-card-name');
+        if (productCards[0]) productCards[0].textContent = 'Table basse';
+        if (productCards[1]) productCards[1].textContent = 'Tabouret';
+        if (productCards[2]) productCards[2].textContent = 'Console murale';
+        if (productCards[3]) productCards[3].textContent = 'Porte manteaux';
+        
+        const productPrices = document.querySelectorAll('.product-card-price');
+        productPrices.forEach(price => price.textContent = 'Sur devis');
+        
+        // Update footer
+        const footerSections = document.querySelectorAll('.footer-section');
+        if (footerSections[0]) {
+          footerSections[0].innerHTML = `
+            <h3>Services</h3>
+            <ul>
+              <li><a href="#">Conception 3D</a></li>
+              <li><a href="#">Fabrication sur mesure</a></li>
+              <li><a href="#">Installation</a></li>
+              <li><a href="#">Service après-vente</a></li>
+            </ul>
+          `;
+        }
+        if (footerSections[1]) {
+          footerSections[1].innerHTML = `
+            <h3>Aide</h3>
+            <ul>
+              <li><a href="#">Comment commander</a></li>
+              <li><a href="#">Livraison</a></li>
+              <li><a href="#">Retours</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          `;
+        }
+        if (footerSections[2]) {
+          footerSections[2].innerHTML = `
+            <h3>À propos</h3>
+            <ul>
+              <li><a href="#">Notre histoire</a></li>
+              <li><a href="#">Nos valeurs</a></li>
+              <li><a href="#">Carrières</a></li>
+              <li><a href="#">Presse</a></li>
+            </ul>
+          `;
+        }
+        if (footerSections[3]) {
+          footerSections[3].innerHTML = `
+            <h3>Contact</h3>
+            <ul>
+              <li><a href="#">Service client</a></li>
+              <li><a href="#">Magasins</a></li>
+              <li><a href="#">Professionnels</a></li>
+            </ul>
+          `;
+        }
+      }
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const languageSelector = document.querySelector('.language-selector');
+      const dropdown = document.getElementById('languageDropdown');
+      
+      if (!languageSelector.contains(event.target)) {
+        dropdown.classList.remove('active');
+      }
     });
   </script>
 </body>
