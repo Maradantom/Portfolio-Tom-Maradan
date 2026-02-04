@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MATAELSKARE Mobilier sur mesure, chêne massif - Tom Maradan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background: #fefefe;
+      color: #111;
+      line-height: 1.5;
+    }
+
+    .top-banner {
+      background: #0058a3;
+      color: white;
+      text-align: center;
+      padding: 8px;
+      font-size: 12px;
+    }
+
+    .header {
+      background: #ffda1a;
+      padding: 16px 0;
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 36px;
+      font-weight: 900;
+      color: #0058a3;
+      text-transform: uppercase;
+    }
+
+    .header-icons {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      background: #0058a3;
+      border-radius: 50%;
+    }
+
+    .nav {
+      background: white;
+      border-bottom: 1px solid #ddd;
+      padding: 0;
+    }
+
+    .nav-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+    }
+
+    .nav-links a {
+      color: #111;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      padding: 16px 20px;
+      border-bottom: 3px solid transparent;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: #0058a3;
+    }
+
+    .breadcrumb {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      font-size: 12px;
+      color: #484848;
+    }
+
+    .breadcrumb a {
+      color: #484848;
+      text-decoration: none;
+    }
+
+    .main-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .product-images {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-image {
+      width: 100%;
+      height: 400px;
+      background: #f5f5f5;
+      margin-bottom: 16px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+    }
+
+    .thumbnail-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+    }
+
+    .thumbnail {
+      width: 72px;
+      height: 72px;
+      background: #f5f5f5;
+      cursor: pointer;
+      border: 2px solid transparent;
+      flex-shrink: 0;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 10px;
+    }
+
+    .thumbnail.active {
+      border-color: #0058a3;
+    }
+
+    .product-info {
+      padding-top: 24px;
+    }
+
+    .product-name {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .product-description {
+      color: #484848;
+      margin-bottom: 24px;
+      font-size: 16px;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .stars {
+      color: #111;
+      font-size: 16px;
+    }
+
+    .rating-text {
+      font-size: 14px;
+      color: #484848;
+    }
+
+    .price {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .price-note {
+      font-size: 12px;
+      color: #484848;
+      margin-bottom: 32px;
+    }
+
+    .product-details {
+      margin-bottom: 32px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #ddd;
+      font-size: 14px;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .quantity-input {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ddd;
+    }
+
+    .quantity-btn {
+      background: none;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .quantity-number {
+      padding: 8px 16px;
+      border: none;
+      text-align: center;
+      width: 60px;
+    }
+
+    .add-to-cart {
+      background: #111;
+      color: white;
+      border: none;
+      padding: 16px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      border-radius: 50px;
+    }
+
+    .add-to-cart:hover {
+      background: #333;
+    }
+
+    .wishlist-btn {
+      background: none;
+      border: 1px solid #ddd;
+      padding: 16px 24px;
+      font-size: 14px;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 24px;
+      border-radius: 50px;
+    }
+
+    .delivery-info {
+      background: #f5f5f5;
+      padding: 16px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      border-radius: 4px;
+    }
+
+    .services {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .service-icon {
+      width: 24px;
+      height: 24px;
+      background: #ddd;
+      border-radius: 50%;
+    }
+
+    .product-tabs {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+      margin-bottom: 48px;
+    }
+
+    .tab-nav {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 32px;
+    }
+
+    .tab-button {
+      background: none;
+      border: none;
+      padding: 16px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+
+    .tab-button.active {
+      border-bottom-color: #0058a3;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+
+    .spec-section h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .spec-list {
+      list-style: none;
+    }
+
+    .spec-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+    }
+
+    .reviews-summary {
+      margin-bottom: 32px;
+      padding: 24px;
+      background: #f9f9f9;
+      border-radius: 8px;
+    }
+
+    .rating-overview {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .rating-large {
+      text-align: center;
+    }
+
+    .stars-large {
+      font-size: 24px;
+      color: #111;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .rating-number {
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    .rating-breakdown {
+      flex: 1;
+    }
+
+    .rating-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .rating-bar span:first-child {
+      width: 60px;
+    }
+
+    .bar {
+      flex: 1;
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      background: #111;
+    }
+
+    .rating-bar span:last-child {
+      width: 30px;
+      text-align: right;
+    }
+
+    .reviews-list {
+      margin-bottom: 32px;
+    }
+
+    .review-item {
+      border-bottom: 1px solid #e0e0e0;
+      padding: 24px 0;
+    }
+
+    .review-item:last-child {
+      border-bottom: none;
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .reviewer-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .reviewer-avatar {
+      width: 40px;
+      height: 40px;
+      background: #0058a3;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    .reviewer-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .reviewer-name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .review-date {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .review-rating {
+      font-size: 16px;
+      color: #111;
+    }
+
+    .review-content {
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .review-helpful {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .helpful-btn {
+      background: none;
+      border: 1px solid #ddd;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .helpful-btn:hover {
+      background: #f5f5f5;
+    }
+
+    .load-more {
+      text-align: center;
+    }
+
+    .load-more-btn {
+      background: none;
+      border: 1px solid #111;
+      padding: 12px 24px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .load-more-btn:hover {
+      background: #111;
+      color: white;
+    }
+
+    .recommendations {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      border-top: 1px solid #ddd;
+    }
+
+    .recommendations h2 {
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .product-card-image {
+      width: 100%;
+      height: 200px;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+    }
+
+    .product-card-info {
+      padding: 16px;
+    }
+
+    .product-card-name {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .product-card-price {
+      font-weight: 700;
+      color: #111;
+    }
+
+    .footer {
+      background: #f5f5f5;
+      padding: 48px 0;
+      margin-top: 48px;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+    }
+
+    .footer-section h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section li {
+      margin-bottom: 8px;
+    }
+
+    .footer-section a {
+      color: #484848;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      
+      .nav-content {
+        flex-direction: column;
+        gap: 16px;
+      }
+      
+      .product-name {
+        font-size: 24px;
+      }
+
+      .header-content {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-banner">
+    Livraison gratuite à partir de 200€ d'achat
+  </div>
+
+  <div class="header">
+    <div class="header-content">
+      <div class="logo">STUDIOTM</div>
+      <div class="header-icons">
+        <div class="icon"></div>
+        <div class="icon"></div>
+        <div class="icon"></div>
+        <div class="icon"></div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-content">
+      <div class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="projets.html">Projets</a>
+        <a href="#">Mobilier</a>
+        <a href="studiotm.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="index.html">Accueil</a> > <a href="projets.html">Projets</a> > <a href="#">Mobilier</a> > MATAELSKARE
+  </div>
+
+  <div class="main-content">
+    <div class="product-images">
+      <div class="main-image">Image principale</div>
+      
+      <div class="thumbnail-row">
+        <div class="thumbnail active">IMG 1</div>
+        <div class="thumbnail">IMG 2</div>
+        <div class="thumbnail">IMG 3</div>
+        <div class="thumbnail">IMG 4</div>
+        <div class="thumbnail">IMG 5</div>
+        <div class="thumbnail">IMG 6</div>
+      </div>
+    </div>
+
+    <div class="product-info">
+      <h1 class="product-name">TOURÄLCOLE</h1>
+      <p class="product-description">Mobilier sur mesure, chêne massif</p>
+      
+      <div class="rating">
+        <span class="stars">★★★★★</span>
+        <span class="rating-text">(127)</span>
+      </div>
+
+      <div class="price">Sur devis</div>
+      <p class="price-note">Prix incluant la TVA</p>
+
+      <div class="product-details">
+        <div class="detail-row">
+          <span>Matériau</span>
+          <span>Chêne massif</span>
+        </div>
+        <div class="detail-row">
+          <span>Finition</span>
+          <span>Huile naturelle</span>
+        </div>
+        <div class="detail-row">
+          <span>Largeur</span>
+          <span>Sur mesure</span>
+        </div>
+        <div class="detail-row">
+          <span>Profondeur</span>
+          <span>Sur mesure</span>
+        </div>
+        <div class="detail-row">
+          <span>Hauteur</span>
+          <span>Sur mesure</span>
+        </div>
+      </div>
+
+      <div class="quantity-selector">
+        <span>Quantité</span>
+        <div class="quantity-input">
+          <button class="quantity-btn">-</button>
+          <input type="number" value="1" class="quantity-number">
+          <button class="quantity-btn">+</button>
+        </div>
+      </div>
+
+      <button class="add-to-cart" onclick="window.location.href='contact.html'">Demander un devis</button>
+      <button class="wishlist-btn">♡ Ajouter à ma liste</button>
+
+      <div class="delivery-info">
+        <strong>Livraison et montage</strong><br>
+        Délai de fabrication : 8-12 semaines<br>
+        Installation incluse dans la région lyonnaise
+      </div>
+
+      <div class="services">
+        <div class="service-item">
+          <div class="service-icon"></div>
+          <span>Garantie 10 ans structure</span>
+        </div>
+        <div class="service-item">
+          <div class="service-icon"></div>
+          <span>Conception 3D gratuite</span>
+        </div>
+        <div class="service-item">
+          <div class="service-icon"></div>
+          <span>Fabrication artisanale française</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-tabs">
+    <div class="tab-nav">
+      <button class="tab-button active" onclick="showTab('description')">Description du produit</button>
+      <button class="tab-button" onclick="showTab('dimensions')">Dimensions et poids</button>
+      <button class="tab-button" onclick="showTab('materials')">Matériaux et entretien</button>
+      <button class="tab-button" onclick="showTab('assembly')">Montage et installation</button>
+      <button class="tab-button" onclick="showTab('reviews')">Avis clients (127)</button>
+    </div>
+
+    <div id="description" class="tab-content active">
+      <h2>Description du produit</h2>
+      <p>MATAELSKARE est une collection de mobilier sur mesure conçue pour s'adapter parfaitement à votre espace de vie. Chaque pièce est fabriquée artisanalement en chêne massif européen, offrant une durabilité exceptionnelle et un caractère unique.</p>
+      
+      <p>La finition à l'huile naturelle met en valeur le veinage naturel du bois tout en le protégeant des agressions quotidiennes. Cette collection allie esthétique contemporaine et fonctionnalité optimale, créant des solutions de rangement intelligentes et élégantes.</p>
+      
+      <p>Chaque projet débute par une étude personnalisée de vos besoins et de votre espace, suivie d'une modélisation 3D pour vous permettre de visualiser le résultat final avant la fabrication.</p>
+    </div>
+
+    <div id="dimensions" class="tab-content">
+      <h2>Dimensions et poids</h2>
+      <div class="spec-grid">
+        <div class="spec-section">
+          <h3>Dimensions</h3>
+          <ul class="spec-list">
+            <li><span>Largeur</span><span>Sur mesure</span></li>
+            <li><span>Profondeur</span><span>Sur mesure</span></li>
+            <li><span>Hauteur</span><span>Sur mesure</span></li>
+          </ul>
+        </div>
+        <div class="spec-section">
+          <h3>Poids et emballage</h3>
+          <ul class="spec-list">
+            <li><span>Poids</span><span>Variable selon dimensions</span></li>
+            <li><span>Emballage</span><span>Protection renforcée</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="materials" class="tab-content">
+      <h2>Matériaux et entretien</h2>
+      <div class="spec-grid">
+        <div class="spec-section">
+          <h3>Matériaux</h3>
+          <ul class="spec-list">
+            <li><span>Structure</span><span>Chêne massif européen</span></li>
+            <li><span>Finition</span><span>Huile naturelle mate</span></li>
+            <li><span>Quincaillerie</span><span>Acier inoxydable</span></li>
+          </ul>
+        </div>
+        <div class="spec-section">
+          <h3>Entretien</h3>
+          <ul class="spec-list">
+            <li><span>Nettoyage</span><span>Chiffon humide</span></li>
+            <li><span>Entretien</span><span>Huile 1x/an</span></li>
+            <li><span>Garantie</span><span>10 ans structure</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="assembly" class="tab-content">
+      <h2>Montage et installation</h2>
+      <p>L'installation de votre mobilier MATAELSKARE est réalisée par nos équipes spécialisées :</p>
+      
+      <div class="spec-grid">
+        <div class="spec-section">
+          <h3>Processus d'installation</h3>
+          <ul class="spec-list">
+            <li><span>Étape 1</span><span>Livraison sur site</span></li>
+            <li><span>Étape 2</span><span>Montage professionnel</span></li>
+            <li><span>Étape 3</span><span>Ajustements finaux</span></li>
+            <li><span>Étape 4</span><span>Nettoyage du chantier</span></li>
+          </ul>
+        </div>
+        <div class="spec-section">
+          <h3>Informations pratiques</h3>
+          <ul class="spec-list">
+            <li><span>Durée</span><span>1-2 jours selon projet</span></li>
+            <li><span>Équipe</span><span>2 techniciens</span></li>
+            <li><span>Outils</span><span>Fournis par nos soins</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="reviews" class="tab-content">
+      <h2>Avis clients</h2>
+      <div class="reviews-summary">
+        <div class="rating-overview">
+          <div class="rating-large">
+            <span class="stars-large">★★★★★</span>
+            <span class="rating-number">4.8</span>
+          </div>
+          <div class="rating-breakdown">
+            <div class="rating-bar">
+              <span>5 étoiles</span>
+              <div class="bar"><div class="fill" style="width: 90%"></div></div>
+              <span>523</span>
+            </div>
+            <div class="rating-bar">
+              <span>4 étoiles</span>
+              <div class="bar"><div class="fill" style="width: 10%"></div></div>
+              <span>15</span>
+            </div>
+            <div class="rating-bar">
+              <span>3 étoiles</span>
+              <div class="bar"><div class="fill" style="width: 0%"></div></div>
+              <span>0</span>
+            </div>
+            <div class="rating-bar">
+              <span>2 étoiles</span>
+              <div class="bar"><div class="fill" style="width: 0%"></div></div>
+              <span>0</span>
+            </div>
+            <div class="rating-bar">
+              <span>1 étoile</span>
+              <div class="bar"><div class="fill" style="width: 0%"></div></div>
+              <span>0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-list">
+        <div class="review-item">
+          <div class="review-header">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">M</div>
+              <div class="reviewer-details">
+                <span class="reviewer-name">Marie L.</span>
+                <span class="review-date">Il y a 3 jours</span>
+              </div>
+            </div>
+            <div class="review-rating">★★★★★</div>
+          </div>
+          <div class="review-content">
+            <p>Absolument parfait ! Tom a su comprendre exactement ce que je voulais. Le mobilier s'intègre parfaitement dans mon salon et la qualité du chêne est exceptionnelle. Le service de A à Z était impeccable.</p>
+          </div>
+          <div class="review-helpful">
+            <span>Cet avis vous a-t-il été utile ?</span>
+            <button class="helpful-btn">👍 Oui (12)</button>
+            <button class="helpful-btn">👎 Non (0)</button>
+          </div>
+        </div>
+
+        <div class="review-item">
+          <div class="review-header">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">J</div>
+              <div class="reviewer-details">
+                <span class="reviewer-name">Jean-Pierre D.</span>
+                <span class="review-date">Il y a 5 jours</span>
+              </div>
+            </div>
+            <div class="review-rating">★★★★★</div>
+          </div>
+          <div class="review-content">
+            <p>Travail remarquable ! La bibliothèque sur mesure dépasse toutes mes attentes. Les finitions sont soignées et l'installation s'est déroulée sans problème. Je recommande vivement StudioTM.</p>
+          </div>
+          <div class="review-helpful">
+            <span>Cet avis vous a-t-il été utile ?</span>
+            <button class="helpful-btn">👍 Oui (8)</button>
+            <button class="helpful-btn">👎 Non (1)</button>
+          </div>
+        </div>
+
+        <div class="review-item">
+          <div class="review-header">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">S</div>
+              <div class="reviewer-details">
+                <span class="reviewer-name">Sophie M.</span>
+                <span class="review-date">Il y a 1 semaines</span>
+              </div>
+            </div>
+            <div class="review-rating">★★★★★</div>
+          </div>
+          <div class="review-content">
+            <p>Excellent service client et produit de très haute qualité. Tom a été à l'écoute de nos besoins et a proposé des solutions créatives pour optimiser notre espace. Délai respecté et prix correct.</p>
+          </div>
+          <div class="review-helpful">
+            <span>Cet avis vous a-t-il été utile ?</span>
+            <button class="helpful-btn">👍 Oui (15)</button>
+            <button class="helpful-btn">👎 Non (0)</button>
+          </div>
+        </div>
+
+        <div class="review-item">
+          <div class="review-header">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">A</div>
+              <div class="reviewer-details">
+                <span class="reviewer-name">Antoine R.</span>
+                <span class="review-date">Il y a 2 semaines</span>
+              </div>
+            </div>
+            <div class="review-rating">★★★★☆</div>
+          </div>
+          <div class="review-content">
+            <p>Très satisfait du résultat final. Le dressing correspond exactement à ce qui était prévu. Seul petit bémol : le délai a été légèrement dépassé mais la qualité compense largement.</p>
+          </div>
+          <div class="review-helpful">
+            <span>Cet avis vous a-t-il été utile ?</span>
+            <button class="helpful-btn">👍 Oui (6)</button>
+            <button class="helpful-btn">👎 Non (2)</button>
+          </div>
+        </div>
+
+        <div class="review-item">
+          <div class="review-header">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">T</div>
+              <div class="reviewer-details">
+                <span class="reviewer-name">Tom M.</span>
+                <span class="review-date">Il y a 1 mois</span>
+              </div>
+            </div>
+            <div class="review-rating">★★★★★</div>
+          </div>
+          <div class="review-content">
+            <p>Magnifique travail ! Le bureau intégré transforme complètement notre salon. La modélisation 3D nous a permis de bien visualiser le projet avant réalisation. Artisan de talent !</p>
+          </div>
+          <div class="review-helpful">
+            <span>Cet avis vous a-t-il été utile ?</span>
+            <button class="helpful-btn">👍 Oui (9)</button>
+            <button class="helpful-btn">👎 Non (0)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="load-more">
+        <button class="load-more-btn">Voir plus d'avis</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="recommendations">
+    <h2>Vous pourriez aussi aimer</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-card-image">Produit 1</div>
+        <div class="product-card-info">
+          <div class="product-card-name">BIBLIOTHEQUE</div>
+          <div class="product-card-price">Sur devis</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-image">Produit 2</div>
+        <div class="product-card-info">
+          <div class="product-card-name">DRESSING</div>
+          <div class="product-card-price">Sur devis</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-image">Produit 3</div>
+        <div class="product-card-info">
+          <div class="product-card-name">CUISINE</div>
+          <div class="product-card-price">Sur devis</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-image">Produit 4</div>
+        <div class="product-card-info">
+          <div class="product-card-name">BUREAU</div>
+          <div class="product-card-price">Sur devis</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="#">Conception 3D</a></li>
+          <li><a href="#">Fabrication sur mesure</a></li>
+          <li><a href="#">Installation</a></li>
+          <li><a href="#">Service après-vente</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Aide</h3>
+        <ul>
+          <li><a href="#">Comment commander</a></li>
+          <li><a href="#">Livraison</a></li>
+          <li><a href="#">Retours</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>À propos</h3>
+        <ul>
+          <li><a href="#">Notre histoire</a></li>
+          <li><a href="#">Nos valeurs</a></li>
+          <li><a href="#">Carrières</a></li>
+          <li><a href="#">Presse</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="#">Service client</a></li>
+          <li><a href="#">Magasins</a></li>
+          <li><a href="#">Professionnels</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function showTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      
+      document.getElementById(tabName).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Quantity selector
+    document.querySelectorAll('.quantity-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const input = this.parentNode.querySelector('.quantity-number');
+        const isIncrement = this.textContent === '+';
+        let value = parseInt(input.value);
+        
+        if (isIncrement) {
+          value++;
+        } else if (value > 1) {
+          value--;
+        }
+        
+        input.value = value;
+      });
+    });
+  </script>
+</body>
+</html>
