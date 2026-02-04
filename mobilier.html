@@ -1059,12 +1059,12 @@
         <div class="icon"></div>
         <div class="language-selector">
           <button class="language-btn" onclick="toggleLanguageDropdown()">
-            <span id="currentLang">FR</span>
+            <span id="currentLang">EN</span>
             <span>▼</span>
           </button>
           <div class="language-dropdown" id="languageDropdown">
-            <div class="language-option active" onclick="changeLanguage('fr')">🇫🇷 Français</div>
-            <div class="language-option" onclick="changeLanguage('en')">🇬🇧 English</div>
+            <div class="language-option active" onclick="changeLanguage('en')">🇬🇧 English</div>
+            <div class="language-option" onclick="changeLanguage('fr')">🇫🇷 Français</div>
           </div>
         </div>
       </div>
@@ -1368,7 +1368,7 @@ on m'avait beaucoup parlé des caves à vins, et je dois dire que celle ci est g
             <div class="review-rating">★★★★★</div>
           </div>
           <div class="review-content">
-            <p>Magnifique travail ! Le bureau intégré transforme complètement notre salon. La modélisation 3D nous a permis de bien visualiser le projet avant réalisation. Artisan de talent !</p>
+            <p>Les gars, je vais être cash : ce meuble, c’est pas de la déco, c’est une intervention divine. J’ai enfin trouvé un meuble qui me comprend. Avant, mes bouteilles traînaient par terre et je me prenais les pieds dedans. Maintenant, elles sont classées par altitude. C’est révolutionnaire !</p>
           </div>
         </div>
       </div>
@@ -1721,7 +1721,7 @@ on m'avait beaucoup parlé des caves à vins, et je dois dire que celle ci est g
             reviewItems[3].querySelector('.review-content p').textContent = 'Having already bought wine cellars, this one far exceeds the others, by the price and the shape similar to my pole dance bar. You can very easily add racks when there is not enough space for your wine bottles. It\'s great thank you father-in-law.';
           }
           if (reviewItems[4]) {
-            reviewItems[4].querySelector('.review-content p').textContent = 'Magnificent work! The integrated desk completely transforms our living room. The 3D modeling allowed us to visualize the project well before realization. Talented craftsman!';
+            reviewItems[4].querySelector('.review-content p').textContent = 'Guys, I\'m going to be straight: this furniture isn\'t decoration, it\'s divine intervention. I finally found furniture that understands me. Before, my bottles were lying on the floor and I was tripping over them. Now they are classified by altitude. It\'s revolutionary!';
           }
         }
         
@@ -1931,7 +1931,7 @@ on m'avait beaucoup parlé des caves à vins, et je dois dire que celle ci est g
             reviewItems[3].querySelector('.review-content p').textContent = 'Ayant déjà acheté des caves à vin, celle la dépasse de loin les autres, par le prix et la forme semblable à ma barre de pole dance. Vous pouvez rajouter très facilement des racks quand il n\'y a pas assez de places pour vos bouteilles de vins. C\'est génial merci beau papa.';
           }
           if (reviewItems[4]) {
-            reviewItems[4].querySelector('.review-content p').textContent = 'Magnifique travail ! Le bureau intégré transforme complètement notre salon. La modélisation 3D nous a permis de bien visualiser le projet avant réalisation. Artisan de talent !';
+            reviewItems[4].querySelector('.review-content p').textContent = 'Les gars, je vais être cash : ce meuble, c\'est pas de la déco, c\'est une intervention divine. J\'ai enfin trouvé un meuble qui me comprend. Avant, mes bouteilles traînaient par terre et je me prenais les pieds dedans. Maintenant, elles sont classées par altitude. C\'est révolutionnaire !';
           }
         }
         
@@ -1995,6 +1995,11 @@ on m'avait beaucoup parlé des caves à vins, et je dois dire que celle ci est g
         }
       }
     }
+
+    // Auto-translate to English on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      translatePage('en');
+    });
 
     // Close dropdown when clicking outside
     document.addEventListener('click', function(event) {
