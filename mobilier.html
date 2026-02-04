@@ -61,37 +61,6 @@
       border-radius: 50%;
     }
 
-    .nav {
-      background: white;
-      border-bottom: 1px solid #ddd;
-      padding: 0;
-    }
-
-    .nav-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-links {
-      display: flex;
-    }
-
-    .nav-links a {
-      color: #111;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 14px;
-      padding: 16px 20px;
-      border-bottom: 3px solid transparent;
-    }
-
-    .nav-links a:hover {
-      border-bottom-color: #0058a3;
-    }
-
     .breadcrumb {
       max-width: 1400px;
       margin: 0 auto;
@@ -118,18 +87,65 @@
     .product-images {
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
     .main-image {
       width: 100%;
-      height: 400px;
-      background: #f5f5f5;
-      margin-bottom: 16px;
+      aspect-ratio: 16/9;
       border-radius: 4px;
+      object-fit: cover;
+    }
+
+    .main-video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 4px;
+      display: none;
+    }
+
+    .main-video.active {
+      display: block;
+    }
+
+    .main-image.active {
+      display: block;
+    }
+
+    .main-image:not(.active) {
+      display: none;
+    }
+
+    .main-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #999;
+      font-size: 16px;
+      color: #111;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .main-nav:hover {
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .main-prev {
+      left: 10px;
+    }
+
+    .main-next {
+      right: 10px;
     }
 
     .thumbnail-row {
@@ -139,22 +155,84 @@
     }
 
     .thumbnail {
-      width: 72px;
-      height: 72px;
-      background: #f5f5f5;
+      width: 110px;
+      height: 80px;
+      object-fit: cover;
       cursor: pointer;
       border: 2px solid transparent;
       flex-shrink: 0;
       border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #999;
-      font-size: 10px;
     }
 
     .thumbnail.active {
       border-color: #0058a3;
+    }
+
+    .video-thumb {
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .play-icon {
+      font-size: 20px;
+      color: #0058a3;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      font-size: 24px;
+      padding: 10px 15px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .lightbox-prev {
+      left: 20px;
+    }
+
+    .lightbox-next {
+      right: 20px;
     }
 
     .product-info {
@@ -556,11 +634,8 @@
     .product-card-image {
       width: 100%;
       height: 200px;
-      background: #f5f5f5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #999;
+      object-fit: cover;
+      border-radius: 4px 4px 0 0;
     }
 
     .product-card-info {
@@ -651,33 +726,28 @@
     </div>
   </div>
 
-  <nav class="nav">
-    <div class="nav-content">
-      <div class="nav-links">
-        <a href="index.html">Accueil</a>
-        <a href="projets.html">Projets</a>
-        <a href="#">Mobilier</a>
-        <a href="studiotm.html">Services</a>
-        <a href="contact.html">Contact</a>
-      </div>
-    </div>
-  </nav>
-
   <div class="breadcrumb">
     <a href="index.html">Accueil</a> > <a href="projets.html">Projets</a> > <a href="#">Mobilier</a> > DRÜNKAR
   </div>
 
   <div class="main-content">
     <div class="product-images">
-      <div class="main-image">Image principale</div>
+      <img id="mainImage" src="meuble/1.webp" alt="DRÜNKAR" class="main-image active" onclick="openLightbox(this.src)">
+      <video id="mainVideo" class="main-video" controls muted>
+        <source src="meuble/video.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la vidéo.
+      </video>
       
       <div class="thumbnail-row">
-        <div class="thumbnail active">IMG 1</div>
-        <div class="thumbnail">IMG 2</div>
-        <div class="thumbnail">IMG 3</div>
-        <div class="thumbnail">IMG 4</div>
-        <div class="thumbnail">IMG 5</div>
-        <div class="thumbnail">IMG 6</div>
+        <img src="meuble/1.webp" class="thumbnail active" onclick="changeImage(this)" alt="Vue 1">
+        <img src="meuble/2.webp" class="thumbnail" onclick="changeImage(this)" alt="Vue 2">
+        <img src="meuble/3.webp" class="thumbnail" onclick="changeImage(this)" alt="Vue 3">
+        <img src="meuble/4.webp" class="thumbnail" onclick="changeImage(this)" alt="Vue 4">
+        <img src="meuble/5.webp" class="thumbnail" onclick="changeImage(this)" alt="Vue 5">
+        <img src="meuble/6.webp" class="thumbnail" onclick="changeImage(this)" alt="Vue 6">
+        <div class="thumbnail video-thumb" onclick="showVideo()" alt="Vidéo">
+          <div class="play-icon">▶</div>
+        </div>
       </div>
     </div>
 
@@ -814,7 +884,7 @@
 
     <div id="assembly" class="tab-content">
       <h2>Montage et installation</h2>
-      <p>L'installation de votre mobilier MATAELSKARE est réalisée par nos équipes spécialisées :</p>
+      <p>L'installation de votre mobilier DRÜNKAR est réalisée par nos équipes spécialisées :</p>
       
       <div class="spec-grid">
         <div class="spec-section">
@@ -968,30 +1038,30 @@ on m'avait beaucoup parlé des caves à vins, et je dois dire que celle ci est g
     <h2>Vous pourriez aussi aimer</h2>
     <div class="product-grid">
       <div class="product-card">
-        <div class="product-card-image">Produit 1</div>
+        <img src="meuble/Table basse.webp" alt="Bibliothèque" class="product-card-image">
         <div class="product-card-info">
-          <div class="product-card-name">BIBLIOTHEQUE</div>
+          <div class="product-card-name">Table basse</div>
           <div class="product-card-price">Sur devis</div>
         </div>
       </div>
       <div class="product-card">
-        <div class="product-card-image">Produit 2</div>
+        <img src="meuble/Tabouret.webp" alt="Dressing" class="product-card-image">
         <div class="product-card-info">
-          <div class="product-card-name">DRESSING</div>
+          <div class="product-card-name">Tabouret</div>
           <div class="product-card-price">Sur devis</div>
         </div>
       </div>
       <div class="product-card">
-        <div class="product-card-image">Produit 3</div>
+        <img src="meuble/Console murale.webp" alt="Cuisine" class="product-card-image">
         <div class="product-card-info">
-          <div class="product-card-name">CUISINE</div>
+          <div class="product-card-name">Console murale</div>
           <div class="product-card-price">Sur devis</div>
         </div>
       </div>
       <div class="product-card">
-        <div class="product-card-image">Produit 4</div>
+        <img src="meuble/Porte manteaux.webp" alt="Bureau" class="product-card-image">
         <div class="product-card-info">
-          <div class="product-card-name">BUREAU</div>
+          <div class="product-card-name">Porte manteaux</div>
           <div class="product-card-price">Sur devis</div>
         </div>
       </div>
@@ -1038,7 +1108,71 @@ on m'avait beaucoup parlé des caves à vins, et je dois dire que celle ci est g
     </div>
   </footer>
 
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close">&times;</span>
+    <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">&lt;</button>
+    <img id="lightboxImg" src="" alt="Image agrandie">
+    <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">&gt;</button>
+  </div>
+
   <script>
+    const imageList = [
+      'meuble/1.webp',
+      'meuble/2.webp', 
+      'meuble/3.webp',
+      'meuble/4.webp',
+      'meuble/5.webp',
+      'meuble/6.webp'
+    ];
+    let currentImageIndex = 0;
+
+    function changeImage(thumbnail) {
+      document.getElementById('mainImage').src = thumbnail.src;
+      document.getElementById('mainImage').classList.add('active');
+      document.getElementById('mainVideo').classList.remove('active');
+      document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+      thumbnail.classList.add('active');
+    }
+
+    function showVideo() {
+      document.getElementById('mainImage').classList.remove('active');
+      document.getElementById('mainVideo').classList.add('active');
+      document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+      document.querySelector('.video-thumb').classList.add('active');
+    }
+
+    function openLightbox(src) {
+      currentImageIndex = imageList.indexOf(src);
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(event) {
+      if (event && event.target !== event.currentTarget) return;
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function navigateLightbox(direction) {
+      currentImageIndex = (currentImageIndex + direction + imageList.length) % imageList.length;
+      document.getElementById('lightboxImg').src = imageList[currentImageIndex];
+    }
+
+    // Fermer avec Escape et navigation avec flèches
+    document.addEventListener('keydown', function(e) {
+      if (document.getElementById('lightbox').style.display === 'flex') {
+        if (e.key === 'Escape') {
+          closeLightbox();
+        } else if (e.key === 'ArrowLeft') {
+          navigateLightbox(-1);
+        } else if (e.key === 'ArrowRight') {
+          navigateLightbox(1);
+        }
+      }
+    });
+
     function showTab(tabName) {
       document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
       document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
