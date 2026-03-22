@@ -40,30 +40,15 @@
       transition: opacity 0.8s ease;
       z-index: 10;
       touch-action: none;
-      overflow: hidden;
-      cursor: grab;
-    }
-    #plan-fullscreen.dragging {
-      cursor: grabbing;
-    }
-    #plan-fullscreen-inner {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      will-change: transform;
     }
     #plan-fullscreen img {
-      width: 95vw;
+      width: 95%;
       max-width: 95vw;
       max-height: 95vh;
       border-radius: 10px;
       box-shadow: 0 0 30px rgba(0,0,0,0.3);
       position: relative;
       object-fit: contain;
-      pointer-events: none;
-      user-select: none;
-      -webkit-user-drag: none;
     }
     .zone {
       position: absolute;
@@ -368,6 +353,29 @@
       color: white;
     }
 
+    /* Bouton gyroscope */
+    #gyro-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 22px;
+      z-index: 6;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    #gyro-btn.active {
+      background: #333;
+      color: white;
+    }
+
     /* Responsive Mobile */
     @media (max-width: 768px) {
       html, body {
@@ -479,7 +487,6 @@
 
   <!-- Plan plein écran -->
   <div id="plan-fullscreen" style="display: none;">
-    <div id="plan-fullscreen-inner">
     <div style="position: relative;">
       <img id="plan-fullscreen-img" src="photo/visite360/prieuré/planRDC.webp" alt="Plan global">
       <div id="fullscreen-zones-rdc">
@@ -505,7 +512,6 @@
         <div class="zone" style="top: 50%; left: 28%;" onclick="startVisit('yoga')"></div>
         <div class="zone" style="top: 30%; left: 70%;" onclick="startVisit('extérieur3')"></div>
       </div>
-    </div>
     </div>
     <!-- Sélecteur d'étage sur la page d'accueil -->
     <div style="position: absolute; top: 20px; left: 20px;">
@@ -544,6 +550,9 @@
     </div>
     <img src="photo/visite360/prieuré/samplesroom.webp" alt="Samples Room">
   </div>
+
+  <!-- Bouton gyroscope (mobile uniquement) -->
+  <button id="gyro-btn" onclick="toggleGyro()">🧭</button>
 
   <!-- Plan réduit -->
   <div id="plan-mini">
@@ -608,42 +617,6 @@
         }, 800);
       }, 1500);
     }
-
-    // Drag du plan plein écran (souris + tactile)
-    (function() {
-      const el = document.getElementById('plan-fullscreen');
-      let isDragging = false, startX, startY, tx = 0, ty = 0, curX = 0, curY = 0;
-
-      function getInner() { return document.getElementById('plan-fullscreen-inner'); }
-
-      function onStart(x, y) {
-        isDragging = true;
-        startX = x - curX;
-        startY = y - curY;
-        el.classList.add('dragging');
-      }
-      function onMove(x, y) {
-        if (!isDragging) return;
-        curX = x - startX;
-        curY = y - startY;
-        getInner().style.transform = `translate(${curX}px, ${curY}px)`;
-      }
-      function onEnd() {
-        isDragging = false;
-        el.classList.remove('dragging');
-      }
-
-      el.addEventListener('mousedown', e => { if (e.target.classList.contains('zone')) return; onStart(e.clientX, e.clientY); });
-      window.addEventListener('mousemove', e => onMove(e.clientX, e.clientY));
-      window.addEventListener('mouseup', onEnd);
-
-      el.addEventListener('touchstart', e => { if (e.target.classList.contains('zone')) return; onStart(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
-      el.addEventListener('touchmove', e => { onMove(e.touches[0].clientX, e.touches[0].clientY); e.preventDefault(); }, { passive: false });
-      el.addEventListener('touchend', onEnd);
-
-      // Réinitialiser la position quand on change d'étage
-      window._resetPlanPosition = function() { curX = 0; curY = 0; getInner().style.transform = 'translate(0px, 0px)'; };
-    })();
 
     // Fonction pour détecter mobile
     function isMobile() {
@@ -1295,6 +1268,38 @@
     }
 
     let currentFloor = 'rdc';
+    let gyroActive = false;
+
+    // Afficher le bouton gyro sur mobile
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      document.getElementById('gyro-btn').style.display = 'flex';
+    }
+
+    async function toggleGyro() {
+      const btn = document.getElementById('gyro-btn');
+      if (!gyroActive) {
+        // iOS 13+ nécessite une permission explicite
+        if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+          try {
+            const perm = await DeviceOrientationEvent.requestPermission();
+            if (perm !== 'granted') return;
+          } catch(e) { return; }
+        }
+        gyroActive = true;
+        btn.classList.add('active');
+        if (viewer) viewer.setUpdate(true);
+        // Activer l'orientation dans pannellum
+        if (viewer) {
+          try { viewer.startOrientation(); } catch(e) {}
+        }
+      } else {
+        gyroActive = false;
+        btn.classList.remove('active');
+        if (viewer) {
+          try { viewer.stopOrientation(); } catch(e) {}
+        }
+      }
+    }
 
     // Début visite depuis le plan plein écran
     function startVisit(scene) {
@@ -1310,6 +1315,9 @@
         document.getElementById('panorama').style.display = 'block';
         document.getElementById('plan-mini').style.display = 'block';
         document.getElementById('floor-selector').style.display = 'block';
+        if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+          document.getElementById('gyro-btn').style.display = 'flex';
+        }
         
         // Synchroniser le mini plan avec l'étage actuel
         updateMiniPlan();
@@ -1362,10 +1370,10 @@
 
     // Retour au plan plein écran
     function returnToFullPlan() {
-      if (window._resetPlanPosition) window._resetPlanPosition();
       document.getElementById('panorama').style.display = 'none';
       document.getElementById('plan-mini').style.display = 'none';
       document.getElementById('floor-selector').style.display = 'none';
+      document.getElementById('gyro-btn').style.display = 'none';
       const plan = document.getElementById('plan-fullscreen');
       plan.style.display = 'flex';
       plan.classList.remove('fade-out');
@@ -1376,7 +1384,6 @@
 
     // Changement d'étage sur la page d'accueil
     function switchFloorFullscreen(floor) {
-      if (window._resetPlanPosition) window._resetPlanPosition();
       currentFloor = floor;
       
       // Mise à jour des boutons
