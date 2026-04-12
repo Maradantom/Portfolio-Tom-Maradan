@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Plan</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      width: 100%;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: white;
+    }
+    
+    #welcome-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #424546 0%, #DEE0E2 100%);
+      z-index: 100;
+      color: white;
+    }
+    
+    .enter-btn {
+      padding: 15px 40px;
+      font-size: 18px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    
+    .enter-btn:hover {
+      background: #555;
+    }
+    
+    #main-navigation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      z-index: 99;
+      color: white;
+    }
+    
+    #main-navigation button {
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 1px solid white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    #main-navigation button:hover {
+      background: rgba(255,255,255,0.4);
+    }
+    
+    #plan-fullscreen {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 60px);
+      background: white;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+    
+    #plan-fullscreen img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Écran d'accueil -->
+<div id="welcome-screen">
+  <h1>Visite 360°</h1>
+  <p>Découvrez le Projet Signature "Airhub"</p>
+  <button class="enter-btn" onclick="enterSite()">Commencer la visite</button>
+</div>
+
+<!-- Navigation -->
+<nav id="main-navigation">
+  <button onclick="switchMode('edl')">Avant projet</button>
+  <button onclick="switchMode('projet')">Projet Airhub</button>
+  <button onclick="switchFloor('rdj')">RDJ</button>
+  <button onclick="switchFloor('rdc')">RDC</button>
+  <button onclick="switchFloor('r1')">R+1</button>
+</nav>
+
+<!-- Plan plein écran -->
+<div id="plan-fullscreen">
+  <img id="plan-image" src="photo/visite360/prieuré/edl/plans/planRDC.webp" alt="Plan">
+</div>
+
+<script>
+  let currentMode = 'edl';
+  let currentFloor = 'rdc';
+  
+  function enterSite() {
+    console.log('✅ Bouton cliqué!');
+    
+    // Masquer l'écran d'accueil
+    document.getElementById('welcome-screen').style.display = 'none';
+    
+    // Afficher la navigation
+    document.getElementById('main-navigation').style.display = 'flex';
+    
+    // Afficher le plan
+    document.getElementById('plan-fullscreen').style.display = 'flex';
+    
+    console.log('✅ Plan affiché');
+  }
+  
+  function switchMode(mode) {
+    currentMode = mode;
+    console.log('Mode:', mode);
+    updatePlan();
+  }
+  
+  function switchFloor(floor) {
+    currentFloor = floor;
+    console.log('Étage:', floor);
+    updatePlan();
+  }
+  
+  function updatePlan() {
+    const paths = {
+      edl: {
+        rdc: 'photo/visite360/prieuré/edl/plans/planRDC.webp',
+        r1: 'photo/visite360/prieuré/edl/plans/planR+1.webp',
+        rdj: 'photo/visite360/prieuré/edl/plans/planRDJ.webp'
+      },
+      projet: {
+        rdc: 'photo/visite360/prieuré/projet/plans/planRDC.webp',
+        r1: 'photo/visite360/prieuré/projet/plans/planR+1.webp',
+        rdj: 'photo/visite360/prieuré/projet/plans/planRDJ.webp'
+      }
+    };
+    
+    const planPath = paths[currentMode][currentFloor];
+    document.getElementById('plan-image').src = planPath;
+    console.log('📋 Plan mis à jour:', planPath);
+  }
+  
+  console.log('✅ Script chargé avec succès');
+</script>
+
+</body>
+</html>
