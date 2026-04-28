@@ -5,7 +5,7 @@
       height: 100%;
       overflow: hidden;
       font-family: sans-serif;
-      background: #ffffff url('photo/logo/Noir long.webp') center center no-repeat;
+      background: #ffffff url('../../photo/logo/Noir long.webp') center center no-repeat;
       background-size: 200px;
       touch-action: none;
     }
@@ -120,7 +120,7 @@
 
     /* Fond personnalisé avec logo */
     .pnlm-container {
-      background: #000 url('photo/logo.png') center center no-repeat !important;
+      background: #000 url('photo/logo/Noir long.webp') center center no-repeat !important;
       background-size: 200px !important;
     }
 
@@ -155,7 +155,7 @@
       background-repeat: no-repeat;
       overflow: hidden;
       /* CHANGEZ L'IMAGE ICI : */
-      background-image: url('photo/visite360/prieuré/projet/preview/ext.webp');
+      background-image: url('../../photo/visite360/prieuré/projet/preview/pp.webp');
     }
 
     .welcome-logo img {
