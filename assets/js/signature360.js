@@ -1148,7 +1148,7 @@
               pitch: 15, yaw: -2, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/billars_vide_p.png" alt="billard_vide_p">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/billard_vide_p.png" alt="billard_vide_p">`;
               },
               clickHandlerFunc: function(){ 
                 const targetScene = currentMode === 'projet' ? 'billard_vide_p' : 'billard_vide';
@@ -1186,7 +1186,7 @@
           fadeOutDuration: 800,
           hotSpots: [
             {
-              pitch: -3, yaw: -37, type: "info", text: "",
+              pitch: 2, yaw: -12, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/boutique_p.png" alt="boutique_p">`;
@@ -1197,7 +1197,7 @@
               }
             },
             {
-              pitch: 10, yaw: -37, type: "info", text: "",
+              pitch: 15, yaw: -12, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/test_p.png" alt="test_p">`;
@@ -1208,7 +1208,7 @@
               }
             },
             {
-              pitch: -5, yaw: -5, type: "info", text: "",
+              pitch: 0, yaw: 20, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/boutique2_p.png" alt="boutique2_p">`;
@@ -1219,7 +1219,7 @@
               }
             },
             {
-              pitch: -5, yaw: 20, type: "info", text: "",
+              pitch: 0, yaw: 45, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/extérieur_p.png" alt="extérieur_p">`;
@@ -1238,7 +1238,7 @@
           fadeOutDuration: 800,
           hotSpots: [
             {
-              pitch: 0, yaw: -105, type: "info", text: "",
+              pitch: 0, yaw: -90, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/extérieur3_p.png" alt="extérieur3_p">`;
@@ -1246,7 +1246,7 @@
               clickHandlerFunc: function(){ viewer.loadScene('extérieur3_p'); }
             },
             {
-              pitch: 0, yaw: -50, type: "info", text: "",
+              pitch: 0, yaw: -65, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/toilette_p.png" alt="toilette_p">`;
@@ -1254,7 +1254,7 @@
               clickHandlerFunc: function(){ viewer.loadScene('toilette_p'); }
             },
             {
-              pitch: 0, yaw: -35, type: "info", text: "",
+              pitch: 0, yaw: -50, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/cuisine_p.png" alt="cuisine_p">`;
@@ -1262,7 +1262,7 @@
               clickHandlerFunc: function(){ viewer.loadScene('cuisine_p'); }
             },
             {
-              pitch: 0, yaw: -25, type: "info", text: "",
+              pitch: 0, yaw: -40, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/atelier_p.png" alt="atelier_p">`;
@@ -1270,7 +1270,7 @@
               clickHandlerFunc: function(){ viewer.loadScene('atelier_p'); }
             },
             {
-              pitch: 0, yaw: 0, type: "info", text: "",
+              pitch: 0, yaw: -15, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/boutique2_p.png" alt="boutique2_p">`;
@@ -1278,7 +1278,7 @@
               clickHandlerFunc: function(){ viewer.loadScene('boutique2_p'); }
             },
             {
-              pitch: 0, yaw: 10, type: "info", text: "",
+              pitch: 0, yaw: -5, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/extérieur_p.png" alt="extérieur_p">`;
@@ -1286,7 +1286,7 @@
               clickHandlerFunc: function(){ viewer.loadScene('extérieur_p'); }
             },
             {
-              pitch: 0, yaw: 45, type: "info", text: "",
+              pitch: 0, yaw: 30, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/extérieur2_p.png" alt="extérieur2_p">`;
@@ -1302,7 +1302,7 @@
           fadeOutDuration: 800,
           hotSpots: [
             {
-              pitch: 32, yaw: 0, type: "info", text: "",
+              pitch: 32, yaw: -10, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/test_p.png" alt="test_p">`;
@@ -1310,7 +1310,7 @@
               clickHandlerFunc: function(){ viewer.loadScene('test_p'); }
             },
             {
-              pitch: 0, yaw: -10, type: "info", text: "",
+              pitch: 0, yaw: -20, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/boutique_p.png" alt="boutique_p">`;
@@ -1318,7 +1318,7 @@
               clickHandlerFunc: function(){ viewer.loadScene('boutique_p'); }
             },
             {
-              pitch: 0, yaw: 20, type: "info", text: "",
+              pitch: 0, yaw: 10, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/toilette_p.png" alt="toilette_p">`;
@@ -1326,7 +1326,7 @@
               clickHandlerFunc: function(){ viewer.loadScene('toilette_p'); }
             },
             {
-              pitch: 0, yaw: 30, type: "info", text: "",
+              pitch: 0, yaw: 20, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/cuisine_p.png" alt="cuisine_p">`;
@@ -1334,7 +1334,7 @@
               clickHandlerFunc: function(){ viewer.loadScene('cuisine_p'); }
             },
             {
-              pitch: 0, yaw: 40, type: "info", text: "",
+              pitch: 0, yaw: 30, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/atelier_p.png" alt="atelier_p">`;
@@ -1342,7 +1342,7 @@
               clickHandlerFunc: function(){ viewer.loadScene('atelier_p'); }
             },
             {
-              pitch: 20, yaw: 75, type: "info", text: "",
+              pitch: 20, yaw: 65, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/billard_vide_p.png" alt="billard_vide_p">`;
@@ -1350,7 +1350,7 @@
               clickHandlerFunc: function(){ viewer.loadScene('billard_vide_p'); }
             },
             {
-              pitch: 0, yaw: 170, type: "info", text: "",
+              pitch: 0, yaw: 120, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/extérieur_p.png" alt="extérieur_p">`;
@@ -1358,7 +1358,7 @@
               clickHandlerFunc: function(){ viewer.loadScene('extérieur_p'); }
             },
             {
-              pitch: 0, yaw: 250, type: "info", text: "",
+              pitch: 0, yaw: 200, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/extérieur2_p.png" alt="extérieur2_p">`;
@@ -1657,7 +1657,7 @@
           fadeOutDuration: 800,
           hotSpots: [
             {
-              pitch: 0, yaw: -53, type: "info", text: "",
+              pitch: 0, yaw: 30, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
                 div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/toilette_vide_p.png" alt="toilette_vide_p">`;
@@ -1665,12 +1665,12 @@
               clickHandlerFunc: function(){ viewer.loadScene('toilette_vide_p'); }
             },
             {
-              pitch: -10, yaw: 30, type: "info", text: "",
+              pitch: -10, yaw: 110, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/salleréunion2_vide_p.png" alt="salleréunion2_vide_p">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/boutique2_p.png" alt="boutique2_p">`;
               },
-              clickHandlerFunc: function(){ viewer.loadScene('salleréunion2_vide_p'); }
+              clickHandlerFunc: function(){ viewer.loadScene('boutique2_p'); }
             }
           ]
         }
