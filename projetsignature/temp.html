@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+  <meta name="description" content="Visite virtuelle 360° du Projet Signature Airhub - Découvrez l'avant-projet et le projet final en immersion complète">
+  <meta name="keywords" content="visite 360, projet signature, airhub, architecture, visite virtuelle, immersion">
+  <meta name="author" content="Studio TM">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Visite 360° - Projet Signature Airhub">
+  <meta property="og:description" content="Découvrez le Projet Signature Airhub en visite virtuelle 360°">
+  <meta property="og:image" content="photo/visite360/prieuré/edl/360/Lieu-post.webp">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Visite 360° - Projet Signature Airhub">
+  <meta property="twitter:description" content="Découvrez le Projet Signature Airhub en visite virtuelle 360°">
+  
+  <title>Visite 360° - Projet Signature Airhub | Studio TM</title>
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="photo/logo/Noir long.webp" as="image">
+  <link rel="preload" href="photo/visite360/prieuré/edl/plans/planRDC.webp" as="image">
+  
+  <!-- DNS prefetch for external resources -->
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js" defer></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+      background: #ffffff url('photo/logo/Noir long.webp') center center no-repeat;
+      background-size: 200px;
+      touch-action: none;
+      position: relative;
+    }
+
+    /* Panorama 360° */
+    #panorama {
+      width: 100%;
+      height: 100%;
+      display: none; /* masqué au départ */
+    }
+
+    /* --- Plan plein écran --- */
+    #plan-fullscreen {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      transition: opacity 0.8s ease;
+      z-index: 1000;
+      touch-action: none;
+    }
+    #plan-fullscreen img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    
+    .zone {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: rgba(0,0,0,0.4);
+      border: 2px solid white;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.2s;
+      /* Styles pour les boutons accessibles */
+      color: transparent;
+      font-size: 0;
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+    }
+    .zone:hover { transform: scale(1.2); }
+    .zone:focus {
+      outline: 2px solid #007acc;
+      outline-offset: 2px;
+    }
+
+    /* Plan réduit - Position fixe en bas à droite */
+    #plan-mini {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 200px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 10px;
+      padding: 8px;
+      display: none;
+      z-index: 5;
+      transition: all 0.3s ease;
+    }
+    
+    #plan-mini:hover {
+      transform: scale(1.4);
+      transform-origin: bottom right;
+      opacity: 1;
+    }
+    #plan-mini img { 
+      width: 100%; 
+      border-radius: 8px;
+    }
+    #plan-mini .zone {
+      width: 8px;
+      height: 8px;
+      border: 1px solid white;
+    }
+
+    /* --- Hotspot miniature --- */
+    .mini-thumb img {
+      width: 60px;
+      height: 60px;
+      border-radius: 5px;
+      border: 2px solid white;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .mini-thumb img:hover { transform: scale(1.2); }
+
+    /* Animation de fondu */
+    .fade-out { opacity: 0; pointer-events: none; }
+
+    /* Masquer l'indicateur de chargement */
+    .pnlm-load-box {
+      display: none !important;
+    }
+    
+    /* Transition fluide pour le canvas */
+    .pnlm-render-container {
+      transition: opacity 0.8s ease !important;
+    }
+
+    /* Fond personnalisé avec logo */
+    .pnlm-container {
+      background: #000 url('photo/logo.png') center center no-repeat !important;
+      background-size: 200px !important;
+    }
+
+    /* Écran d'accueil */
+    #welcome-screen {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #424546 0%, #DEE0E2 100%);
+      z-index: 15;
+      color: white;
+      text-align: center;
+    }
+    
+    .welcome-logo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      animation: pulse 2s infinite;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      /* CHANGEZ L'IMAGE ICI : */
+      background-image: url('photo/visite360/prieuré/edl/preview/samplesroom.webp');
+    }
+    
+    .welcome-logo img {
+      display: none;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+      50% { transform: scale(1.05); box-shadow: 0 25px 50px rgba(0,0,0,0.4); }
+      100% { transform: scale(1); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    }
+    
+    .welcome-title {
+      font-size: 2.5em;
+      font-weight: 300;
+      margin-bottom: 15px;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.5s forwards;
+    }
+    
+    .welcome-subtitle {
+      font-size: 1.2em;
+      opacity: 0.9;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeInUp 1s ease 1s forwards;
+    }
+    
+    .enter-btn {
+      padding: 15px 40px;
+      background: rgba(255,255,255,0.2);
+      border: 2px solid white;
+      border-radius: 50px;
+      color: white;
+      font-size: 1.1em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      opacity: 0;
+      animation: fadeInUp 1s ease 1.5s forwards;
+      backdrop-filter: blur(10px);
+    }
+    
+    .enter-btn:hover {
+      background: white;
+      color: #272727;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .loading-dots {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-radius: 50%;
+      animation: bounce 1.4s infinite ease-in-out;
+    }
+    
+    .dot:nth-child(1) { animation-delay: -0.32s; }
+    .dot:nth-child(2) { animation-delay: -0.16s; }
+    
+    @keyframes bounce {
+      0%, 80%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+      }
+      40% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Section Vidéo - Plein écran sans barre */
+    #video-section {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100vh; /* Toujours pleine hauteur */
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      z-index: 10;
+    }
+    #video-section video {
+      width: 88%;
+      max-width: 88vw;
+      max-height:88vw;
+      border-radius: 10px;
+    }
+    #video-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 20px;
+      z-index: 11;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+    }
+
+    /* Section Image Samplesroom */
+    #samplesroom-section {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      z-index: 10;
+    }
+    #samplesroom-section img {
+      width: 90%;
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    #samplesroom-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 20px;
+      z-index: 11;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+    }
+    .nav-square {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      z-index: 11;
+      overflow: hidden;
+      border-radius: 5px;
+      border: 2px solid white;
+    }
+    .nav-square img {
+      width: 64px;
+      height: 64px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      object-fit: cover;
+      display: block;
+    }
+    .nav-square img:hover {
+      transform: scale(1.2);
+    }
+    /* MODIFIEZ CES VALEURS POUR CHANGER LA POSITION DES CARRÉS */
+    #nav-exterieur3 {
+      top: 50%;  
+      left: 10%; 
+    }
+    #nav-yoga {
+      top: 50%;   
+      right: 10%; 
+    }
+
+    /* Ancien sélecteur d'étage - maintenant masqué */
+    #floor-selector {
+      display: none !important;
+    }
+    .floor-btn {
+      display: none;
+    }
+
+    /* Barre de navigation permanente */
+    #main-navigation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      display: none; /* Masquée au départ */
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(-70px);
+      transition: all 0.8s ease;
+    }
+    
+    #main-navigation.show {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Mode transparent pour les photos 360° */
+    #main-navigation.transparent {
+      background: transparent !important;
+      backdrop-filter: none !important;
+      border-bottom: none !important;
+      box-shadow: none !important;
+    }
+    
+    /* Animation de disparition pour la vidéo */
+    #main-navigation.hide {
+      opacity: 0;
+      transform: translateY(-70px);
+    }
+    
+    #navigation-content {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    /* Toggle Avant projet / Projet - Style adapté pour mode transparent */
+    #mode-toggle {
+      display: flex;
+      background: rgba(0,0,0,0.05);
+      border-radius: 50px;
+      padding: 4px;
+      gap: 0;
+      transition: all 0.3s ease;
+    }
+    
+    #main-navigation.transparent #mode-toggle {
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+    }
+    
+    .mode-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      background: transparent;
+      color: #666;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      min-width: 120px;
+    }
+    
+    #main-navigation.transparent .mode-btn {
+      color: rgba(255,255,255,0.8);
+    }
+    
+    .mode-btn.active {
+      background: #333;
+      color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    #main-navigation.transparent .mode-btn.active {
+      background: rgba(255,255,255,0.9);
+      color: #333;
+    }
+    
+    /* Sélecteur d'étage - Style adapté pour mode transparent */
+    #floor-navigation {
+      display: flex;
+      gap: 8px;
+    }
+    .floor-nav-btn {
+      padding: 8px 16px;
+      background: rgba(0,0,0,0.05);
+      border: 2px solid transparent;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      color: #666;
+      transition: all 0.3s ease;
+      min-width: 50px;
+      text-align: center;
+    }
+    
+    #main-navigation.transparent .floor-nav-btn {
+      background: rgba(0,0,0,0.7);
+      color: rgba(255,255,255,0.8);
+      backdrop-filter: blur(10px);
+    }
+    
+    .floor-nav-btn:hover {
+      background: rgba(0,0,0,0.1);
+      transform: translateY(-1px);
+    }
+    
+    #main-navigation.transparent .floor-nav-btn:hover {
+      background: rgba(0,0,0,0.8);
+      color: white;
+    }
+    
+    .floor-nav-btn.active {
+      background: #333;
+      color: white;
+      border-color: #333;
+    }
+    
+    #main-navigation.transparent .floor-nav-btn.active {
+      background: rgba(255,255,255,0.9);
+      color: #333;
+      border-color: rgba(255,255,255,0.9);
+    }
+    
+    /* Bouton vidéo dans la navigation - Style adapté pour mode transparent */
+    #video-nav-btn {
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      color: white;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(107, 114, 128, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    #main-navigation.transparent #video-nav-btn {
+      background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.8) 100%);
+      backdrop-filter: blur(10px);
+    }
+    
+    #video-nav-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    #video-nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(107, 114, 128, 0.4);
+      background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    }
+    
+    #main-navigation.transparent #video-nav-btn:hover {
+      background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 100%);
+    }
+    
+    #video-nav-btn:hover::before {
+      left: 100%;
+    }
+    
+    #video-nav-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(107, 114, 128, 0.3);
+    }
+    
+    /* Ajustement du contenu pour la barre fixe */
+    body {
+      padding-top: 0; /* Pas de padding au départ */
+      transition: padding-top 0.8s ease;
+    }
+    
+    body.navigation-visible {
+      padding-top: 70px;
+    }
+    
+    #plan-fullscreen,
+    #panorama,
+    #samplesroom-section {
+      height: 100vh; /* Pleine hauteur au départ */
+      top: 0;
+      transition: all 0.8s ease;
+    }
+    
+    body.navigation-visible #plan-fullscreen,
+    body.navigation-visible #panorama,
+    body.navigation-visible #samplesroom-section {
+      height: calc(100vh - 70px);
+      top: 70px;
+    }
+    
+    /* La vidéo reste toujours en plein écran */
+    #video-section {
+      height: 100vh !important;
+      top: 0 !important;
+    }
+    
+    #welcome-screen {
+      height: 100vh;
+      top: 0;
+    }
+
+    /* Boutons flottants pour les visites 360° */
+    #floating-controls {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    #floating-controls.show {
+      opacity: 1;
+    }
+    
+    #floating-mode-toggle {
+      display: flex;
+      background: rgba(0,0,0,0.7);
+      border-radius: 50px;
+      padding: 4px;
+      gap: 0;
+      backdrop-filter: blur(10px);
+    }
+    
+    .floating-mode-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      background: transparent;
+      color: rgba(255,255,255,0.8);
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      min-width: 120px;
+    }
+    
+    .floating-mode-btn.active {
+      background: rgba(255,255,255,0.9);
+      color: #333;
+    }
+    
+    #floating-floor-navigation {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .floating-floor-btn {
+      padding: 8px 16px;
+      background: rgba(0,0,0,0.7);
+      border: 2px solid transparent;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      transition: all 0.3s ease;
+      min-width: 50px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    
+    .floating-floor-btn:hover {
+      background: rgba(0,0,0,0.8);
+      color: white;
+    }
+    
+    .floating-floor-btn.active {
+      background: rgba(255,255,255,0.9);
+      color: #333;
+      border-color: rgba(255,255,255,0.9);
+    }
+    
+    #floating-video-btn {
+      padding: 8px 16px;
+      background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.8) 100%);
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      color: white;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    #floating-video-btn:hover {
+      background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 100%);
+      transform: translateY(-2px);
+    }
+
+    /* Bouton gyroscope */
+    #gyro-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 22px;
+      z-index: 6;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    #gyro-btn.active {
+      background: #333;
+      color: white;
+    }
+
+    /* Responsive Mobile */
+    @media (max-width: 768px) {
+      html, body {
+        width: 100vw;
+        min-width: 100vw;
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+      
+      /* Navigation mobile */
+      #main-navigation {
+        height: 60px;
+        padding: 0 10px;
+      }
+      
+      #navigation-content {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .mode-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+        min-width: 100px;
+      }
+      
+      #floor-navigation {
+        gap: 4px;
+      }
+      
+      .floor-nav-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+        min-width: 40px;
+      }
+      
+      #video-nav-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+      }
+      
+      #video-nav-btn::before {
+        display: none; /* Pas d'effet shimmer sur mobile */
+      }
+      
+      /* Ajustement du contenu */
+      body {
+        padding-top: 0;
+      }
+      
+      body.navigation-visible {
+        padding-top: 60px;
+      }
+      
+      #plan-fullscreen,
+      #panorama,
+      #samplesroom-section {
+        height: 100vh;
+        top: 0;
+      }
+      
+      body.navigation-visible #plan-fullscreen,
+      body.navigation-visible #panorama,
+      body.navigation-visible #samplesroom-section {
+        height: calc(100vh - 60px);
+        top: 60px;
+      }
+      
+      /* La vidéo reste toujours en plein écran sur mobile */
+      #video-section {
+        height: 100vh !important;
+        top: 0 !important;
+      }
+      
+      .mini-thumb img {
+        width: 35px;
+        height: 35px;
+      }
+      #plan-fullscreen {
+        width: 100vw;
+        min-width: 100vw;
+        max-width: 100vw;
+      }
+      /* Plan réduit mobile - Position fixe en bas à droite */
+      #plan-mini {
+        width: 140px;
+        bottom: 10px;
+        right: 10px;
+        padding: 6px;
+        transition: all 0.3s ease;
+      }
+      
+      #plan-mini:hover {
+        transform: scale(1.3);
+        transform-origin: bottom right;
+        opacity: 1;
+      }
+      #plan-mini img {
+        pointer-events: none;
+      }
+      #plan-mini .zone {
+        width: 12px;
+        height: 12px;
+        border: 2px solid white;
+      }
+      #plan-fullscreen .zone {
+        width: 18px;
+        height: 18px;
+        border: 2px solid white;
+      }
+      #plan-fullscreen {
+        padding: 5px;
+        box-sizing: border-box;
+      }
+      #plan-fullscreen img {
+        width: 95%;
+        height: auto;
+        max-width: 95vw;
+        max-height: 85vh;
+        margin: 0 auto;
+        display: block;
+        transform: translateX(0);
+      }
+      #video-close {
+        color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .welcome-title {
+        font-size: 2em;
+      }
+      
+      .welcome-subtitle {
+        font-size: 1em;
+        margin-bottom: 30px;
+      }
+      
+      .welcome-logo {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 20px;
+      }
+      
+      .enter-btn {
+        padding: 12px 30px;
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Boutons flottants pour les visites 360° -->
+  <div id="floating-controls" style="display: none;" role="navigation" aria-label="Contrôles de navigation 360°">
+    <div id="floating-mode-toggle" role="group" aria-label="Sélection du mode">
+      <button class="floating-mode-btn active" onclick="switchMode('edl')" aria-pressed="true">Avant projet</button>
+      <button class="floating-mode-btn" onclick="switchMode('projet')" aria-pressed="false">Projet Airhub</button>
+    </div>
+    
+    <div id="floating-floor-navigation" role="group" aria-label="Sélection de l'étage">
+      <button class="floating-floor-btn" onclick="switchToFloor('rdj')" aria-pressed="false">RDJ</button>
+      <button class="floating-floor-btn active" onclick="switchToFloor('rdc')" aria-pressed="true">RDC</button>
+      <button class="floating-floor-btn" onclick="switchToFloor('r1')" aria-pressed="false">R+1</button>
+    </div>
+    
+    <button id="floating-video-btn" onclick="showVideo()" aria-label="Lancer la vidéo de présentation">
+      <span style="margin-right: 6px;" aria-hidden="true">▶</span>Vidéo
+    </button>
+  </div>
+
+  <!-- Barre de navigation permanente -->
+  <nav id="main-navigation" role="navigation" aria-label="Navigation principale">
+    <div id="navigation-content">
+      <!-- Toggle mode Avant projet / Projet -->
+      <div id="mode-toggle" role="group" aria-label="Sélection du mode">
+        <button class="mode-btn active" onclick="switchMode('edl')" aria-pressed="true">Avant projet</button>
+        <button class="mode-btn" onclick="switchMode('projet')" aria-pressed="false">Projet Airhub</button>
+      </div>
+      
+      <!-- Sélecteur d'étage -->
+      <div id="floor-navigation" role="group" aria-label="Sélection de l'étage">
+        <button class="floor-nav-btn" onclick="switchToFloor('rdj')" aria-pressed="false">RDJ</button>
+        <button class="floor-nav-btn active" onclick="switchToFloor('rdc')" aria-pressed="true">RDC</button>
+        <button class="floor-nav-btn" onclick="switchToFloor('r1')" aria-pressed="false">R+1</button>
+      </div>
+      
+      <!-- Bouton vidéo -->
+      <button id="video-nav-btn" onclick="showVideo()" aria-label="Lancer la vidéo de présentation">
+        <span style="margin-right: 6px;" aria-hidden="true">▶</span>Vidéo
+      </button>
+    </div>
+  </nav>
+
+  <!-- Écran d'accueil -->
+  <main id="welcome-screen" role="main">
+    <div class="welcome-logo" role="img" aria-label="Logo du projet Airhub">
+      <img src="photo/logo/Noir long.webp" alt="Logo Studio TM" loading="lazy">
+    </div>
+    <h1 class="welcome-title">Visite 360°</h1>
+    <p class="welcome-subtitle">Découvrez le Projet Signature "Airhub"</p> 
+    <button class="enter-btn" onclick="enterSite()" aria-describedby="loading-status">
+      Commencer la visite
+    </button>
+    <div class="loading-dots" id="loading-dots" style="display: none;" role="status" aria-live="polite" aria-label="Chargement en cours">
+      <div class="dot" aria-hidden="true"></div>
+      <div class="dot" aria-hidden="true"></div>
+      <div class="dot" aria-hidden="true"></div>
+    </div>
+  </main>
+
+  <!-- Plan plein écran -->
+  <div id="plan-fullscreen" style="display: none;">
+    <div style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+      <div style="position: relative; width: 95%; max-width: 95vw; max-height: 95vh; aspect-ratio: auto;">
+        <img id="plan-fullscreen-img" src="photo/visite360/prieuré/edl/plans/planRDC.webp" alt="Plan global" style="width: 100%; height: 100%; border-radius: 10px; box-shadow: 0 0 30px rgba(0,0,0,0.3); object-fit: contain; display: block;">
+        <div id="fullscreen-zones-rdc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+          <div class="zone" style="top: 80%; left: 41%;" onclick="startVisit('extérieur')"></div>
+          <div class="zone" style="top: 60%; left: 7%;" onclick="startVisit('extérieur2')"></div>
+          <div class="zone" style="top: 40%; left: 28%;" onclick="startVisit('salleréunion')"></div>
+          <div class="zone" style="top: 60%; left: 25%;" onclick="startVisit('salleréunion2')"></div>
+          <div class="zone" style="top: 58%; left: 43%;" onclick="startVisit('cuisine')"></div>
+          <div class="zone" style="top: 43%; left: 40%;" onclick="startVisit('wc')"></div>
+          <div class="zone" style="top: 52%; left: 58%;" onclick="startVisit('salleréception')"></div>
+        </div>
+        <div id="fullscreen-zones-r1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none;">
+          <div class="zone" style="top: 62%; left: 50%;" onclick="startVisit('billard')"></div>
+          <div class="zone" style="top: 50%; left: 60%;" onclick="startVisit('grandesalle')"></div>
+          <div class="zone" style="top: 58%; left: 41%;" onclick="startVisit('petitesalle')"></div>
+          <div class="zone" style="top: 41%; left: 41%;" onclick="startVisit('toilette')"></div>
+          <div class="zone" style="top: 40%; left: 24%;" onclick="startVisit('mezzanine')"></div>
+        </div>
+        <div id="fullscreen-zones-rdj" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none;">
+          <div class="zone" style="top: 50%; left: 60%;" onclick="startSamplesroomVisit()"></div>
+          <div class="zone" style="top: 50%; left: 28%;" onclick="startVisit('yoga')"></div>
+          <div class="zone" style="top: 30%; left: 70%;" onclick="startVisit('extérieur3')"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panorama 360° -->
+  <section id="panorama" role="application" aria-label="Vue panoramique 360 degrés"></section>
+
+  <!-- Section Vidéo -->
+  <div id="video-section">
+    <button id="video-close" onclick="closeVideo()">×</button>
+    <video controls muted>
+      <source src="photo/visite360/prieuré/FPV16-9.mp4" type="video/mp4">
+      Votre navigateur ne supporte pas la lecture vidéo.
+    </video>
+  </div>
+
+  <!-- Section Image Samplesroom -->
+  <div id="samplesroom-section">
+    <button id="samplesroom-close" onclick="closeSamplesroom()">×</button>
+    <div id="nav-exterieur3" class="nav-square" onclick="goToExterieur3()">
+      <img src="photo/visite360/prieuré/preview/extérieur3.webp" alt="Extérieur 3">
+    </div>
+    <div id="nav-yoga" class="nav-square" onclick="goToYoga()">
+      <img src="photo/visite360/prieuré/preview/yoga.webp" alt="Yoga">
+    </div>
+    <img src="photo/visite360/prieuré/samplesroom.webp" alt="Samples Room">
+  </div>
+
+
+
+  <!-- Bouton gyroscope (mobile uniquement) -->
+  <button id="gyro-btn" onclick="toggleGyro()" aria-label="Activer/désactiver le gyroscope" aria-pressed="false">
+    <span aria-hidden="true">🧭</span>
+  </button>
+
+  <!-- Plan réduit -->
+  <div id="plan-mini">
+    <div style="position: relative;">
+      <img id="plan-mini-img" src="photo/visite360/prieuré/edl/plans/planRDC.webp" alt="Plan miniature" onclick="isMobile() ? null : returnToFullPlan()" style="cursor: pointer;">
+      <div id="zones-rdc">
+        <div class="zone" style="top: 80%; left: 43%;" onclick="loadScene('extérieur')"></div>
+        <div class="zone" style="top: 60%; left: 5%;" onclick="loadScene('extérieur2')"></div>
+        <div class="zone" style="top: 40%; left: 28%;" onclick="loadScene('salleréunion')"></div>
+        <div class="zone" style="top: 60%; left: 28%;" onclick="loadScene('salleréunion2')"></div>
+        <div class="zone" style="top: 58%; left: 43%;" onclick="loadScene('cuisine')"></div>
+        <div class="zone" style="top: 43%; left: 43%;" onclick="loadScene('wc')"></div>
+        <div class="zone" style="top: 52%; left: 60%;" onclick="loadScene('salleréception')"></div>
+      </div>
+      <div id="zones-r1" style="display: none;">
+        <div class="zone" style="top: 62%; left: 50%;" onclick="loadScene('billard')"></div>
+        <div class="zone" style="top: 50%; left: 60%;" onclick="loadScene('grandesalle')"></div>
+        <div class="zone" style="top: 58%; left: 41%;" onclick="loadScene('petitesalle')"></div>
+        <div class="zone" style="top: 41%; left: 41%;" onclick="loadScene('toilette')"></div>
+        <div class="zone" style="top: 40%; left: 24%;" onclick="loadScene('mezzanine')"></div>
+      </div>
+      <div id="zones-rdj" style="display: none;">
+        <div class="zone" style="top: 50%; left: 60%;" onclick="showSamplesroom()"></div>
+        <div class="zone" style="top: 50%; left: 28%;" onclick="loadScene('yoga')"></div>
+        <div class="zone" style="top: 30%; left: 70%;" onclick="loadScene('extérieur3')"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    const paths = {
+      edl: {
+        rdc: 'photo/visite360/prieuré/edl/plans/planRDC.webp',
+        r1: 'photo/visite360/prieuré/edl/plans/planR+1.webp',
+        rdj: 'photo/visite360/prieuré/edl/plans/planRDJ.webp'
+      },
+      projet: {
+        rdc: 'photo/visite360/prieuré/projet/plans/planRDC.webp',
+        r1: 'photo/visite360/prieuré/projet/plans/planR+1.webp',
+        rdj: 'photo/visite360/prieuré/projet/plans/planRDJ.webp'
+      }
+    };
+    
+    let currentMode = 'edl';
+    let currentFloor = 'rdc';
+    
+    function enterSite() {
+      console.log('✅ enterSite() appelée');
+      document.getElementById('welcome-screen').style.display = 'none';
+      document.getElementById('main-navigation').style.display = 'flex';
+      document.getElementById('plan-fullscreen').style.display = 'flex';
+      updatePlan();
+    }
+    
+    function switchMode(mode) {
+      console.log('Mode:', mode);
+      if (mode === 'avant') mode = 'edl';
+      currentMode = mode;
+      updatePlan();
+      updateButtons();
+    }
+    
+    function switchToFloor(floor) {
+      console.log('Étage:', floor);
+      currentFloor = floor;
+      updatePlan();
+      updateButtons();
+    }
+    
+    function updatePlan() {
+      const planPath = paths[currentMode][currentFloor];
+      console.log('📋 Plan:', planPath);
+      document.getElementById('plan-fullscreen-img').src = planPath;
+      document.getElementById('plan-mini-img').src = planPath;
+      
+      document.getElementById('fullscreen-zones-rdc').style.display = currentFloor === 'rdc' ? 'block' : 'none';
+      document.getElementById('fullscreen-zones-r1').style.display = currentFloor === 'r1' ? 'block' : 'none';
+      document.getElementById('fullscreen-zones-rdj').style.display = currentFloor === 'rdj' ? 'block' : 'none';
+      
+      document.getElementById('zones-rdc').style.display = currentFloor === 'rdc' ? 'block' : 'none';
+      document.getElementById('zones-r1').style.display = currentFloor === 'r1' ? 'block' : 'none';
+      document.getElementById('zones-rdj').style.display = currentFloor === 'rdj' ? 'block' : 'none';
+    }
+    
+    function updateButtons() {
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll(`.mode-btn[onclick*="'${currentMode}'"]`).forEach(b => b.classList.add('active'));
+      
+      document.querySelectorAll('.floor-nav-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll(`.floor-nav-btn[onclick*="'${currentFloor}'"]`).forEach(b => b.classList.add('active'));
+    }
+    
+    function showVideo() { 
+      document.getElementById('plan-fullscreen').style.display = 'none';
+      document.getElementById('video-section').style.display = 'flex';
+    }
+    function closeVideo() {
+      document.getElementById('video-section').style.display = 'none';
+      document.getElementById('plan-fullscreen').style.display = 'flex';
+    }
+    function showSamplesroom() {
+      document.getElementById('plan-fullscreen').style.display = 'none';
+      document.getElementById('samplesroom-section').style.display = 'flex';
+    }
+    function closeSamplesroom() {
+      document.getElementById('samplesroom-section').style.display = 'none';
+      document.getElementById('plan-fullscreen').style.display = 'flex';
+    }
+    function goToYoga() {}
+    function goToExterieur3() {}
+    function startVisit(scene) {}
+    function startSamplesroomVisit() {}
+    function loadScene(scene) {}
+    function returnToFullPlan() {}
+    function isMobile() { return window.innerWidth <= 768; }
+    function toggleGyro() {}
+    
+    console.log('✅ Script chargé');
+  </script>
+
+</body>
+</html>

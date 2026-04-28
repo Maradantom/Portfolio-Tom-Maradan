@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+  <meta name="description" content="Visite virtuelle 360° du Projet Signature Airhub - Découvrez l'avant-projet et le projet final en immersion complète">
+  <meta name="keywords" content="visite 360, projet signature, airhub, architecture, visite virtuelle, immersion">
+  <meta name="author" content="Studio TM">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Visite 360° - Projet Signature Airhub">
+  <meta property="og:description" content="Découvrez le Projet Signature Airhub en visite virtuelle 360°">
+  <meta property="og:image" content="photo/visite360/prieuré/edl/360/Lieu-post.webp">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Visite 360° - Projet Signature Airhub">
+  <meta property="twitter:description" content="Découvrez le Projet Signature Airhub en visite virtuelle 360°">
+  
+  <title>Visite 360° - Projet Signature Airhub | Studio TM</title>
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="photo/logo/Noir long.webp" as="image">
+  <link rel="preload" href="photo/visite360/prieuré/edl/plans/planRDC.webp" as="image">
+  
+  <!-- DNS prefetch for external resources -->
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js" defer></script>
+
+  <link rel="stylesheet" href="assets/css/signature360.css">
+</head>
+<body>
+
+  <!-- Boutons flottants pour les visites 360° -->
+  <div id="floating-controls" style="display: none;" role="navigation" aria-label="Contrôles de navigation 360°">
+    <div id="floating-mode-toggle" role="group" aria-label="Sélection du mode">
+      <button class="floating-mode-btn active" onclick="switchMode('edl')" aria-pressed="true">Avant projet</button>
+      <button class="floating-mode-btn" onclick="switchMode('projet')" aria-pressed="false">Projet Airhub</button>
+    </div>
+
+    <div id="floating-floor-navigation" role="group" aria-label="Sélection de l'étage">
+      <button class="floating-floor-btn" onclick="switchToFloor('rdj')" aria-pressed="false">RDJ</button>
+      <button class="floating-floor-btn active" onclick="switchToFloor('rdc')" aria-pressed="true">RDC</button>
+      <button class="floating-floor-btn" onclick="switchToFloor('r1')" aria-pressed="false">R+1</button>
+    </div>
+
+    <button id="floating-video-btn" onclick="showVideo()" aria-label="Lancer la vidéo de présentation">
+      <span style="margin-right: 6px;" aria-hidden="true">▶</span>Vidéo
+    </button>
+  </div>
+
+  <!-- Barre de navigation permanente -->
+  <nav id="main-navigation" role="navigation" aria-label="Navigation principale">
+    <div id="navigation-content">
+      <!-- Toggle mode Avant projet / Projet -->
+      <div id="mode-toggle" role="group" aria-label="Sélection du mode">
+        <button class="mode-btn active" onclick="switchMode('edl')" aria-pressed="true">Avant projet</button>
+        <button class="mode-btn" onclick="switchMode('projet')" aria-pressed="false">Projet Airhub</button>
+      </div>
+      
+      <!-- Sélecteur d'étage -->
+      <div id="floor-navigation" role="group" aria-label="Sélection de l'étage">
+        <button class="floor-nav-btn" onclick="switchToFloor('rdj')" aria-pressed="false">RDJ</button>
+        <button class="floor-nav-btn active" onclick="switchToFloor('rdc')" aria-pressed="true">RDC</button>
+        <button class="floor-nav-btn" onclick="switchToFloor('r1')" aria-pressed="false">R+1</button>
+      </div>
+      
+      <!-- Bouton vidéo -->
+      <button id="video-nav-btn" onclick="showVideo()" aria-label="Lancer la vidéo de présentation">
+        <span style="margin-right: 6px;" aria-hidden="true">▶</span>Vidéo
+      </button>
+    </div>
+  </nav>
+
+  <!-- Écran d'accueil -->
+  <main id="welcome-screen" role="main">
+    <div class="welcome-logo" role="img" aria-label="Logo du projet Airhub">
+      <img src="photo/logo/Noir long.webp" alt="Logo Studio TM" loading="lazy">
+    </div>
+    <h1 class="welcome-title">Visite 360°</h1>
+    <p class="welcome-subtitle">Découvrez le Projet Signature "Airhub"</p> 
+    <button class="enter-btn" onclick="enterSite()" aria-describedby="loading-status">
+      Commencer la visite
+    </button>
+    <div class="loading-dots" id="loading-dots" style="display: none;" role="status" aria-live="polite" aria-label="Chargement en cours">
+      <div class="dot" aria-hidden="true"></div>
+      <div class="dot" aria-hidden="true"></div>
+      <div class="dot" aria-hidden="true"></div>
+    </div>
+  </main>
+
+  <!-- Plan plein écran -->
+  <div id="plan-fullscreen" style="display: none;">
+    <div style="position: relative;">
+      <img id="plan-fullscreen-img" src="photo/visite360/prieuré/edl/plans/planRDC.webp" alt="Plan global">
+
+      <!-- ====== POINTS GENERES DEPUIS points-config.js ====== -->
+      <!-- AVANT-PROJET -->
+      <div id="fullscreen-zones-rdc"></div>
+      <div id="fullscreen-zones-r1"  style="display: none;"></div>
+      <div id="fullscreen-zones-rdj" style="display: none;"></div>
+      <!-- PROJET AIRHUB -->
+      <div id="fullscreen-zones-rdc-projet" style="display: none;"></div>
+      <div id="fullscreen-zones-r1-projet"  style="display: none;"></div>
+      <div id="fullscreen-zones-rdj-projet" style="display: none;"></div>
+    </div>
+  </div>
+
+  <!-- Panorama 360° -->
+  <section id="panorama" role="application" aria-label="Vue panoramique 360 degrés"></section>
+
+  <!-- Section Vidéo -->
+  <div id="video-section">
+    <button id="video-close" onclick="closeVideo()">×</button>
+    <video controls muted>
+      <source src="essai projet signature/photo/edl/360/FPV16-9.mp4" type="video/mp4">
+      Votre navigateur ne supporte pas la lecture vidéo.
+    </video>
+  </div>
+
+  <!-- Section Image Samplesroom -->
+  <div id="samplesroom-section">
+    <button id="samplesroom-close" onclick="closeSamplesroom()">×</button>
+    <div id="nav-exterieur3" class="nav-square" onclick="goToExterieur3()">
+      <img src="photo/visite360/prieuré/preview/extérieur3.webp" alt="Extérieur 3">
+    </div>
+    <div id="nav-yoga" class="nav-square" onclick="goToYoga()">
+      <img src="photo/visite360/prieuré/preview/yoga.webp" alt="Yoga">
+    </div>
+    <img src="photo/visite360/prieuré/samplesroom.webp" alt="Samples Room">
+  </div>
+
+
+
+  <!-- Bouton gyroscope (mobile uniquement) -->
+  <button id="gyro-btn" onclick="toggleGyro()" aria-label="Activer/désactiver le gyroscope" aria-pressed="false">
+    <span aria-hidden="true">🧭</span>
+  </button>
+
+  <!-- Plan mini - Points generes depuis points-config.js -->
+  <div id="plan-mini">
+    <div style="position: relative;">
+      <img id="plan-mini-img" src="photo/visite360/prieuré/edl/plans/planRDC.webp" alt="Plan miniature" onclick="isMobile() ? null : returnToFullPlan()" style="cursor: pointer;">
+      <!-- AVANT-PROJET -->
+      <div id="zones-rdc"></div>
+      <div id="zones-r1"  style="display: none;"></div>
+      <div id="zones-rdj" style="display: none;"></div>
+    </div>
+  </div>
+
+  <div id="plan-mini-projet" style="display: none;">
+    <div style="position: relative;">
+      <img id="plan-mini-img-projet" src="photo/visite360/prieuré/projet/plans/planRDC.webp" alt="Plan miniature projet" onclick="isMobile() ? null : returnToFullPlan()" style="cursor: pointer;">
+      <!-- PROJET AIRHUB -->
+      <div id="zones-rdc-projet" style="display: none;"></div>
+      <div id="zones-r1-projet"  style="display: none;"></div>
+      <div id="zones-rdj-projet" style="display: none;"></div>
+        <div class="zone" style="top: 30%; left: 70%;" onclick="loadScene('formation2')"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+<script src="assets/js/points-config.js" defer></script>
+<script src="assets/js/signature360.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tom Maradan | StudioTM - Appartement-2024-Lyon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+   :root {
+      --main-color: #111;
+      --bg-color: #fdfdfd;
+      --accent-color: #eee;
+    }
+
+    /* RESET */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-color);
+      color: var(--main-color);
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      transition: background 0.3s ease;
+    }
+
+    .logo img {
+      height: 30px;
+      width: auto;
+      object-fit: contain;
+      content: url('photo/logo/Blanc long.webp');
+      transition: content 0.3s ease;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    /* SCROLL HEADER */
+    header.scrolled nav a {
+      color: var(--main-color);
+    }
+
+    header.scrolled .logo img {
+      content: url('photo/logo/Noir long.webp');
+    }
+
+    /* HERO IMAGE */
+    .hero-image {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .parallax-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 130%;
+      background: url('projets/4-projet-appartement-lyon-2024/3D/Cuisine-salon.webp') center center / cover no-repeat;
+      will-change: transform;
+      z-index: 0;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 1;
+      color: rgb(255, 255, 255);
+      text-align: center;
+      top: 43%;
+      transform: translateY(-50%);
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    }
+
+    /* MAIN LAYOUT */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    /* KEY POINTS */
+    .key-points {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .key-points div {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .key-points strong {
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* PLANS GRID - toujours 3 colonnes */
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      padding: 0 2rem;
+    }
+
+    .plans-grid img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .plans-grid img:hover {
+      transform: scale(1.03);
+    }
+
+    /* TEXTE DU PROJET */
+    .project-text {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .project-text h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    /* BOUTON RETOUR */
+    .voir-projets-btn {
+      align-self: center;
+      background: var(--accent-color);
+      color: var(--main-color);
+      padding: 0.8rem 1.6rem;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      border: 1px solid #ccc;
+      transition: all 0.3s ease;
+    }
+
+    .voir-projets-btn:hover {
+      background: #ddd;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      background-color: #fff;
+    }
+
+    .footer-logo {
+      max-width: 100px;
+      margin-bottom: 1rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .logo img {
+        height: 24px;
+        margin-bottom: 0.5rem;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      nav a {
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .plans-grid {
+        padding: 0 0.5rem; /* ✅ marge réduite sur mobile */
+        gap: 0.6rem;       /* ✅ espace réduit pour gagner de la place */
+      }
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(5px);
+      overflow: hidden;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 2001;
+    }
+
+    .lightbox-nav svg {
+      width: 25px;
+      height: 25px;
+      stroke: white !important;
+      color: white !important;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .lightbox-nav.prev {
+      left: 2rem;
+    }
+
+    .lightbox-nav.next {
+      right: 2rem;
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      cursor: pointer;
+      z-index: 2001;
+    }
+
+    .close-lightbox svg {
+      width: 32px;
+      height: 32px;
+      stroke: white !important;
+      color: white !important;
+    }
+
+    /* Flèches noires sur mobile */
+    @media (max-width: 600px) {
+      #lightbox1 .lightbox-nav svg {
+        stroke: black !important;
+        color: black !important;
+      }
+
+      #lightbox1 .close-lightbox svg {
+        stroke: white !important;
+        color: white !important;
+      }
+    }
+
+    @media (min-width: 1024px) {
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1.3rem;
+  }
+}
+    </style>
+
+
+
+  <script>
+  window.addEventListener("scroll", function () {
+    const bg = document.querySelector(".parallax-bg");
+    const scrollY = window.scrollY;
+    bg.style.transform = "translateY(" + scrollY * 0.4 + "px)";
+  });
+
+  window.addEventListener("scroll", function () {
+    const header = document.querySelector("header");
+    const hero = document.querySelector(".hero-image");
+    const offset = hero.offsetHeight;
+
+    if (window.scrollY > offset - 100) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  });
+</script>
+
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">
+      <img src="photo/logo/Noir long.png" alt="Logo Tom Maradan">
+    </a>
+    <nav>
+      <a href="index.html">ACCUEIL</a>
+      <a href="projets.html">PROJETS</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+  </header>
+
+  <div class="hero-image">
+  <div class="parallax-bg"></div>
+  <div class="hero-text">
+    <h1>Projet Appartement</h1>
+    <p>Deux studios à fusionner en un sous les combles</p>
+  </div>
+</div>
+
+  <main>
+    <section class="key-points">
+      <div><strong>Année</strong><span>2024</span></div>
+      <div><strong>Type de construction</strong><span>Rénovation</span></div>
+      <div><strong>Secteurs</strong><span>Résidentiel</span></div>
+      <div><strong>Lieu</strong><span>Lyon</span></div>
+    </section>
+
+            <!-- DESCRIPTION -->
+    <section class="project-text">
+      <h2>Shelter : Un cocon d’innovation au cœur de Lyon</h2>
+      <p>Le projet Shelter réinvente un appartement de 9,01 m² situé à Lyon. Pensé pour répondre aux défis des petits
+            espaces urbains, ce logement optimise chaque centimètre carré grâce à une conception à la fois fonctionnelle,
+            esthétique et durable. La démarche s’appuie sur un diagnostic précis du bâti existant, intégrant des solutions
+            modernes comme une isolation performante et des matériaux écologiques, tels que le bois lambrissé et le linoléum.
+            Le design s’inspire d’un minimalisme nordique, mêlant lignes épurées et teintes naturelles. Les murs en lambris
+            épicéa, associés à des sols en linoléum bleu indigo, instaurent une ambiance chaleureuse et contemporaine.
+            Chaque meuble a été choisi pour sa polyvalence, avec des éléments multifonctionnels permettant de libérer de
+            l’espace tout en restant élégants. L’étude technique comprend des aménagements comme une ventilation mécanique
+            contrôlée (VMC) optimisée et des plaques de plâtre acoustiques et hydrofuges pour une isolation thermique et
+            sonore irréprochable. Le système d’éclairage a été étudié pour offrir une luminosité adaptée à chaque zone de
+            l’appartement, maximisant le confort visuel. Shelter se distingue par son approche durable et son engagement à
+            offrir des espaces de vie agréables dans des environnements restreints. Ce projet témoigne de ma capacité à
+            allier réflexion architecturale, design soigné et solutions techniques innovantes.</p>
+    </section>
+
+          <!-- GALERIE DE PLANS -->
+        <div class="plans-grid" id="plans1">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter1.webp" onclick="openLightbox1(0)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter2.webp" onclick="openLightbox1(1)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter3.webp" onclick="openLightbox1(2)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter4.webp" onclick="openLightbox1(3)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter5.webp" onclick="openLightbox1(4)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter6.webp" onclick="openLightbox1(5)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter7.webp" onclick="openLightbox1(6)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter8.webp" onclick="openLightbox1(7)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter9.webp" onclick="openLightbox1(8)">
+        </div>
+      
+    </section>
+
+    <section class="project-text">
+      <h2>Etude esthétique</h2>
+      <p>L’étude esthétique se concentre sur le choix des matériaux, des couleurs et du mobilier pour créer une
+          atmosphère harmonieuse, épurée et chaleureuse. Chaque pièce (entrée, pièce à vivre, chambre, salle de bain…) a
+          été pensée avec une palette cohérente (RAL, matières, textures), alliant confort et design minimaliste.
+          L’objectif est de proposer un espace contemporain, fonctionnel et accueillant, en accord avec les attentes du
+          client.</p>
+    </section>
+
+      <!-- GALERIE DE PLANS -->
+        <div class="plans-grid" id="plans1">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter11.webp" onclick="openLightbox1(9)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter12.webp" onclick="openLightbox1(10)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter13.webp" onclick="openLightbox1(11)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter14.webp" onclick="openLightbox1(12)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter15.webp" onclick="openLightbox1(13)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter16.webp" onclick="openLightbox1(14)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter17.webp" onclick="openLightbox1(15)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter18.webp" onclick="openLightbox1(16)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter19.webp" onclick="openLightbox1(17)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter20.webp" onclick="openLightbox1(18)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter21.webp" onclick="openLightbox1(19)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter22.webp" onclick="openLightbox1(20)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter23.webp" onclick="openLightbox1(21)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter24.webp" onclick="openLightbox1(22)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter25.webp" onclick="openLightbox1(23)">
+        </div>
+
+    <section class="project-text">
+      <h2>Etude technique</h2>
+      <p>L’étude technique comprend l’ensemble des plans d’exécution nécessaires à la réalisation du projet : plâtrerie,
+          menuiserie, électricité, plomberie et ventilation. Ces plans détaillent les dimensions, les matériaux techniques
+          (plaques BA13, isolants, réseaux électriques), les implantations des prises, interrupteurs, VMC, et équipements
+          sanitaires. Cette phase garantit la faisabilité et la conformité du projet aux normes en vigueur.</p>
+    </section>
+
+    <!-- GALERIE DE PLANS -->
+        <div class="plans-grid" id="plans1">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter27.webp" onclick="openLightbox1(24)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter28.webp" onclick="openLightbox1(25)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter29.webp" onclick="openLightbox1(26)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter30.webp" onclick="openLightbox1(27)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter31.webp" onclick="openLightbox1(28)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter32.webp" onclick="openLightbox1(29)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter33.webp" onclick="openLightbox1(30)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter34.webp" onclick="openLightbox1(31)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter35.webp" onclick="openLightbox1(32)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter36.webp" onclick="openLightbox1(33)">
+          <img src="projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter37.webp" onclick="openLightbox1(34)">
+        </div>
+
+    <section class="project-text">
+      <h2>Maquette</h2>
+      <p>La maquette permet de représenter physiquement le projet dans son volume global. Elle illustre les choix
+            d’agencement, de proportions et de matières dans un format réduit mais tangible. Elle sert à visualiser
+            concrètement l’espace imaginé, à tester la cohérence des choix esthétiques et à soutenir la présentation du
+            projet auprès de l’équipe pédagogique ou du client.</p>
+    </section>
+
+    <!-- GALERIE DE PLANS -->
+        <div class="plans-grid" id="plans1">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette1.webp" onclick="openLightbox1(35)">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette2.webp" onclick="openLightbox1(36)">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette3.webp" onclick="openLightbox1(37)">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette4.webp" onclick="openLightbox1(38)">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette5.webp" onclick="openLightbox1(39)">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette6.webp" onclick="openLightbox1(40)">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette7.webp" onclick="openLightbox1(41)">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette8.webp" onclick="openLightbox1(42)">
+          <img src="projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette9.webp" onclick="openLightbox1(43)">
+        </div>
+
+
+    <!-- ✅ LIGHTBOX 1 -->
+    <div id="lightbox1" class="lightbox" onclick="closeLightbox1(event)">
+      <span class="close-lightbox" onclick="closeLightbox1(event)">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </span>
+      <button class="lightbox-nav prev" onclick="changeLightboxImage1(-1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+      <img id="lightbox1-img" src="" alt="plan en grand">
+      <button class="lightbox-nav next" onclick="changeLightboxImage1(1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+    </div>
+    </script>
+    <script>
+
+      // LIGHTBOX 1
+      const lightboxImages1 = [
+        // Rendu
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter1.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter2.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter3.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter4.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter5.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter6.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter7.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter8.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter9.webp",
+
+        // Etude esthétique
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter11.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter12.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter13.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter14.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter15.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter16.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter17.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter18.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter19.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter20.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter21.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter22.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter23.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter24.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter25.webp",
+
+        // Etude technique
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter27.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter28.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter29.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter30.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter31.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter32.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter33.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter34.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter35.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter36.webp",
+        "projets/4-projet-appartement-lyon-2024/Rendu/Projet Shelter37.webp",
+
+        // Maquette
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette1.webp",
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette2.webp",
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette3.webp",
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette4.webp",
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette5.webp",
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette6.webp",
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette7.webp",
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette8.webp",
+        "projets/4-projet-appartement-lyon-2024/Maquette/Projet Shelter - maquette9.webp"
+      ];
+      let currentLightboxIndex1 = 0;
+
+      function openLightbox1(index) {
+        currentLightboxIndex1 = index;
+        document.getElementById("lightbox1-img").src = lightboxImages1[index];
+        document.getElementById("lightbox1").style.display = "flex";
+      }
+
+      function changeLightboxImage1(direction) {
+        currentLightboxIndex1 = (currentLightboxIndex1 + direction + lightboxImages1.length) % lightboxImages1.length;
+        document.getElementById("lightbox1-img").src = lightboxImages1[currentLightboxIndex1];
+      }
+
+      function closeLightbox1(event) {
+        if (!event || event.target === document.getElementById("lightbox1") || event.target.closest('.close-lightbox')) {
+          document.getElementById("lightbox1").style.display = "none";
+        }
+      }
+    </script>
+    <div id="lightbox" class="lightbox">
+      <span class="close-lightbox" onclick="closeLightbox(event)">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </span>
+      <button class="lightbox-nav prev" onclick="changeLightboxImage(-1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </button>
+      <img id="lightbox-img" src="" alt="plan en grand">
+      <button class="lightbox-nav next" onclick="changeLightboxImage(1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+
+
+    <a href="../projets.html" class="voir-projets-btn">← Retour à tous les projets</a>
+  </main>
+
+  <footer class="footer">
+    <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan" class="footer-logo">
+    <p>© <span id="year"></span> Tom Maradan – Tous droits réservés</p>
+
+    <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </footer>
+
+</body>
+</html>

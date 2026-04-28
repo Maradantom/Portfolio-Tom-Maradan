@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tom Maradan | StudioTM - Maison-2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-color: #111;
+      --bg-color: #fdfdfd;
+      --accent-color: #eee;
+    }
+
+    /* RESET */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-color);
+      color: var(--main-color);
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      transition: background 0.3s ease;
+    }
+
+    .logo img {
+      height: 30px;
+      width: auto;
+      object-fit: contain;
+      content: url('photo/logo/Blanc long.webp');
+      transition: content 0.3s ease;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    /* SCROLL HEADER */
+    header.scrolled nav a {
+      color: var(--main-color);
+    }
+
+    header.scrolled .logo img {
+      content: url('photo/logo/Noir long.webp');
+    }
+
+    /* HERO IMAGE */
+    .hero-image {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .parallax-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 130%;
+      background: url('projets/5-projet-maison-2025/3D/Maison__Drone.webp') center center / cover no-repeat;
+      will-change: transform;
+      z-index: 0;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 1;
+      color: rgb(255, 255, 255);
+      text-align: center;
+      top: 43%;
+      transform: translateY(-50%);
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    }
+
+    /* MAIN LAYOUT */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    /* KEY POINTS */
+    .key-points {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .key-points div {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .key-points strong {
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* PLANS GRID - toujours 3 colonnes */
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      padding: 0 2rem;
+    }
+
+    .plans-grid img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .plans-grid img:hover {
+      transform: scale(1.03);
+    }
+
+    /* TEXTE DU PROJET */
+    .project-text {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .project-text h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    /* BOUTON RETOUR */
+    .voir-projets-btn {
+      align-self: center;
+      background: var(--accent-color);
+      color: var(--main-color);
+      padding: 0.8rem 1.6rem;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      border: 1px solid #ccc;
+      transition: all 0.3s ease;
+    }
+
+    .voir-projets-btn:hover {
+      background: #ddd;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      background-color: #fff;
+    }
+
+    .footer-logo {
+      max-width: 100px;
+      margin-bottom: 1rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .logo img {
+        height: 24px;
+        margin-bottom: 0.5rem;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      nav a {
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .plans-grid {
+        padding: 0 0.5rem; /* ✅ marge réduite sur mobile */
+        gap: 0.6rem;       /* ✅ espace réduit pour gagner de la place */
+      }
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(5px);
+      overflow: hidden;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 2001;
+    }
+
+    .lightbox-nav svg {
+      width: 25px;
+      height: 25px;
+      stroke: white !important;
+      color: white !important;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .lightbox-nav.prev {
+      left: 2rem;
+    }
+
+    .lightbox-nav.next {
+      right: 2rem;
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      cursor: pointer;
+      z-index: 2001;
+    }
+
+    .close-lightbox svg {
+      width: 32px;
+      height: 32px;
+      stroke: white !important;
+      color: white !important;
+    }
+
+    /* Flèches noires sur mobile */
+    @media (max-width: 600px) {
+      #lightbox1 .lightbox-nav svg {
+        stroke: black !important;
+        color: black !important;
+      }
+
+      #lightbox1 .close-lightbox svg {
+        stroke: white !important;
+        color: white !important;
+      }
+    }
+
+    @media (min-width: 1024px) {
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1.3rem;
+  }
+}
+  </style>
+
+  <script>
+    window.addEventListener("scroll", function () {
+      const bg = document.querySelector(".parallax-bg");
+      const scrollY = window.scrollY;
+      bg.style.transform = "translateY(" + scrollY * 0.4 + "px)";
+    });
+
+    window.addEventListener("scroll", function () {
+      const header = document.querySelector("header");
+      const hero = document.querySelector(".hero-image");
+      const offset = hero.offsetHeight;
+
+      if (window.scrollY > offset - 100) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+
+    // LIGHTBOX 1
+    const lightboxImages1 = [
+      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison.webp",
+      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison2.webp",
+      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison3.webp",
+      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison4.webp",
+      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison5.webp",
+      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison6.webp",
+      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison7.webp",
+      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison8.webp",
+      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison9.webp",
+      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison10.webp",
+      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison11.webp",
+      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison12.webp",
+      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison13.webp",
+      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison14.webp",
+      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison15.webp",
+      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison16.webp"
+    ];
+    let currentLightboxIndex1 = 0;
+
+    function openLightbox1(index) {
+      currentLightboxIndex1 = index;
+      document.getElementById("lightbox1-img").src = lightboxImages1[index];
+      document.getElementById("lightbox1").style.display = "flex";
+    }
+
+    function changeLightboxImage1(direction) {
+      currentLightboxIndex1 = (currentLightboxIndex1 + direction + lightboxImages1.length) % lightboxImages1.length;
+      document.getElementById("lightbox1-img").src = lightboxImages1[currentLightboxIndex1];
+    }
+
+    function closeLightbox1(event) {
+      if (!event || event.target === document.getElementById("lightbox1") || event.target.closest('.close-lightbox')) {
+        document.getElementById("lightbox1").style.display = "none";
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">
+      <img src="photo/logo/Noir long.png" alt="Logo Tom Maradan">
+    </a>
+    <nav>
+      <a href="index.html">ACCUEIL</a>
+      <a href="projets.html">PROJETS</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+  </header>
+
+  <div class="hero-image">
+    <div class="parallax-bg"></div>
+    <div class="hero-text">
+      <h1>Projet Maison</h1>
+      <p>Maison familiale intégrée dans un cadre alpin, axée sur la lumière naturelle</p>
+    </div>
+  </div>
+
+  <main>
+    <section class="key-points">
+      <div><strong>Année</strong><span>2025</span></div>
+      <div><strong>Type de construction</strong><span>Construction</span></div>
+      <div><strong>Secteurs</strong><span>Résidentiel</span></div>
+      <div><strong>Lieu</strong><span>Annecy</span></div>
+    </section>
+
+    <!-- DESCRIPTION -->
+    <section class="project-text">
+      <h2>Un projet qui illustre ma vision d’une architecture contemporaine, lumineuse & en harmonie avec son site</h2>
+      <p>Située à La Biolle (73), cette maison de 150m², pensée pour une famille de 4 personnes, s’intègre harmonieusement
+        dans son environnement naturel. Son orientation plein sud, ses grandes ouvertures et son architecture minimaliste
+        favorisent une connexion fluide entre l’intérieur et l’extérieur. Dès les premières esquisses, l’accent a été mis
+        sur une organisation des espaces optimisée, avec 3 chambres spacieuses, un séjour ouvert, une terrasse généreuse
+        et un bassin pour offrir un cadre de vie à la fois fonctionnel et apaisant. Les plans techniques détaillent une
+        conception rigoureuse, alliant esthétisme et rationalité. Enfin, les rendus 3D et la vidéo immersive donnent vie
+        au projet, mettant en avant ses volumes épurés et sa relation forte avec le paysage environnant.</p>
+    </section>
+
+    <!-- GALERIE DE PLANS -->
+    <div class="plans-grid" id="plans1">
+      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison.webp" onclick="openLightbox1(0)">
+      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison2.webp" onclick="openLightbox1(1)">
+      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison3.webp" onclick="openLightbox1(2)">
+      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison4.webp" onclick="openLightbox1(3)">
+      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison5.webp" onclick="openLightbox1(4)">
+      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison6.webp" onclick="openLightbox1(5)">
+      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison7.webp" onclick="openLightbox1(6)">
+      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison8.webp" onclick="openLightbox1(7)">
+      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison9.webp" onclick="openLightbox1(8)">
+      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison10.webp" onclick="openLightbox1(9)">
+      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison11.webp" onclick="openLightbox1(10)">
+      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison12.webp" onclick="openLightbox1(11)">
+      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison13.webp" onclick="openLightbox1(12)">
+      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison14.webp" onclick="openLightbox1(13)">
+      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison15.webp" onclick="openLightbox1(14)">
+      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison16.webp" onclick="openLightbox1(15)">
+    </div>
+
+    <!-- ✅ LIGHTBOX 1 -->
+    <div id="lightbox1" class="lightbox" onclick="closeLightbox1(event)">
+      <span class="close-lightbox" onclick="closeLightbox1(event)">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </span>
+      <button class="lightbox-nav prev" onclick="changeLightboxImage1(-1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+      <img id="lightbox1-img" src="" alt="plan en grand">
+      <button class="lightbox-nav next" onclick="changeLightboxImage1(1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+    </div>
+
+    
+    <a href="../projets.html" class="voir-projets-btn">← Retour à tous les projets</a>
+  </main>
+
+  <footer>
+    <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan" class="footer-logo">
+    <p>© 2026 Tom Maradan — Tous droits réservés</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tom Maradan | StudioTM — Mes compétences</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background: #ffffff;
+      --text: #242424;
+      --accent: #9999992d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* BANDEAU FIXE */
+    .fixed-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+      height: 60px;
+      box-sizing: border-box;
+    }
+
+    .fixed-nav.visible {
+      transform: translateY(0);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo img {
+      height: 28px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      height: 100%;
+    }
+
+    .nav-links a {
+      color: #000;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #ccc;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background: #efefef;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* SECTIONS */
+    section {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto 60px;
+      padding: 60px 20px;
+      box-sizing: border-box;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* GRILLE COMPÉTENCES */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .skill {
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      transition: 0.3s ease;
+    }
+
+    .skill:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .skill h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .skill ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .skill ul li {
+      padding: 0.3rem 0;
+      color: #555;
+      position: relative;
+      padding-left: 1.2rem;
+    }
+
+    .skill ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #999;
+    }
+
+    .skill p {
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* SECTION OBJECTIF */
+    .objectif-section {
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .objectif-section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .objectif-section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #ffffff;
+      color: #000000;
+      margin-top: 40px;
+    }
+
+    .footer-logo {
+      display: block;
+      margin: 0 auto 15px auto;
+      max-width: 200px;
+      width: auto;
+      height: 20px;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-logo:hover {
+      opacity: 1;
+    }
+
+    /* FLOATING SOCIALS */
+    .floating-socials {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 999;
+    }
+
+    .floating-socials a img {
+      width: 28px;
+      height: 28px;
+      opacity: 0.7;
+      transition: 0.3s;
+      filter: grayscale(100%);
+    }
+
+    .floating-socials a:hover img {
+      opacity: 1;
+      transform: scale(1.1);
+      filter: grayscale(0%);
+    }
+
+    /* BACK TO TOP */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      font-size: 2rem;
+      text-decoration: none;
+      color: #999;
+      z-index: 999;
+      transition: 0.3s;
+    }
+
+    .back-to-top:hover {
+      color: #000;
+      transform: scale(1.2);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .fixed-nav {
+        flex-direction: column;
+        padding: 15px 15px;
+        height: auto;
+        gap: 8px;
+        padding-top: 20px;
+      }
+
+      .nav-logo img {
+        height: 20px;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .nav-links a {
+        font-size: 0.75rem;
+      }
+
+      .hero {
+        padding: 5rem 1.5rem 3rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      section {
+        padding: 40px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BANDEAU DE NAVIGATION FIXE -->
+  <nav id="fixed-nav" class="fixed-nav">
+    <a href="index.html" class="nav-logo">
+      <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan">
+    </a>
+    <div class="nav-links">
+      <a href="projets.html">PROJETS</a>
+      <a href="photo.html">PHOTO & DRONE</a>
+      <a href="studiotm.html">ACTIVITE</a>
+      <a href="contact.html">CONTACT</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Mes compétences</h1>
+    <p>Conception architecturale, modélisation et production de visuels.<br>
+    Une approche mêlant rigueur technique, sens de l'espace et culture esthétique.</p>
+  </div>
+
+  <!-- Pratique -->
+  <section>
+    <h2>Pratique</h2>
+    <div class="skills-grid">
+      <div class="skill">
+        <h3>Conception architecturale</h3>
+        <ul>
+          <li>Analyse du site et du programme</li>
+          <li>Conception d'espaces intérieurs</li>
+          <li>Organisation fonctionnelle</li>
+          <li>Développement du concept architectural</li>
+        </ul>
+      </div>
+
+      <div class="skill">
+        <h3>Plans & documentation</h3>
+        <ul>
+          <li>Plans d'état des lieux</li>
+          <li>Plans d'aménagement</li>
+          <li>Plans techniques d'exécution</li>
+          <li>Dossiers permis de construire</li>
+          <li>Carnets de détails</li>
+        </ul>
+      </div>
+
+      <div class="skill">
+        <h3>Modélisation & visualisation</h3>
+        <ul>
+          <li>Modélisation 3D</li>
+          <li>Rendus photoréalistes</li>
+          <li>Visite 360°</li>
+          <li>Visualisation d'ambiances</li>
+          <li>Présentation client</li>
+        </ul>
+      </div>
+
+      <div class="skill">
+        <h3>Logiciels</h3>
+        <ul>
+          <li>SketchUp</li>
+          <li>Vray</li>
+          <li>Archicad</li>
+          <li>AutoCAD</li>
+          <li>Suite Adobe</li>
+        </ul>
+      </div>
+
+      <div class="skill">
+        <h3>Matériaux & construction</h3>
+        <ul>
+          <li>Connaissance des matériaux</li>
+          <li>Logique constructive</li>
+          <li>Coordination des corps de métier</li>
+          <li>Lecture technique des projets</li>
+        </ul>
+      </div>
+
+      <div class="skill">
+        <h3>Image & communication</h3>
+        <ul>
+          <li>Photographie architecturale</li>
+          <li>Drone / prise de vue aérienne</li>
+          <li>Mise en page de projets</li>
+          <li>Communication visuelle</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Méthode -->
+  <section>
+    <h2>Méthode</h2>
+    <div class="skills-grid">
+      <div class="skill">
+        <h3>Sens esthétique</h3>
+        <p>Capacité à composer les volumes, la lumière et les matières pour créer des espaces cohérents et lisibles.</p>
+      </div>
+
+      <div class="skill">
+        <h3>Rigueur technique</h3>
+        <p>Organisation claire du projet, précision dans les plans et cohérence globale de la conception.</p>
+      </div>
+
+      <div class="skill">
+        <h3>Vision spatiale</h3>
+        <p>Compréhension des volumes et capacité à anticiper l'expérience d'un espace avant sa réalisation.</p>
+      </div>
+
+      <div class="skill">
+        <h3>Capacité d'analyse</h3>
+        <p>Lecture rapide d'un contexte architectural, des contraintes et des besoins clients.</p>
+      </div>
+
+      <div class="skill">
+        <h3>Communication</h3>
+        <p>Capacité à expliquer un projet clairement à travers plans, images et rendus.</p>
+      </div>
+
+      <div class="skill">
+        <h3>Adaptabilité</h3>
+        <p>Travail en équipe, en agence ou en autonomie selon les projets.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision -->
+  <section>
+    <h2>Vision</h2>
+    <div class="skills-grid">
+      <div class="skill">
+        <h3>Regard architectural</h3>
+        <p>Influencé par l'architecture japonaise et scandinave : simplicité, lumière naturelle et matérialité sobre.</p>
+      </div>
+
+      <div class="skill">
+        <h3>Image & architecture</h3>
+        <p>La photographie et le drone enrichissent la compréhension des lignes, des volumes et du paysage. Tout en boostant la communication visuelle.</p>
+      </div>
+
+      <div class="skill">
+        <h3>Conception claire</h3>
+        <p>Chaque projet est structuré autour d'une idée forte, traduite ensuite en plans précis et en visuels lisibles.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OBJECTIF -->
+  <section>
+    <div class="objectif-section">
+      <h2>Objectif</h2>
+      <p>Développer des projets résidentiels où esthétique, usage et technique sont parfaitement alignés.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan" class="footer-logo">
+    <p>© <span id="year"></span> Tom Maradan – Tous droits réservés</p>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </footer>
+
+  <!-- FLOATING SOCIALS -->
+  <div class="floating-socials">
+    <a href="https://www.instagram.com/studiotm___" target="_blank">
+      <img src="photo/logo/insta.webp" alt="Instagram">
+    </a>
+    <a href="https://www.linkedin.com/in/tom-maradan-554265235/" target="_blank">
+      <img src="photo/logo/Linkedin.webp" alt="LinkedIn">
+    </a>
+    <a href="contact.html">
+      <img src="photo/logo/Mailapp.webp" alt="Mail">
+    </a>
+  </div>
+
+  <!-- BACK TO TOP -->
+  <a href="#top" class="back-to-top">↑</a>
+
+  <!-- Script pour le bandeau fixe -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const fixedNav = document.getElementById('fixed-nav');
+      
+      function checkScrollPosition() {
+        if (window.scrollY > 200) {
+          fixedNav.classList.add('visible');
+        } else {
+          fixedNav.classList.remove('visible');
+        }
+      }
+      
+      window.addEventListener('scroll', checkScrollPosition);
+      checkScrollPosition();
+    });
+  </script>
+
+</body>
+</html>

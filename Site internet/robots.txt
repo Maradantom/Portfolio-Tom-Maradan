@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tommaradanstudio.com/sitemap.xml
