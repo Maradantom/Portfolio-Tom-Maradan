@@ -25,11 +25,11 @@ window.POINTS_CONFIG = {
     rdc: [
       { scene: 'extérieur',      image: 'photo/visite360/prieuré/edl/360/extérieur.webp',      top: '80%', left: '41%' },
       { scene: 'extérieur2',     image: 'photo/visite360/prieuré/edl/360/extérieur2.webp',     top: '60%', left: '7%'  },
-      { scene: 'salleréunion',   image: 'photo/visite360/prieuré/edl/360/salleréunion.webp',   top: '40%', left: '28%' },
-      { scene: 'salleréunion2',  image: 'photo/visite360/prieuré/edl/360/salleréunion2.webp',  top: '60%', left: '25%' },
-      { scene: 'cuisine',        image: 'photo/visite360/prieuré/edl/360/cuisine.webp',        top: '58%', left: '43%' },
-      { scene: 'wc',             image: 'photo/visite360/prieuré/edl/360/wc.webp',             top: '43%', left: '40%' },
-      { scene: 'salleréception', image: 'photo/visite360/prieuré/edl/360/sallereception.webp', top: '52%', left: '58%' },
+      { scene: 'salleréunion',   image: 'essai projet signature/photo/edl/360/salleréunion.webp',   top: '40%', left: '28%' },
+      { scene: 'salleréunion2',  image: 'essai projet signature/photo/edl/360/salleréunion2.webp',  top: '60%', left: '25%' },
+      { scene: 'cuisine',        image: 'essai projet signature/photo/edl/360/cuisine.webp',        top: '58%', left: '43%' },
+      { scene: 'wc',             image: 'essai projet signature/photo/edl/360/wc.webp',             top: '43%', left: '40%' },
+      { scene: 'salleréception', image: 'essai projet signature/photo/edl/360/sallereception.webp', top: '52%', left: '58%' },
     ],
 
     // --- R+1 (1er etage) ---

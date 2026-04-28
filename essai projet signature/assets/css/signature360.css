@@ -155,9 +155,9 @@
       background-repeat: no-repeat;
       overflow: hidden;
       /* CHANGEZ L'IMAGE ICI : */
-      background-image: url('essai projet signature/photo/projet/preview/ext.webp');
+      background-image: url('../../photo/projet/preview/ext.webp');
     }
-    
+
     .welcome-logo img {
       display: none;
     }
