@@ -54,25 +54,29 @@ window.POINTS_CONFIG = {
 
     // --- RDC (Rez-de-Chaussee) ---
     rdc: [
-      { scene: 'extérieur',      image: 'photo/visite360/prieuré/edl/360/extérieur.webp',            top: '80%', left: '41%' },
-      { scene: 'extérieur2',     image: 'photo/visite360/prieuré/edl/360/extérieur2.webp',           top: '60%', left: '7%'  },
-      { scene: 'boutique',       image: 'photo/visite360/prieuré/projet/360/projet-_BOUTIQUE-360.png',  top: '40%', left: '28%' },
-      { scene: 'boutique1',      image: 'photo/visite360/prieuré/projet/360/projet-_BOUTIQUE-360.png',  top: '60%', left: '25%' },
-      { scene: 'cuisine',        image: 'photo/visite360/prieuré/projet/360/projet-_CUISINE-360.png',   top: '58%', left: '43%' },
-      { scene: 'wc',             image: 'photo/visite360/prieuré/edl/360/wc.webp',                   top: '43%', left: '40%' },
-      { scene: 'salleréception', image: 'photo/visite360/prieuré/edl/360/sallereception.webp',       top: '52%', left: '58%' },
+      { scene: 'extérieur_p',      image: 'photo/visite360/prieuré/projet/360/extérieur_p.webp',      top: '80%', left: '41%' },
+      { scene: 'extérieur2_p',     image: 'photo/visite360/prieuré/projet/360/extérieur2_p.webp',     top: '60%', left: '7%'  },
+      { scene: 'boutique_p',       image: 'photo/visite360/prieuré/projet/360/boutique_p.webp',   top: '40%', left: '28%' },
+      { scene: 'boutique2_p',      image: 'photo/visite360/prieuré/projet/360/boutique2_p.webp',  top: '60%', left: '25%' },
+      { scene: 'atelier_p',        image: 'photo/visite360/prieuré/projet/360/atelier_p.webp',        top: '58%', left: '43%' },
+      { scene: 'toilette_p',       image: 'photo/visite360/prieuré/projet/360/toilette_p.webp',             top: '43%', left: '40%' },
+      { scene: 'cuisine_p',        image: 'photo/visite360/prieuré/projet/360/cuisine_p.webp', top: '52%', left: '58%' },
     ],
 
     // --- R+1 (1er etage) ---
     r1: [
-      { scene: 'test',    image: 'photo/visite360/prieuré/projet/360/projet-_TEST-360.png',        top: '62%', left: '50%' },
-      { scene: 'fillet',  image: 'photo/visite360/prieuré/projet/360/projet-_FORMATION 2-360.png', top: '50%', left: '60%' },
+      { scene: 'vide_p',          image: 'photo/visite360/prieuré/projet/360/vide_p.webp',      top: '62%', left: '50%' },
+      { scene: 'vide_p',          image: 'photo/visite360/prieuré/projet/360/vide_p.webp',  top: '50%', left: '60%' },
+      { scene: 'vide_p',          image: 'photo/visite360/prieuré/projet/360/vide_p.webp', top: '58%', left: '41%' },
+      { scene: 'vide_p',          image: 'photo/visite360/prieuré/projet/360/vide_p.webp',    top: '41%', left: '41%' },
+      { scene: 'test_p',          image: 'photo/visite360/prieuré/projet/360/test_p.webp',   top: '40%', left: '24%' },
     ],
 
     // --- RDJ (Rez-de-Jardin) ---
     rdj: [
-      { scene: 'entree',     image: 'photo/visite360/prieuré/projet/360/projet-_ENTREE-360.png',      top: '50%', left: '28%' },
-      { scene: 'formation1', image: 'photo/visite360/prieuré/projet/360/projet-_FORMATION 1-360.png', top: '30%', left: '70%' },
+      { scene: 'formation_p',      image: 'photo/visite360/prieuré/projet/360/samplesroom_p.webp', top: '50%', left: '60%' },
+      { scene: 'formation2_p',     image: 'photo/visite360/prieuré/projet/360/yoga_p.webp',        top: '50%', left: '28%' },
+      { scene: 'extérieur3_p',     image: 'photo/visite360/prieuré/projet/360/extérieur3_p.webp',  top: '30%', left: '70%' },
     ],
   },
 
@@ -99,13 +103,13 @@ window.POINTS_CONFIG = {
 // ==============================================================
 
 window.SCENE_LINKS = {
-  'extérieur_e':  'extérieur',    // RDC point (40%, 28%)
-  'extérieur2_e': 'extérieur2',   // RDC point (60%, 25%)
-  'salleréunion_e':  'boutique',    // RDC point (40%, 28%)
-  'salleréunion2_e': 'boutique1',   // RDC point (60%, 25%)
-  'salleréunion_e':  'boutique',    // RDC point (40%, 28%)
-  'salleréunion2_e': 'boutique1',   // RDC point (60%, 25%)
-  'salleréception_e':       'cuisine',     // RDC point (58%, 43%)  — meme scene dans les 2 modes
+  'extérieur':         'extérieur_p',    // RDC point (40%, 28%)
+  'extérieur2':       'extérieur2_p',   // RDC point (60%, 25%)
+  'salleréunion':     'boutique_p',    // RDC point (40%, 28%)
+  'salleréunion2':    'boutique1_p',   // RDC point (60%, 25%)
+  'salleréunion':     'boutique_p',    // RDC point (40%, 28%)
+  'salleréunion2':    'boutique1_p',   // RDC point (60%, 25%)
+  'salleréception':   'cuisine_p',     // RDC point (58%, 43%)  — meme scene dans les 2 modes
   // 'exemple_avant': 'exemple_projet',
 };
 

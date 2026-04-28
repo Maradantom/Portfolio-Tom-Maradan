@@ -987,8 +987,8 @@
           
         // PROJET
         // RDJ 
-        entree: {
-          panorama: "photo/visite360/prieuré/projet/360/projet-_ENTREE-360.png",
+        formation_p: {
+          panorama: "photo/visite360/prieuré/projet/360/formation_p.png",
           type: "equirectangular",
           fadeInDuration: 800,
           fadeOutDuration: 800,
@@ -997,17 +997,17 @@
               pitch: 10, yaw: 40, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/projet-_ENTREE-360.png" alt="extérieur3">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/formation_p.png" alt="formation_p">`;
               },
               clickHandlerFunc: function(){ 
-                const targetScene = currentMode === 'projet' ? 'extérieur3_projet' : 'extérieur3';
+                const targetScene = currentMode === 'projet' ? 'formation_projet' : 'formation';
                 viewer.loadScene(targetScene); 
               }
             }
           ]
         },
-        formation1 : {
-          panorama: "photo/visite360/prieuré/projet/360/projet-_FORMATION 1-360.png",
+        formation2_p : {
+          panorama: "photo/visite360/prieuré/projet/360/formation2_p.png",
           type: "equirectangular",
           fadeInDuration: 800,
           fadeOutDuration: 800,
@@ -1016,7 +1016,7 @@
               pitch: -32, yaw: 5, type: "info", text: "",
               createTooltipFunc: function(div){
                 div.classList.add('mini-thumb');
-                div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/entree.png" alt="samplesroom">`;
+                div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/entree_p.png" alt="samplesroom">`;
               },
               clickHandlerFunc: function(){ showSamplesroom(); }
             },
@@ -1031,6 +1031,25 @@
                 viewer.loadScene(targetScene); 
               }
             },
+          ]
+        },
+        extérieur3_p: {
+          panorama: "photo/visite360/prieuré/projet/360/extérieur3.png",
+          type: "equirectangular",
+          fadeInDuration: 800,
+          fadeOutDuration: 800,
+          hotSpots: [
+            {
+              pitch: 10, yaw: 40, type: "info", text: "",
+              createTooltipFunc: function(div){
+                div.classList.add('mini-thumb');
+                div.innerHTML = `<img src="photo/visite360/prieuré/projet/preview/extérieur3_p.png" alt="extérieur3">`;
+              },
+              clickHandlerFunc: function(){ 
+                const targetScene = currentMode === 'projet' ? 'extérieur3_projet' : 'extérieur3';
+                viewer.loadScene(targetScene); 
+              }
+            }
           ]
         },
 
