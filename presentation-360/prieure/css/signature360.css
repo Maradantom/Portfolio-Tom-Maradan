@@ -1,0 +1,881 @@
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+      background: #ffffff url('/photosite/logo/Noirlong.webp') center center no-repeat;
+      background-size: 200px;
+      touch-action: none;
+    }
+
+    /* Panorama 360° */
+    #panorama {
+      width: 100%;
+      height: 100%;
+      display: none; /* masqué au départ */
+    }
+
+    /* --- Plan plein écran --- */
+    #plan-fullscreen {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      transition: opacity 0.8s ease;
+      z-index: 10;
+      touch-action: none;
+    }
+    #plan-fullscreen img {
+      width: 95%;
+      max-width: 95vw;
+      max-height: 95vh;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.3);
+      position: relative;
+      object-fit: contain;
+    }
+    .zone {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: rgba(0,0,0,0.4);
+      border: 2px solid white;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.2s;
+      /* Styles pour les boutons accessibles */
+      color: transparent;
+      font-size: 0;
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+    }
+    .zone:hover { transform: scale(1.2); }
+    .zone:focus {
+      outline: 2px solid #007acc;
+      outline-offset: 2px;
+    }
+
+    /* Plan réduit - Position fixe en bas à droite */
+    #plan-mini,
+    #plan-mini-projet {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 200px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 10px;
+      padding: 8px;
+      display: none;
+      z-index: 5;
+      transition: all 0.3s ease;
+    }
+
+    #plan-mini:hover,
+    #plan-mini-projet:hover {
+      transform: scale(1.4);
+      transform-origin: bottom right;
+      opacity: 1;
+    }
+    #plan-mini img,
+    #plan-mini-projet img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    #plan-mini .zone,
+    #plan-mini-projet .zone {
+      width: 8px;
+      height: 8px;
+      border: 1px solid white;
+    }
+
+    /* --- Hotspot miniature --- */
+    .mini-thumb img {
+      width: 60px;
+      height: 60px;
+      border-radius: 5px;
+      border: 2px solid white;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .mini-thumb img:hover { transform: scale(1.2); }
+
+    /* Animation de fondu */
+    .fade-out { opacity: 0; pointer-events: none; }
+
+    /* Masquer l'indicateur de chargement */
+    .pnlm-load-box {
+      display: none !important;
+    }
+    
+    /* Transition fluide pour le canvas */
+    .pnlm-render-container {
+      transition: opacity 0.8s ease !important;
+    }
+
+    /* Fond personnalisé avec logo */
+    .pnlm-container {
+      background: #000 url('/photosite/logo/Noirlong.webp') center center no-repeat !important;
+      background-size: 200px !important;
+    }
+
+    /* Écran d'accueil */
+    #welcome-screen {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #424546 0%, #DEE0E2 100%);
+      z-index: 15;
+      color: white;
+      text-align: center;
+    }
+    
+    .welcome-logo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      animation: pulse 2s infinite;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      /* CHANGEZ L'IMAGE ICI : */
+      background-image: url('../photo/prieuré/projet/preview/pp.webp');
+    }
+
+    .welcome-logo img {
+      display: none;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+      50% { transform: scale(1.05); box-shadow: 0 25px 50px rgba(0,0,0,0.4); }
+      100% { transform: scale(1); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    }
+    
+    .welcome-title {
+      font-size: 2.5em;
+      font-weight: 300;
+      margin-bottom: 15px;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.5s forwards;
+    }
+    
+    .welcome-subtitle {
+      font-size: 1.2em;
+      opacity: 0.9;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeInUp 1s ease 1s forwards;
+    }
+    
+    .enter-btn {
+      padding: 15px 40px;
+      background: rgba(255,255,255,0.2);
+      border: 2px solid white;
+      border-radius: 50px;
+      color: white;
+      font-size: 1.1em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      opacity: 0;
+      animation: fadeInUp 1s ease 1.5s forwards;
+      backdrop-filter: blur(10px);
+    }
+    
+    .enter-btn:hover {
+      background: white;
+      color: #272727;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .loading-dots {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-radius: 50%;
+      animation: bounce 1.4s infinite ease-in-out;
+    }
+    
+    .dot:nth-child(1) { animation-delay: -0.32s; }
+    .dot:nth-child(2) { animation-delay: -0.16s; }
+    
+    @keyframes bounce {
+      0%, 80%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+      }
+      40% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Section Vidéo - Plein écran sans barre */
+    #video-section {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100vh; /* Toujours pleine hauteur */
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      z-index: 10;
+    }
+    #video-section video {
+      width: 88%;
+      max-width: 88vw;
+      max-height:88vw;
+      border-radius: 10px;
+    }
+    #video-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 20px;
+      z-index: 11;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+    }
+
+    /* Section Image Samplesroom */
+    #samplesroom-section {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      z-index: 10;
+    }
+    #samplesroom-section img {
+      width: 90%;
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    #samplesroom-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 20px;
+      z-index: 11;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+    }
+    .nav-square {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      z-index: 11;
+      overflow: hidden;
+      border-radius: 5px;
+      border: 2px solid white;
+    }
+    .nav-square img {
+      width: 64px;
+      height: 64px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      object-fit: cover;
+      display: block;
+    }
+    .nav-square img:hover {
+      transform: scale(1.2);
+    }
+    /* MODIFIEZ CES VALEURS POUR CHANGER LA POSITION DES CARRÉS */
+    #nav-exterieur3 {
+      top: 50%;  
+      left: 10%; 
+    }
+    #nav-yoga {
+      top: 50%;   
+      right: 10%; 
+    }
+
+    /* Ancien sélecteur d'étage - maintenant masqué */
+    #floor-selector {
+      display: none !important;
+    }
+    .floor-btn {
+      display: none;
+    }
+
+    /* Barre de navigation permanente */
+    #main-navigation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      display: none; /* Masquée au départ */
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(-70px);
+      transition: all 0.8s ease;
+    }
+    
+    #main-navigation.show {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Mode transparent pour les photos 360° */
+    #main-navigation.transparent {
+      background: transparent !important;
+      backdrop-filter: none !important;
+      border-bottom: none !important;
+      box-shadow: none !important;
+    }
+    
+    /* Animation de disparition pour la vidéo */
+    #main-navigation.hide {
+      opacity: 0;
+      transform: translateY(-70px);
+    }
+    
+    #navigation-content {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    /* Toggle Avant projet / Projet - Style adapté pour mode transparent */
+    #mode-toggle {
+      display: flex;
+      background: rgba(0,0,0,0.05);
+      border-radius: 50px;
+      padding: 4px;
+      gap: 0;
+      transition: all 0.3s ease;
+    }
+    
+    #main-navigation.transparent #mode-toggle {
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+    }
+    
+    .mode-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      background: transparent;
+      color: #666;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      min-width: 120px;
+    }
+    
+    #main-navigation.transparent .mode-btn {
+      color: rgba(255,255,255,0.8);
+    }
+    
+    .mode-btn.active {
+      background: #333;
+      color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    #main-navigation.transparent .mode-btn.active {
+      background: rgba(255,255,255,0.9);
+      color: #333;
+    }
+    
+    /* Sélecteur d'étage - Style adapté pour mode transparent */
+    #floor-navigation {
+      display: flex;
+      gap: 8px;
+    }
+    .floor-nav-btn {
+      padding: 8px 16px;
+      background: rgba(0,0,0,0.05);
+      border: 2px solid transparent;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      color: #666;
+      transition: all 0.3s ease;
+      min-width: 50px;
+      text-align: center;
+    }
+    
+    #main-navigation.transparent .floor-nav-btn {
+      background: rgba(0,0,0,0.7);
+      color: rgba(255,255,255,0.8);
+      backdrop-filter: blur(10px);
+    }
+    
+    .floor-nav-btn:hover {
+      background: rgba(0,0,0,0.1);
+      transform: translateY(-1px);
+    }
+    
+    #main-navigation.transparent .floor-nav-btn:hover {
+      background: rgba(0,0,0,0.8);
+      color: white;
+    }
+    
+    .floor-nav-btn.active {
+      background: #333;
+      color: white;
+      border-color: #333;
+    }
+    
+    #main-navigation.transparent .floor-nav-btn.active {
+      background: rgba(255,255,255,0.9);
+      color: #333;
+      border-color: rgba(255,255,255,0.9);
+    }
+    
+    /* Bouton vidéo dans la navigation - Style adapté pour mode transparent */
+    #video-nav-btn {
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      color: white;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(107, 114, 128, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    #main-navigation.transparent #video-nav-btn {
+      background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.8) 100%);
+      backdrop-filter: blur(10px);
+    }
+    
+    #video-nav-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    #video-nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(107, 114, 128, 0.4);
+      background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    }
+    
+    #main-navigation.transparent #video-nav-btn:hover {
+      background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 100%);
+    }
+    
+    #video-nav-btn:hover::before {
+      left: 100%;
+    }
+    
+    #video-nav-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(107, 114, 128, 0.3);
+    }
+    
+    /* Ajustement du contenu pour la barre fixe */
+    body {
+      padding-top: 0; /* Pas de padding au départ */
+      transition: padding-top 0.8s ease;
+    }
+    
+    body.navigation-visible {
+      padding-top: 70px;
+    }
+    
+    #plan-fullscreen,
+    #panorama,
+    #samplesroom-section {
+      height: 100vh; /* Pleine hauteur au départ */
+      top: 0;
+      transition: all 0.8s ease;
+    }
+    
+    body.navigation-visible #plan-fullscreen,
+    body.navigation-visible #panorama,
+    body.navigation-visible #samplesroom-section {
+      height: calc(100vh - 70px);
+      top: 70px;
+    }
+    
+    /* La vidéo reste toujours en plein écran */
+    #video-section {
+      height: 100vh !important;
+      top: 0 !important;
+    }
+    
+    #welcome-screen {
+      height: 100vh;
+      top: 0;
+    }
+
+    /* Boutons flottants pour les visites 360° */
+    #floating-controls {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    #floating-controls.show {
+      opacity: 1;
+    }
+    
+    #floating-mode-toggle {
+      display: flex;
+      background: rgba(0,0,0,0.7);
+      border-radius: 50px;
+      padding: 4px;
+      gap: 0;
+      backdrop-filter: blur(10px);
+    }
+    
+    .floating-mode-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      background: transparent;
+      color: rgba(255,255,255,0.8);
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      min-width: 120px;
+    }
+    
+    .floating-mode-btn.active {
+      background: rgba(255,255,255,0.9);
+      color: #333;
+    }
+    
+    #floating-floor-navigation {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .floating-floor-btn {
+      padding: 8px 16px;
+      background: rgba(0,0,0,0.7);
+      border: 2px solid transparent;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      transition: all 0.3s ease;
+      min-width: 50px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    
+    .floating-floor-btn:hover {
+      background: rgba(0,0,0,0.8);
+      color: white;
+    }
+    
+    .floating-floor-btn.active {
+      background: rgba(255,255,255,0.9);
+      color: #333;
+      border-color: rgba(255,255,255,0.9);
+    }
+    
+    #floating-video-btn {
+      padding: 8px 16px;
+      background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.8) 100%);
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      color: white;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    #floating-video-btn:hover {
+      background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 100%);
+      transform: translateY(-2px);
+    }
+
+    /* Bouton "Retour au plan" */
+    #floating-back-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      color: white;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(79,70,229,0.35);
+      font-family: inherit;
+    }
+    #floating-back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(79,70,229,0.5);
+      filter: brightness(1.1);
+    }
+    #floating-back-btn:active { transform: translateY(0); }
+    @media (max-width: 640px) {
+      #floating-back-btn { padding: 7px 12px; font-size: 12px; }
+    }
+
+    /* Bouton gyroscope */
+    #gyro-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 22px;
+      z-index: 6;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    #gyro-btn.active {
+      background: #333;
+      color: white;
+    }
+
+    /* Responsive Mobile */
+    @media (max-width: 768px) {
+      html, body {
+        width: 100vw;
+        min-width: 100vw;
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+      
+      /* Navigation mobile */
+      #main-navigation {
+        height: 60px;
+        padding: 0 10px;
+      }
+      
+      #navigation-content {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .mode-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+        min-width: 100px;
+      }
+      
+      #floor-navigation {
+        gap: 4px;
+      }
+      
+      .floor-nav-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+        min-width: 40px;
+      }
+      
+      #video-nav-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+      }
+      
+      #video-nav-btn::before {
+        display: none; /* Pas d'effet shimmer sur mobile */
+      }
+      
+      /* Ajustement du contenu */
+      body {
+        padding-top: 0;
+      }
+      
+      body.navigation-visible {
+        padding-top: 60px;
+      }
+      
+      #plan-fullscreen,
+      #panorama,
+      #samplesroom-section {
+        height: 100vh;
+        top: 0;
+      }
+      
+      body.navigation-visible #plan-fullscreen,
+      body.navigation-visible #panorama,
+      body.navigation-visible #samplesroom-section {
+        height: calc(100vh - 60px);
+        top: 60px;
+      }
+      
+      /* La vidéo reste toujours en plein écran sur mobile */
+      #video-section {
+        height: 100vh !important;
+        top: 0 !important;
+      }
+      
+      .mini-thumb img {
+        width: 35px;
+        height: 35px;
+      }
+      #plan-fullscreen {
+        width: 100vw;
+        min-width: 100vw;
+        max-width: 100vw;
+      }
+      /* Plan réduit mobile - Position fixe en bas à droite */
+      #plan-mini,
+      #plan-mini-projet {
+        width: 140px;
+        bottom: 10px;
+        right: 10px;
+        padding: 6px;
+        transition: all 0.3s ease;
+      }
+
+      #plan-mini:hover,
+      #plan-mini-projet:hover {
+        transform: scale(1.3);
+        transform-origin: bottom right;
+        opacity: 1;
+      }
+      #plan-mini img,
+      #plan-mini-projet img {
+        pointer-events: none;
+      }
+      #plan-mini .zone,
+      #plan-mini-projet .zone {
+        width: 12px;
+        height: 12px;
+        border: 2px solid white;
+      }
+      #plan-fullscreen .zone {
+        width: 18px;
+        height: 18px;
+        border: 2px solid white;
+      }
+      #plan-fullscreen {
+        padding: 5px;
+        box-sizing: border-box;
+      }
+      #plan-fullscreen img {
+        width: 95%;
+        height: auto;
+        max-width: 95vw;
+        max-height: 85vh;
+        margin: 0 auto;
+        display: block;
+        transform: translateX(0);
+      }
+      #video-close {
+        color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .welcome-title {
+        font-size: 2em;
+      }
+      
+      .welcome-subtitle {
+        font-size: 1em;
+        margin-bottom: 30px;
+      }
+      
+      .welcome-logo {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 20px;
+      }
+      
+      .enter-btn {
+        padding: 12px 30px;
+        font-size: 1em;
+      }
+    }

@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tom Maradan — Candidature Créative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white:   #FFFFFF;
+  --off:     #F7F5F2;
+  --light:   #EEEBE6;
+  --border:  #E0DBD4;
+  --text:    #1A1714;
+  --muted:   #8A8178;
+  --accent:  #3D2B1A;
+  --line:    #C8BFB4;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── NAV ─────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 7vw;
+  height: 68px;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+
+/* ── HERO ─────────────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 7vw 8vh;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.hero-eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.3s forwards;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(4.5rem, 11vw, 10rem);
+  font-weight: 300;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  opacity: 0;
+  animation: fadeUp 1s 0.5s forwards;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--muted);
+}
+
+.hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.9s forwards;
+}
+
+.hero-desc {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 380px;
+}
+
+.hero-meta {
+  text-align: right;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  line-height: 2;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 3rem; right: 7vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 1.3s forwards;
+}
+.hero-scroll span {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--line);
+  writing-mode: vertical-rl;
+}
+.scroll-bar {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--border), transparent);
+  animation: scrollFade 2s ease-in-out infinite;
+}
+
+/* ── SECTIONS ─────────────────────────────────────────── */
+.section {
+  padding: 8rem 7vw;
+  border-bottom: 1px solid var(--border);
+}
+.section-alt { background: var(--off); }
+.section-dark {
+  background: var(--text);
+  color: var(--white);
+  border-bottom: none;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+  margin-bottom: 5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.section-dark .section-header { border-color: rgba(255,255,255,0.1); }
+
+.section-num {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--line);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.section-dark .section-num { color: rgba(255,255,255,0.3); }
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.section-dark .section-title { color: var(--white); }
+
+/* ── QUI SUIS-JE ──────────────────────────────────────── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.about-text p {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--muted);
+  margin-bottom: 1.6rem;
+}
+.about-text p strong { color: var(--text); font-weight: 500; }
+
+.about-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.pillar {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  transition: background 0.2s;
+}
+.pillar:first-child { border-top: 1px solid var(--border); }
+.pillar-n {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--line);
+  padding-top: 2px;
+}
+.pillar-title {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+.pillar-desc {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* ── PARCOURS ──────────────────────────────────────────── */
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+.tl-item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 3rem;
+  padding: 2.8rem 0;
+  border-bottom: 1px solid var(--border);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+.tl-item:first-child { border-top: 1px solid var(--border); }
+.tl-item.visible { opacity: 1; transform: translateY(0); }
+
+.tl-year {
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+.tl-right {}
+.tl-role {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+.tl-place {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.04em;
+}
+.tl-desc {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 560px;
+}
+.tl-tag {
+  display: inline-block;
+  margin-top: 0.8rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+/* ── COMPÉTENCES ───────────────────────────────────────── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.skill-card {
+  padding: 3rem 2.5rem;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+.skill-card:hover { background: var(--light); }
+
+.skill-num {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--line);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+.skill-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+.skill-desc {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.stag {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  background: var(--border);
+  color: var(--muted);
+}
+
+/* ── AMBITION ──────────────────────────────────────────── */
+.section-dark .section-header { border-color: rgba(255,255,255,0.08); }
+
+.ambition-intro {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.7);
+  max-width: 700px;
+  margin-bottom: 5rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.ambition-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.amb-step {
+  padding: 3rem 3rem 3rem 0;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+.amb-step:last-child { border-right: none; padding-right: 0; }
+.amb-step.visible { opacity: 1; transform: translateY(0); }
+
+.amb-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.08);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.amb-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 0.8rem;
+}
+.amb-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+.amb-desc {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ── CONTACT ───────────────────────────────────────────── */
+#contact {
+  padding: 8rem 7vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+  border-bottom: none;
+}
+
+.contact-left .section-title {
+  font-size: clamp(3rem, 7vw, 6rem);
+  margin-bottom: 2.5rem;
+}
+.contact-left .section-title em {
+  font-style: italic;
+  color: var(--muted);
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--border);
+}
+.contact-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text);
+  transition: padding-left 0.3s;
+}
+.contact-link:hover { padding-left: 1rem; }
+.contact-link:hover .cl-arrow { opacity: 1; }
+
+.cl-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+.cl-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+.cl-arrow {
+  font-size: 1.2rem;
+  color: var(--muted);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+/* ── FOOTER ─────────────────────────────────────────────── */
+footer {
+  padding: 2rem 7vw;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--line);
+}
+
+/* ── REVEAL ─────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s, transform 0.7s;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── KEYFRAMES ──────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scrollFade {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 1; }
+}
+
+@media (max-width: 900px) {
+  .about-grid, .ambition-steps, #contact { grid-template-columns: 1fr; gap: 3rem; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .tl-item { grid-template-columns: 100px 1fr; gap: 1.5rem; }
+  .amb-step { border-right: none; padding-right: 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+}
+@media (max-width: 600px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .tl-item { grid-template-columns: 1fr; gap: 0.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────── -->
+<nav>
+  <a href="#hero" class="nav-logo">Tom Maradan · StudioTM</a>
+  <ul class="nav-links">
+    <li><a href="#about">Profil</a></li>
+    <li><a href="#parcours">Parcours</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#ambition">Vision</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────── -->
+<section id="hero">
+  <p class="hero-eyebrow">Candidature créative · CREAD Lyon · 2025–2026</p>
+
+  <h1 class="hero-title">
+    Tom<br>
+    <em>Maradan</em>
+  </h1>
+
+  <div class="hero-bottom">
+    <p class="hero-desc">
+      Étudiant en architecture d'intérieure à CREAD Lyon — entre espace conçu, image captée et ambition construite.
+    </p>
+    <div class="hero-meta">
+      Architecture d'intérieur<br>
+      Drone & Photographie<br>
+      3ème année · CREAD Lyon
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-bar"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ── QUI SUIS-JE ─────────────────────────────── -->
+<section id="about" class="section">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Qui suis-je</h2>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>Je m'appelle <strong>Tom Maradan</strong>, étudiant en 3ème année à CREAD Lyon. Mon parcours s'est construit à travers des stages complémentaires — chaque agence m'a apporté une approche différente : du chantier brut à la conception haut de gamme, du résidentiel au tertiaire.</p>
+      <p>En parallèle, je développe un univers visuel fort à travers la photographie et le drone. Ce regard — formé à capter la lumière, les matières, les volumes — nourrit directement ma façon de concevoir un espace intérieur. Tout est lié.</p>
+      <p>Mon objectif n'est pas simplement d'intégrer une agence : c'est de <strong>bâtir une structure polyvalente, sans plafond</strong>, capable d'intervenir à toutes les échelles d'un projet — de la conception à la communication visuelle.</p>
+    </div>
+
+    <div class="about-pillars reveal">
+      <div class="pillar">
+        <span class="pillar-n">01</span>
+        <div>
+          <p class="pillar-title">Architecture d'intérieur</p>
+          <p class="pillar-desc">3D, matériaux, plans techniques, suivi de chantier. Maîtrise orientée résidentiel haut de gamme avec une exigence esthétique constante.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-n">02</span>
+        <div>
+          <p class="pillar-title">Drone & Image</p>
+          <p class="pillar-desc">DJI Air 3, FPV, iPhone 15 Pro. Valorisation architecturale par la photo et la vidéo. Un œil formé à la lumière et aux volumes.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-n">03</span>
+        <div>
+          <p class="pillar-title">Vision à long terme</p>
+          <p class="pillar-desc">Créer une agence intégrée : architecture intérieure, communication visuelle, immobilier — avec un architecte HMNOP associé pour aucune limite de programme.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PARCOURS ─────────────────────────────────── -->
+<section id="parcours" class="section section-alt">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Parcours</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">2020</div>
+      <div class="tl-right">
+        <h3 class="tl-role">AABC Architecture</h3>
+        <p class="tl-place">Albi (81) · Stage découverte 3ème · 1 semaine</p>
+        <p class="tl-desc">Première immersion dans l'architecture. Visites de chantiers, découverte du suivi de travaux et modélisation d'une maison. Un déclic.</p>
+        <span class="tl-tag">Découverte</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2022</div>
+      <div class="tl-right">
+        <h3 class="tl-role">Tetris Design & Build</h3>
+        <p class="tl-place">Lyon (69) · Stage Première · 1 semaine</p>
+        <p class="tl-desc">Visites de chantiers à Grenoble et Lyon. Analyse des contraintes d'aménagement, travail sur plans et modélisations.</p>
+        <span class="tl-tag">Plans · Chantier</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2023 →</div>
+      <div class="tl-right">
+        <h3 class="tl-role">CREAD Lyon</h3>
+        <p class="tl-place">Lyon (69003) · Formation 5 ans · En cours</p>
+        <p class="tl-desc">École d'architecture d'intérieur. Conception d'espaces, modélisation 3D, matériaux, technique, esthétique. Lancement en parallèle de StudioTM, micro-entreprise.</p>
+        <span class="tl-tag">Formation · StudioTM</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2024</div>
+      <div class="tl-right">
+        <h3 class="tl-role">Pur Concept</h3>
+        <p class="tl-place">Décines-Charpieu (69) · Stage 1ère année · CDD</p>
+        <p class="tl-desc">Missions terrain multi-corps de métier : menuiserie, peinture, charpente, électricité. Apprentissage concret et physique des techniques du bâtiment.</p>
+        <span class="tl-tag">Terrain · Technique</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2025</div>
+      <div class="tl-right">
+        <h3 class="tl-role">Samples Room</h3>
+        <p class="tl-place">Genas (69) · Stage 2ème année · CDD</p>
+        <p class="tl-desc">Conception d'un showroom complet, visuels 3D pour clients, plans techniques. Recherche de matériaux, modélisation et suivi de projet en agence.</p>
+        <span class="tl-tag">3D · Showroom · Matériaux</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2025 – 26</div>
+      <div class="tl-right">
+        <h3 class="tl-role">At Home · Laetitia Cretier</h3>
+        <p class="tl-place">Annecy (74) · Stage 3ème année · En cours</p>
+        <p class="tl-desc">Projets haut de gamme : chalet 600 m² à Megève, villas, programmes montagne. 3D matériaux, suivi de chantier, conception garde-corps, communication client.</p>
+        <span class="tl-tag">Haut de gamme · Chalet · Suivi chantier</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COMPÉTENCES ──────────────────────────────── -->
+<section id="competences" class="section">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Compétences</h2>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <p class="skill-num">01</p>
+      <h3 class="skill-name">Conception 3D</h3>
+      <p class="skill-desc">Modélisation, rendus photoréalistes, projection matériaux. Habitué aux projets résidentiels haut de gamme avec des exigences esthétiques fortes.</p>
+      <div class="skill-tags">
+        <span class="stag">SketchUp</span>
+        <span class="stag">V-Ray</span>
+        <span class="stag">Rendu</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <p class="skill-num">02</p>
+      <h3 class="skill-name">Plans techniques</h3>
+      <p class="skill-desc">Plans d'aménagement, coupes, détails d'exécution. Production de documents techniques pour la conception et le suivi de chantier.</p>
+      <div class="skill-tags">
+        <span class="stag">AutoCAD</span>
+        <span class="stag">Exécution</span>
+        <span class="stag">Chantier</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <p class="skill-num">03</p>
+      <h3 class="skill-name">Drone & Photo</h3>
+      <p class="skill-desc">Prise de vue architecturale aérienne et au sol. DJI Air 3, FPV, iPhone 15 Pro. Regard formé à la lumière, aux volumes et aux matières.</p>
+      <div class="skill-tags">
+        <span class="stag">DJI Air 3</span>
+        <span class="stag">FPV</span>
+        <span class="stag">Montage</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <p class="skill-num">04</p>
+      <h3 class="skill-name">Matériaux & Ambiances</h3>
+      <p class="skill-desc">Sélection, cohérence et prescription de matériaux haut de gamme. Sensibilité aux textures, palettes et finitions — pierre, bois, céramique, textile.</p>
+      <div class="skill-tags">
+        <span class="stag">Prescription</span>
+        <span class="stag">Haut de gamme</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <p class="skill-num">05</p>
+      <h3 class="skill-name">Communication</h3>
+      <p class="skill-desc">Rédaction professionnelle, présentation client, échanges fournisseurs et artisans. Utilisation de l'IA comme outil d'efficacité au quotidien.</p>
+      <div class="skill-tags">
+        <span class="stag">Client</span>
+        <span class="stag">Rédaction</span>
+        <span class="stag">IA</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <p class="skill-num">06</p>
+      <h3 class="skill-name">Terrain & Chantier</h3>
+      <p class="skill-desc">Expérience multi-corps de métier acquise sur le terrain. Réunions de suivi sur des projets d'envergure. Compréhension globale du processus de réalisation.</p>
+      <div class="skill-tags">
+        <span class="stag">Suivi</span>
+        <span class="stag">Coordination</span>
+        <span class="stag">Multi-corps</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AMBITION ─────────────────────────────────── -->
+<section id="ambition" class="section section-dark">
+  <div class="section-header reveal">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Vision</h2>
+  </div>
+
+  <p class="ambition-intro reveal">
+    "Mon objectif n'est pas d'intégrer une agence existante pour y rester. C'est de bâtir une structure sans limite — ni de programme, ni d'échelle, ni de discipline."
+  </p>
+
+  <div class="ambition-steps">
+    <div class="amb-step">
+      <div class="amb-num">01</div>
+      <p class="amb-label">Court terme</p>
+      <h3 class="amb-title">Agence architecture intérieure</h3>
+      <p class="amb-desc">Créer ma propre agence centrée sur le résidentiel haut de gamme. Des projets exigeants, une identité forte, un positionnement premium dès le départ.</p>
+    </div>
+    <div class="amb-step" style="padding-left: 3rem;">
+      <div class="amb-num">02</div>
+      <p class="amb-label">Moyen terme</p>
+      <h3 class="amb-title">Architecte HMNOP associé</h3>
+      <p class="amb-desc">Intégrer un architecte HMNOP à la structure pour lever toute limite réglementaire. Pouvoir intervenir sur des constructions sans aucune contrainte de programme.</p>
+    </div>
+    <div class="amb-step" style="padding-left: 3rem;">
+      <div class="amb-num">03</div>
+      <p class="amb-label">Long terme</p>
+      <h3 class="amb-title">Communication & Immobilier</h3>
+      <p class="amb-desc">Un pôle drone & photo pour la valorisation architecturale, et une activité d'agent immobilier. Une agence complète, de la conception à la transaction.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ──────────────────────────────────── -->
+<section id="contact">
+  <div class="contact-left reveal">
+    <h2 class="section-title">
+      Parlons<br>
+      <em>projet.</em>
+    </h2>
+    <p style="font-size:0.9rem; color: var(--muted); max-width: 320px; line-height: 1.8; margin-top: 1.5rem;">
+      Disponible pour un stage 4ème année, une collaboration ou simplement échanger sur un projet.
+    </p>
+  </div>
+
+  <div class="contact-links reveal">
+    <a href="mailto:maradantom@gmail.com" class="contact-link">
+      <div>
+        <p class="cl-label">Email</p>
+        <p class="cl-value">maradantom@gmail.com</p>
+      </div>
+      <span class="cl-arrow">→</span>
+    </a>
+    <a href="tel:+33672256783" class="contact-link">
+      <div>
+        <p class="cl-label">Téléphone</p>
+        <p class="cl-value">06 72 25 67 83</p>
+      </div>
+      <span class="cl-arrow">→</span>
+    </a>
+    <a href="https://tommaradanstudio.com" target="_blank" class="contact-link">
+      <div>
+        <p class="cl-label">Portfolio</p>
+        <p class="cl-value">tommaradanstudio.com</p>
+      </div>
+      <span class="cl-arrow">→</span>
+    </a>
+    <a href="https://www.instagram.com/studiotm___" target="_blank" class="contact-link">
+      <div>
+        <p class="cl-label">Instagram</p>
+        <p class="cl-value">@studiotm___</p>
+      </div>
+      <span class="cl-arrow">→</span>
+    </a>
+    <a href="https://www.linkedin.com/in/tom-maradan-554265235/" target="_blank" class="contact-link">
+      <div>
+        <p class="cl-label">LinkedIn</p>
+        <p class="cl-value">Tom Maradan</p>
+      </div>
+      <span class="cl-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span>Tom Maradan · StudioTM · CREAD Lyon</span>
+  <span>2025 — 2026</span>
+</footer>
+
+<script>
+  // Intersection Observer pour les révélations au scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal, .tl-item, .amb-step').forEach(el => observer.observe(el));
+
+  // Décalage progressif pour les éléments en série
+  document.querySelectorAll('.tl-item').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.08) + 's';
+  });
+  document.querySelectorAll('.amb-step').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.12) + 's';
+  });
+  document.querySelectorAll('.skill-card').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.07) + 's';
+  });
+
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--text)' : '';
+    });
+  });
+</script>
+</body>
+</html>
