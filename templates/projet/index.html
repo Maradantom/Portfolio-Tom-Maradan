@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 🔧 À MODIFIER : titre et description -->
+  <title>Tom Maradan | StudioTM — Nom du projet</title>
+  <meta name="description" content="Description courte du projet (1 phrase).">
+
+  <!-- Favicons (ne pas toucher) -->
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon-v2.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96-v2.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon-v2.png">
+  <link rel="manifest" href="/favicon/site-v2.webmanifest">
+
+  <!-- Polices + styles partagés -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/projet.css">
+
+  <!-- 🔧 À MODIFIER : image de fond du hero (chemin absolu) -->
+  <style>
+    :root { --hero-bg: url('/photoprojet/NOM-DU-DOSSIER/3D/image-hero.webp'); }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER PARTAGÉ (chargé via JS, ne pas modifier) -->
+  <div data-include="header"></div>
+
+  <!-- HERO -->
+  <div class="hero-image">
+    <div class="parallax-bg"></div>
+    <div class="hero-text">
+      <!-- 🔧 À MODIFIER -->
+      <h1>Nom du projet</h1>
+      <p>Sous-titre / phrase d'accroche du projet.</p>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- 🔧 À MODIFIER : points clés du projet -->
+    <section class="key-points">
+      <div><strong>Année</strong><span>2025</span></div>
+      <div><strong>Type</strong><span>Construction</span></div>
+      <div><strong>Secteur</strong><span>Tertiaire</span></div>
+      <div><strong>Lieu</strong><span>Lyon</span></div>
+    </section>
+
+    <!--
+      🔧 SECTIONS DU PROJET
+      Dupliquer le bloc ci-dessous autant de fois que nécessaire.
+      Toutes les images avec data-lightbox="..." s'ouvrent en grand au clic.
+      Utiliser le MÊME nom de groupe pour les images qui doivent naviguer ensemble.
+    -->
+    <section class="project-text">
+      <h2>Titre de la section</h2>
+      <p>Texte descriptif de la section.</p>
+    </section>
+    <div class="plans-grid">
+      <img src="/photoprojet/NOM-DU-DOSSIER/3D/image1.webp" alt="" data-lightbox="batiment">
+      <img src="/photoprojet/NOM-DU-DOSSIER/3D/image2.webp" alt="" data-lightbox="batiment">
+      <img src="/photoprojet/NOM-DU-DOSSIER/3D/image3.webp" alt="" data-lightbox="batiment">
+    </div>
+
+    <section class="project-text">
+      <h2>Autre section</h2>
+      <p>Texte.</p>
+    </section>
+    <div class="plans-grid">
+      <img src="/photoprojet/NOM-DU-DOSSIER/Rendu/1.webp" alt="" data-lightbox="rendu">
+      <img src="/photoprojet/NOM-DU-DOSSIER/Rendu/2.webp" alt="" data-lightbox="rendu">
+      <img src="/photoprojet/NOM-DU-DOSSIER/Rendu/3.webp" alt="" data-lightbox="rendu">
+    </div>
+
+    <!-- BOUTON RETOUR -->
+    <a href="/projets/" class="voir-projets-btn">← Retour à tous les projets</a>
+  </main>
+
+  <!-- FOOTER PARTAGÉ (chargé via JS, ne pas modifier) -->
+  <div data-include="footer"></div>
+
+  <!-- Scripts partagés -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/projet.js"></script>
+</body>
+</html>

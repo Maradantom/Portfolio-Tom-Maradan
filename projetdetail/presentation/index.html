@@ -45,7 +45,7 @@
       height: 30px;
       width: auto;
       object-fit: contain;
-      content: url('photo/logo/Blanc long.webp');
+      content: url('/photosite/logo/Blanc long.webp');
       transition: content 0.3s ease;
     }
 
@@ -68,7 +68,7 @@
     }
 
     header.scrolled .logo img {
-      content: url('photo/logo/Noir long.webp');
+      content: url('/photosite/logo/Noirlong.webp');
     }
 
     /* HERO IMAGE */
@@ -336,13 +336,13 @@
 <body>
 
   <header>
-    <a href="index.html" class="logo">
-      <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan">
+    <a href="/" class="logo">
+      <img src="/photosite/logo/Noirlong.webp" alt="Logo Tom Maradan">
     </a>
     <nav>
-      <a href="index.html">ACCUEIL</a>
-      <a href="projets.html">PROJETS</a>
-      <a href="contact.html">CONTACT</a>
+      <a href="/">ACCUEIL</a>
+      <a href="/projets/">PROJETS</a>
+      <a href="/contact/">CONTACT</a>
     </nav>
   </header>
 
@@ -373,11 +373,11 @@
 
           <!-- GALERIE DE PLANS -->
         <div class="plans-grid" id="plans1">
-          <img src="projets/8-projet-presentation-2025/3D/Scène 7-1-C05.webp"
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-1-C05.webp"
             onclick="openLightbox1(0)">
-          <img src="projets/8-projet-presentation-2025/3D/Scène 7-2-C03.webp"
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-2-C03.webp"
             onclick="openLightbox1(1)">
-          <img src="projets/8-projet-presentation-2025/3D/Scène 7-3-C03.webp"
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-3-C03.webp"
             onclick="openLightbox1(2)">
         </div>
       
@@ -395,13 +395,13 @@
     <!-- GALERIE DE PLANS -->
         <div class="plans-grid" id="plans1">
           <img
-            src="projets/8-projet-presentation-2025/3D/Scène 1.webp"
+            src="/photoprojet/8-projet-presentation-2025/3D/Scène 1.webp"
             onclick="openLightbox1(3)">
           <img
-            src="projets/8-projet-presentation-2025/3D/Scène 2.webp"
+            src="/photoprojet/8-projet-presentation-2025/3D/Scène 2.webp"
             onclick="openLightbox1(4)">
           <img
-            src="projets/8-projet-presentation-2025/3D/Scène 3.webp"
+            src="/photoprojet/8-projet-presentation-2025/3D/Scène 3.webp"
             onclick="openLightbox1(5)">
         </div>
 
@@ -416,11 +416,11 @@
 
     <!-- GALERIE DE PLANS -->
         <div class="plans-grid" id="plans1">
-          <img src="projets/8-projet-presentation-2025/3D/Scène 4.webp"
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 4.webp"
             onclick="openLightbox1(6)">
-          <img src="projets/8-projet-presentation-2025/3D/Scène 6.webp"
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 6.webp"
             onclick="openLightbox1(7)">
-          <img src="projets/8-projet-presentation-2025/3D/Scène 10.webp"
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 10.webp"
             onclick="openLightbox1(8)">
         </div>
 
@@ -450,19 +450,19 @@
       // LIGHTBOX 1
       const lightboxImages1 = [
         // 1. MAPAO (3)
-        "projets/8-projet-presentation-2025/3D/Scène 7-1-C05.webp",
-        "projets/8-projet-presentation-2025/3D/Scène 7-2-C03.webp",
-        "projets/8-projet-presentation-2025/3D/Scène 7-3-C03.webp",
+        "/photoprojet/8-projet-presentation-2025/3D/Scène 7-1-C05.webp",
+        "/photoprojet/8-projet-presentation-2025/3D/Scène 7-2-C03.webp",
+        "/photoprojet/8-projet-presentation-2025/3D/Scène 7-3-C03.webp",
 
         // 2. MAPAO (3)
-        "projets/8-projet-presentation-2025/3D/Scène 1.webp",
-        "projets/8-projet-presentation-2025/3D/Scène 2.webp",
-        "projets/8-projet-presentation-2025/3D/Scène 3.webp",
+        "/photoprojet/8-projet-presentation-2025/3D/Scène 1.webp",
+        "/photoprojet/8-projet-presentation-2025/3D/Scène 2.webp",
+        "/photoprojet/8-projet-presentation-2025/3D/Scène 3.webp",
 
         // 3. LATHO (3)
-        "projets/8-projet-presentation-2025/3D/Scène 4.webp",
-        "projets/8-projet-presentation-2025/3D/Scène 6.webp",
-        "projets/8-projet-presentation-2025/3D/Scène 10.webp"
+        "/photoprojet/8-projet-presentation-2025/3D/Scène 4.webp",
+        "/photoprojet/8-projet-presentation-2025/3D/Scène 6.webp",
+        "/photoprojet/8-projet-presentation-2025/3D/Scène 10.webp"
       ];
       let currentLightboxIndex1 = 0;
 
@@ -503,11 +503,11 @@
     </div>
 
 
-    <a href="../projets.html" class="voir-projets-btn">← Retour à tous les projets</a>
+    <a href="/projets/" class="voir-projets-btn">← Retour à tous les projets</a>
   </main>
 
   <footer>
-    <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan" class="footer-logo">
+    <img src="/photosite/logo/Noirlong.webp" alt="Logo Tom Maradan" class="footer-logo">
     <p>© 2026 Tom Maradan — Tous droits réservés</p>
   </footer>
 

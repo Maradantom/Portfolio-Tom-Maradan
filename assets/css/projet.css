@@ -1,0 +1,168 @@
+/* ============================================================
+   PROJET.CSS — Styles communs à toutes les pages de projet.
+   Repris à l'identique de showroom-2025 (aucun changement visuel).
+
+   Pour personnaliser l'image hero d'un projet, définir dans la
+   page : <style>:root { --hero-bg: url('chemin/vers/image.webp'); }</style>
+   ============================================================ */
+
+:root {
+  --main-color: #111;
+  --bg-color: #fdfdfd;
+  --accent-color: #eee;
+  --hero-bg: none;
+}
+
+/* RESET */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-color);
+  color: var(--main-color);
+  overflow-x: hidden;
+}
+
+/* HERO IMAGE */
+.hero-image { position: relative; height: 100vh; overflow: hidden; }
+
+.parallax-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 130%;
+  background: var(--hero-bg) center center / cover no-repeat;
+  will-change: transform;
+  z-index: 0;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+  top: 43%;
+  transform: translateY(-50%);
+  text-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+/* MAIN LAYOUT */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* KEY POINTS */
+.key-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+  text-align: center;
+}
+.key-points div { background: #fff; padding: 1rem; border-radius: 8px; }
+.key-points strong { display: block; margin-bottom: 0.3rem; }
+
+/* PLANS GRID */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  padding: 0 2rem;
+}
+.plans-grid img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.plans-grid img:hover { transform: scale(1.03); }
+
+/* TEXTE DU PROJET */
+.project-text {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.project-text h2 { text-align: center; margin-bottom: -1.5rem; }
+
+/* BOUTON RETOUR */
+.voir-projets-btn {
+  align-self: center;
+  background: var(--accent-color);
+  color: var(--main-color);
+  padding: 0.8rem 1.6rem;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+}
+.voir-projets-btn:hover { background: #ddd; }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .plans-grid { padding: 0 0.5rem; gap: 0.6rem; }
+}
+@media (min-width: 1024px) {
+  .hero-text h1 { font-size: 2rem; }
+  .hero-text p { font-size: 1.3rem; }
+}
+
+/* LIGHTBOX */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  overflow: hidden;
+}
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.6);
+}
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 2001;
+}
+.lightbox-nav svg {
+  width: 25px;
+  height: 25px;
+  stroke: white !important;
+  color: white !important;
+  stroke-width: 2;
+  fill: none;
+}
+.lightbox-nav.prev { left: 2rem; }
+.lightbox-nav.next { right: 2rem; }
+.close-lightbox {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  cursor: pointer;
+  z-index: 2001;
+}
+.close-lightbox svg {
+  width: 32px;
+  height: 32px;
+  stroke: white !important;
+  color: white !important;
+}

@@ -45,7 +45,7 @@
       height: 30px;
       width: auto;
       object-fit: contain;
-      content: url('photo/logo/Blanc long.webp');
+      content: url('/photosite/logo/Blanc long.webp');
       transition: content 0.3s ease;
     }
 
@@ -68,7 +68,7 @@
     }
 
     header.scrolled .logo img {
-      content: url('photo/logo/Noir long.webp');
+      content: url('/photosite/logo/Noirlong.webp');
     }
 
     /* HERO IMAGE */
@@ -331,22 +331,22 @@
 
     // LIGHTBOX 1
     const lightboxImages1 = [
-      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison.webp",
-      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison2.webp",
-      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison3.webp",
-      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison4.webp",
-      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison5.webp",
-      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison6.webp",
-      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison7.webp",
-      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison8.webp",
-      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison9.webp",
-      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison10.webp",
-      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison11.webp",
-      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison12.webp",
-      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison13.webp",
-      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison14.webp",
-      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison15.webp",
-      "projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison16.webp"
+      "/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison.webp",
+      "/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison2.webp",
+      "/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison3.webp",
+      "/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison4.webp",
+      "/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison5.webp",
+      "/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison6.webp",
+      "/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison7.webp",
+      "/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison8.webp",
+      "/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison9.webp",
+      "/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison10.webp",
+      "/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison11.webp",
+      "/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison12.webp",
+      "/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison13.webp",
+      "/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison14.webp",
+      "/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison15.webp",
+      "/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison16.webp"
     ];
     let currentLightboxIndex1 = 0;
 
@@ -371,13 +371,13 @@
 <body>
 
   <header>
-    <a href="index.html" class="logo">
-      <img src="photo/logo/Noir long.png" alt="Logo Tom Maradan">
+    <a href="/" class="logo">
+      <img src="/photosite/logo/Noirlong.webp" alt="Logo Tom Maradan">
     </a>
     <nav>
-      <a href="index.html">ACCUEIL</a>
-      <a href="projets.html">PROJETS</a>
-      <a href="contact.html">CONTACT</a>
+      <a href="/">ACCUEIL</a>
+      <a href="/projets/">PROJETS</a>
+      <a href="/contact/">CONTACT</a>
     </nav>
   </header>
 
@@ -411,22 +411,22 @@
 
     <!-- GALERIE DE PLANS -->
     <div class="plans-grid" id="plans1">
-      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison.webp" onclick="openLightbox1(0)">
-      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison2.webp" onclick="openLightbox1(1)">
-      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison3.webp" onclick="openLightbox1(2)">
-      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison4.webp" onclick="openLightbox1(3)">
-      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison5.webp" onclick="openLightbox1(4)">
-      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison6.webp" onclick="openLightbox1(5)">
-      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison7.webp" onclick="openLightbox1(6)">
-      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison8.webp" onclick="openLightbox1(7)">
-      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison9.webp" onclick="openLightbox1(8)">
-      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison10.webp" onclick="openLightbox1(9)">
-      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison11.webp" onclick="openLightbox1(10)">
-      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison12.webp" onclick="openLightbox1(11)">
-      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison13.webp" onclick="openLightbox1(12)">
-      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison14.webp" onclick="openLightbox1(13)">
-      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison15.webp" onclick="openLightbox1(14)">
-      <img src="projets/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison16.webp" onclick="openLightbox1(15)">
+      <img src="/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison.webp" onclick="openLightbox1(0)">
+      <img src="/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison2.webp" onclick="openLightbox1(1)">
+      <img src="/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison3.webp" onclick="openLightbox1(2)">
+      <img src="/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison4.webp" onclick="openLightbox1(3)">
+      <img src="/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison5.webp" onclick="openLightbox1(4)">
+      <img src="/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison6.webp" onclick="openLightbox1(5)">
+      <img src="/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison7.webp" onclick="openLightbox1(6)">
+      <img src="/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison8.webp" onclick="openLightbox1(7)">
+      <img src="/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison9.webp" onclick="openLightbox1(8)">
+      <img src="/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison10.webp" onclick="openLightbox1(9)">
+      <img src="/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison11.webp" onclick="openLightbox1(10)">
+      <img src="/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison12.webp" onclick="openLightbox1(11)">
+      <img src="/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison13.webp" onclick="openLightbox1(12)">
+      <img src="/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison14.webp" onclick="openLightbox1(13)">
+      <img src="/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison15.webp" onclick="openLightbox1(14)">
+      <img src="/photoprojet/5-projet-maison-2025/Rendu/Tom Maradan - Projet Maison16.webp" onclick="openLightbox1(15)">
     </div>
 
     <!-- ✅ LIGHTBOX 1 -->
@@ -450,11 +450,11 @@
     </div>
 
     
-    <a href="../projets.html" class="voir-projets-btn">← Retour à tous les projets</a>
+    <a href="/projets/" class="voir-projets-btn">← Retour à tous les projets</a>
   </main>
 
   <footer>
-    <img src="photo/logo/Noir long.webp" alt="Logo Tom Maradan" class="footer-logo">
+    <img src="/photosite/logo/Noirlong.webp" alt="Logo Tom Maradan" class="footer-logo">
     <p>© 2026 Tom Maradan — Tous droits réservés</p>
   </footer>
 
