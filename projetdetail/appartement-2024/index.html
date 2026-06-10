@@ -24,325 +24,13 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/main.css">
-  <style>
-    :root {
-      --main-color: #111;
-      --bg-color: #fdfdfd;
-      --accent-color: #eee;
-    }
-
-    /* RESET */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--bg-color);
-      color: var(--main-color);
-      overflow-x: hidden;
-    }
-
-    /* BANDEAU FIXE */
-    .fixed-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 20px;
-      transition: all 0.3s ease;
-      height: 60px;
-      box-sizing: border-box;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-logo img {
-      height: 28px;
-      width: auto;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--main-color);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      transition: color 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: #666;
-    }
-
-    /* HERO IMAGE */
-    .hero-image {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .parallax-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 130%;
-      background: url('/photoprojet/1-projet-appartement-2024/3D.webp') center center / cover no-repeat;
-      will-change: transform;
-      z-index: 0;
-    }
-
-    .hero-text {
-      position: relative;
-      z-index: 1;
-      color: rgb(255, 255, 255);
-      text-align: center;
-      top: 43%;
-      transform: translateY(-50%);
-      text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-    }
-
-    /* MAIN LAYOUT */
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
-    }
-
-    /* KEY POINTS */
-    .key-points {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1.5rem;
-      text-align: center;
-    }
-
-    .key-points div {
-      background: #fff;
-      padding: 1rem;
-      border-radius: 8px;
-    }
-
-    .key-points strong {
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-
-    /* PLANS GRID - toujours 3 colonnes */
-    .plans-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
-      padding: 0 2rem;
-    }
-
-    .plans-grid img {
-      width: 100%;
-      border-radius: 10px;
-      object-fit: cover;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .plans-grid img:hover {
-      transform: scale(1.03);
-    }
-
-    /* TEXTE DU PROJET */
-    .project-text {
-      max-width: 900px;
-      margin: 0 auto;
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-
-    .project-text h2 {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    /* BOUTON RETOUR */
-    .voir-projets-btn {
-      align-self: center;
-      background: var(--accent-color);
-      color: var(--main-color);
-      padding: 0.8rem 1.6rem;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: 600;
-      border: 1px solid #ccc;
-      transition: all 0.3s ease;
-    }
-
-    .voir-projets-btn:hover {
-      background: #ddd;
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 3rem 1rem;
-      background-color: #fff;
-    }
-
-    .footer-logo {
-      max-width: 100px;
-      margin-bottom: 1rem;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .fixed-nav {
-        flex-direction: column;
-        padding: 15px 15px;
-        height: auto;
-        gap: 8px;
-        padding-top: 20px;
-      }
-
-      .nav-logo img {
-        height: 20px;
-      }
-
-      .nav-links {
-        gap: 1rem;
-      }
-
-      .nav-links a {
-        font-size: 0.75rem;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .plans-grid {
-        padding: 0 0.5rem; /* ✅ marge réduite sur mobile */
-        gap: 0.6rem;       /* ✅ espace réduit pour gagner de la place */
-      }
-    }
-
-    /* LIGHTBOX */
-    .lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      backdrop-filter: blur(5px);
-      overflow: hidden;
-    }
-
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 8px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
-    }
-
-    .lightbox-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
-      z-index: 2001;
-    }
-
-    .lightbox-nav svg {
-      width: 25px;
-      height: 25px;
-      stroke: white !important;
-      color: white !important;
-      stroke-width: 2;
-      fill: none;
-    }
-
-    .lightbox-nav.prev {
-      left: 2rem;
-    }
-
-    .lightbox-nav.next {
-      right: 2rem;
-    }
-
-    .close-lightbox {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-      cursor: pointer;
-      z-index: 2001;
-    }
-
-    .close-lightbox svg {
-      width: 32px;
-      height: 32px;
-      stroke: white !important;
-      color: white !important;
-    }
-
-    /* Flèches noires sur mobile */
-    @media (max-width: 600px) {
-      #lightbox1 .lightbox-nav svg {
-        stroke: black !important;
-        color: black !important;
-      }
-
-      #lightbox1 .close-lightbox svg {
-        stroke: white !important;
-        color: white !important;
-      }
-    }
-
-    @media (min-width: 1024px) {
-  .hero-text h1 {
-    font-size: 2rem;
-  }
-
-  .hero-text p {
-    font-size: 1.3rem;
-  }
-}
-    </style>
-      </script>
+  </script>
 
 
-  <script>
-  window.addEventListener("scroll", function () {
-    const bg = document.querySelector(".parallax-bg");
-    const scrollY = window.scrollY;
-    bg.style.transform = "translateY(" + scrollY * 0.4 + "px)";
-  });
+  
 
-
-</script>
-
+  <link rel="stylesheet" href="/assets/css/projet.css">
+  <style>:root { --hero-bg: url('/photoprojet/1-projet-appartement-2024/3D.webp'); }</style>
 </head>
 <body>
 
@@ -423,9 +111,7 @@
     </div>
     </script>
     <script>
-
-      // LIGHTBOX 1
-      const lightboxImages1 = [
+  const lightboxImages1 = [
         // 1. TITRE (10)
         "/photoprojet/1-projet-appartement-2024/Rendu/Maradan-Tom-Groupe F-Démarche architecturale1.webp",
         "/photoprojet/1-projet-appartement-2024/Rendu/Maradan-Tom-Groupe F-Démarche architecturale2.webp",
@@ -438,25 +124,7 @@
         "/photoprojet/1-projet-appartement-2024/Rendu/Maradan-Tom-Groupe F-Démarche architecturale9.webp",
         "/photoprojet/1-projet-appartement-2024/Rendu/Maradan-Tom-Groupe F-Démarche architecturale10.webp"
       ];
-      let currentLightboxIndex1 = 0;
-
-      function openLightbox1(index) {
-        currentLightboxIndex1 = index;
-        document.getElementById("lightbox1-img").src = lightboxImages1[index];
-        document.getElementById("lightbox1").style.display = "flex";
-      }
-
-      function changeLightboxImage1(direction) {
-        currentLightboxIndex1 = (currentLightboxIndex1 + direction + lightboxImages1.length) % lightboxImages1.length;
-        document.getElementById("lightbox1-img").src = lightboxImages1[currentLightboxIndex1];
-      }
-
-      function closeLightbox1(event) {
-        if (!event || event.target === document.getElementById("lightbox1") || event.target.closest('.close-lightbox')) {
-          document.getElementById("lightbox1").style.display = "none";
-        }
-      }
-    </script>
+  </script>
     <div id="lightbox" class="lightbox">
       <span class="close-lightbox" onclick="closeLightbox(event)">
         <svg viewBox="0 0 24 24">
@@ -479,16 +147,10 @@
 
     <a href="/projets/" class="voir-projets-btn">← Retour à tous les projets</a>
   </main>
+  <!-- FOOTER (partial partagé) -->
+  <div data-include="footer"></div>
 
-  <footer class="footer">
-    <img src="/photosite/logo/Noirlong.webp" alt="Logo Tom Maradan" class="footer-logo">
-    <p>© <span id="year"></span> Tom Maradan – Tous droits réservés</p>
-
-    <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-  </footer>
-
+  <script src="/assets/js/projet.js" defer></script>
   <script src="/assets/js/main.js" defer></script>
   <!-- ICÔNES SOCIALES (partial partagé) -->
   <div data-include="footer-socials"></div>

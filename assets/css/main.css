@@ -122,7 +122,7 @@ html {
   .nav-links a { font-size: 0.75rem; }
 }
 
-/* ---------- FOOTER ---------- */
+/* ---------- ANCIEN FOOTER (.footer) — gardé pour les pages qui n'ont pas migré ---------- */
 .footer {
   text-align: center;
   padding: 40px 20px;
@@ -141,6 +141,94 @@ html {
   transition: opacity 0.3s ease;
 }
 .footer-logo:hover { opacity: 1; }
+
+/* ---------- NOUVEAU FOOTER RICHE (.site-footer) ---------- */
+.site-footer {
+  background-color: #f7f7f7;
+  color: #111;
+  padding: 3.5rem 2rem 1.5rem;
+  margin-top: 4rem;
+  border-top: 1px solid #ececec;
+  font-size: 0.9rem;
+}
+.site-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 2.5rem;
+}
+.site-footer-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.site-footer-col h4 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #999;
+  margin-bottom: 1rem;
+}
+.site-footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.site-footer-col a {
+  color: #111;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.site-footer-col a:hover {
+  color: #888;
+}
+.site-footer-brand .site-footer-logo {
+  height: 24px;
+  width: auto;
+  margin-bottom: 0.9rem;
+  opacity: 0.9;
+}
+.site-footer-brand .site-footer-tagline {
+  color: #777;
+  line-height: 1.55;
+  font-size: 0.85rem;
+  margin: 0;
+}
+.site-footer-bottom {
+  max-width: 1200px;
+  margin: 2.5rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid #ececec;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: #888;
+}
+.site-footer-bottom p { margin: 0; }
+.site-footer-bottom a { color: #888; text-decoration: none; }
+.site-footer-bottom a:hover { color: #111; }
+
+@media (max-width: 800px) {
+  .site-footer { padding: 2.5rem 1.5rem 1.5rem; }
+  .site-footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .site-footer-brand { grid-column: 1 / -1; }
+  .site-footer-stack { gap: 1.25rem; }
+  .site-footer-bottom { justify-content: center; text-align: center; }
+}
+@media (max-width: 500px) {
+  .site-footer-inner { grid-template-columns: 1fr; }
+}
 
 /* ---------- ICÔNES SOCIALES FLOTTANTES ---------- */
 .floating-socials {

@@ -1,20 +1,51 @@
 <!--
-  FOOTER PARTAGÉ - Inclut le footer principal + les icônes sociales flottantes.
+  FOOTER PARTAGÉ - Footer principal du site.
   Modifier UNIQUEMENT ici pour mettre à jour toutes les pages.
--->
-<footer class="footer">
-  <img src="/photosite/logo/Noirlong.webp" alt="Logo Tom Maradan" class="footer-logo">
-  <p>&copy; <span id="footer-year"></span> Tom Maradan – Tous droits réservés</p>
-</footer>
 
-<div class="floating-socials" aria-label="Réseaux sociaux">
-  <a href="https://www.instagram.com/studiotm___" target="_blank" rel="noopener" class="fs-link fs-instagram" data-tip="Instagram" aria-label="Instagram">
-    <img src="/photosite/logo/insta.webp" alt="">
-  </a>
-  <a href="https://www.linkedin.com/in/tom-maradan-554265235/" target="_blank" rel="noopener" class="fs-link fs-linkedin" data-tip="LinkedIn" aria-label="LinkedIn">
-    <img src="/photosite/logo/Linkedin.webp" alt="">
-  </a>
-  <a href="/contact/" class="fs-link fs-mail" data-tip="Me contacter" aria-label="Me contacter">
-    <img src="/photosite/logo/Mailapp.webp" alt="">
-  </a>
-</div>
+  Ne contient PAS les icônes sociales flottantes — celles-ci sont
+  dans /partials/footer-socials.html (élément fixe à droite de l'écran).
+-->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+
+    <div class="site-footer-col site-footer-brand">
+      <img src="/photosite/logo/Noirlong.webp" alt="StudioTM" class="site-footer-logo">
+      <p class="site-footer-tagline">Architecture intérieure<br>&amp; design — CREAD</p>
+    </div>
+
+    <div class="site-footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/projets/">Projets</a></li>
+        <li><a href="/photo/">Photo &amp; Drone</a></li>
+        <li><a href="/studiotm/">Activité</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer-col site-footer-stack">
+      <div>
+        <h4>Réseaux</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/studiotm___" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/tom-maradan-554265235/" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>Tom Maradan</li>
+          <li>Lyon (69), France</li>
+          <li><a href="tel:+33672256783">+33 6 72 25 67 83</a></li>
+          <li><a href="mailto:maradantom@gmail.com">maradantom@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="site-footer-bottom">
+    <p>&copy; <span id="footer-year"></span> Tom Maradan — Tous droits réservés.</p>
+  </div>
+</footer>

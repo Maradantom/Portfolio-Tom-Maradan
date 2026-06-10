@@ -1,99 +1,48 @@
 /* ============================================================
-   PROJET.JS — Comportements communs aux pages de projet.
+   PROJET.JS — Comportements partagés par les pages /projetdetail/*
 
-   Fournit :
-     - Effet parallaxe sur .parallax-bg
-     - Lightbox AUTOMATIQUE : il suffit d'ajouter l'attribut
-       data-lightbox="nom-du-groupe" sur les <img> à rendre cliquables.
-       Toutes les images du même groupe naviguent ensemble.
+   Chaque page définit son tableau d'images via :
+   <script>const lightboxImages1 = [ "url1", "url2", … ];</script>
    ============================================================ */
 
-/* ----- PARALLAXE ----- */
-function initParallax() {
+/* ----- PARALLAXE sur la hero ----- */
+window.addEventListener('scroll', function () {
   const bg = document.querySelector('.parallax-bg');
   if (!bg) return;
-  window.addEventListener('scroll', () => {
-    bg.style.transform = `translateY(${window.scrollY * 0.4}px)`;
-  }, { passive: true });
+  const scrollY = window.scrollY;
+  bg.style.transform = `translateY(${scrollY * 0.4}px)`;
+}, { passive: true });
+
+/* ----- LIGHTBOX 1 (galerie principale du projet) ----- */
+let currentLightboxIndex1 = 0;
+
+function openLightbox1(index) {
+  if (typeof lightboxImages1 === 'undefined') return;
+  currentLightboxIndex1 = index;
+  const img = document.getElementById('lightbox1-img');
+  const lb = document.getElementById('lightbox1');
+  if (img) img.src = lightboxImages1[index];
+  if (lb) lb.style.display = 'flex';
+  document.body.classList.add('modal-open');
 }
 
-/* ----- LIGHTBOX ----- */
-function initLightbox() {
-  const images = Array.from(document.querySelectorAll('img[data-lightbox]'));
-  if (!images.length) return;
-
-  // On groupe les images par data-lightbox
-  const groups = {};
-  images.forEach((img, idx) => {
-    const group = img.dataset.lightbox;
-    if (!groups[group]) groups[group] = [];
-    groups[group].push(img);
-    img.dataset.lightboxIndex = String(groups[group].length - 1);
-  });
-
-  // Création du lightbox unique
-  const lb = document.createElement('div');
-  lb.className = 'lightbox';
-  lb.innerHTML = `
-    <span class="close-lightbox" aria-label="Fermer">
-      <svg viewBox="0 0 24 24"><path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </span>
-    <button class="lightbox-nav prev" aria-label="Précédent">
-      <svg viewBox="0 0 24 24"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
-    <img class="lightbox-img" src="" alt="">
-    <button class="lightbox-nav next" aria-label="Suivant">
-      <svg viewBox="0 0 24 24"><path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
-  `;
-  document.body.appendChild(lb);
-
-  const lbImg = lb.querySelector('.lightbox-img');
-  const btnPrev = lb.querySelector('.lightbox-nav.prev');
-  const btnNext = lb.querySelector('.lightbox-nav.next');
-  const btnClose = lb.querySelector('.close-lightbox');
-
-  let currentGroup = [];
-  let currentIndex = 0;
-
-  function open(group, index) {
-    currentGroup = groups[group] || [];
-    currentIndex = index;
-    show();
-    lb.style.display = 'flex';
-  }
-  function show() {
-    const img = currentGroup[currentIndex];
-    if (!img) return;
-    lbImg.src = img.src;
-    lbImg.alt = img.alt || '';
-  }
-  function next(delta) {
-    if (!currentGroup.length) return;
-    currentIndex = (currentIndex + delta + currentGroup.length) % currentGroup.length;
-    show();
-  }
-  function close() { lb.style.display = 'none'; }
-
-  images.forEach((img) => {
-    img.addEventListener('click', () => {
-      open(img.dataset.lightbox, Number(img.dataset.lightboxIndex));
-    });
-  });
-
-  btnPrev.addEventListener('click', (e) => { e.stopPropagation(); next(-1); });
-  btnNext.addEventListener('click', (e) => { e.stopPropagation(); next(1); });
-  btnClose.addEventListener('click', close);
-  lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
-  document.addEventListener('keydown', (e) => {
-    if (lb.style.display !== 'flex') return;
-    if (e.key === 'Escape') close();
-    if (e.key === 'ArrowLeft') next(-1);
-    if (e.key === 'ArrowRight') next(1);
-  });
+function changeLightboxImage1(direction) {
+  if (typeof lightboxImages1 === 'undefined' || !lightboxImages1.length) return;
+  currentLightboxIndex1 = (currentLightboxIndex1 + direction + lightboxImages1.length) % lightboxImages1.length;
+  const img = document.getElementById('lightbox1-img');
+  if (img) img.src = lightboxImages1[currentLightboxIndex1];
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  initParallax();
-  initLightbox();
+function closeLightbox1(event) {
+  const lb = document.getElementById('lightbox1');
+  if (!lb) return;
+  if (!event || event.target === lb || event.target.closest('.close-lightbox')) {
+    lb.style.display = 'none';
+    document.body.classList.remove('modal-open');
+  }
+}
+
+/* Ferme la lightbox avec Échap */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLightbox1();
 });
