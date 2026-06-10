@@ -8,9 +8,8 @@
 
 /**
  * Charge un fichier HTML partiel et l'injecte dans la cible.
- * Utilisation dans une page :
- *   <div data-include="header"></div>
- *   <div data-include="footer"></div>
+ * Les balises <script> trouvées dans le partial sont RÉ-EXÉCUTÉES après injection
+ * (sinon les fonctions/handlers qu'elles définissent ne seraient pas dispos).
  */
 async function loadPartial(slotSelector, url) {
   const slot = document.querySelector(slotSelector);
@@ -18,7 +17,39 @@ async function loadPartial(slotSelector, url) {
   try {
     const res = await fetch(url);
     if (!res.ok) throw new Error(`Erreur ${res.status} pour ${url}`);
-    slot.outerHTML = await res.text();
+    let html = await res.text();
+
+    // 1) Extraire les scripts du HTML brut (regex) AVANT toute insertion
+    //    On capture le contenu exact (caractères bruts, pas de decoding HTML)
+    const scriptRe = /<script\b([^>]*)>([\s\S]*?)<\/script>/gi;
+    const scripts = [];
+    html = html.replace(scriptRe, (match, attrs, content) => {
+      scripts.push({ attrs, content });
+      return ''; // on retire les <script> du HTML
+    });
+
+    // 2) Injecter le HTML restant à la place du slot
+    const parent = slot.parentNode;
+    const ref = slot.nextSibling;
+    parent.removeChild(slot);
+    const tpl = document.createElement('template');
+    tpl.innerHTML = html;
+    parent.insertBefore(tpl.content, ref);
+
+    // 3) Ré-injecter chaque script en créant un nouvel élément (qui s'exécute)
+    for (const { attrs, content } of scripts) {
+      const s = document.createElement('script');
+      // Reconstitue les attributs (src=, type=, etc.)
+      const attrRe = /([\w:-]+)(?:=(?:"([^"]*)"|'([^']*)'|(\S+)))?/g;
+      let m;
+      while ((m = attrRe.exec(attrs))) {
+        const name = m[1];
+        const val = m[2] ?? m[3] ?? m[4] ?? '';
+        s.setAttribute(name, val);
+      }
+      s.text = content; // .text = setter qui marche pour les scripts inline
+      document.body.appendChild(s);
+    }
   } catch (err) {
     console.error('Partial non chargé :', url, err);
   }

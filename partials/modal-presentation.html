@@ -14,9 +14,9 @@
             </svg>
           </button>
           <!-- ✅ Image active -->
-          <img src="photosite/passion-photo/IMG_0687.webp" class="carousel-image c3 active">
-          <img src="photosite/passion-photo/IMG_0688.webp" class="carousel-image c3">
-          <img src="photosite/passion-photo/IMG_0695.webp" class="carousel-image c3">
+          <img src="/photosite/passion-photo/IMG_0687.webp" class="carousel-image c3 active">
+          <img src="/photosite/passion-photo/IMG_0688.webp" class="carousel-image c3">
+          <img src="/photosite/passion-photo/IMG_0695.webp" class="carousel-image c3">
           <button class="carousel-arrow next" onclick="changeSlide(1, 3)">
             <svg viewBox="0 0 24 24">
               <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
@@ -41,9 +41,9 @@
 
         <!-- ✅ Galerie de plans avec onclick -->
         <div class="plans-grid">
-          <img src="photoprojet/8-projet-presentation-2025/3D/Scène 7-1-C05.webp" onclick="openLightbox3(0)">
-          <img src="photoprojet/8-projet-presentation-2025/3D/Scène 7-2-C03.webp" onclick="openLightbox3(1)">
-          <img src="photoprojet/8-projet-presentation-2025/3D/Scène 7-3-C03.webp" onclick="openLightbox3(2)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-1-C05.webp" onclick="openLightbox3(0)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-2-C03.webp" onclick="openLightbox3(1)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-3-C03.webp" onclick="openLightbox3(2)">
         </div>
 
         <h3>MAPAO & MATTEOBRIONI</h3>
@@ -54,22 +54,22 @@
         apportant une texture élégante et une profondeur subtile aux surfaces.</p>
         <!-- ✅ Galerie de plans avec onclick -->
         <div class="plans-grid">
-          <img src="photoprojet/8-projet-presentation-2025/3D/Scène 1.webp" onclick="openLightbox3(3)">
-          <img src="photoprojet/8-projet-presentation-2025/3D/Scène 2.webp" onclick="openLightbox3(4)">
-          <img src="photoprojet/8-projet-presentation-2025/3D/Scène 3.webp" onclick="openLightbox3(5)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 1.webp" onclick="openLightbox3(3)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 2.webp" onclick="openLightbox3(4)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 3.webp" onclick="openLightbox3(5)">
         </div>
 
         <h3>LATHO</h3>
-        <p>Pour le traitement mural, les panneaux Arch en noyer américain habillent le mur du fond, créant un effet chaleureux et 
-        sophistiqué. Ils sont accompagnés d’un enduit Matteobrioni TerraSilk Structured Cameo, apportant texture et profondeur. 
-        Sur le mur latéral droit, une porte battante encastrée s’intègre discrètement dans des panneaux en noyer américain. 
-        En partie haute et basse, un décor Capri signé Latho vient compléter l’ensemble, soulignant le caractère contemporain et 
+        <p>Pour le traitement mural, les panneaux Arch en noyer américain habillent le mur du fond, créant un effet chaleureux et
+        sophistiqué. Ils sont accompagnés d’un enduit Matteobrioni TerraSilk Structured Cameo, apportant texture et profondeur.
+        Sur le mur latéral droit, une porte battante encastrée s’intègre discrètement dans des panneaux en noyer américain.
+        En partie haute et basse, un décor Capri signé Latho vient compléter l’ensemble, soulignant le caractère contemporain et
         raffiné de l’aménagement.</p>
         <!-- ✅ Galerie de plans avec onclick -->
         <div class="plans-grid">
-          <img src="photoprojet/8-projet-presentation-2025/3D/Scène 4.webp" onclick="openLightbox3(6)">
-          <img src="photoprojet/8-projet-presentation-2025/3D/Scène 6.webp" onclick="openLightbox3(7)">
-          <img src="photoprojet/8-projet-presentation-2025/3D/Scène 10.webp" onclick="openLightbox3(8)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 4.webp" onclick="openLightbox3(6)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 6.webp" onclick="openLightbox3(7)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 10.webp" onclick="openLightbox3(8)">
         </div>
 
 
@@ -92,53 +92,8 @@
         </svg>
       </button>
     </div>
-    </script>
-    <script>
 
-      // LIGHTBOX 3
-      const lightboxImages3 = [
-        // MAPAO
-        "photoprojet/8-projet-presentation-2025/3D/Scène 7-1-C05.webp",
-        "photoprojet/8-projet-presentation-2025/3D/Scène 7-2-C03.webp",
-        "photoprojet/8-projet-presentation-2025/3D/Scène 7-3-C03.webp",
-
-        // MAPAO & MATTEOBRIONI
-        "photoprojet/8-projet-presentation-2025/3D/Scène 1.webp",
-        "photoprojet/8-projet-presentation-2025/3D/Scène 2.webp",
-        "photoprojet/8-projet-presentation-2025/3D/Scène 3.webp",
-
-        // LATHO
-        "photoprojet/8-projet-presentation-2025/3D/Scène 4.webp",
-        "photoprojet/8-projet-presentation-2025/3D/Scène 6.webp",
-        "photoprojet/8-projet-presentation-2025/3D/Scène 10.webp"
-        
-      ];
-      let currentLightboxIndex3 = 0;
-
-      function openLightbox3(index) {
-        if (!document.body.classList.contains('modal-open')) {
-          scrollY = window.scrollY;
-          document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
-        }
-        currentLightboxIndex3 = index;
-        document.getElementById("lightbox3-img").src = lightboxImages3[index];
-        document.getElementById("lightbox3").style.display = "flex";
-        document.body.classList.add('modal-open');
-      }
-
-      function changeLightboxImage3(direction) {
-        currentLightboxIndex3 = (currentLightboxIndex3 + direction + lightboxImages3.length) % lightboxImages3.length;
-        document.getElementById("lightbox3-img").src = lightboxImages3[currentLightboxIndex3];
-      }
-
-      function closeLightbox3(event) {
-        if (!event || event.target === document.getElementById("lightbox3") || event.target.closest('.close-lightbox')) {
-          document.getElementById("lightbox3").style.display = "none";
-          document.body.classList.remove('modal-open');
-          window.scrollTo(0, scrollY);
-        }
-      }
-    </script>
+    
 
 
 
@@ -161,102 +116,7 @@
       </button>
     </div>
 
-    <script>
-      const slideIndices = { 1: 0, 2: 0, 3: 0 };
-
-      function changeSlide(n, id) {
-        const slides = document.querySelectorAll(`.carousel-image.c${id}`);
-        slideIndices[id] = (slideIndices[id] + n + slides.length) % slides.length;
-        slides.forEach((img, i) => img.classList.toggle('active', i === slideIndices[id]));
-      }
-
-      let scrollY = 0;
-
-      function openModal(id) {
-        scrollY = window.scrollY;
-        document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
-        document.getElementById(id).style.display = "block";
-        document.body.classList.add('modal-open');
-        const num = id.replace("modal", "");
-        slideIndices[num] = 0; // Reset to first image
-        changeSlide(0, num); // Reset carousel to first
-      }
-
-      function closeModal(id) {
-        document.getElementById(id).style.display = "none";
-        document.body.classList.remove('modal-open');
-        window.scrollTo(0, scrollY);
-      }
-
-      function openLightbox(index) {
-        if (!document.body.classList.contains('modal-open')) {
-          scrollY = window.scrollY;
-          document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
-        }
-        currentLightboxIndex = index;
-        document.getElementById("lightbox-img").src = lightboxImages[index];
-        document.getElementById("lightbox").style.display = "flex";
-        document.body.classList.add('modal-open');
-      }
-
-      function changeLightboxImage(direction) {
-        currentLightboxIndex = (currentLightboxIndex + direction + lightboxImages.length) % lightboxImages.length;
-        document.getElementById("lightbox-img").src = lightboxImages[currentLightboxIndex];
-      }
-
-      function closeLightbox(event) {
-        if (!event || event.target === document.getElementById("lightbox") || event.target.closest('.close-lightbox')) {
-          document.getElementById("lightbox").style.display = "none";
-          document.body.classList.remove('modal-open');
-          window.scrollTo(0, scrollY);
-        }
-      }
-
-      function handleLightboxClick(event) {
-        const img = document.getElementById("lightbox-img");
-        if (!img.contains(event.target)) {
-          closeLightbox(event);
-        }
-      }
-
-      // Fermer la modale si clic hors contenu
-      document.querySelectorAll(".modal").forEach(modal => {
-        modal.addEventListener("click", function (event) {
-          if (event.target.classList.contains("modal")) {
-            closeModal(modal.id);
-          }
-        });
-      });
-
-      // Fermer les modales avec la touche Échap
-      document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-          // Fermer toutes les modales ouvertes
-          document.querySelectorAll('.modal').forEach(modal => {
-            if (modal.style.display === 'block') {
-              closeModal(modal.id);
-            }
-          });
-          // Fermer toutes les lightbox ouvertes
-          document.querySelectorAll('.lightbox').forEach(lightbox => {
-            if (lightbox.style.display === 'flex') {
-              lightbox.style.display = 'none';
-              document.body.classList.remove('modal-open');
-              window.scrollTo(0, scrollY);
-            }
-          });
-        }
-      });
-    </script>
-
     
-
-  </section>
-  
-  <!-- Bouton Voir tous mes projets -->
-  <div style="text-align: center; margin: -3rem 0 3rem 0;">
-    <a href="/projets/" class="voir-projets-btn">Voir tous mes projets</a>
   </div>
-</div>
 </div>
 

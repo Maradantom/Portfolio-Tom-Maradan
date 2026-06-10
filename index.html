@@ -97,10 +97,10 @@
     <div class="slider">
       <div class="slider-track">
         <!-- 10 images -->
-        <img src="/photosite/début/1.webp" alt="1">
-        <img src="/photosite/début/2.webp" alt="2">
-        <img src="/photosite/début/3.webp" alt="3">
-        <img src="/photosite/début/4.webp" alt="4">
+        <img src="photosite/début/1.webp" alt="1">
+        <img src="photosite/début/2.webp" alt="2">
+        <img src="photosite/début/3.webp" alt="3">
+        <img src="photosite/début/4.webp" alt="4">
         <img src="photosite/début/5.webp" alt="5">
         <img src="photosite/début/6.webp" alt="6">
         <img src="photosite/début/7.webp" alt="7">
@@ -198,310 +198,16 @@
       </div>
       <div></div>
     </div>
-
-
-    <!-- MODALE 1 -->
-    <div data-include="modal-villa-annecy"></div>
-    <!-- ✅ LIGHTBOX 1 -->
-    <div id="lightbox1" class="lightbox" onclick="closeLightbox1(event)">
-      <span class="close-lightbox" onclick="closeLightbox1(event)">
-        <svg viewBox="0 0 24 24">
-          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </span>
-      <button class="lightbox-nav prev" onclick="changeLightboxImage1(-1)">
-        <svg viewBox="0 0 24 24">
-          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </button>
-      <img id="lightbox1-img" src="" alt="plan en grand">
-      <button class="lightbox-nav next" onclick="changeLightboxImage1(1)">
-        <svg viewBox="0 0 24 24">
-          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </button>
+    <div style="text-align: center; margin: 3rem 0;">
+      <a href="/projets/" class="voir-projets-btn">Voir tous mes projets</a>
     </div>
-    </script>
-    <script>
+  </section>
 
-      // LIGHTBOX 1
-      const lightboxImages1 = [
-        // 1. Documents initiaux (6)
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy4.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy5.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy6.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy10.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy12.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy13.webp",
-
-        // 2. Étude esthétique & architecturale (9)
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy15.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy16.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy17.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy18.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy19.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy20.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy25.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy26.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy28.webp",
-
-        // 3. Représentations volumétriques extérieures (6)
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy31.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy32.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy33.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy34.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy35.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy36.webp",
-
-        // 4. Aménagement intérieur (6)
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy39.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy40.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy41.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy42.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy44.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy45.webp",
-
-        // 5. Carnets de détails (9)
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy47.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy48.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy49.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy51.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy52.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy53.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy57.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy59.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy61.webp",
-
-        // 6. Étude technique (15)
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy65.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy66.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy67.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy75.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy78.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy79.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy80.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy82.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy83.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy84.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy87.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy88.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy89.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy90.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy91.webp",
-
-        // 7. Mobilier sur mesure (18)
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy129.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy130.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy131.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy132.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy133.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy136.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy137.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy138.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy139.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy140.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy141.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy142.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy143.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy144.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy145.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy158.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy159.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy160.webp",
-
-        // 8. 3D (12)
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy165.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy166.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy167.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy168.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy170.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy171.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy172.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy173.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy174.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy175.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy176.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy177.webp",
-
-        // 9. Permis de construire (18)
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy179.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy180.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy181.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy182.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy183.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy184.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy185.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy186.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy187.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy188.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy189.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy190.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy191.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy192.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy193.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy194.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy195.webp",
-        "photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy196.webp"
-      ];
-      let currentLightboxIndex1 = 0;
-
-      function openLightbox1(index) {
-        if (!document.body.classList.contains('modal-open')) {
-          scrollY = window.scrollY;
-          document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
-        }
-        currentLightboxIndex1 = index;
-        document.getElementById("lightbox1-img").src = lightboxImages1[index];
-        document.getElementById("lightbox1").style.display = "flex";
-        document.body.classList.add('modal-open');
-      }
-
-      function changeLightboxImage1(direction) {
-        currentLightboxIndex1 = (currentLightboxIndex1 + direction + lightboxImages1.length) % lightboxImages1.length;
-        document.getElementById("lightbox1-img").src = lightboxImages1[currentLightboxIndex1];
-      }
-
-      function closeLightbox1(event) {
-        if (!event || event.target === document.getElementById("lightbox1") || event.target.closest('.close-lightbox')) {
-          document.getElementById("lightbox1").style.display = "none";
-          document.body.classList.remove('modal-open');
-          window.scrollTo(0, scrollY);
-        }
-      }
-    </script>
-
-    <!-- MODALE 2 -->
-    <div data-include="modal-showroom"></div>
-
-    <!-- ✅ Lightbox 2 -->
-    <div id="lightbox2" class="lightbox" onclick="closeLightbox2(event)">
-      <span class="close-lightbox" onclick="closeLightbox2(event)">
-        <svg viewBox="0 0 24 24">
-          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </span>
-      <button class="lightbox-nav prev" onclick="changeLightboxImage2(-1)">
-        <svg viewBox="0 0 24 24">
-          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </button>
-      <img id="lightbox2-img" src="" alt="plan en grand">
-      <button class="lightbox-nav next" onclick="changeLightboxImage2(1)">
-        <svg viewBox="0 0 24 24">
-          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </button>
-    </div>
-    <!-- ✅ Modif -->
-    <script>
-      const lightboxImages2 = [
-        // 1. Batiment (6)
-        "photoprojet/7-projet-showroom-2025/3D/Bati/BATIMENT.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Bati/Devant.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Bati/Extérieur.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Bati/RDC.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Bati/R+1.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Bati/R+2.webp",
-
-        // 2. Entrée (3)
-        "photoprojet/7-projet-showroom-2025/3D/Entrée/E2.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Entrée/E1.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Entrée/E3.webp",
-
-        // 3. Cuisine (3)
-        "photoprojet/7-projet-showroom-2025/3D/Cuisine/C1.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Cuisine/C2.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Cuisine/C3.webp",
-
-        // 4. Box (3)
-        "photoprojet/7-projet-showroom-2025/3D/Box/BOX.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Box/BOXR+1.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Box/BOXR+2.webp",
-
-        // 5. Bureaux (6)
-        "photoprojet/7-projet-showroom-2025/3D/Bureau/BU1.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Bureau/BU2.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Bureau/BU3.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Bureau/BU4.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Bureau/BU5.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Bureau/BU6.webp",
-
-        // 6. Buster and Punch (3)
-        "photoprojet/7-projet-showroom-2025/3D/Buster/B+P1.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Buster/B+P4.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Buster/B+P3.webp",
-
-        // 7. Belgiqa (3)
-        "photoprojet/7-projet-showroom-2025/3D/Belgiqa/BEL1.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Belgiqa/BEL4.webp",
-        "photoprojet/7-projet-showroom-2025/3D/Belgiqa/BEL3.webp",
-
-        // 8. Présentation (27)
-        "photoprojet/7-projet-showroom-2025/Rendu/1.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/2.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/3.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/4.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/5.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/6.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/7.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/8.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/9.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/10.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/11.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/12.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/13.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/14.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/15.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/16.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/17.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/18.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/19.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/20.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/21.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/22.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/23.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/24.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/25.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/26.webp",
-        "photoprojet/7-projet-showroom-2025/Rendu/27.webp"
-      ];
-      let currentLightboxIndex2 = 0;
-
-      function openLightbox2(index) {
-        if (!document.body.classList.contains('modal-open')) {
-          scrollY = window.scrollY;
-          document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
-        }
-        currentLightboxIndex2 = index;
-        document.getElementById("lightbox2-img").src = lightboxImages2[index];
-        document.getElementById("lightbox2").style.display = "flex";
-        document.body.classList.add('modal-open');
-      }
-
-      function changeLightboxImage2(direction) {
-        currentLightboxIndex2 = (currentLightboxIndex2 + direction + lightboxImages2.length) % lightboxImages2.length;
-        document.getElementById("lightbox2-img").src = lightboxImages2[currentLightboxIndex2];
-      }
-
-      function closeLightbox2(event) {
-        if (!event || event.target === document.getElementById("lightbox2") || event.target.closest('.close-lightbox')) {
-          document.getElementById("lightbox2").style.display = "none";
-          document.body.classList.remove('modal-open');
-          window.scrollTo(0, scrollY);
-        }
-      }
-    </script>
-
-
-    <!-- MODALE 3 -->
-    <div data-include="modal-presentation"></div>
-
-  
-  
   <section id="experiences" style="padding: 1rem 2rem;" class="reveal reveal-strong">
     <h2 style="margin-bottom: -2rem;">Mes expériences</h2>
     <p></p>
   </section>
+
   <!-- SECTION EXPÉRIENCE -->
   <div class="timeline reveal-group">
 
@@ -514,6 +220,18 @@
         <h5>École d'architecture & de design</h5>
         <p class="date">Septembre 2023 - Juillet 2028</p>
         <p class="location">Lyon, (69003)<br><span class="description">Formation en architecture d’intérieure centrée sur la conception d’espaces, la modélisation 3D, les matériaux, l’esthétique et la compréhension technique des projets. Développement de compétences en création de concepts, élaboration de plans, réalisation de visuels et gestion complète d’un projet d’aménagement.</span></p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <a href="https://www.cread.fr/" target="_blank">
+        <img src="photosite/logo/AT HOME.webp" alt="Logo CREAD" class="logo">
+      </a>
+      <div class="content">
+        <h3>At Home · Laetitia Cretier</h3>
+        <h5>École d'architecture & de design</h5>
+        <p class="date">Mai/Juillet 2026 - Stage & CDD</p>
+        <p class="location">Annecy, (74000)<br><span class="description">Projets haut de gamme : chalets, villas, programmes montagne. 3D matériaux, suivi de chantier, conception garde-corps, communication client.</span></p>
       </div>
     </div>
 
@@ -566,11 +284,7 @@
     </div>
 
   </div>
-  
 
-
-
-  </section>
   <section id="passion" style="margin-bottom: 0; padding-bottom: 0;" class="reveal reveal-strong">
     <h2 style="margin-bottom: 0.5rem;">Ma passion pour les drones & la photo</h2>
   </section>
@@ -592,7 +306,7 @@
   </div>
   <div class="photo-item">
     <div class="photo-container">
-      <img src="photosite/passion-photo/FPV.mp4" alt="Drone 2">
+      <video class="lazy-video" src="/photosite/passion-photo/FPV.mp4" muted loop playsinline></video>
     </div>
     <span>@work and play</span>
   </div>
@@ -841,27 +555,771 @@ function updateTarget(deltaX, deltaY) {
   <!-- Script pour le bandeau fixe -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const fixedNav = document.getElementById('fixed-nav');
       const slider = document.querySelector('.slider');
-      
+
       function checkScrollPosition() {
-        if (slider) {
-          const sliderRect = slider.getBoundingClientRect();
-          if (sliderRect.top <= 0) {
-            fixedNav.classList.add('visible');
-          } else {
-            fixedNav.classList.remove('visible');
-          }
-        }
+        const fixedNav = document.getElementById('fixed-nav');
+        if (!fixedNav || !slider) return;       // partial pas encore chargé : on sort silencieusement
+        const sliderRect = slider.getBoundingClientRect();
+        if (sliderRect.top <= 0) fixedNav.classList.add('visible');
+        else fixedNav.classList.remove('visible');
       }
-      
+
       window.addEventListener('scroll', checkScrollPosition);
       checkScrollPosition();
     });
   </script>
 
-  <!-- Script partagé : charge header/footer + reveal + utilitaires -->
+  <!-- Scripts partagés -->
+  <script src="/assets/js/modals.js"></script>
   <script src="/assets/js/main.js"></script>
+
+
+  <!-- ===== MODALES (placées en fin de body pour être hors de tout transform) ===== -->
+
+
+
+    <!-- MODALE 1 -->
+    <div id="modal1" class="modal">
+      <div class="modal-content large">
+        <!-- Bouton de fermeture -->
+        <button class="close" onclick="closeModal('modal1')" aria-label="Fermer">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M6 6L18 18M6 18L18 6" stroke="black" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+
+        <!-- CARROUSEL -->
+        <div class="carousel" data-carousel="1">
+          <button class="carousel-arrow prev" onclick="changeSlide(-1, 1)">
+            <svg viewBox="0 0 24 24">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/1.webp" class="carousel-image c1 active">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/2.webp" class="carousel-image c1">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/3.webp" class="carousel-image c1">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/4.webp" class="carousel-image c1">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/5.webp" class="carousel-image c1">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/6.webp" class="carousel-image c1">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/7.webp" class="carousel-image c1">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/8.webp" class="carousel-image c1">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/9.webp" class="carousel-image c1">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/10.webp" class="carousel-image c1">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/11.webp" class="carousel-image c1">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/12.webp" class="carousel-image c1">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/13.webp" class="carousel-image c1">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/14.webp" class="carousel-image c1">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/15.webp" class="carousel-image c1">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/16.webp" class="carousel-image c1">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/17.webp" class="carousel-image c1">
+
+          <button class="carousel-arrow next" onclick="changeSlide(1, 1)">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- POINTS CLEFS -->
+        <div class="points-clefs">
+          <div class="point">2025</div>
+          <div class="point">Rénovation</div>
+          <div class="point">Résidentiel</div>
+          <div class="point">Annecy</div>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>Documents initiaux</h3>
+          <p>Les documents initiaux regroupent le diagnostic du bâti existant, les relevés de l’état des lieux, les
+            contraintes du terrain ainsi que
+            les attentes précises des clients. Ils permettent de bien cerner le potentiel du site, d’identifier les
+            enjeux techniques et d’ancrer le
+            projet dans une démarche cohérente et sur-mesure dès les premières phases de conception.</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy4.webp"
+            onclick="openLightbox1(0)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy5.webp"
+            onclick="openLightbox1(1)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy6.webp"
+            onclick="openLightbox1(2)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy10.webp"
+            onclick="openLightbox1(3)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy12.webp"
+            onclick="openLightbox1(4)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy13.webp"
+            onclick="openLightbox1(5)">
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>Étude esthétique & architecturale</h3>
+          <p>L’étude esthétique et architecturale explore les lignes, les volumes, les matériaux et les couleurs pour
+            définir une ambiance à
+            la fois contemporaine et contextuelle. Inspirée des architectures japonaise et scandinave, la composition
+            favorise la lumière
+            naturelle, les textures authentiques et une relation forte avec le paysage. Le projet vise une atmosphère
+            épurée, douce et raffinée.</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy15.webp"
+            onclick="openLightbox1(6)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy16.webp"
+            onclick="openLightbox1(7)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy17.webp"
+            onclick="openLightbox1(8)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy18.webp"
+            onclick="openLightbox1(9)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy19.webp"
+            onclick="openLightbox1(10)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy20.webp"
+            onclick="openLightbox1(11)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy25.webp"
+            onclick="openLightbox1(12)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy26.webp"
+            onclick="openLightbox1(13)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy28.webp"
+            onclick="openLightbox1(14)">
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>Représentations volumétriques extérieures</h3>
+          <p>Ces vues 3D illustrent les intentions d’implantation, de matérialité et d’ambiance du projet. Elles
+            montrent comment les différents
+            volumes s’inscrivent dans le terrain, et comment les espaces extérieurs – jardin, terrasse, ponton –
+            prolongent naturellement
+            l’architecture. Le traitement paysager renforce la fluidité entre intérieur et extérieur.</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid">
+          <img
+            src="/photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy31.webp"
+            onclick="openLightbox1(15)">
+          <img
+            src="/photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy32.webp"
+            onclick="openLightbox1(16)">
+          <img
+            src="/photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy33.webp"
+            onclick="openLightbox1(17)">
+          <img
+            src="/photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy34.webp"
+            onclick="openLightbox1(18)">
+          <img
+            src="/photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy35.webp"
+            onclick="openLightbox1(19)">
+          <img
+            src="/photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy36.webp"
+            onclick="openLightbox1(20)">
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>Aménagement intérieur </h3>
+          <p>Présentation claire de la répartition des espaces : zones jour, nuit et techniques. Les plans révèlent une
+            organisation fluide,
+            pensée pour le confort et la vue sur le lac. Chaque pièce est optimisée selon son usage, avec de belles
+            hauteurs sous plafond et des
+            connexions cohérentes entre intérieur et extérieur.</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy39.webp"
+            onclick="openLightbox1(21)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy40.webp"
+            onclick="openLightbox1(22)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy41.webp"
+            onclick="openLightbox1(23)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy42.webp"
+            onclick="openLightbox1(24)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy44.webp"
+            onclick="openLightbox1(25)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy45.webp"
+            onclick="openLightbox1(26)">
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>Carnets de Détails</h3>
+          <p>Les carnets de détails décomposent pièce par pièce les choix de revêtements, de mobilier et de luminaires.
+            Chaque espace est pensé
+            avec cohérence, en tenant compte de l’usage, du confort et de l’esthétique. Les matériaux nobles (bois,
+            cuir, pierre), les finitions
+            soignées et le mobilier design viennent affirmer l’identité haut de gamme et fonctionnelle de la maison.</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy47.webp"
+            onclick="openLightbox1(27)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy48.webp"
+            onclick="openLightbox1(28)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy49.webp"
+            onclick="openLightbox1(29)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy51.webp"
+            onclick="openLightbox1(30)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy52.webp"
+            onclick="openLightbox1(31)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy53.webp"
+            onclick="openLightbox1(32)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy57.webp"
+            onclick="openLightbox1(33)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy59.webp"
+            onclick="openLightbox1(34)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy61.webp"
+            onclick="openLightbox1(35)">
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>Étude technique</h3>
+          <p>L’étude technique comprend l’ensemble des plans d’exécution : structure, plancher, cloisonnement,
+            plomberie, chauffage, VMC,
+            électricité et éclairage. Elle assure la faisabilité technique du projet, dans le respect des normes
+            actuelles et des exigences de
+            performance énergétique (RE2020, chauffage à granulés, planchers techniques isolés…).</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy65.webp"
+            onclick="openLightbox1(36)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy66.webp"
+            onclick="openLightbox1(37)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy67.webp"
+            onclick="openLightbox1(38)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy75.webp"
+            onclick="openLightbox1(39)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy78.webp"
+            onclick="openLightbox1(40)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy79.webp"
+            onclick="openLightbox1(41)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy80.webp"
+            onclick="openLightbox1(42)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy82.webp"
+            onclick="openLightbox1(43)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy83.webp"
+            onclick="openLightbox1(44)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy84.webp"
+            onclick="openLightbox1(45)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy87.webp"
+            onclick="openLightbox1(46)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy88.webp"
+            onclick="openLightbox1(47)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy89.webp"
+            onclick="openLightbox1(48)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy90.webp"
+            onclick="openLightbox1(49)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy91.webp"
+            onclick="openLightbox1(50)">
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>Mobilier sur mesure</h3>
+          <p>Mobilier intégré conçu spécialement pour chaque espace : rangements, dressings, bureaux, meubles vasques…
+            Les formes et matériaux
+            prolongent l’architecture, alliant fonctionnalité, esthétisme et harmonie globale. Chaque élément renforce
+            l’identité élégante et
+            épurée du projet.</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy129.webp"
+            onclick="openLightbox1(51)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy130.webp"
+            onclick="openLightbox1(52)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy131.webp"
+            onclick="openLightbox1(53)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy132.webp"
+            onclick="openLightbox1(54)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy133.webp"
+            onclick="openLightbox1(55)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy136.webp"
+            onclick="openLightbox1(56)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy137.webp"
+            onclick="openLightbox1(57)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy138.webp"
+            onclick="openLightbox1(58)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy139.webp"
+            onclick="openLightbox1(59)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy140.webp"
+            onclick="openLightbox1(60)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy141.webp"
+            onclick="openLightbox1(61)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy142.webp"
+            onclick="openLightbox1(62)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy143.webp"
+            onclick="openLightbox1(63)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy144.webp"
+            onclick="openLightbox1(64)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy145.webp"
+            onclick="openLightbox1(65)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy158.webp"
+            onclick="openLightbox1(66)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy159.webp"
+            onclick="openLightbox1(67)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy160.webp"
+            onclick="openLightbox1(68)">
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>3D</h3>
+          <p>Les rendus 3D immersifs permettent de projeter le client dans son futur lieu de vie. Ils valorisent les
+            volumes, les matériaux et les
+            ambiances lumineuses avec réalisme, en illustrant les choix architecturaux de manière vivante et expressive.
+            Ces images servent aussi
+            d’outil de communication essentiel tout au long du projet.</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy165.webp" onclick="openLightbox1(69)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy166.webp" onclick="openLightbox1(70)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy167.webp" onclick="openLightbox1(71)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy168.webp" onclick="openLightbox1(72)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy170.webp" onclick="openLightbox1(73)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy171.webp" onclick="openLightbox1(74)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy172.webp" onclick="openLightbox1(75)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy173.webp" onclick="openLightbox1(76)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy174.webp" onclick="openLightbox1(77)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy175.webp" onclick="openLightbox1(78)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy176.webp" onclick="openLightbox1(79)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy177.webp" onclick="openLightbox1(80)">
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="description">
+          <h3>Permis de construire</h3>
+          <p>Le dossier de permis de construire rassemble les pièces réglementaires nécessaires à l’obtention des
+            autorisations administratives.
+            Il comprend les plans, les coupes, les façades et les notices descriptives. Ce document officiel reflète
+            l’intention du projet tout
+            en respectant les contraintes d’urbanisme locales.</p>
+        </div>
+
+        <!-- GALERIE DE PLANS -->
+        <div class="plans-grid">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy179.webp"
+            onclick="openLightbox1(81)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy180.webp"
+            onclick="openLightbox1(82)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy181.webp"
+            onclick="openLightbox1(83)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy182.webp"
+            onclick="openLightbox1(84)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy183.webp"
+            onclick="openLightbox1(85)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy184.webp"
+            onclick="openLightbox1(86)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy185.webp"
+            onclick="openLightbox1(87)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy186.webp"
+            onclick="openLightbox1(88)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy187.webp"
+            onclick="openLightbox1(89)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy188.webp"
+            onclick="openLightbox1(90)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy189.webp"
+            onclick="openLightbox1(91)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy190.webp"
+            onclick="openLightbox1(92)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy191.webp"
+            onclick="openLightbox1(93)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy192.webp"
+            onclick="openLightbox1(94)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy193.webp"
+            onclick="openLightbox1(95)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy194.webp"
+            onclick="openLightbox1(96)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy195.webp"
+            onclick="openLightbox1(97)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy196.webp"
+            onclick="openLightbox1(98)">
+        </div>
+      </div>
+    </div>
+    <!-- ✅ LIGHTBOX 1 -->
+    <div id="lightbox1" class="lightbox" onclick="closeLightbox1(event)">
+      <span class="close-lightbox" onclick="closeLightbox1(event)">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </span>
+      <button class="lightbox-nav prev" onclick="changeLightboxImage1(-1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+      <img id="lightbox1-img" src="" alt="plan en grand">
+      <button class="lightbox-nav next" onclick="changeLightboxImage1(1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- MODALE 2 -->
+    <div id="modal2" class="modal">
+      <div class="modal-content large">
+        <button class="close" onclick="closeModal('modal2')" aria-label="Fermer">
+          <svg width="24" height="24">
+            <path d="M6 6L18 18M6 18L18 6" stroke="black" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+
+        <div class="carousel" data-carousel="2">
+          <button class="carousel-arrow prev" onclick="changeSlide(-1, 2)">
+            <svg viewBox="0 0 24 24">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </button>
+          <!-- ✅ Première image avec .active -->
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E1.webp" class="carousel-image c2 active">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E2.webp" class="carousel-image c2">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Cuisine/C1.webp" class="carousel-image c2">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Buster/B+P4.webp" class="carousel-image c2">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Bureau/BU4.webp" class="carousel-image c2">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Belgiqa/BEL4.webp" class="carousel-image c2">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Box/BOXR+1.webp" class="carousel-image c2">
+
+          <button class="carousel-arrow next" onclick="changeSlide(1, 2)">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="points-clefs">
+          <div class="point">2025</div>
+          <div class="point">Construction</div>
+          <div class="point">Tertiaire</div>
+          <div class="point">Lyon</div>
+        </div>
+
+        <div class="description">
+          <h3>Batiment
+          </h3>
+          <p></p>
+        </div>
+
+        <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+        <div class="plans-grid">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Bati/BATIMENT.webp"
+            onclick="openLightbox2(0)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Bati/Devant.webp"
+            onclick="openLightbox2(1)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Bati/Extérieur.webp"
+            onclick="openLightbox2(2)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Bati/RDC.webp"
+            onclick="openLightbox2(3)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Bati/R+1.webp"
+            onclick="openLightbox2(4)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Bati/R+2.webp"
+            onclick="openLightbox2(5)">
+            
+
+        <h3>Entrée
+          </h3>
+          <p></p>
+        </div>
+
+        <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+        <div class="plans-grid">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E2.webp"
+            onclick="openLightbox2(6)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E1.webp"
+            onclick="openLightbox2(7)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E3.webp"
+            onclick="openLightbox2(8)">
+
+        <h3>Cuisine
+          </h3>
+          <p></p>
+        </div>
+
+        <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+        <div class="plans-grid">
+          <img
+            src="/photoprojet/7-projet-showroom-2025/3D/Cuisine/C1.webp"
+            onclick="openLightbox2(9)">
+          <img
+            src="/photoprojet/7-projet-showroom-2025/3D/Cuisine/C2.webp"
+            onclick="openLightbox2(10)">
+          <img
+            src="/photoprojet/7-projet-showroom-2025/3D/Cuisine/C3.webp"
+            onclick="openLightbox2(11)">
+        </div>
+
+        <h3>Box
+          </h3>
+          <p></p>
+
+        <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+        <div class="plans-grid">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Box/BOX.webp"
+            onclick="openLightbox2(12)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Box/BOXR+1.webp"
+            onclick="openLightbox2(13)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Box/BOXR+2.webp"
+            onclick="openLightbox2(14)">
+        </div>
+
+        <h3>Bureaux
+          </h3>
+          <p></p>
+
+        <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+        <div class="plans-grid">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Bureau/BU1.webp"
+            onclick="openLightbox2(15)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Bureau/BU2.webp"
+            onclick="openLightbox2(16)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Bureau/BU3.webp"
+            onclick="openLightbox2(17)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Bureau/BU4.webp"
+            onclick="openLightbox2(18)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Bureau/BU5.webp"
+            onclick="openLightbox2(19)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Bureau/BU6.webp"
+            onclick="openLightbox2(20)">
+         </div>
+
+        <h3>Buster and Punch
+          </h3>
+          <p></p>
+
+        <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+        <div class="plans-grid">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Buster/B+P1.webp"
+            onclick="openLightbox2(21)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Buster/B+P4.webp"
+            onclick="openLightbox2(22)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Buster/B+P3.webp"
+            onclick="openLightbox2(23)">
+        </div>
+
+        <h3>Belgiqa
+          </h3>
+          <p></p>
+
+        <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+        <div class="plans-grid">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Belgiqa/BEL1.webp"
+            onclick="openLightbox2(24)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Belgiqa/BEL4.webp"
+            onclick="openLightbox2(25)">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Belgiqa/BEL3.webp"
+            onclick="openLightbox2(26)">
+        </div>
+
+        <h3>Présentation projet
+          </h3>
+          <p></p>
+
+        <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
+        <div class="plans-grid">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/2.webp"
+            onclick="openLightbox2(27)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/3.webp"
+            onclick="openLightbox2(28)">
+           <img src="/photoprojet/7-projet-showroom-2025/Rendu/4.webp"
+            onclick="openLightbox2(29)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/5.webp"
+            onclick="openLightbox2(30)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/6.webp"
+            onclick="openLightbox2(31)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/7.webp"
+            onclick="openLightbox2(32)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/8.webp"
+            onclick="openLightbox2(33)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/9.webp"
+            onclick="openLightbox2(34)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/10.webp"
+            onclick="openLightbox2(35)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/11.webp"
+            onclick="openLightbox2(36)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/12.webp"
+            onclick="openLightbox2(37)">
+            <img src="/photoprojet/7-projet-showroom-2025/Rendu/13.webp"
+            onclick="openLightbox2(38)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/14.webp"
+            onclick="openLightbox2(39)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/15.webp"
+            onclick="openLightbox2(40)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/16.webp"
+            onclick="openLightbox2(41)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/17.webp"
+            onclick="openLightbox2(42)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/18.webp"
+            onclick="openLightbox2(43)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/19.webp"
+            onclick="openLightbox2(44)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/20.webp"
+            onclick="openLightbox2(45)">
+            <img src="/photoprojet/7-projet-showroom-2025/Rendu/21.webp"
+            onclick="openLightbox2(46)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/22.webp"
+            onclick="openLightbox2(47)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/23.webp"
+            onclick="openLightbox2(48)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/24.webp"
+            onclick="openLightbox2(49)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/25.webp"
+            onclick="openLightbox2(50)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/26.webp"
+            onclick="openLightbox2(51)">
+          <img src="/photoprojet/7-projet-showroom-2025/Rendu/27.webp"
+            onclick="openLightbox2(52)">
+        </div>
+      </div>
+    </div>
+
+    <!-- ✅ Lightbox 2 -->
+    <div id="lightbox2" class="lightbox" onclick="closeLightbox2(event)">
+      <span class="close-lightbox" onclick="closeLightbox2(event)">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </span>
+      <button class="lightbox-nav prev" onclick="changeLightboxImage2(-1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+      <img id="lightbox2-img" src="" alt="plan en grand">
+      <button class="lightbox-nav next" onclick="changeLightboxImage2(1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+    </div>
+
+
+    <!-- MODALE 3 -->
+    <div id="modal3" class="modal">
+      <div class="modal-content large">
+        <button class="close" onclick="closeModal('modal3')" aria-label="Fermer">
+          <svg width="24" height="24">
+            <path d="M6 6L18 18M6 18L18 6" stroke="black" stroke-width="2" />
+          </svg>
+        </button>
+
+        <div class="carousel" data-carousel="3">
+          <button class="carousel-arrow prev" onclick="changeSlide(-1, 3)">
+            <svg viewBox="0 0 24 24">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </button>
+          <!-- ✅ Image active -->
+          <img src="/photosite/passion-photo/IMG_0687.webp" class="carousel-image c3 active">
+          <img src="/photosite/passion-photo/IMG_0688.webp" class="carousel-image c3">
+          <img src="/photosite/passion-photo/IMG_0695.webp" class="carousel-image c3">
+          <button class="carousel-arrow next" onclick="changeSlide(1, 3)">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="points-clefs">
+          <div class="point">2025</div>
+          <div class="point">Réalisation fictif</div>
+          <div class="point">Résidentiel</div>
+          <div class="point">Lyon</div>
+        </div>
+
+        <div class="description">
+          <h3>MAPAO</h3>
+          <p>Les modèles LM02 et LM04 sont ici présentés avec des finitions en chêne clair et en chêne foncé. 
+        Ces deux teintes offrent un contraste subtil entre luminosité et profondeur, apportant à l’espace une esthétique à la fois 
+        chaleureuse et élégante. Le chêne clair illumine et agrandit visuellement l’environnement, tandis que le chêne foncé 
+        crée des accents plus raffinés et contemporains.</p>
+        </div>
+
+        <!-- ✅ Galerie de plans avec onclick -->
+        <div class="plans-grid">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-1-C05.webp" onclick="openLightbox3(0)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-2-C03.webp" onclick="openLightbox3(1)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-3-C03.webp" onclick="openLightbox3(2)">
+        </div>
+
+        <h3>MAPAO & MATTEOBRIONI</h3>
+        <p>Le modèle LM01 est décliné en finition chêne clair, une essence naturelle et lumineuse. 
+        Ce choix met en valeur la pureté du design et renforce la sensation d’espace, 
+        tout en offrant une base neutre qui s’harmonise avec différents styles de décoration intérieure. 
+        L’ensemble est sublimé par l’application d’un enduit Matteobrioni TerraSilk Structured Cameo, 
+        apportant une texture élégante et une profondeur subtile aux surfaces.</p>
+        <!-- ✅ Galerie de plans avec onclick -->
+        <div class="plans-grid">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 1.webp" onclick="openLightbox3(3)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 2.webp" onclick="openLightbox3(4)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 3.webp" onclick="openLightbox3(5)">
+        </div>
+
+        <h3>LATHO</h3>
+        <p>Pour le traitement mural, les panneaux Arch en noyer américain habillent le mur du fond, créant un effet chaleureux et
+        sophistiqué. Ils sont accompagnés d’un enduit Matteobrioni TerraSilk Structured Cameo, apportant texture et profondeur.
+        Sur le mur latéral droit, une porte battante encastrée s’intègre discrètement dans des panneaux en noyer américain.
+        En partie haute et basse, un décor Capri signé Latho vient compléter l’ensemble, soulignant le caractère contemporain et
+        raffiné de l’aménagement.</p>
+        <!-- ✅ Galerie de plans avec onclick -->
+        <div class="plans-grid">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 4.webp" onclick="openLightbox3(6)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 6.webp" onclick="openLightbox3(7)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 10.webp" onclick="openLightbox3(8)">
+        </div>
+
+
+    <!-- ✅ LIGHTBOX 3 -->
+    <div id="lightbox3" class="lightbox" onclick="closeLightbox3(event)">
+      <span class="close-lightbox" onclick="closeLightbox3(event)">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </span>
+      <button class="lightbox-nav prev" onclick="changeLightboxImage3(-1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+      <img id="lightbox3-img" src="" alt="plan en grand">
+      <button class="lightbox-nav next" onclick="changeLightboxImage3(1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+    </div>
+
+    
+
+
+
+    <div id="lightbox" class="lightbox">
+      <span class="close-lightbox" onclick="closeLightbox(event)">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </span>
+      <button class="lightbox-nav prev" onclick="changeLightboxImage(-1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </button>
+      <img id="lightbox-img" src="" alt="plan en grand">
+      <button class="lightbox-nav next" onclick="changeLightboxImage(1)">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+
+    
+  </div>
+</div>
 </body>
 
 </html>
