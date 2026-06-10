@@ -72,6 +72,7 @@
     </script>
 
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="/photosite/début/1.webp" fetchpriority="high">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="stylesheet" href="/assets/css/accueil.css">
   
@@ -88,25 +89,25 @@
     <!-- HEADER AVEC LOGO -->
     <div class="site-header">
       <div class="logo-container">
-        <img src="photosite/logo/Noirlong.webp" alt="Logo Tom Maradan">
+        <img src="/photosite/logo/Noirlong.webp" alt="Logo Tom Maradan" width="200" height="40" decoding="async">
       </div>
     </div>
 
     
 
     <div class="slider">
-      <div class="slider-track">
-        <!-- 10 images -->
-        <img src="photosite/début/1.webp" alt="1">
-        <img src="photosite/début/2.webp" alt="2">
-        <img src="photosite/début/3.webp" alt="3">
-        <img src="photosite/début/4.webp" alt="4">
-        <img src="photosite/début/5.webp" alt="5">
-        <img src="photosite/début/6.webp" alt="6">
-        <img src="photosite/début/7.webp" alt="7">
-        <img src="photosite/début/8.webp" alt="8">
-        <img src="photosite/début/9.webp" alt="9">
-        <img src="photosite/début/10.webp" alt="10">
+            <div class="slider-track">
+        <!-- 10 images du slider hero -->
+        <img src="/photosite/début/1.webp" alt="" width="600" height="480" loading="eager" decoding="async" fetchpriority="high">
+        <img src="/photosite/début/2.webp" alt="" width="600" height="480" loading="eager" decoding="async">
+        <img src="/photosite/début/3.webp" alt="" width="452" height="600" loading="eager" decoding="async">
+        <img src="/photosite/début/4.webp" alt="" width="600" height="480" loading="eager" decoding="async">
+        <img src="/photosite/début/5.webp" alt="" width="1280" height="1024" loading="eager" decoding="async">
+        <img src="/photosite/début/6.webp" alt="" width="1024" height="1280" loading="eager" decoding="async">
+        <img src="/photosite/début/7.webp" alt="" width="1024" height="1280" loading="eager" decoding="async">
+        <img src="/photosite/début/8.webp" alt="" width="1280" height="1024" loading="eager" decoding="async">
+        <img src="/photosite/début/9.webp" alt="" width="1280" height="960" loading="eager" decoding="async">
+        <img src="/photosite/début/10.webp" alt="" width="1280" height="960" loading="eager" decoding="async">
       </div>
     </div>
   </header>
@@ -156,7 +157,7 @@
         </p>
       </div>
       <div class="histoire-image">
-        <img src="photosite/passion-photo/IMG_7398.webp" alt="photo de Tom Maradan">
+        <img src="photosite/passion-photo/IMG_7398.webp" alt="photo de Tom Maradan" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
@@ -172,7 +173,7 @@
 
       <!-- Projet 1 -->
       <div class="projet" onclick="openModal('modal1')">
-        <img src="photoprojet/6-projet-villa-annecy-2025/3D/1.webp" alt="Projet villa">
+        <img src="photoprojet/6-projet-villa-annecy-2025/3D/1.webp" alt="Projet villa" loading="lazy" decoding="async">
         <div class="chiffres">
           <span>2025</span><span>Rénovation</span><span>Résidentiel</span><span>Annecy</span>
         </div>
@@ -181,7 +182,7 @@
 
       <!-- Projet 2 -->
       <div class="projet" onclick="openModal('modal2')">
-        <img src="photoprojet/7-projet-showroom-2025/3D/Entrée/E1.webp" alt="Projet Showroom">
+        <img src="photoprojet/7-projet-showroom-2025/3D/Entrée/E1.webp" alt="Projet Showroom" loading="lazy" decoding="async">
         <div class="chiffres">
           <span>2025</span><span>Construction</span><span>Tertiaire</span><span>Lyon</span>
         </div>
@@ -190,7 +191,7 @@
 
       <!-- Projet 3 -->
       <div class="projet" onclick="openModal('modal3')">
-        <img src="photoprojet/8-projet-presentation-2025/3D/Scène 7-2-C03-1.webp" alt="Projet Appartement">
+        <img src="photoprojet/8-projet-presentation-2025/3D/Scène 7-2-C03-1.webp" alt="Projet Appartement" loading="lazy" decoding="async">
         <div class="chiffres">
           <span>2025</span><span>Réalisation fictif</span><span>Résidentiel</span><span>Lyon</span>
         </div>
@@ -212,8 +213,8 @@
   <div class="timeline reveal-group">
 
     <div class="timeline-item reveal">
-      <a href="https://www.cread.fr/" target="_blank">
-        <img src="photosite/logo/CREAD.webp" alt="Logo CREAD" class="logo">
+      <a href="https://www.athomedeco.fr/" target="_blank">
+        <img src="photosite/logo/CREAD.webp" alt="Logo CREAD" class="logo" loading="lazy" decoding="async">
       </a>
       <div class="content">
         <h3>CREAD Lyon</h3>
@@ -224,8 +225,8 @@
     </div>
 
     <div class="timeline-item reveal">
-      <a href="https://www.cread.fr/" target="_blank">
-        <img src="photosite/logo/AT HOME.webp" alt="Logo CREAD" class="logo">
+      <a href="https://www.athomedeco.fr/" target="_blank">
+        <img src="photosite/logo/AT HOME.webp" alt="Logo AT HOME" class="logo" loading="lazy" decoding="async">
       </a>
       <div class="content">
         <h3>At Home · Laetitia Cretier</h3>
@@ -237,7 +238,7 @@
 
     <div class="timeline-item reveal">
       <a href="https://www.samplesroom.fr" target="_blank">
-        <img src="photosite/logo/Samples Room.webp" alt="Logo Samples Room" class="logo">
+        <img src="photosite/logo/Samples Room.webp" alt="Logo Samples Room" class="logo" loading="lazy" decoding="async">
       </a>
       <div class="content">
         <h3>Samples Room</h3>
@@ -249,7 +250,7 @@
 
     <div class="timeline-item reveal">
       <a href="http://purconcept.com" target="_blank">
-        <img src="photosite/logo/Pur Concept.webp" alt="Logo Pur Concept" class="logo">
+        <img src="photosite/logo/Pur Concept.webp" alt="Logo Pur Concept" class="logo" loading="lazy" decoding="async">
       </a>
       <div class="content">
         <h3>Pur Concept</h3>
@@ -261,7 +262,7 @@
 
     <div class="timeline-item reveal">
       <a href="https://www.tetris-db.com/" target="_blank">
-        <img src="photosite/logo/Tetris.webp" alt="Logo Tetris" class="logo">
+        <img src="photosite/logo/Tetris.webp" alt="Logo Tetris" class="logo" loading="lazy" decoding="async">
       </a>
       <div class="content">
         <h3>Tetris</h3>
@@ -273,7 +274,7 @@
 
     <div class="timeline-item reveal">
       <a href="" target="_blank">
-        <img src="photosite/logo/AABC Architecture.webp" alt="Logo AABC" class="logo">
+        <img src="photosite/logo/AABC Architecture.webp" alt="Logo AABC" class="logo" loading="lazy" decoding="async">
       </a>
       <div class="content">
         <h3>AABC Architecture</h3>
@@ -318,13 +319,13 @@
   </div>
   <div class="photo-item">
     <div class="photo-container">
-      <img src="photosite/passion-photo/IMG_0292.webp" alt="Drone 4">
+      <img src="photosite/passion-photo/IMG_0292.webp" alt="Drone 4" loading="lazy" decoding="async">
     </div>
     <span>@samplesroom</span>
   </div>
   <div class="photo-item">
     <div class="photo-container">
-      <img src="photosite/passion-photo/dji_fly_20250413_135444_0009_1744545593668_photo.webp" alt="Drone 5">
+      <img src="photosite/passion-photo/dji_fly_20250413_135444_0009_1744545593668_photo.webp" alt="Drone 5" loading="lazy" decoding="async">
     </div>
     <span>@privé</span>
   </div>
@@ -377,7 +378,7 @@
 <section id="about" class="about-section reveal reveal-strong" aria-labelledby="about-title" style="padding-top: 10px;">
   <div class="about-card">
     <figure class="about-image">
-      <img src="photosite/logo/IMG_1901.webp" alt="Tom Maradan, architecte d'intérieur" width="600" height="600">
+      <img src="photosite/logo/IMG_1901.webp" alt="Tom Maradan, architecte d'intérieur" width="600" height="600" loading="lazy" decoding="async">
     </figure>
 
     <div class="about-text">
@@ -571,8 +572,8 @@ function updateTarget(deltaX, deltaY) {
   </script>
 
   <!-- Scripts partagés -->
-  <script src="/assets/js/modals.js"></script>
-  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/modals.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
 
 
   <!-- ===== MODALES (placées en fin de body pour être hors de tout transform) ===== -->
@@ -597,23 +598,23 @@ function updateTarget(deltaX, deltaY) {
             </svg>
           </button>
 
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/1.webp" class="carousel-image c1 active">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/2.webp" class="carousel-image c1">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/3.webp" class="carousel-image c1">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/4.webp" class="carousel-image c1">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/5.webp" class="carousel-image c1">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/6.webp" class="carousel-image c1">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/7.webp" class="carousel-image c1">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/8.webp" class="carousel-image c1">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/9.webp" class="carousel-image c1">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/10.webp" class="carousel-image c1">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/11.webp" class="carousel-image c1">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/12.webp" class="carousel-image c1">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/13.webp" class="carousel-image c1">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/14.webp" class="carousel-image c1">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/15.webp" class="carousel-image c1">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/16.webp" class="carousel-image c1">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/17.webp" class="carousel-image c1">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/1.webp" class="carousel-image c1 active" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/2.webp" class="carousel-image c1" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/3.webp" class="carousel-image c1" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/4.webp" class="carousel-image c1" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/5.webp" class="carousel-image c1" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/6.webp" class="carousel-image c1" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/7.webp" class="carousel-image c1" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/8.webp" class="carousel-image c1" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/9.webp" class="carousel-image c1" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/10.webp" class="carousel-image c1" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/11.webp" class="carousel-image c1" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/12.webp" class="carousel-image c1" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/13.webp" class="carousel-image c1" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/14.webp" class="carousel-image c1" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/15.webp" class="carousel-image c1" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/16.webp" class="carousel-image c1" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/3D/17.webp" class="carousel-image c1" loading="lazy" decoding="async">
 
           <button class="carousel-arrow next" onclick="changeSlide(1, 1)">
             <svg viewBox="0 0 24 24">
@@ -643,17 +644,17 @@ function updateTarget(deltaX, deltaY) {
         <!-- GALERIE DE PLANS -->
         <div class="plans-grid">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy4.webp"
-            onclick="openLightbox1(0)">
+            onclick="openLightbox1(0)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy5.webp"
-            onclick="openLightbox1(1)">
+            onclick="openLightbox1(1)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy6.webp"
-            onclick="openLightbox1(2)">
+            onclick="openLightbox1(2)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy10.webp"
-            onclick="openLightbox1(3)">
+            onclick="openLightbox1(3)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy12.webp"
-            onclick="openLightbox1(4)">
+            onclick="openLightbox1(4)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents initiaux/Tom Maradan - Projet Annecy13.webp"
-            onclick="openLightbox1(5)">
+            onclick="openLightbox1(5)" loading="lazy" decoding="async">
         </div>
         <!-- DESCRIPTION -->
         <div class="description">
@@ -669,23 +670,23 @@ function updateTarget(deltaX, deltaY) {
         <!-- GALERIE DE PLANS -->
         <div class="plans-grid">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy15.webp"
-            onclick="openLightbox1(6)">
+            onclick="openLightbox1(6)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy16.webp"
-            onclick="openLightbox1(7)">
+            onclick="openLightbox1(7)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy17.webp"
-            onclick="openLightbox1(8)">
+            onclick="openLightbox1(8)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy18.webp"
-            onclick="openLightbox1(9)">
+            onclick="openLightbox1(9)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy19.webp"
-            onclick="openLightbox1(10)">
+            onclick="openLightbox1(10)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy20.webp"
-            onclick="openLightbox1(11)">
+            onclick="openLightbox1(11)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy25.webp"
-            onclick="openLightbox1(12)">
+            onclick="openLightbox1(12)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy26.webp"
-            onclick="openLightbox1(13)">
+            onclick="openLightbox1(13)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/2-Étude esthétique & architecturale/Tom Maradan - Projet Annecy28.webp"
-            onclick="openLightbox1(14)">
+            onclick="openLightbox1(14)" loading="lazy" decoding="async">
         </div>
         <!-- DESCRIPTION -->
         <div class="description">
@@ -701,22 +702,22 @@ function updateTarget(deltaX, deltaY) {
         <div class="plans-grid">
           <img
             src="/photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy31.webp"
-            onclick="openLightbox1(15)">
+            onclick="openLightbox1(15)" loading="lazy" decoding="async">
           <img
             src="/photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy32.webp"
-            onclick="openLightbox1(16)">
+            onclick="openLightbox1(16)" loading="lazy" decoding="async">
           <img
             src="/photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy33.webp"
-            onclick="openLightbox1(17)">
+            onclick="openLightbox1(17)" loading="lazy" decoding="async">
           <img
             src="/photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy34.webp"
-            onclick="openLightbox1(18)">
+            onclick="openLightbox1(18)" loading="lazy" decoding="async">
           <img
             src="/photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy35.webp"
-            onclick="openLightbox1(19)">
+            onclick="openLightbox1(19)" loading="lazy" decoding="async">
           <img
             src="/photoprojet/6-projet-villa-annecy-2025/Rendu/3-Représentations volumétriques extérieures/Tom Maradan - Projet Annecy36.webp"
-            onclick="openLightbox1(20)">
+            onclick="openLightbox1(20)" loading="lazy" decoding="async">
         </div>
         <!-- DESCRIPTION -->
         <div class="description">
@@ -731,17 +732,17 @@ function updateTarget(deltaX, deltaY) {
         <!-- GALERIE DE PLANS -->
         <div class="plans-grid">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy39.webp"
-            onclick="openLightbox1(21)">
+            onclick="openLightbox1(21)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy40.webp"
-            onclick="openLightbox1(22)">
+            onclick="openLightbox1(22)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy41.webp"
-            onclick="openLightbox1(23)">
+            onclick="openLightbox1(23)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy42.webp"
-            onclick="openLightbox1(24)">
+            onclick="openLightbox1(24)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy44.webp"
-            onclick="openLightbox1(25)">
+            onclick="openLightbox1(25)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/4-Aménagement intérieur /Tom Maradan - Projet Annecy45.webp"
-            onclick="openLightbox1(26)">
+            onclick="openLightbox1(26)" loading="lazy" decoding="async">
         </div>
         <!-- DESCRIPTION -->
         <div class="description">
@@ -756,23 +757,23 @@ function updateTarget(deltaX, deltaY) {
         <!-- GALERIE DE PLANS -->
         <div class="plans-grid">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy47.webp"
-            onclick="openLightbox1(27)">
+            onclick="openLightbox1(27)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy48.webp"
-            onclick="openLightbox1(28)">
+            onclick="openLightbox1(28)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy49.webp"
-            onclick="openLightbox1(29)">
+            onclick="openLightbox1(29)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy51.webp"
-            onclick="openLightbox1(30)">
+            onclick="openLightbox1(30)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy52.webp"
-            onclick="openLightbox1(31)">
+            onclick="openLightbox1(31)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy53.webp"
-            onclick="openLightbox1(32)">
+            onclick="openLightbox1(32)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy57.webp"
-            onclick="openLightbox1(33)">
+            onclick="openLightbox1(33)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy59.webp"
-            onclick="openLightbox1(34)">
+            onclick="openLightbox1(34)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/5-Carnets de Détails/Tom Maradan - Projet Annecy61.webp"
-            onclick="openLightbox1(35)">
+            onclick="openLightbox1(35)" loading="lazy" decoding="async">
         </div>
         <!-- DESCRIPTION -->
         <div class="description">
@@ -787,35 +788,35 @@ function updateTarget(deltaX, deltaY) {
         <!-- GALERIE DE PLANS -->
         <div class="plans-grid">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy65.webp"
-            onclick="openLightbox1(36)">
+            onclick="openLightbox1(36)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy66.webp"
-            onclick="openLightbox1(37)">
+            onclick="openLightbox1(37)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy67.webp"
-            onclick="openLightbox1(38)">
+            onclick="openLightbox1(38)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy75.webp"
-            onclick="openLightbox1(39)">
+            onclick="openLightbox1(39)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy78.webp"
-            onclick="openLightbox1(40)">
+            onclick="openLightbox1(40)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy79.webp"
-            onclick="openLightbox1(41)">
+            onclick="openLightbox1(41)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy80.webp"
-            onclick="openLightbox1(42)">
+            onclick="openLightbox1(42)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy82.webp"
-            onclick="openLightbox1(43)">
+            onclick="openLightbox1(43)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy83.webp"
-            onclick="openLightbox1(44)">
+            onclick="openLightbox1(44)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy84.webp"
-            onclick="openLightbox1(45)">
+            onclick="openLightbox1(45)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy87.webp"
-            onclick="openLightbox1(46)">
+            onclick="openLightbox1(46)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy88.webp"
-            onclick="openLightbox1(47)">
+            onclick="openLightbox1(47)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy89.webp"
-            onclick="openLightbox1(48)">
+            onclick="openLightbox1(48)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy90.webp"
-            onclick="openLightbox1(49)">
+            onclick="openLightbox1(49)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/6-Étude technique/Tom Maradan - Projet Annecy91.webp"
-            onclick="openLightbox1(50)">
+            onclick="openLightbox1(50)" loading="lazy" decoding="async">
         </div>
         <!-- DESCRIPTION -->
         <div class="description">
@@ -830,41 +831,41 @@ function updateTarget(deltaX, deltaY) {
         <!-- GALERIE DE PLANS -->
         <div class="plans-grid">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy129.webp"
-            onclick="openLightbox1(51)">
+            onclick="openLightbox1(51)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy130.webp"
-            onclick="openLightbox1(52)">
+            onclick="openLightbox1(52)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy131.webp"
-            onclick="openLightbox1(53)">
+            onclick="openLightbox1(53)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy132.webp"
-            onclick="openLightbox1(54)">
+            onclick="openLightbox1(54)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy133.webp"
-            onclick="openLightbox1(55)">
+            onclick="openLightbox1(55)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy136.webp"
-            onclick="openLightbox1(56)">
+            onclick="openLightbox1(56)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy137.webp"
-            onclick="openLightbox1(57)">
+            onclick="openLightbox1(57)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy138.webp"
-            onclick="openLightbox1(58)">
+            onclick="openLightbox1(58)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy139.webp"
-            onclick="openLightbox1(59)">
+            onclick="openLightbox1(59)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy140.webp"
-            onclick="openLightbox1(60)">
+            onclick="openLightbox1(60)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy141.webp"
-            onclick="openLightbox1(61)">
+            onclick="openLightbox1(61)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy142.webp"
-            onclick="openLightbox1(62)">
+            onclick="openLightbox1(62)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy143.webp"
-            onclick="openLightbox1(63)">
+            onclick="openLightbox1(63)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy144.webp"
-            onclick="openLightbox1(64)">
+            onclick="openLightbox1(64)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy145.webp"
-            onclick="openLightbox1(65)">
+            onclick="openLightbox1(65)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy158.webp"
-            onclick="openLightbox1(66)">
+            onclick="openLightbox1(66)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy159.webp"
-            onclick="openLightbox1(67)">
+            onclick="openLightbox1(67)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/7-Mobilier sur mesure/Tom Maradan - Projet Annecy160.webp"
-            onclick="openLightbox1(68)">
+            onclick="openLightbox1(68)" loading="lazy" decoding="async">
         </div>
         <!-- DESCRIPTION -->
         <div class="description">
@@ -878,18 +879,18 @@ function updateTarget(deltaX, deltaY) {
 
         <!-- GALERIE DE PLANS -->
         <div class="plans-grid">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy165.webp" onclick="openLightbox1(69)">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy166.webp" onclick="openLightbox1(70)">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy167.webp" onclick="openLightbox1(71)">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy168.webp" onclick="openLightbox1(72)">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy170.webp" onclick="openLightbox1(73)">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy171.webp" onclick="openLightbox1(74)">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy172.webp" onclick="openLightbox1(75)">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy173.webp" onclick="openLightbox1(76)">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy174.webp" onclick="openLightbox1(77)">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy175.webp" onclick="openLightbox1(78)">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy176.webp" onclick="openLightbox1(79)">
-          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy177.webp" onclick="openLightbox1(80)">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy165.webp" onclick="openLightbox1(69)" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy166.webp" onclick="openLightbox1(70)" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy167.webp" onclick="openLightbox1(71)" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy168.webp" onclick="openLightbox1(72)" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy170.webp" onclick="openLightbox1(73)" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy171.webp" onclick="openLightbox1(74)" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy172.webp" onclick="openLightbox1(75)" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy173.webp" onclick="openLightbox1(76)" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy174.webp" onclick="openLightbox1(77)" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy175.webp" onclick="openLightbox1(78)" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy176.webp" onclick="openLightbox1(79)" loading="lazy" decoding="async">
+          <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/8-3D/Tom Maradan - Projet Annecy177.webp" onclick="openLightbox1(80)" loading="lazy" decoding="async">
         </div>
         <!-- DESCRIPTION -->
         <div class="description">
@@ -904,41 +905,41 @@ function updateTarget(deltaX, deltaY) {
         <!-- GALERIE DE PLANS -->
         <div class="plans-grid">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy179.webp"
-            onclick="openLightbox1(81)">
+            onclick="openLightbox1(81)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy180.webp"
-            onclick="openLightbox1(82)">
+            onclick="openLightbox1(82)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy181.webp"
-            onclick="openLightbox1(83)">
+            onclick="openLightbox1(83)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy182.webp"
-            onclick="openLightbox1(84)">
+            onclick="openLightbox1(84)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy183.webp"
-            onclick="openLightbox1(85)">
+            onclick="openLightbox1(85)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy184.webp"
-            onclick="openLightbox1(86)">
+            onclick="openLightbox1(86)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy185.webp"
-            onclick="openLightbox1(87)">
+            onclick="openLightbox1(87)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy186.webp"
-            onclick="openLightbox1(88)">
+            onclick="openLightbox1(88)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy187.webp"
-            onclick="openLightbox1(89)">
+            onclick="openLightbox1(89)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy188.webp"
-            onclick="openLightbox1(90)">
+            onclick="openLightbox1(90)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy189.webp"
-            onclick="openLightbox1(91)">
+            onclick="openLightbox1(91)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy190.webp"
-            onclick="openLightbox1(92)">
+            onclick="openLightbox1(92)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy191.webp"
-            onclick="openLightbox1(93)">
+            onclick="openLightbox1(93)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy192.webp"
-            onclick="openLightbox1(94)">
+            onclick="openLightbox1(94)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy193.webp"
-            onclick="openLightbox1(95)">
+            onclick="openLightbox1(95)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy194.webp"
-            onclick="openLightbox1(96)">
+            onclick="openLightbox1(96)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy195.webp"
-            onclick="openLightbox1(97)">
+            onclick="openLightbox1(97)" loading="lazy" decoding="async">
           <img src="/photoprojet/6-projet-villa-annecy-2025/Rendu/9-Permis de construire/Tom Maradan - Projet Annecy196.webp"
-            onclick="openLightbox1(98)">
+            onclick="openLightbox1(98)" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
@@ -954,7 +955,7 @@ function updateTarget(deltaX, deltaY) {
           <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
         </svg>
       </button>
-      <img id="lightbox1-img" src="" alt="plan en grand">
+      <img id="lightbox1-img" src="" alt="plan en grand" loading="lazy" decoding="async">
       <button class="lightbox-nav next" onclick="changeLightboxImage1(1)">
         <svg viewBox="0 0 24 24">
           <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
@@ -978,13 +979,13 @@ function updateTarget(deltaX, deltaY) {
             </svg>
           </button>
           <!-- ✅ Première image avec .active -->
-          <img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E1.webp" class="carousel-image c2 active">
-          <img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E2.webp" class="carousel-image c2">
-          <img src="/photoprojet/7-projet-showroom-2025/3D/Cuisine/C1.webp" class="carousel-image c2">
-          <img src="/photoprojet/7-projet-showroom-2025/3D/Buster/B+P4.webp" class="carousel-image c2">
-          <img src="/photoprojet/7-projet-showroom-2025/3D/Bureau/BU4.webp" class="carousel-image c2">
-          <img src="/photoprojet/7-projet-showroom-2025/3D/Belgiqa/BEL4.webp" class="carousel-image c2">
-          <img src="/photoprojet/7-projet-showroom-2025/3D/Box/BOXR+1.webp" class="carousel-image c2">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E1.webp" class="carousel-image c2 active" loading="lazy" decoding="async">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E2.webp" class="carousel-image c2" loading="lazy" decoding="async">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Cuisine/C1.webp" class="carousel-image c2" loading="lazy" decoding="async">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Buster/B+P4.webp" class="carousel-image c2" loading="lazy" decoding="async">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Bureau/BU4.webp" class="carousel-image c2" loading="lazy" decoding="async">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Belgiqa/BEL4.webp" class="carousel-image c2" loading="lazy" decoding="async">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Box/BOXR+1.webp" class="carousel-image c2" loading="lazy" decoding="async">
 
           <button class="carousel-arrow next" onclick="changeSlide(1, 2)">
             <svg viewBox="0 0 24 24">
@@ -1009,17 +1010,17 @@ function updateTarget(deltaX, deltaY) {
         <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
         <div class="plans-grid">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Bati/BATIMENT.webp"
-            onclick="openLightbox2(0)">
+            onclick="openLightbox2(0)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Bati/Devant.webp"
-            onclick="openLightbox2(1)">
+            onclick="openLightbox2(1)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Bati/Extérieur.webp"
-            onclick="openLightbox2(2)">
+            onclick="openLightbox2(2)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Bati/RDC.webp"
-            onclick="openLightbox2(3)">
+            onclick="openLightbox2(3)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Bati/R+1.webp"
-            onclick="openLightbox2(4)">
+            onclick="openLightbox2(4)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Bati/R+2.webp"
-            onclick="openLightbox2(5)">
+            onclick="openLightbox2(5)" loading="lazy" decoding="async">
             
 
         <h3>Entrée
@@ -1030,11 +1031,11 @@ function updateTarget(deltaX, deltaY) {
         <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
         <div class="plans-grid">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E2.webp"
-            onclick="openLightbox2(6)">
+            onclick="openLightbox2(6)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E1.webp"
-            onclick="openLightbox2(7)">
+            onclick="openLightbox2(7)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E3.webp"
-            onclick="openLightbox2(8)">
+            onclick="openLightbox2(8)" loading="lazy" decoding="async">
 
         <h3>Cuisine
           </h3>
@@ -1045,13 +1046,13 @@ function updateTarget(deltaX, deltaY) {
         <div class="plans-grid">
           <img
             src="/photoprojet/7-projet-showroom-2025/3D/Cuisine/C1.webp"
-            onclick="openLightbox2(9)">
+            onclick="openLightbox2(9)" loading="lazy" decoding="async">
           <img
             src="/photoprojet/7-projet-showroom-2025/3D/Cuisine/C2.webp"
-            onclick="openLightbox2(10)">
+            onclick="openLightbox2(10)" loading="lazy" decoding="async">
           <img
             src="/photoprojet/7-projet-showroom-2025/3D/Cuisine/C3.webp"
-            onclick="openLightbox2(11)">
+            onclick="openLightbox2(11)" loading="lazy" decoding="async">
         </div>
 
         <h3>Box
@@ -1061,11 +1062,11 @@ function updateTarget(deltaX, deltaY) {
         <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
         <div class="plans-grid">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Box/BOX.webp"
-            onclick="openLightbox2(12)">
+            onclick="openLightbox2(12)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Box/BOXR+1.webp"
-            onclick="openLightbox2(13)">
+            onclick="openLightbox2(13)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Box/BOXR+2.webp"
-            onclick="openLightbox2(14)">
+            onclick="openLightbox2(14)" loading="lazy" decoding="async">
         </div>
 
         <h3>Bureaux
@@ -1075,17 +1076,17 @@ function updateTarget(deltaX, deltaY) {
         <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
         <div class="plans-grid">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Bureau/BU1.webp"
-            onclick="openLightbox2(15)">
+            onclick="openLightbox2(15)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Bureau/BU2.webp"
-            onclick="openLightbox2(16)">
+            onclick="openLightbox2(16)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Bureau/BU3.webp"
-            onclick="openLightbox2(17)">
+            onclick="openLightbox2(17)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Bureau/BU4.webp"
-            onclick="openLightbox2(18)">
+            onclick="openLightbox2(18)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Bureau/BU5.webp"
-            onclick="openLightbox2(19)">
+            onclick="openLightbox2(19)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Bureau/BU6.webp"
-            onclick="openLightbox2(20)">
+            onclick="openLightbox2(20)" loading="lazy" decoding="async">
          </div>
 
         <h3>Buster and Punch
@@ -1095,11 +1096,11 @@ function updateTarget(deltaX, deltaY) {
         <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
         <div class="plans-grid">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Buster/B+P1.webp"
-            onclick="openLightbox2(21)">
+            onclick="openLightbox2(21)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Buster/B+P4.webp"
-            onclick="openLightbox2(22)">
+            onclick="openLightbox2(22)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Buster/B+P3.webp"
-            onclick="openLightbox2(23)">
+            onclick="openLightbox2(23)" loading="lazy" decoding="async">
         </div>
 
         <h3>Belgiqa
@@ -1109,11 +1110,11 @@ function updateTarget(deltaX, deltaY) {
         <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
         <div class="plans-grid">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Belgiqa/BEL1.webp"
-            onclick="openLightbox2(24)">
+            onclick="openLightbox2(24)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Belgiqa/BEL4.webp"
-            onclick="openLightbox2(25)">
+            onclick="openLightbox2(25)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/3D/Belgiqa/BEL3.webp"
-            onclick="openLightbox2(26)">
+            onclick="openLightbox2(26)" loading="lazy" decoding="async">
         </div>
 
         <h3>Présentation projet
@@ -1123,57 +1124,57 @@ function updateTarget(deltaX, deltaY) {
         <!-- ✅ Grille de plans avec onclick vers lightbox2 -->
         <div class="plans-grid">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/2.webp"
-            onclick="openLightbox2(27)">
+            onclick="openLightbox2(27)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/3.webp"
-            onclick="openLightbox2(28)">
+            onclick="openLightbox2(28)" loading="lazy" decoding="async">
            <img src="/photoprojet/7-projet-showroom-2025/Rendu/4.webp"
-            onclick="openLightbox2(29)">
+            onclick="openLightbox2(29)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/5.webp"
-            onclick="openLightbox2(30)">
+            onclick="openLightbox2(30)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/6.webp"
-            onclick="openLightbox2(31)">
+            onclick="openLightbox2(31)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/7.webp"
-            onclick="openLightbox2(32)">
+            onclick="openLightbox2(32)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/8.webp"
-            onclick="openLightbox2(33)">
+            onclick="openLightbox2(33)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/9.webp"
-            onclick="openLightbox2(34)">
+            onclick="openLightbox2(34)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/10.webp"
-            onclick="openLightbox2(35)">
+            onclick="openLightbox2(35)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/11.webp"
-            onclick="openLightbox2(36)">
+            onclick="openLightbox2(36)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/12.webp"
-            onclick="openLightbox2(37)">
+            onclick="openLightbox2(37)" loading="lazy" decoding="async">
             <img src="/photoprojet/7-projet-showroom-2025/Rendu/13.webp"
-            onclick="openLightbox2(38)">
+            onclick="openLightbox2(38)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/14.webp"
-            onclick="openLightbox2(39)">
+            onclick="openLightbox2(39)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/15.webp"
-            onclick="openLightbox2(40)">
+            onclick="openLightbox2(40)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/16.webp"
-            onclick="openLightbox2(41)">
+            onclick="openLightbox2(41)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/17.webp"
-            onclick="openLightbox2(42)">
+            onclick="openLightbox2(42)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/18.webp"
-            onclick="openLightbox2(43)">
+            onclick="openLightbox2(43)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/19.webp"
-            onclick="openLightbox2(44)">
+            onclick="openLightbox2(44)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/20.webp"
-            onclick="openLightbox2(45)">
+            onclick="openLightbox2(45)" loading="lazy" decoding="async">
             <img src="/photoprojet/7-projet-showroom-2025/Rendu/21.webp"
-            onclick="openLightbox2(46)">
+            onclick="openLightbox2(46)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/22.webp"
-            onclick="openLightbox2(47)">
+            onclick="openLightbox2(47)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/23.webp"
-            onclick="openLightbox2(48)">
+            onclick="openLightbox2(48)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/24.webp"
-            onclick="openLightbox2(49)">
+            onclick="openLightbox2(49)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/25.webp"
-            onclick="openLightbox2(50)">
+            onclick="openLightbox2(50)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/26.webp"
-            onclick="openLightbox2(51)">
+            onclick="openLightbox2(51)" loading="lazy" decoding="async">
           <img src="/photoprojet/7-projet-showroom-2025/Rendu/27.webp"
-            onclick="openLightbox2(52)">
+            onclick="openLightbox2(52)" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
@@ -1190,7 +1191,7 @@ function updateTarget(deltaX, deltaY) {
           <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
         </svg>
       </button>
-      <img id="lightbox2-img" src="" alt="plan en grand">
+      <img id="lightbox2-img" src="" alt="plan en grand" loading="lazy" decoding="async">
       <button class="lightbox-nav next" onclick="changeLightboxImage2(1)">
         <svg viewBox="0 0 24 24">
           <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
@@ -1215,9 +1216,9 @@ function updateTarget(deltaX, deltaY) {
             </svg>
           </button>
           <!-- ✅ Image active -->
-          <img src="/photosite/passion-photo/IMG_0687.webp" class="carousel-image c3 active">
-          <img src="/photosite/passion-photo/IMG_0688.webp" class="carousel-image c3">
-          <img src="/photosite/passion-photo/IMG_0695.webp" class="carousel-image c3">
+          <img src="/photosite/passion-photo/IMG_0687.webp" class="carousel-image c3 active" loading="lazy" decoding="async">
+          <img src="/photosite/passion-photo/IMG_0688.webp" class="carousel-image c3" loading="lazy" decoding="async">
+          <img src="/photosite/passion-photo/IMG_0695.webp" class="carousel-image c3" loading="lazy" decoding="async">
           <button class="carousel-arrow next" onclick="changeSlide(1, 3)">
             <svg viewBox="0 0 24 24">
               <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
@@ -1242,9 +1243,9 @@ function updateTarget(deltaX, deltaY) {
 
         <!-- ✅ Galerie de plans avec onclick -->
         <div class="plans-grid">
-          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-1-C05.webp" onclick="openLightbox3(0)">
-          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-2-C03.webp" onclick="openLightbox3(1)">
-          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-3-C03.webp" onclick="openLightbox3(2)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-1-C05.webp" onclick="openLightbox3(0)" loading="lazy" decoding="async">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-2-C03.webp" onclick="openLightbox3(1)" loading="lazy" decoding="async">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-3-C03.webp" onclick="openLightbox3(2)" loading="lazy" decoding="async">
         </div>
 
         <h3>MAPAO & MATTEOBRIONI</h3>
@@ -1255,9 +1256,9 @@ function updateTarget(deltaX, deltaY) {
         apportant une texture élégante et une profondeur subtile aux surfaces.</p>
         <!-- ✅ Galerie de plans avec onclick -->
         <div class="plans-grid">
-          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 1.webp" onclick="openLightbox3(3)">
-          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 2.webp" onclick="openLightbox3(4)">
-          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 3.webp" onclick="openLightbox3(5)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 1.webp" onclick="openLightbox3(3)" loading="lazy" decoding="async">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 2.webp" onclick="openLightbox3(4)" loading="lazy" decoding="async">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 3.webp" onclick="openLightbox3(5)" loading="lazy" decoding="async">
         </div>
 
         <h3>LATHO</h3>
@@ -1268,9 +1269,9 @@ function updateTarget(deltaX, deltaY) {
         raffiné de l’aménagement.</p>
         <!-- ✅ Galerie de plans avec onclick -->
         <div class="plans-grid">
-          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 4.webp" onclick="openLightbox3(6)">
-          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 6.webp" onclick="openLightbox3(7)">
-          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 10.webp" onclick="openLightbox3(8)">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 4.webp" onclick="openLightbox3(6)" loading="lazy" decoding="async">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 6.webp" onclick="openLightbox3(7)" loading="lazy" decoding="async">
+          <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 10.webp" onclick="openLightbox3(8)" loading="lazy" decoding="async">
         </div>
 
 
@@ -1286,7 +1287,7 @@ function updateTarget(deltaX, deltaY) {
           <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
         </svg>
       </button>
-      <img id="lightbox3-img" src="" alt="plan en grand">
+      <img id="lightbox3-img" src="" alt="plan en grand" loading="lazy" decoding="async">
       <button class="lightbox-nav next" onclick="changeLightboxImage3(1)">
         <svg viewBox="0 0 24 24">
           <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
@@ -1309,7 +1310,7 @@ function updateTarget(deltaX, deltaY) {
           <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
         </svg>
       </button>
-      <img id="lightbox-img" src="" alt="plan en grand">
+      <img id="lightbox-img" src="" alt="plan en grand" loading="lazy" decoding="async">
       <button class="lightbox-nav next" onclick="changeLightboxImage(1)">
         <svg viewBox="0 0 24 24">
           <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
