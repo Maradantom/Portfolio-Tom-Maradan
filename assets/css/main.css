@@ -214,13 +214,12 @@ html {
   transform: translateY(-50%) translateX(0);
 }
 
-/* Couleurs propres à chaque réseau au survol */
-.fs-instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-.fs-instagram:hover img { filter: brightness(0) invert(1); opacity: 1; }
-.fs-linkedin:hover  { background: #0a66c2; }
-.fs-linkedin:hover img { filter: brightness(0) invert(1); opacity: 1; }
-.fs-mail:hover      { background: #111; }
-.fs-mail:hover img  { filter: brightness(0) invert(1); opacity: 1; }
+/* Au survol : icône en couleur d'origine (pas de fond coloré, pas de blanc) */
+.fs-link:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.05);
+}
 
 /* Mobile : icônes un peu plus petites, plus en bas */
 @media (max-width: 768px) {
