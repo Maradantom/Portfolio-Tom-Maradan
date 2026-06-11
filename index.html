@@ -74,6 +74,76 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="/photosite/début/1.webp" fetchpriority="high">
   <link rel="stylesheet" href="/assets/css/main.css">
+
+  <!-- Données structurées Schema.org (pour Google) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://tommaradanstudio.com/#tom",
+        "name": "Tom Maradan",
+        "url": "https://tommaradanstudio.com/",
+        "image": "https://tommaradanstudio.com/photosite/passion-photo/IMG_7398.webp",
+        "jobTitle": "Architecte d'intérieur & Designer",
+        "worksFor": { "@id": "https://tommaradanstudio.com/#studiotm" },
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "CREAD Lyon"
+        },
+        "sameAs": [
+          "https://www.instagram.com/studiotm___",
+          "https://www.linkedin.com/in/tom-maradan-554265235/"
+        ]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://tommaradanstudio.com/#studiotm",
+        "name": "StudioTM — Tom Maradan",
+        "alternateName": "Tom Maradan StudioTM",
+        "description": "Studio d'architecture intérieure et de design basé à Lyon. Conception d'espaces, rénovations, design sur mesure, visites 360° et photographie par drone.",
+        "url": "https://tommaradanstudio.com/",
+        "logo": "https://tommaradanstudio.com/photosite/logo/Noirlong.webp",
+        "image": "https://tommaradanstudio.com/photoprojet/6-projet-villa-annecy-2025/3D/1.webp",
+        "founder": { "@id": "https://tommaradanstudio.com/#tom" },
+        "telephone": "+33-6-72-25-67-83",
+        "email": "maradantom@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lyon",
+          "postalCode": "69000",
+          "addressCountry": "FR"
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Lyon" },
+          { "@type": "AdministrativeArea", "name": "Auvergne-Rhône-Alpes" },
+          { "@type": "Country", "name": "France" }
+        ],
+        "knowsAbout": [
+          "Architecture intérieure",
+          "Design d'espaces",
+          "Rénovation",
+          "Modélisation 3D",
+          "Visite virtuelle 360°",
+          "Photographie aérienne"
+        ],
+        "sameAs": [
+          "https://www.instagram.com/studiotm___",
+          "https://www.linkedin.com/in/tom-maradan-554265235/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://tommaradanstudio.com/#website",
+        "url": "https://tommaradanstudio.com/",
+        "name": "Tom Maradan — StudioTM",
+        "publisher": { "@id": "https://tommaradanstudio.com/#studiotm" },
+        "inLanguage": "fr-FR"
+      }
+    ]
+  }
+  </script>
   <link rel="stylesheet" href="/assets/css/accueil.css">
   
 </head>
@@ -548,6 +618,9 @@ function updateTarget(deltaX, deltaY) {
 
   <!-- FOOTER (partial partagé) -->
   <div data-include="footer"></div>
+
+  <!-- ICÔNES SOCIALES FLOTTANTES (partial partagé) -->
+  <div data-include="footer-socials"></div>
 <div id="dowm"></div>
   <a href="#top" class="back-to-top">↑</a>
 
