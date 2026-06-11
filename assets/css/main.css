@@ -155,13 +155,8 @@ html {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
   gap: 2.5rem;
-}
-.site-footer-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
 }
 .site-footer-col h4 {
   font-size: 0.8rem;
@@ -204,11 +199,7 @@ html {
   margin: 2.5rem auto 0;
   padding-top: 1.5rem;
   border-top: 1px solid #ececec;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  text-align: center;
   font-size: 0.8rem;
   color: #888;
 }
@@ -223,8 +214,6 @@ html {
     gap: 2rem;
   }
   .site-footer-brand { grid-column: 1 / -1; }
-  .site-footer-stack { gap: 1.25rem; }
-  .site-footer-bottom { justify-content: center; text-align: center; }
 }
 @media (max-width: 500px) {
   .site-footer-inner { grid-template-columns: 1fr; }
