@@ -71,7 +71,13 @@
       gtag('config', 'G-GFHBS8S2BH');
     </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Préconnect aux serveurs externes (gain ~200ms) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Google Fonts chargé sans bloquer le rendu -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="preload" as="image" href="/photosite/début/1.webp" fetchpriority="high">
   <link rel="stylesheet" href="/assets/css/main.css">
 
@@ -371,19 +377,19 @@
 <div class="photo-grid">
   <div class="photo-item">
     <div class="photo-container">
-      <video class="lazy-video" src="photosite/passion-photo/Vidéo2.mp4" muted loop playsinline></video>
+      <video class="lazy-video" data-src="/photosite/passion-photo/Vidéo2.mp4" muted loop playsinline preload="none"></video>
     </div>
     <span>@camping bois simonet</span>
   </div>
   <div class="photo-item">
     <div class="photo-container">
-      <video class="lazy-video" src="/photosite/passion-photo/FPV.mp4" muted loop playsinline></video>
+      <video class="lazy-video" data-src="/photosite/passion-photo/FPV.mp4" muted loop playsinline preload="none"></video>
     </div>
     <span>@work and play</span>
   </div>
   <div class="photo-item">
     <div class="photo-container">
-      <video class="lazy-video" src="photosite/passion-photo/Vidéo1.mp4" muted loop playsinline></video>
+      <video class="lazy-video" data-src="/photosite/passion-photo/Vidéo1.mp4" muted loop playsinline preload="none"></video>
     </div>
     <span>@work and play</span>
   </div>
@@ -408,28 +414,22 @@
   document.addEventListener("DOMContentLoaded", function () {
     const videos = document.querySelectorAll(".lazy-video");
 
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.5 // Vidéo jouée quand au moins 50% est visible
-    };
-
-    const callback = (entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const video = entry.target;
         if (entry.isIntersecting) {
-          video.play();
+          // Charge la vidéo la 1ère fois qu'elle entre dans le viewport
+          if (video.dataset.src && !video.src) {
+            video.src = video.dataset.src;
+          }
+          video.play().catch(() => {});
         } else {
           video.pause();
         }
       });
-    };
+    }, { root: null, rootMargin: "200px", threshold: 0.25 });
 
-    const observer = new IntersectionObserver(callback, options);
-    videos.forEach(video => {
-      video.preload = "none"; // Ne charge pas tant que ce n'est pas visible
-      observer.observe(video);
-    });
+    videos.forEach(video => observer.observe(video));
   });
 </script>
 
