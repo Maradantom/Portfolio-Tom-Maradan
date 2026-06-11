@@ -29,50 +29,64 @@
       margin: 0;
       font-family: 'Outfit', sans-serif;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      flex-direction: column;
+      min-height: 100vh;
       background: #fff;
       color: #111;
-      text-align: center;
-      padding: 2rem;
     }
-    h1 {
+    .merci-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .merci-content h1 {
       font-weight: 700;
       font-size: 2rem;
       margin-bottom: 1rem;
     }
-    p {
+    .merci-content p {
       font-size: 1rem;
+      color: #555;
     }
-    a {
+    .merci-btn {
       display: inline-block;
       margin-top: 2rem;
       color: #111;
       text-decoration: none;
       border: 1px solid #111;
-      padding: 0.5rem 1rem;
+      padding: 0.6rem 1.4rem;
       border-radius: 25px;
       font-size: 0.9rem;
+      transition: all 0.25s ease;
     }
-    a:hover {
+    .merci-btn:hover {
       background-color: #111;
       color: #fff;
     }
   </style>
 </head>
 <body>
+
   <!-- BANDEAU DE NAVIGATION FIXE (partial partagé) -->
   <div data-include="header"></div>
-  <div>
-    <h1>Merci pour votre message</h1>
-    <p>Je vous répondrai dans les plus brefs délais.</p>
-    <a href="index.html">Retour à l'accueil</a>
-  </div>
-  <script src="/assets/js/main.js" defer></script>
-  <!-- ICÔNES SOCIALES (partial partagé) -->
-  <div data-include="footer-socials"></div>
+
+  <main class="merci-main">
+    <div class="merci-content">
+      <h1>Merci pour votre message</h1>
+      <p>Je vous répondrai dans les plus brefs délais.</p>
+      <a href="/" class="merci-btn">Retour à l'accueil</a>
+    </div>
+  </main>
+
   <!-- FOOTER (partial partagé) -->
   <div data-include="footer"></div>
+
+  <!-- ICÔNES SOCIALES (partial partagé) -->
+  <div data-include="footer-socials"></div>
+
+  <script src="/assets/js/main.js" defer></script>
 </body>
 </html>

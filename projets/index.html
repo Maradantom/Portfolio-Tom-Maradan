@@ -62,6 +62,13 @@ h1 {
   max-width: 800px;
   margin: auto;
 }
+.no-results {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #999;
+  font-style: italic;
+  grid-column: 1 / -1;
+}
 
 .filters select {
   appearance: none;
@@ -371,31 +378,44 @@ footer {
 
 
 <script>
-  const yearFilter = document.getElementById("year-filter");
-  const sectorFilter = document.getElementById("sector-filter");
-  const typeFilter = document.getElementById("type-filter");
-  const cards = document.querySelectorAll(".project-card");
+  (function() {
+    const yearFilter = document.getElementById("year-filter");
+    const sectorFilter = document.getElementById("sector-filter");
+    const typeFilter = document.getElementById("type-filter");
+    const cards = document.querySelectorAll(".project-card");
+    const grid = document.querySelector(".grid-projets");
 
-  function filterProjects() {
-    const year = yearFilter.value;
-    const sector = sectorFilter.value;
-    const type = typeFilter.value;
+    function filterProjects() {
+      const year = yearFilter.value;
+      const sector = sectorFilter.value;
+      const type = typeFilter.value;
+      let shown = 0;
 
-    cards.forEach(card => {
-      const matchYear = !year || card.dataset.year === year;
-      const matchSector = !sector || card.dataset.sector === sector;
-      const matchType = !type || card.dataset.type === type;
+      cards.forEach(card => {
+        const ok =
+          (!year   || card.dataset.year   === year) &&
+          (!sector || card.dataset.sector === sector) &&
+          (!type   || card.dataset.type   === type);
+        card.style.display = ok ? "" : "none";
+        if (ok) shown++;
+      });
 
-      card.style.display = (matchYear && matchSector && matchType) ? "block" : "none";
-      card.style.opacity = (matchYear && matchSector && matchType) ? "1" : "0";
-      card.style.pointerEvents = (matchYear && matchSector && matchType) ? "auto" : "none";
-    });
-    
-  }
+      // Message "aucun résultat"
+      let empty = grid.querySelector(".no-results");
+      if (shown === 0 && !empty) {
+        empty = document.createElement("p");
+        empty.className = "no-results";
+        empty.textContent = "Aucun projet ne correspond à ces filtres.";
+        grid.appendChild(empty);
+      } else if (shown > 0 && empty) {
+        empty.remove();
+      }
+    }
 
-  yearFilter.addEventListener("change", filterProjects);
-  sectorFilter.addEventListener("change", filterProjects);
-  typeFilter.addEventListener("change", filterProjects);
+    yearFilter.addEventListener("change", filterProjects);
+    sectorFilter.addEventListener("change", filterProjects);
+    typeFilter.addEventListener("change", filterProjects);
+  })();
 </script>
 
     <div class="scene">
