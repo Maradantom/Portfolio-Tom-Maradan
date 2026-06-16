@@ -3,4 +3,4 @@ Allow: /
 Disallow: /rendu/
 Disallow: /presentation-360/
 
-Sitemap: https://tommaradanstudio.com/sitemap.xml
+Sitemap: https://studiotm.fr/sitemap.xml
