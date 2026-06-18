@@ -459,6 +459,43 @@ html {
   .modal-content { padding: 1.5rem 1.1rem !important; }
   .about-card { padding: 1.5rem 1.2rem !important; gap: 1.5rem !important; }
 
+  /* ---------- PROJECT-CARD (page /projets/) ---------- */
+  .grid-projets {
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem !important;
+    margin: 1.5rem auto !important;
+    padding: 0 1rem !important;
+  }
+  .project-card {
+    border-radius: 14px !important;
+  }
+  .project-card img {
+    height: 180px !important;
+  }
+  .project-card .content {
+    padding: 0.9rem 1rem !important;
+  }
+  .project-card h2 {
+    font-size: 1.05rem !important;
+    margin: 0 0 0.3rem !important;
+  }
+  .project-card p {
+    font-size: 0.85rem !important;
+  }
+
+  /* ---------- SERVICE-CARD (page /studiotm/ Activité) ---------- */
+  .services-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.9rem !important;
+  }
+  .service-card {
+    padding: 1.1rem 1.2rem !important;
+    border-radius: 14px !important;
+  }
+  .service-card h3 { font-size: 1rem !important; }
+  .service-card p  { font-size: 0.85rem !important; line-height: 1.5; }
+  .service-icon    { font-size: 1.6rem !important; margin-bottom: 0.5rem !important; }
+
   /* ---------- IMAGES dans cards ---------- */
   .projet img { height: 160px !important; }
   .about-image { flex: 0 0 160px !important; width: 160px !important; height: 160px !important; }
