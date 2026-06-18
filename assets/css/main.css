@@ -374,19 +374,154 @@ html {
   transform: scale(1.05);
 }
 
-/* Mobile : icônes un peu plus petites, plus en bas */
+/* Mobile : icônes nues (sans rond) milieu-droite, sur toutes les pages */
 @media (max-width: 768px) {
   .floating-socials {
-    top: auto;
-    bottom: 16px;
-    right: 16px;
-    transform: none;
-    gap: 10px;
+    top: 50%;
+    bottom: auto;
+    right: 14px;
+    transform: translateY(-50%);
+    gap: 14px;
     animation: none;
     opacity: 1;
+    z-index: 998;
   }
-  .fs-link { width: 40px; height: 40px; }
-  .fs-link img { width: 18px; height: 18px; }
+  .fs-link {
+    width: auto;
+    height: auto;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0;
+  }
+  .fs-link img {
+    width: 28px;
+    height: 28px;
+    filter: grayscale(100%);
+    opacity: 0.75;
+  }
   /* Pas de tooltip sur mobile (inutile) */
   .fs-link::before, .fs-link::after { display: none; }
+}
+
+/* ============================================================
+   📱 RÉDUCTION GLOBALE MOBILE (≤768px)
+   Objectif : rendu moins imposant, plus minimaliste, plus aéré.
+   Ces règles passent en DERNIER → écrasent les duplications dans
+   accueil.css et autres CSS spécifiques aux pages.
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  /* ---------- NAV : logo centré dessus, liens sur 1 SEULE ligne dessous ---------- */
+  .fixed-nav {
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 10px 8px !important;
+    height: auto !important;
+    gap: 6px !important;
+  }
+  .nav-logo img { height: 22px !important; }
+  .nav-links {
+    gap: 0.8rem !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    width: 100%;
+  }
+  .nav-links a {
+    font-size: 0.62rem !important;
+    white-space: nowrap !important;
+    letter-spacing: 0.15px !important;
+  }
+
+  /* ---------- TYPOGRAPHIE GLOBALE ---------- */
+  h1 { font-size: 1.8rem !important; }
+  h2 { font-size: 1.4rem !important; margin-bottom: 0.8rem !important; }
+  h3 { font-size: 1.05rem !important; }
+  p  { font-size: 0.95rem; line-height: 1.55; }
+
+  /* ---------- SECTIONS plus aérées ---------- */
+  section {
+    padding: 2rem 1rem !important;
+  }
+  .experience-section { padding: 2.5rem 1rem !important; }
+  .photo-section      { padding: 1.5rem 0.8rem !important; }
+  .about-section      { padding: 1.5rem 1rem 2.5rem !important; }
+
+  /* ---------- CARDS / CADRES plus compacts ---------- */
+  .projet,
+  .link-box,
+  .content,
+  .about-card,
+  .modal-content {
+    padding: 1rem 1.1rem !important;
+    border-radius: 14px !important;
+  }
+  .modal-content { padding: 1.5rem 1.1rem !important; }
+  .about-card { padding: 1.5rem 1.2rem !important; gap: 1.5rem !important; }
+
+  /* ---------- IMAGES dans cards ---------- */
+  .projet img { height: 160px !important; }
+  .about-image { flex: 0 0 160px !important; width: 160px !important; height: 160px !important; }
+
+  /* ---------- CHIFFRES (tags) plus discrets ---------- */
+  .chiffres span {
+    font-size: 0.78rem !important;
+    padding: 0.3rem 0.6rem !important;
+  }
+
+  /* ---------- GALERIE (3 col empilées) ---------- */
+  .gallery .column { height: 220px !important; }
+
+  /* ---------- POINTS CLEFS modale ---------- */
+  .points-clefs .point {
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* ---------- PLANS / GALERIE en 2 colonnes ---------- */
+  .plans-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.6rem !important;
+  }
+
+  /* ---------- FOOTER : alignement gauche partout ---------- */
+  .site-footer { padding: 2rem 1.2rem 1.2rem !important; }
+  .site-footer-col,
+  .site-footer-col h4,
+  .site-footer-col ul,
+  .site-footer-col li,
+  .site-footer-col a {
+    text-align: left !important;
+  }
+  .site-footer-col ul { align-items: flex-start !important; }
+  .site-footer-brand { text-align: left !important; }
+  .site-footer-brand .site-footer-tagline { text-align: left !important; }
+
+  /* ---------- BOUTONS plus discrets ---------- */
+  .voir-projets-btn,
+  .me-contacter-btn,
+  .btn {
+    padding: 0.65rem 1.2rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* ---------- HEADER hero accueil ---------- */
+  header { padding: 1.2rem 1rem !important; }
+  header h1 { font-size: 2rem !important; }
+  header p  { font-size: 0.95rem !important; }
+
+  /* ---------- TAP highlight neutralisé ---------- */
+  a, button { -webkit-tap-highlight-color: transparent; }
+
+  /* ---------- ÉVITE débordement horizontal ---------- */
+  html, body { overflow-x: hidden; }
+  img, video { max-width: 100%; height: auto; }
+}
+
+/* Très petit mobile (iPhone SE etc.) */
+@media (max-width: 380px) {
+  .nav-links a { font-size: 0.56rem !important; }
+  .nav-links { gap: 0.5rem !important; }
+  .nav-logo img { height: 18px !important; }
+  h2 { font-size: 1.25rem !important; }
 }
