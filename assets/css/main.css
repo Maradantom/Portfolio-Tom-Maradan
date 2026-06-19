@@ -545,6 +545,14 @@ html {
     font-size: 0.9rem !important;
   }
 
+  /* ---------- CARTE DE VISITE 3D (toutes pages) ---------- */
+  .scene {
+    width: 60mm !important;
+    height: 38mm !important;
+    margin: 16px auto 30px !important;
+  }
+  .face { border-radius: 12px !important; }
+
   /* ---------- HEADER hero accueil ---------- */
   header { padding: 1.2rem 1rem !important; }
   header h1 { font-size: 2rem !important; }
