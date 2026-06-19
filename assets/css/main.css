@@ -461,40 +461,43 @@ html {
 
   /* ---------- PROJECT-CARD (page /projets/) ---------- */
   .grid-projets {
-    grid-template-columns: 1fr !important;
-    gap: 1.2rem !important;
-    margin: 1.5rem auto !important;
-    padding: 0 1rem !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.7rem !important;
+    margin: 1.2rem auto !important;
+    padding: 0 0.7rem !important;
   }
   .project-card {
-    border-radius: 14px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.05) !important;
   }
   .project-card img {
-    height: 180px !important;
+    height: 110px !important;
   }
   .project-card .content {
-    padding: 0.9rem 1rem !important;
+    padding: 0.55rem 0.6rem 0.7rem !important;
   }
   .project-card h2 {
-    font-size: 1.05rem !important;
-    margin: 0 0 0.3rem !important;
+    font-size: 0.78rem !important;
+    margin: 0 0 0.15rem !important;
+    line-height: 1.2 !important;
   }
   .project-card p {
-    font-size: 0.85rem !important;
+    font-size: 0.7rem !important;
+    line-height: 1.35 !important;
   }
 
   /* ---------- SERVICE-CARD (page /studiotm/ Activité) ---------- */
   .services-grid {
-    grid-template-columns: 1fr !important;
-    gap: 0.9rem !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.7rem !important;
   }
   .service-card {
-    padding: 1.1rem 1.2rem !important;
-    border-radius: 14px !important;
+    padding: 0.9rem 0.8rem !important;
+    border-radius: 12px !important;
   }
-  .service-card h3 { font-size: 1rem !important; }
-  .service-card p  { font-size: 0.85rem !important; line-height: 1.5; }
-  .service-icon    { font-size: 1.6rem !important; margin-bottom: 0.5rem !important; }
+  .service-card h3 { font-size: 0.85rem !important; margin-bottom: 0.3rem !important; }
+  .service-card p  { font-size: 0.75rem !important; line-height: 1.45; }
+  .service-icon    { font-size: 1.4rem !important; margin-bottom: 0.35rem !important; }
 
   /* ---------- IMAGES dans cards ---------- */
   .projet img { height: 160px !important; }
