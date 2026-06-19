@@ -120,9 +120,38 @@ async function loadAllPartials() {
   await Promise.all(tasks);
 }
 
+/**
+ * Anti-copie léger : décourage les copieurs paresseux.
+ * N'empêche PAS la sélection de texte (donc l'email/tél restent copiables).
+ * N'empêche pas un dev déterminé d'accéder au code (impossible côté front).
+ */
+function initAntiCopy() {
+  // 1. Désactive le menu contextuel (clic droit)
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // 2. Bloque F12, Ctrl/Cmd+U, Ctrl/Cmd+Shift+I, Ctrl/Cmd+Shift+J, Ctrl/Cmd+Shift+C
+  document.addEventListener('keydown', e => {
+    const k = e.key;
+    const ctrl = e.ctrlKey || e.metaKey;
+    if (
+      k === 'F12' ||
+      (ctrl && k.toLowerCase() === 'u') ||
+      (ctrl && e.shiftKey && ['I','J','C'].includes(k.toUpperCase()))
+    ) {
+      e.preventDefault();
+    }
+  });
+
+  // 3. Empêche le glisser-déposer des images (sauvegarde rapide)
+  document.addEventListener('dragstart', e => {
+    if (e.target.tagName === 'IMG') e.preventDefault();
+  });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   await loadAllPartials();
   setFooterYear();
   initFixedNav();
   initReveal();
+  initAntiCopy();
 });
