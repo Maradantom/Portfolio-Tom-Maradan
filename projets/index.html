@@ -261,10 +261,21 @@ footer {
   .titre {
     padding-top: 6rem; /* espace sous le header */
   }
-  
+
+  /* 3 filtres compacts sur la même ligne */
   .filters {
-    grid-template-columns: 1fr;
-    max-width: 400px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.4rem;
+    padding: 0.6rem;
+    max-width: 96%;
+    border-radius: 10px;
+  }
+  .filters select {
+    padding: 0.45rem 1.6rem 0.45rem 0.5rem;
+    font-size: 0.72rem;
+    border-radius: 8px;
+    background-position: right 0.4rem center;
+    background-size: 12px 12px;
   }
 }
   </style>
