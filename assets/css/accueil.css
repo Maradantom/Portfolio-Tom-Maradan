@@ -3,51 +3,23 @@
    Extrait des <style> inline qui étaient dispersés dans index.html.
    ============================================================ */
 
-/* Styles mobiles par défaut */
-    .container {
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    /* Styles pour écrans plus larges */
-    @media (min-width: 768px) {
-      .container {
-        flex-direction: row;
-        gap: 2rem;
-      }
-    }
-
     .wrapper {
       max-width: 1200px;
       margin: 0 auto 20px;
       padding: 0 1rem;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    /* Version ordinateur */
+    /* Layout container : row desktop, column mobile */
     .container {
       display: flex;
       flex-direction: row;
       gap: 2rem;
     }
-
-    /* Version mobile */
-    @media screen and (max-width: 768px) {
+    @media (max-width: 768px) {
       .container {
         flex-direction: column;
         gap: 1rem;
       }
-    }
-
-    @media (max-width: 768px) {
-      /* Styles pour tablette et mobile */
-    }
-
-    @media (max-width: 480px) {
-      /* Styles spécifiques aux petits mobiles */
     }
 
     section {
@@ -55,7 +27,6 @@
       max-width: 1000px;
       margin: 0 auto 20px;
       padding: 30px 5px;
-      box-sizing: border-box;
     }
 
     :root {
@@ -284,107 +255,8 @@
       }
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    * {
-      scroll-behavior: smooth;
-    }
-    
-    body {
-      overflow-x: hidden;
-    }
-
-    /* BANDEAU FIXE */
-    .fixed-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: #ffffff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      transform: translateY(-100%);
-      transition: transform 0.3s ease;
-      height: 60px;
-      box-sizing: border-box;
-    }
-
-    .fixed-nav.visible {
-      transform: translateY(0);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-logo img {
-      height: 28px;
-      width: auto;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      height: 100%;
-    }
-
-    .nav-links a {
-      color: #000;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      transition: color 0.3s ease;
-      display: flex;
-      align-items: center;
-      height: 100%;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: #ccc;
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    @media (max-width: 768px) {
-      .fixed-nav {
-        flex-direction: column;
-        padding: 15px 15px;
-        height: auto;
-        gap: 8px;
-        padding-top: 20px;
-      }
-
-      .nav-logo img {
-        height: 20px;
-      }
-
-      .nav-links {
-        gap: 1rem;
-      }
-
-      .nav-links a {
-        font-size: 0.75rem;
-      }
-    }
+    /* .fixed-nav et .nav-links géré dans main.css */
+    body { overflow-x: hidden; }
 
 /* ---- bloc suivant ---- */
 
@@ -1190,25 +1062,7 @@
 
 /* ---- bloc suivant ---- */
 
-/* Bouton Voir mes projets */
-        .voir-projets-btn {
-          display: inline-block;
-          padding: 0.8rem 1.6rem;
-          background: #f5f5f5;
-          color: #000;
-          text-decoration: none;
-          border-radius: 8px;
-          font-weight: 600;
-          transition: 0.3s ease;
-          border: 1px solid #ddd;
-        }
-
-        .voir-projets-btn:hover {
-          background: #e0e0e0;
-          transform: scale(1.05);
-        }
-
-/* ---- bloc suivant ---- */
+/* .voir-projets-btn : défini une seule fois plus haut (ligne ~954) */
 
 .about-section{
     --bg-card: #f2f2f2; /* gris clair */
@@ -1299,25 +1153,7 @@
 
 /* ---- bloc suivant ---- */
 
-/* Bouton Voir mes projets */
-        .voir-projets-btn {
-          display: inline-block;
-          padding: 0.8rem 1.6rem;
-          background: #f5f5f5;
-          color: #000;
-          text-decoration: none;
-          border-radius: 8px;
-          font-weight: 600;
-          transition: 0.3s ease;
-          border: 1px solid #ddd;
-        }
-
-        .voir-projets-btn:hover {
-          background: #e0e0e0;
-          transform: scale(1.05);
-        }
-
-/* ---- bloc suivant ---- */
+/* .voir-projets-btn : défini une seule fois plus haut (ligne ~954) */
 
 .scene {
       width: 85mm;
@@ -1422,65 +1258,10 @@ body {
 
 /* ---- bloc suivant ---- */
 
-.footer {
-      text-align: center;
-      padding: 40px 20px;
-      box-sizing: border-box;
-      background-color: #ffffff;
-      color: #000000;
-      margin-top: 40px;
-    }
-
-    .footer-logo {
-      display: block;
-      margin: 0 auto 15px auto;
-      max-width: 200px;
-      width: auto;
-      height: 20px;
-      opacity: 0.8;
-      transition: opacity 0.3s ease;
-    }
-
-    .footer-logo:hover {
-      opacity: 1;
-    }
-
-    @media (max-width: 768px) {
-      .hero-slider {
-        height: 220px;
-      }
-
-      .slider-track img {
-        height: 220px;
-      }
-    }
-
-/* ---- bloc suivant ---- */
-
-.floating-socials {
-      position: fixed;
-      top: 50%;
-      right: 20px;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      z-index: 999;
-    }
-
-    .floating-socials a img {
-      width: 28px;
-      height: 28px;
-      opacity: 0.7;
-      transition: 0.3s;
-      filter: grayscale(100%);
-    }
-
-    .floating-socials a:hover img {
-      opacity: 1;
-      transform: scale(1.1);
-      filter: grayscale(0%);
-    }
+/* .footer ancien et .floating-socials gérés dans main.css */
+@media (max-width: 768px) {
+  .hero-slider, .slider-track img { height: 220px; }
+}
 
 /* ---- bloc suivant ---- */
 
