@@ -573,3 +573,20 @@ html {
   .nav-logo img { height: 18px !important; }
   h2 { font-size: 1.25rem !important; }
 }
+
+/* ============================================================
+   ⚡ PERFORMANCE — aspect-ratio pour éviter le layout shift (CLS)
+   Réserve l'espace des images AVANT chargement → améliore PageSpeed.
+   ============================================================ */
+.slider-track img      { aspect-ratio: 5 / 4; }
+.project-card img      { aspect-ratio: 16 / 10; }
+.projet img            { aspect-ratio: 3 / 2; }
+.plans-grid img        { aspect-ratio: 4 / 3; }
+.carousel-image        { aspect-ratio: 16 / 10; }
+.galerie-grid img      { aspect-ratio: 4 / 3; }
+.photo-container img,
+.photo-container video { aspect-ratio: 2 / 3; }
+.about-image img       { aspect-ratio: 1 / 1; }
+.timeline .logo        { aspect-ratio: 1 / 1; }
+.histoire-image img    { aspect-ratio: 4 / 3; }
+.hero-image            { aspect-ratio: 16 / 9; }
