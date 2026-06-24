@@ -38,9 +38,14 @@ function closeModal(id) {
 }
 
 /* ----- LIGHTBOX (modal1 = projet villa) ----- */
-const lightboxImages = [];   // sera rempli au premier openLightbox (depuis modal-villa-annecy)
+let lightboxImages = [];   // rempli dynamiquement depuis le DOM au 1er clic
 let currentLightboxIndex = 0;
+function refreshLightbox1() {
+  lightboxImages = Array.from(document.querySelectorAll('#modal1 [onclick^="openLightbox1"]'))
+    .map(img => img.getAttribute('src'));
+}
 function openLightbox(index) {
+  if (!lightboxImages.length) refreshLightbox1();
   if (!document.body.classList.contains('modal-open')) {
     scrollY = window.scrollY;
     document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
@@ -63,8 +68,11 @@ function closeLightbox(event) {
   if (!lb) return;
   if (!event || event.target === lb || event.target.closest('.close-lightbox')) {
     lb.style.display = 'none';
-    document.body.classList.remove('modal-open');
-    window.scrollTo(0, scrollY);
+    // Ne libérer le body que si plus aucune modale n'est ouverte (sinon on remet en haut de page)
+    if (!document.querySelector('.modal[style*="block"]')) {
+      document.body.classList.remove('modal-open');
+      window.scrollTo(0, scrollY);
+    }
   }
 }
 
@@ -104,8 +112,10 @@ function closeLightbox2(event) {
   if (!lb) return;
   if (!event || event.target === lb || event.target.closest('.close-lightbox')) {
     lb.style.display = 'none';
-    document.body.classList.remove('modal-open');
-    window.scrollTo(0, scrollY);
+    if (!document.querySelector('.modal[style*="block"]')) {
+      document.body.classList.remove('modal-open');
+      window.scrollTo(0, scrollY);
+    }
   }
 }
 
@@ -144,8 +154,10 @@ function closeLightbox3(event) {
   if (!lb) return;
   if (!event || event.target === lb || event.target.closest('.close-lightbox')) {
     lb.style.display = 'none';
-    document.body.classList.remove('modal-open');
-    window.scrollTo(0, scrollY);
+    if (!document.querySelector('.modal[style*="block"]')) {
+      document.body.classList.remove('modal-open');
+      window.scrollTo(0, scrollY);
+    }
   }
 }
 
@@ -158,14 +170,18 @@ document.addEventListener('click', (event) => {
 });
 document.addEventListener('keydown', (event) => {
   if (event.key !== 'Escape') return;
-  document.querySelectorAll('.modal').forEach(m => {
-    if (m.style.display === 'block') closeModal(m.id);
-  });
-  document.querySelectorAll('.lightbox').forEach(lb => {
-    if (lb.style.display === 'flex') {
-      lb.style.display = 'none';
+  // Si une lightbox est ouverte, on ferme la lightbox en premier (sans toucher au scroll si une modale reste ouverte)
+  const openLightbox = Array.from(document.querySelectorAll('.lightbox')).find(lb => lb.style.display === 'flex');
+  if (openLightbox) {
+    openLightbox.style.display = 'none';
+    if (!document.querySelector('.modal[style*="block"]')) {
       document.body.classList.remove('modal-open');
       window.scrollTo(0, scrollY);
     }
+    return;
+  }
+  // Sinon on ferme la modale ouverte
+  document.querySelectorAll('.modal').forEach(m => {
+    if (m.style.display === 'block') closeModal(m.id);
   });
 });
