@@ -1017,25 +1017,6 @@ function updateTarget(deltaX, deltaY) {
         </div>
       </div>
     </div>
-    <!-- ✅ LIGHTBOX 1 -->
-    <div id="lightbox1" class="lightbox" onclick="closeLightbox1(event)">
-      <span class="close-lightbox" onclick="closeLightbox1(event)">
-        <svg viewBox="0 0 24 24">
-          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </span>
-      <button class="lightbox-nav prev" onclick="changeLightboxImage1(-1)">
-        <svg viewBox="0 0 24 24">
-          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </button>
-      <img id="lightbox1-img" src="" alt="plan en grand" loading="lazy" decoding="async">
-      <button class="lightbox-nav next" onclick="changeLightboxImage1(1)">
-        <svg viewBox="0 0 24 24">
-          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </button>
-    </div>
 
     <!-- MODALE 2 -->
     <div id="modal2" class="modal">
@@ -1253,26 +1234,6 @@ function updateTarget(deltaX, deltaY) {
       </div>
     </div>
 
-    <!-- ✅ Lightbox 2 -->
-    <div id="lightbox2" class="lightbox" onclick="closeLightbox2(event)">
-      <span class="close-lightbox" onclick="closeLightbox2(event)">
-        <svg viewBox="0 0 24 24">
-          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </span>
-      <button class="lightbox-nav prev" onclick="changeLightboxImage2(-1)">
-        <svg viewBox="0 0 24 24">
-          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </button>
-      <img id="lightbox2-img" src="" alt="plan en grand" loading="lazy" decoding="async">
-      <button class="lightbox-nav next" onclick="changeLightboxImage2(1)">
-        <svg viewBox="0 0 24 24">
-          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </button>
-    </div>
-
 
     <!-- MODALE 3 -->
     <div id="modal3" class="modal">
@@ -1349,52 +1310,50 @@ function updateTarget(deltaX, deltaY) {
         </div>
 
 
-    <!-- ✅ LIGHTBOX 3 -->
-    <div id="lightbox3" class="lightbox" onclick="closeLightbox3(event)">
-      <span class="close-lightbox" onclick="closeLightbox3(event)">
-        <svg viewBox="0 0 24 24">
-          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </span>
-      <button class="lightbox-nav prev" onclick="changeLightboxImage3(-1)">
-        <svg viewBox="0 0 24 24">
-          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </button>
-      <img id="lightbox3-img" src="" alt="plan en grand" loading="lazy" decoding="async">
-      <button class="lightbox-nav next" onclick="changeLightboxImage3(1)">
-        <svg viewBox="0 0 24 24">
-          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </button>
-    </div>
 
-    
-
-
-
-    <div id="lightbox" class="lightbox">
-      <span class="close-lightbox" onclick="closeLightbox(event)">
-        <svg viewBox="0 0 24 24">
-          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
-      </span>
-      <button class="lightbox-nav prev" onclick="changeLightboxImage(-1)">
-        <svg viewBox="0 0 24 24">
-          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
-      </button>
-      <img id="lightbox-img" src="" alt="plan en grand" loading="lazy" decoding="async">
-      <button class="lightbox-nav next" onclick="changeLightboxImage(1)">
-        <svg viewBox="0 0 24 24">
-          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
-      </button>
-    </div>
-
-    
   </div>
 </div>
+
+<!-- ===== LIGHTBOXES — sorties des modales pour éviter le problème de containing block (backdrop-filter) ===== -->
+<div id="lightbox1" class="lightbox" onclick="closeLightbox1(event)">
+  <span class="close-lightbox" onclick="closeLightbox1(event)">
+    <svg viewBox="0 0 24 24"><path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" /></svg>
+  </span>
+  <button class="lightbox-nav prev" onclick="changeLightboxImage1(-1)">
+    <svg viewBox="0 0 24 24"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" /></svg>
+  </button>
+  <img id="lightbox1-img" src="" alt="plan en grand" loading="lazy" decoding="async">
+  <button class="lightbox-nav next" onclick="changeLightboxImage1(1)">
+    <svg viewBox="0 0 24 24"><path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" /></svg>
+  </button>
+</div>
+
+<div id="lightbox2" class="lightbox" onclick="closeLightbox2(event)">
+  <span class="close-lightbox" onclick="closeLightbox2(event)">
+    <svg viewBox="0 0 24 24"><path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" /></svg>
+  </span>
+  <button class="lightbox-nav prev" onclick="changeLightboxImage2(-1)">
+    <svg viewBox="0 0 24 24"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" /></svg>
+  </button>
+  <img id="lightbox2-img" src="" alt="plan en grand" loading="lazy" decoding="async">
+  <button class="lightbox-nav next" onclick="changeLightboxImage2(1)">
+    <svg viewBox="0 0 24 24"><path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" /></svg>
+  </button>
+</div>
+
+<div id="lightbox3" class="lightbox" onclick="closeLightbox3(event)">
+  <span class="close-lightbox" onclick="closeLightbox3(event)">
+    <svg viewBox="0 0 24 24"><path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" /></svg>
+  </span>
+  <button class="lightbox-nav prev" onclick="changeLightboxImage3(-1)">
+    <svg viewBox="0 0 24 24"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" /></svg>
+  </button>
+  <img id="lightbox3-img" src="" alt="plan en grand" loading="lazy" decoding="async">
+  <button class="lightbox-nav next" onclick="changeLightboxImage3(1)">
+    <svg viewBox="0 0 24 24"><path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" /></svg>
+  </button>
+</div>
+
 </body>
 
 </html>

@@ -37,15 +37,48 @@ function closeModal(id) {
   window.scrollTo(0, scrollY);
 }
 
-/* ----- LIGHTBOX (modal1 = projet villa) ----- */
-let lightboxImages = [];   // rempli dynamiquement depuis le DOM au 1er clic
-let currentLightboxIndex = 0;
+/* ----- LIGHTBOX 1 (modal1 = villa annecy) — utilise #lightbox1 ----- */
+let lightboxImages1 = [];   // rempli dynamiquement depuis le DOM au 1er clic
+let currentLightboxIndex1 = 0;
 function refreshLightbox1() {
-  lightboxImages = Array.from(document.querySelectorAll('#modal1 [onclick^="openLightbox1"]'))
+  lightboxImages1 = Array.from(document.querySelectorAll('#modal1 [onclick^="openLightbox1"]'))
     .map(img => img.getAttribute('src'));
 }
+function openLightbox1(index) {
+  if (!lightboxImages1.length) refreshLightbox1();
+  if (!document.body.classList.contains('modal-open')) {
+    scrollY = window.scrollY;
+    document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
+  }
+  currentLightboxIndex1 = index;
+  const img = document.getElementById('lightbox1-img');
+  if (img && lightboxImages1[index]) img.src = lightboxImages1[index];
+  const lb = document.getElementById('lightbox1');
+  if (lb) lb.style.display = 'flex';
+  document.body.classList.add('modal-open');
+}
+function changeLightboxImage1(direction) {
+  if (!lightboxImages1.length) return;
+  currentLightboxIndex1 = (currentLightboxIndex1 + direction + lightboxImages1.length) % lightboxImages1.length;
+  const img = document.getElementById('lightbox1-img');
+  if (img) img.src = lightboxImages1[currentLightboxIndex1];
+}
+function closeLightbox1(event) {
+  const lb = document.getElementById('lightbox1');
+  if (!lb) return;
+  if (!event || event.target === lb || event.target.closest('.close-lightbox')) {
+    lb.style.display = 'none';
+    if (!document.querySelector('.modal[style*="block"]')) {
+      document.body.classList.remove('modal-open');
+      window.scrollTo(0, scrollY);
+    }
+  }
+}
+
+/* ----- LIGHTBOX legacy (sans suffixe — utilisée par #lightbox dans modal-presentation) ----- */
+let lightboxImages = [];
+let currentLightboxIndex = 0;
 function openLightbox(index) {
-  if (!lightboxImages.length) refreshLightbox1();
   if (!document.body.classList.contains('modal-open')) {
     scrollY = window.scrollY;
     document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
@@ -68,18 +101,12 @@ function closeLightbox(event) {
   if (!lb) return;
   if (!event || event.target === lb || event.target.closest('.close-lightbox')) {
     lb.style.display = 'none';
-    // Ne libérer le body que si plus aucune modale n'est ouverte (sinon on remet en haut de page)
     if (!document.querySelector('.modal[style*="block"]')) {
       document.body.classList.remove('modal-open');
       window.scrollTo(0, scrollY);
     }
   }
 }
-
-/* ----- LIGHTBOX 1 (modal1 = villa annecy) ----- */
-function openLightbox1(index) { openLightbox(index); }
-function changeLightboxImage1(direction) { changeLightboxImage(direction); }
-function closeLightbox1(event) { closeLightbox(event); }
 
 /* ----- LIGHTBOX 2 (modal2 = showroom) — recense automatiquement les images cliquables ----- */
 let lightboxImages2 = [];
