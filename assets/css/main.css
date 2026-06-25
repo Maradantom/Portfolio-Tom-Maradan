@@ -578,7 +578,6 @@ html {
    ⚡ PERFORMANCE — aspect-ratio pour éviter le layout shift (CLS)
    Réserve l'espace des images AVANT chargement → améliore PageSpeed.
    ============================================================ */
-.slider-track img      { aspect-ratio: 5 / 4; }
 .project-card img      { aspect-ratio: 16 / 10; }
 .projet img            { aspect-ratio: 3 / 2; }
 .plans-grid img        { aspect-ratio: 4 / 3; }
@@ -588,5 +587,4 @@ html {
 .photo-container video { aspect-ratio: 2 / 3; }
 .about-image img       { aspect-ratio: 1 / 1; }
 .timeline .logo        { aspect-ratio: 1 / 1; }
-.histoire-image img    { aspect-ratio: 4 / 3; }
-.hero-image            { aspect-ratio: 16 / 9; }
+/* .slider-track img et .histoire-image img : ratio géré nativement via width/height attributs */
