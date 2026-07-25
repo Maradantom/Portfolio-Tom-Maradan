@@ -91,9 +91,9 @@
       display: flex; align-items: center; gap: 1rem;
     }
     .topbar-logo {
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      font-size: 1.1rem;
+      height: 26px;
+      width: auto;
+      display: block;
     }
     .topbar-sep { color: #ccc; }
     .topbar-title {
@@ -184,6 +184,30 @@
     .form-panel textarea { resize: vertical; min-height: 60px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
 
+    /* Autocomplete adresse (API gouv) */
+    .autocomplete-wrap { position: relative; }
+    .autocomplete-list {
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      max-height: 220px;
+      overflow-y: auto;
+      z-index: 50;
+      margin-top: 2px;
+    }
+    .autocomplete-item {
+      padding: 0.55rem 0.7rem;
+      font-size: 0.82rem;
+      cursor: pointer;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .autocomplete-item:last-child { border-bottom: none; }
+    .autocomplete-item:hover { background: #f5f5f5; }
+    .autocomplete-item .city { color: #999; font-size: 0.75rem; }
+
     /* Lignes de prestations */
     .ligne-item {
       background: #fafafa;
@@ -246,11 +270,11 @@
       border-bottom: 2px solid #111;
       margin-bottom: 1.5rem;
     }
-    .devis-brand h1 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      margin-bottom: 0.15rem;
+    .devis-brand img {
+      height: 34px;
+      width: auto;
+      display: block;
+      margin-bottom: 0.4rem;
     }
     .devis-brand p {
       color: #666; font-size: 0.75rem;
@@ -391,6 +415,14 @@
         width: 100% !important;
         min-height: auto !important;
         padding: 15mm 18mm !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+      /* Force impression des couleurs sombres (bandeau prestation + total) */
+      .devis-lignes thead th,
+      .devis-totaux tr.total-final td {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
       }
     }
 
@@ -434,7 +466,7 @@
      ============================================================ -->
 <div class="topbar">
   <div class="topbar-left">
-    <span class="topbar-logo">StudioTM</span>
+    <img src="/photosite/logo/Noirlong.webp" alt="StudioTM" class="topbar-logo">
     <span class="topbar-sep">·</span>
     <span class="topbar-title">Devis</span>
   </div>
@@ -462,10 +494,17 @@
     <h2>Client (destinataire)</h2>
     <label>Nom / Société</label>
     <input type="text" id="f-client-nom" oninput="render()" placeholder="Cabinet HMNOP">
-    <label>Adresse (multi-lignes autorisées)</label>
-    <textarea id="f-client-adresse" oninput="render()" placeholder="10 rue Exemple&#10;69000 Lyon"></textarea>
-    <label>Contact (email / tél)</label>
-    <input type="text" id="f-client-contact" oninput="render()" placeholder="contact@hmnop.fr">
+    <label>Adresse (tape pour rechercher)</label>
+    <div class="autocomplete-wrap">
+      <input type="text" id="f-client-adresse" oninput="onAdresseInput(this.value)" autocomplete="off" placeholder="10 rue de la République, Lyon...">
+      <div class="autocomplete-list" id="adresse-suggestions" style="display:none;"></div>
+    </div>
+    <label>Complément d'adresse (optionnel)</label>
+    <input type="text" id="f-client-adresse2" oninput="render()" placeholder="Bâtiment B, Étage 3...">
+    <label>Email</label>
+    <input type="email" id="f-client-email" oninput="render()" placeholder="contact@hmnop.fr">
+    <label>Téléphone</label>
+    <input type="tel" id="f-client-tel" oninput="render()" placeholder="+33 4 12 34 56 78">
 
     <h2>Objet du devis</h2>
     <label>Objet</label>
@@ -566,7 +605,7 @@ function incrementCounter(numero) {
 let state = {
   numero: '',
   date: '',
-  client: { nom: '', adresse: '', contact: '' },
+  client: { nom: '', adresse: '', adresse2: '', email: '', tel: '' },
   objet: '',
   projet: '',
   lignes: [],
@@ -639,7 +678,9 @@ function syncFromForm() {
   state.date = document.getElementById('f-date').value;
   state.client.nom = document.getElementById('f-client-nom').value;
   state.client.adresse = document.getElementById('f-client-adresse').value;
-  state.client.contact = document.getElementById('f-client-contact').value;
+  state.client.adresse2 = document.getElementById('f-client-adresse2').value;
+  state.client.email = document.getElementById('f-client-email').value;
+  state.client.tel = document.getElementById('f-client-tel').value;
   state.objet = document.getElementById('f-objet').value;
   state.projet = document.getElementById('f-projet').value;
   state.validite = parseInt(document.getElementById('f-validite').value, 10) || 30;
@@ -651,12 +692,72 @@ function syncToForm() {
   document.getElementById('f-date').value = state.date;
   document.getElementById('f-client-nom').value = state.client.nom;
   document.getElementById('f-client-adresse').value = state.client.adresse;
-  document.getElementById('f-client-contact').value = state.client.contact;
+  document.getElementById('f-client-adresse2').value = state.client.adresse2 || '';
+  document.getElementById('f-client-email').value = state.client.email || '';
+  document.getElementById('f-client-tel').value = state.client.tel || '';
   document.getElementById('f-objet').value = state.objet;
   document.getElementById('f-projet').value = state.projet;
   document.getElementById('f-validite').value = state.validite;
   document.getElementById('f-notes').value = state.notes;
 }
+
+// ============================================================
+// AUTOCOMPLETE ADRESSE — API BAN gouvernementale (gratuite, sans clé)
+// https://adresse.data.gouv.fr/api-doc/adresse
+// ============================================================
+let adresseDebounce = null;
+function onAdresseInput(query) {
+  render(); // met à jour la preview en temps réel
+
+  const list = document.getElementById('adresse-suggestions');
+  clearTimeout(adresseDebounce);
+
+  if (!query || query.length < 3) {
+    list.style.display = 'none';
+    return;
+  }
+
+  adresseDebounce = setTimeout(async () => {
+    try {
+      const url = `https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(query)}&limit=5&autocomplete=1`;
+      const res = await fetch(url);
+      const data = await res.json();
+      if (!data.features || !data.features.length) {
+        list.style.display = 'none';
+        return;
+      }
+      list.innerHTML = data.features.map(f => {
+        const p = f.properties;
+        const label = escapeHtml(p.name);
+        const city = escapeHtml(`${p.postcode} ${p.city}`);
+        return `<div class="autocomplete-item"
+                     onclick="selectAdresse('${escapeHtml(p.name)}', '${escapeHtml(p.postcode)}', '${escapeHtml(p.city)}')">
+                  <div>${label}</div>
+                  <div class="city">${city}</div>
+                </div>`;
+      }).join('');
+      list.style.display = 'block';
+    } catch (e) {
+      console.warn('API adresse indisponible :', e);
+      list.style.display = 'none';
+    }
+  }, 300);
+}
+
+function selectAdresse(rue, cp, ville) {
+  document.getElementById('f-client-adresse').value = `${rue}\n${cp} ${ville}`;
+  document.getElementById('adresse-suggestions').style.display = 'none';
+  render();
+  autoSaveDraft();
+}
+
+// Ferme le dropdown si clic ailleurs
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.autocomplete-wrap')) {
+    const list = document.getElementById('adresse-suggestions');
+    if (list) list.style.display = 'none';
+  }
+});
 
 // ============================================================
 // RENDER — le devis (preview + version imprimable)
@@ -677,7 +778,7 @@ function render() {
   document.getElementById('devis').innerHTML = `
     <div class="devis-header">
       <div class="devis-brand">
-        <h1>STUDIOTM</h1>
+        <img src="/photosite/logo/Noirlong.webp" alt="StudioTM">
         <p>Architecture d'intérieur · Lyon</p>
       </div>
       <div class="devis-meta">
@@ -698,7 +799,7 @@ ${EMETTEUR.telephone}</div>
       <div class="party">
         <h3>Destinataire</h3>
         <div class="name">${escapeHtml(state.client.nom || '—')}</div>
-        <div class="info">${escapeHtml(state.client.adresse || '')}${state.client.contact ? '\n' + escapeHtml(state.client.contact) : ''}</div>
+        <div class="info">${escapeHtml(state.client.adresse || '')}${state.client.adresse2 ? '\n' + escapeHtml(state.client.adresse2) : ''}${state.client.email ? '\n' + escapeHtml(state.client.email) : ''}${state.client.tel ? '\n' + escapeHtml(state.client.tel) : ''}</div>
       </div>
     </div>
 
@@ -802,7 +903,7 @@ function resetDevis() {
   state = {
     numero: nextDevisNumber(),
     date: new Date().toISOString().slice(0, 10),
-    client: { nom: '', adresse: '', contact: '' },
+    client: { nom: '', adresse: '', adresse2: '', email: '', tel: '' },
     objet: '',
     projet: '',
     lignes: [],
@@ -834,7 +935,9 @@ function initDevis() {
       client: {
         nom: 'Cabinet HMNOP',
         adresse: '',
-        contact: ''
+        adresse2: '',
+        email: '',
+        tel: ''
       },
       objet: 'Sous-traitance — Conception & Visualisation intérieure',
       projet: 'Rénovation complète + surélévation — 160 m²',
