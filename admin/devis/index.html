@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>StudioTM — Devis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       RESET + BASE
+       ============================================================ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f4f4f4;
+      color: #111;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    button, input, textarea, select { font-family: inherit; font-size: inherit; color: inherit; }
+
+    /* ============================================================
+       AUTH GATE
+       ============================================================ */
+    .auth-gate {
+      position: fixed; inset: 0;
+      background: #111;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999;
+    }
+    .auth-gate.hidden { display: none; }
+    .auth-box {
+      background: #fff;
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      width: 100%; max-width: 360px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .auth-box h1 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.3px;
+    }
+    .auth-box p { color: #777; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .auth-box input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 0.6rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .auth-box input:focus { border-color: #111; }
+    .auth-box button {
+      width: 100%;
+      padding: 0.75rem;
+      background: #111; color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .auth-box button:hover { background: #333; }
+    .auth-error {
+      color: #c00;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      min-height: 1em;
+    }
+
+    /* ============================================================
+       TOP BAR
+       ============================================================ */
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 0.9rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .topbar-left {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .topbar-logo {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      font-size: 1.1rem;
+    }
+    .topbar-sep { color: #ccc; }
+    .topbar-title {
+      font-size: 0.95rem;
+      color: #666;
+    }
+    .topbar-actions {
+      display: flex; gap: 0.5rem;
+    }
+    .btn {
+      padding: 0.55rem 1rem;
+      border: 1px solid #ddd;
+      background: #fff;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn:hover { background: #f5f5f5; border-color: #bbb; }
+    .btn-primary { background: #111; color: #fff; border-color: #111; }
+    .btn-primary:hover { background: #333; border-color: #333; }
+    .btn-danger:hover { background: #fee; border-color: #f99; color: #c00; }
+
+    /* ============================================================
+       LAYOUT : 2 COLONNES (form / preview)
+       ============================================================ */
+    .layout {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      max-width: 1500px;
+      margin: 0 auto;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       COLONNE FORM
+       ============================================================ */
+    .form-panel {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.3rem;
+      position: sticky; top: 80px;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+      border: 1px solid #e5e5e5;
+    }
+    @media (max-width: 900px) {
+      .form-panel { position: static; max-height: none; }
+    }
+    .form-panel h2 {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #999;
+      margin: 1.5rem 0 0.7rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #eee;
+    }
+    .form-panel h2:first-child { margin-top: 0; }
+    .form-panel label {
+      display: block;
+      font-size: 0.75rem;
+      color: #666;
+      margin: 0.6rem 0 0.2rem;
+      font-weight: 500;
+    }
+    .form-panel input, .form-panel textarea {
+      width: 100%;
+      padding: 0.55rem 0.7rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      background: #fafafa;
+      transition: all 0.15s;
+    }
+    .form-panel input:focus, .form-panel textarea:focus {
+      outline: none;
+      border-color: #111;
+      background: #fff;
+    }
+    .form-panel textarea { resize: vertical; min-height: 60px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+
+    /* Lignes de prestations */
+    .ligne-item {
+      background: #fafafa;
+      padding: 0.7rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      border: 1px solid #eee;
+    }
+    .ligne-item-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 0.4rem;
+    }
+    .ligne-num { font-size: 0.7rem; color: #999; font-weight: 600; }
+    .ligne-remove {
+      background: none; border: none;
+      color: #c00; cursor: pointer;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+    .ligne-remove:hover { background: #fee; }
+    .ligne-item input, .ligne-item textarea {
+      background: #fff;
+      margin-bottom: 0.3rem;
+    }
+    .ligne-add {
+      width: 100%;
+      padding: 0.55rem;
+      border: 1px dashed #ccc;
+      background: transparent;
+      border-radius: 6px;
+      color: #666;
+      cursor: pointer;
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+    .ligne-add:hover { border-color: #111; color: #111; background: #f5f5f5; }
+
+    /* ============================================================
+       COLONNE PREVIEW (le devis rendu = ce qui sera imprimé)
+       ============================================================ */
+    .preview-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+    .devis {
+      background: #fff;
+      width: 100%;
+      max-width: 210mm; /* A4 */
+      min-height: 297mm;
+      padding: 20mm 22mm;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      color: #111;
+      font-size: 10.5pt;
+      line-height: 1.55;
+    }
+    .devis-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid #111;
+      margin-bottom: 1.5rem;
+    }
+    .devis-brand h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      margin-bottom: 0.15rem;
+    }
+    .devis-brand p {
+      color: #666; font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+    .devis-meta { text-align: right; font-size: 0.85rem; }
+    .devis-meta .num { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.15rem; }
+    .devis-meta .date { color: #666; }
+
+    .devis-parties {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .party h3 {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #999;
+      margin-bottom: 0.4rem;
+    }
+    .party .name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .party .info { color: #444; font-size: 0.82rem; white-space: pre-line; }
+
+    .devis-objet {
+      background: #fafafa;
+      padding: 0.8rem 1rem;
+      border-left: 3px solid #111;
+      margin-bottom: 1.5rem;
+      border-radius: 0 6px 6px 0;
+    }
+    .devis-objet .label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: #999; margin-bottom: 0.2rem; }
+    .devis-objet .value { font-weight: 500; font-size: 0.95rem; }
+    .devis-objet .projet { color: #666; font-size: 0.85rem; margin-top: 0.15rem; }
+
+    .devis-lignes {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+    }
+    .devis-lignes thead th {
+      background: #111;
+      color: #fff;
+      padding: 0.7rem 0.9rem;
+      text-align: left;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+    .devis-lignes thead th:last-child { text-align: right; }
+    .devis-lignes tbody td {
+      padding: 0.9rem;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    .devis-lignes tbody td:last-child { text-align: right; font-weight: 500; white-space: nowrap; }
+    .ligne-titre { font-weight: 600; font-size: 0.92rem; margin-bottom: 0.2rem; }
+    .ligne-desc { color: #666; font-size: 0.8rem; }
+
+    .devis-totaux {
+      display: flex; justify-content: flex-end;
+      margin-top: 0.5rem; margin-bottom: 1.5rem;
+    }
+    .devis-totaux table {
+      min-width: 260px;
+      border-collapse: collapse;
+    }
+    .devis-totaux td {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+    }
+    .devis-totaux td:first-child { color: #666; }
+    .devis-totaux td:last-child { text-align: right; font-weight: 500; white-space: nowrap; }
+    .devis-totaux tr.total-final td {
+      background: #111; color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.7rem 0.8rem;
+    }
+
+    .devis-mention {
+      font-size: 0.78rem;
+      color: #666;
+      font-style: italic;
+      padding: 0.6rem 0.9rem;
+      background: #fafafa;
+      border-radius: 4px;
+      margin-bottom: 1.5rem;
+    }
+
+    .devis-conditions {
+      font-size: 0.78rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+    .devis-conditions strong { color: #111; }
+
+    .devis-signature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #eee;
+    }
+    .signature-block {
+      font-size: 0.8rem;
+    }
+    .signature-block .title { font-weight: 600; margin-bottom: 0.6rem; }
+    .signature-block .line { color: #999; }
+    .signature-space { height: 40px; border-bottom: 1px dotted #ccc; margin-top: 0.6rem; }
+
+    .devis-footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #999;
+    }
+
+    /* ============================================================
+       PRINT — cache l'UI, montre juste le devis
+       ============================================================ */
+    @media print {
+      @page { size: A4; margin: 0; }
+      html, body { background: #fff !important; }
+      .topbar, .form-panel, .auth-gate { display: none !important; }
+      .layout { display: block !important; padding: 0 !important; max-width: none !important; }
+      .preview-wrapper { display: block !important; }
+      .devis {
+        box-shadow: none !important;
+        max-width: none !important;
+        width: 100% !important;
+        min-height: auto !important;
+        padding: 15mm 18mm !important;
+      }
+    }
+
+    /* ============================================================
+       AIDE VISUELLE
+       ============================================================ */
+    .save-toast {
+      position: fixed;
+      bottom: 20px; right: 20px;
+      background: #111; color: #fff;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.25s;
+      pointer-events: none;
+      z-index: 9998;
+    }
+    .save-toast.show { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     AUTH GATE — Protection mot de passe (client-side, obfuscation)
+     ============================================================ -->
+<div id="auth" class="auth-gate">
+  <form class="auth-box" onsubmit="return checkAuth(event)">
+    <h1>StudioTM · Admin</h1>
+    <p>Accès protégé</p>
+    <input type="password" id="pwd" placeholder="Mot de passe" autofocus autocomplete="current-password">
+    <button type="submit">Entrer</button>
+    <div class="auth-error" id="auth-error"></div>
+  </form>
+</div>
+
+<!-- ============================================================
+     TOP BAR
+     ============================================================ -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-logo">StudioTM</span>
+    <span class="topbar-sep">·</span>
+    <span class="topbar-title">Devis</span>
+  </div>
+  <div class="topbar-actions">
+    <button class="btn btn-danger" onclick="resetDevis()">Nouveau</button>
+    <button class="btn" onclick="saveDevis()">Sauvegarder</button>
+    <button class="btn btn-primary" onclick="window.print()">Imprimer / PDF</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     LAYOUT : form (gauche) + preview (droite)
+     ============================================================ -->
+<div class="layout">
+
+  <!-- ===== FORM PANEL ===== -->
+  <div class="form-panel">
+
+    <h2>Numéro & date</h2>
+    <label>Numéro de devis</label>
+    <input type="text" id="f-numero" oninput="render()">
+    <label>Date d'émission</label>
+    <input type="date" id="f-date" oninput="render()">
+
+    <h2>Client (destinataire)</h2>
+    <label>Nom / Société</label>
+    <input type="text" id="f-client-nom" oninput="render()" placeholder="Cabinet HMNOP">
+    <label>Adresse (multi-lignes autorisées)</label>
+    <textarea id="f-client-adresse" oninput="render()" placeholder="10 rue Exemple&#10;69000 Lyon"></textarea>
+    <label>Contact (email / tél)</label>
+    <input type="text" id="f-client-contact" oninput="render()" placeholder="contact@hmnop.fr">
+
+    <h2>Objet du devis</h2>
+    <label>Objet</label>
+    <input type="text" id="f-objet" oninput="render()" placeholder="Sous-traitance — Conception & Visualisation intérieure">
+    <label>Projet (détails)</label>
+    <input type="text" id="f-projet" oninput="render()" placeholder="Rénovation complète + surélévation — 160 m²">
+
+    <h2>Prestations</h2>
+    <div id="lignes-editor"></div>
+    <button class="ligne-add" onclick="ajouterLigne()">+ Ajouter une prestation</button>
+
+    <h2>Conditions & notes</h2>
+    <label>Validité (jours)</label>
+    <input type="number" id="f-validite" value="30" oninput="render()">
+    <label>Notes (optionnel)</label>
+    <textarea id="f-notes" oninput="render()" placeholder="Ex: Acompte 30% à la commande."></textarea>
+
+  </div>
+
+  <!-- ===== PREVIEW PANEL (ce qui sera imprimé) ===== -->
+  <div class="preview-wrapper">
+    <div class="devis" id="devis">
+      <!-- Rendu dynamique via JS -->
+    </div>
+  </div>
+
+</div>
+
+<div class="save-toast" id="toast">Devis sauvegardé ✓</div>
+
+<script>
+// ============================================================
+// AUTH — Hash SHA-256 du mot de passe (obfuscation légère)
+// ============================================================
+const PWD_HASH = 'cb98aae9699415ea2c0885fb17244fdd70ed4a8538dc805c27af29eea7708b20';
+
+async function sha256(str) {
+  const buf = new TextEncoder().encode(str);
+  const hashBuf = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(hashBuf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function checkAuth(e) {
+  e.preventDefault();
+  const pwd = document.getElementById('pwd').value;
+  const hash = await sha256(pwd);
+  if (hash === PWD_HASH) {
+    sessionStorage.setItem('stm-auth', '1');
+    document.getElementById('auth').classList.add('hidden');
+    initDevis();
+  } else {
+    document.getElementById('auth-error').textContent = 'Mot de passe incorrect';
+    document.getElementById('pwd').value = '';
+  }
+  return false;
+}
+
+// Skip auth si déjà validé dans la session
+if (sessionStorage.getItem('stm-auth') === '1') {
+  document.getElementById('auth').classList.add('hidden');
+  // initDevis appelé plus bas après définition
+}
+
+// ============================================================
+// EMETTEUR — infos StudioTM (fixes)
+// ============================================================
+const EMETTEUR = {
+  nom: 'Tom Maradan',
+  societe: 'StudioTM',
+  adresse: '6 chemin des Ardillaux\n69720 Saint-Bonnet-de-Mure',
+  siret: '99180546600018',
+  email: 'contact@studiotm.fr',
+  telephone: '+33 6 72 25 67 83'
+};
+
+// ============================================================
+// NUMÉROTATION AUTO — STM-YYYY-NNN
+// ============================================================
+function nextDevisNumber() {
+  const year = new Date().getFullYear();
+  const key = `stm-devis-counter-${year}`;
+  let counter = parseInt(localStorage.getItem(key) || '0', 10) + 1;
+  return `STM-${year}-${String(counter).padStart(3, '0')}`;
+}
+
+function incrementCounter(numero) {
+  // Extrait le compteur du numéro et le sauvegarde
+  const match = numero.match(/^STM-(\d{4})-(\d+)$/);
+  if (!match) return;
+  const year = match[1];
+  const num = parseInt(match[2], 10);
+  localStorage.setItem(`stm-devis-counter-${year}`, num);
+}
+
+// ============================================================
+// STATE — devis en cours
+// ============================================================
+let state = {
+  numero: '',
+  date: '',
+  client: { nom: '', adresse: '', contact: '' },
+  objet: '',
+  projet: '',
+  lignes: [],
+  validite: 30,
+  notes: ''
+};
+
+// ============================================================
+// LIGNES — édition dynamique
+// ============================================================
+function ajouterLigne(titre = '', description = '', montant = 0) {
+  state.lignes.push({ titre, description, montant });
+  renderLignesEditor();
+  render();
+}
+
+function supprimerLigne(idx) {
+  state.lignes.splice(idx, 1);
+  renderLignesEditor();
+  render();
+}
+
+function updateLigne(idx, champ, value) {
+  state.lignes[idx][champ] = champ === 'montant' ? parseFloat(value) || 0 : value;
+  render();
+}
+
+function renderLignesEditor() {
+  const container = document.getElementById('lignes-editor');
+  container.innerHTML = state.lignes.map((l, i) => `
+    <div class="ligne-item">
+      <div class="ligne-item-header">
+        <span class="ligne-num">Prestation ${i + 1}</span>
+        <button class="ligne-remove" onclick="supprimerLigne(${i})">Supprimer</button>
+      </div>
+      <input type="text" placeholder="Titre" value="${escapeHtml(l.titre)}"
+        oninput="updateLigne(${i}, 'titre', this.value)">
+      <textarea placeholder="Description (optionnelle)"
+        oninput="updateLigne(${i}, 'description', this.value)">${escapeHtml(l.description)}</textarea>
+      <input type="number" step="0.01" placeholder="Montant HT (€)" value="${l.montant || ''}"
+        oninput="updateLigne(${i}, 'montant', this.value)">
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// FORMATTERS
+// ============================================================
+function formatMontant(n) {
+  return n.toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + ' €';
+}
+function formatDate(iso) {
+  if (!iso) return '';
+  const [y, m, d] = iso.split('-');
+  return `${d}/${m}/${y}`;
+}
+function formatSiret(s) {
+  return s.replace(/(\d{3})(\d{3})(\d{3})(\d{5})/, '$1 $2 $3 $4');
+}
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// ============================================================
+// SYNC form → state
+// ============================================================
+function syncFromForm() {
+  state.numero = document.getElementById('f-numero').value;
+  state.date = document.getElementById('f-date').value;
+  state.client.nom = document.getElementById('f-client-nom').value;
+  state.client.adresse = document.getElementById('f-client-adresse').value;
+  state.client.contact = document.getElementById('f-client-contact').value;
+  state.objet = document.getElementById('f-objet').value;
+  state.projet = document.getElementById('f-projet').value;
+  state.validite = parseInt(document.getElementById('f-validite').value, 10) || 30;
+  state.notes = document.getElementById('f-notes').value;
+}
+
+function syncToForm() {
+  document.getElementById('f-numero').value = state.numero;
+  document.getElementById('f-date').value = state.date;
+  document.getElementById('f-client-nom').value = state.client.nom;
+  document.getElementById('f-client-adresse').value = state.client.adresse;
+  document.getElementById('f-client-contact').value = state.client.contact;
+  document.getElementById('f-objet').value = state.objet;
+  document.getElementById('f-projet').value = state.projet;
+  document.getElementById('f-validite').value = state.validite;
+  document.getElementById('f-notes').value = state.notes;
+}
+
+// ============================================================
+// RENDER — le devis (preview + version imprimable)
+// ============================================================
+function render() {
+  syncFromForm();
+  const totalHT = state.lignes.reduce((sum, l) => sum + (l.montant || 0), 0);
+  const lignesRows = state.lignes.map(l => `
+    <tr>
+      <td>
+        <div class="ligne-titre">${escapeHtml(l.titre || '—')}</div>
+        ${l.description ? `<div class="ligne-desc">${escapeHtml(l.description)}</div>` : ''}
+      </td>
+      <td>${formatMontant(l.montant || 0)}</td>
+    </tr>
+  `).join('');
+
+  document.getElementById('devis').innerHTML = `
+    <div class="devis-header">
+      <div class="devis-brand">
+        <h1>STUDIOTM</h1>
+        <p>Architecture d'intérieur · Lyon</p>
+      </div>
+      <div class="devis-meta">
+        <div class="num">Devis ${escapeHtml(state.numero)}</div>
+        <div class="date">Émis le ${formatDate(state.date)}</div>
+      </div>
+    </div>
+
+    <div class="devis-parties">
+      <div class="party">
+        <h3>Émetteur</h3>
+        <div class="name">${EMETTEUR.nom} — ${EMETTEUR.societe}</div>
+        <div class="info">${EMETTEUR.adresse}
+SIRET : ${formatSiret(EMETTEUR.siret)}
+${EMETTEUR.email}
+${EMETTEUR.telephone}</div>
+      </div>
+      <div class="party">
+        <h3>Destinataire</h3>
+        <div class="name">${escapeHtml(state.client.nom || '—')}</div>
+        <div class="info">${escapeHtml(state.client.adresse || '')}${state.client.contact ? '\n' + escapeHtml(state.client.contact) : ''}</div>
+      </div>
+    </div>
+
+    <div class="devis-objet">
+      <div class="label">Objet</div>
+      <div class="value">${escapeHtml(state.objet || '—')}</div>
+      ${state.projet ? `<div class="projet">${escapeHtml(state.projet)}</div>` : ''}
+    </div>
+
+    <table class="devis-lignes">
+      <thead>
+        <tr>
+          <th>Prestation</th>
+          <th>Montant HT</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${lignesRows || '<tr><td colspan="2" style="text-align:center; color:#999; padding:2rem;">Aucune prestation ajoutée</td></tr>'}
+      </tbody>
+    </table>
+
+    <div class="devis-totaux">
+      <table>
+        <tr>
+          <td>Total HT</td>
+          <td>${formatMontant(totalHT)}</td>
+        </tr>
+        <tr>
+          <td>TVA (0 %)</td>
+          <td>${formatMontant(0)}</td>
+        </tr>
+        <tr class="total-final">
+          <td>Total TTC</td>
+          <td>${formatMontant(totalHT)}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="devis-mention">
+      TVA non applicable — article 293 B du CGI (micro-entreprise en franchise en base de TVA).
+    </div>
+
+    <div class="devis-conditions">
+      <strong>Validité du devis :</strong> ${state.validite} jours à compter de la date d'émission.
+      ${state.notes ? `<br><br>${escapeHtml(state.notes)}` : ''}
+    </div>
+
+    <div class="devis-signature">
+      <div class="signature-block">
+        <div class="title">Bon pour accord</div>
+        <div class="line">Date :</div>
+        <div class="signature-space"></div>
+      </div>
+      <div class="signature-block">
+        <div class="title">Signature du client</div>
+        <div class="line">Précédée de la mention « Bon pour accord »</div>
+        <div class="signature-space"></div>
+      </div>
+    </div>
+
+    <div class="devis-footer">
+      ${EMETTEUR.societe} · ${EMETTEUR.nom} · ${EMETTEUR.adresse.replace('\n', ' · ')} · SIRET ${formatSiret(EMETTEUR.siret)} · ${EMETTEUR.email}
+    </div>
+  `;
+}
+
+// ============================================================
+// PERSISTANCE — localStorage
+// ============================================================
+function saveDevis() {
+  syncFromForm();
+  const key = `stm-devis-${state.numero}`;
+  localStorage.setItem(key, JSON.stringify(state));
+  incrementCounter(state.numero);
+  showToast('Devis sauvegardé ✓');
+}
+
+function loadCurrentDevis() {
+  // Charge le dernier devis en cours de travail (draft)
+  const draft = localStorage.getItem('stm-devis-draft');
+  if (draft) {
+    try {
+      state = JSON.parse(draft);
+      syncToForm();
+      renderLignesEditor();
+      render();
+      return true;
+    } catch (e) {}
+  }
+  return false;
+}
+
+// Auto-save draft à chaque modif
+function autoSaveDraft() {
+  syncFromForm();
+  localStorage.setItem('stm-devis-draft', JSON.stringify(state));
+}
+
+function resetDevis() {
+  if (!confirm('Créer un nouveau devis ? Le devis en cours sera perdu si non sauvegardé.')) return;
+  state = {
+    numero: nextDevisNumber(),
+    date: new Date().toISOString().slice(0, 10),
+    client: { nom: '', adresse: '', contact: '' },
+    objet: '',
+    projet: '',
+    lignes: [],
+    validite: 30,
+    notes: ''
+  };
+  localStorage.removeItem('stm-devis-draft');
+  syncToForm();
+  renderLignesEditor();
+  render();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+// ============================================================
+// INIT — au chargement (après auth)
+// ============================================================
+function initDevis() {
+  // Charge draft ou init avec devis exemple HMNOP
+  if (!loadCurrentDevis()) {
+    state = {
+      numero: nextDevisNumber(),
+      date: new Date().toISOString().slice(0, 10),
+      client: {
+        nom: 'Cabinet HMNOP',
+        adresse: '',
+        contact: ''
+      },
+      objet: 'Sous-traitance — Conception & Visualisation intérieure',
+      projet: 'Rénovation complète + surélévation — 160 m²',
+      lignes: [
+        { titre: 'Conception aménagement intérieur', description: "Plans d'implantation de toutes les pièces, zoning, cotations — approche globale du projet intérieur.", montant: 1100 },
+        { titre: 'Détails techniques', description: 'Coupes, élévations et détails sur les éléments clés (salles de bain, escalier, surélévation, points singuliers).', montant: 850 },
+        { titre: 'Visualisation 3D (5 à 10 vues)', description: "Perspectives 3D pour valider les volumes et les ambiances. Outil de communication avec le client final et l'archi.", montant: 550 },
+        { titre: 'Dossier menuiseries', description: "Plans d'agencement complets à destination du menuisier : dressings, meubles sur mesure, rangements intégrés. Document technique transmissible directement à l'artisan.", montant: 1000 }
+      ],
+      validite: 30,
+      notes: ''
+    };
+    syncToForm();
+    renderLignesEditor();
+    render();
+  }
+  // Auto-save draft à chaque changement
+  document.querySelectorAll('input, textarea').forEach(el => {
+    el.addEventListener('input', autoSaveDraft);
+  });
+}
+
+// Init si déjà authentifié
+if (sessionStorage.getItem('stm-auth') === '1') {
+  initDevis();
+}
+</script>
+
+</body>
+</html>
