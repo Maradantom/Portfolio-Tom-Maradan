@@ -225,7 +225,7 @@
       width: 100%;
       max-width: 210mm;
       min-height: 297mm;
-      padding: 10mm 10mm;
+      padding: 12mm 15mm;
       box-shadow: 0 4px 24px rgba(0,0,0,0.08);
       color: #111;
       font-size: 9pt;
@@ -1210,6 +1210,10 @@ async function exportPDF() {
 
     const element = document.getElementById('devis-page-1');
 
+    // Réduit les marges internes juste pour l'export (rendu preview inchangé)
+    const originalPadding = element.style.padding;
+    element.style.padding = '8mm 8mm';
+
     // Capture ULTRA haute résolution (scale 3 = ~300 DPI, netteté proche du print)
     const canvas = await html2canvas(element, {
       scale: 3,
@@ -1248,6 +1252,9 @@ async function exportPDF() {
     console.error('Erreur export PDF :', err);
     alert('Erreur lors de la génération du PDF : ' + (err.message || err));
   } finally {
+    // Restaure le padding original du preview
+    const el = document.getElementById('devis-page-1');
+    if (el) el.style.padding = '';
     btn.textContent = originalTxt;
     btn.disabled = false;
   }
