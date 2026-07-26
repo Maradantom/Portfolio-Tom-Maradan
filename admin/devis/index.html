@@ -1197,34 +1197,35 @@ async function exportPDF() {
 
     const element = document.getElementById('devis-page-1');
 
-    // Capture haute résolution
+    // Capture ULTRA haute résolution (scale 3 = ~300 DPI, netteté proche du print)
     const canvas = await html2canvas(element, {
-      scale: 2,
+      scale: 3,
       useCORS: true,
       allowTaint: false,
       backgroundColor: '#ffffff',
       logging: false,
+      imageTimeout: 0,
       windowWidth: element.scrollWidth,
       windowHeight: element.scrollHeight
     });
 
-    // Init jsPDF format A4 portrait
+    // Init jsPDF avec compression pour PNG (garde qualité + réduit taille)
     const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+    const pdf = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait', compress: true });
     const pageW = 210, pageH = 297;
 
-    // Calcul du ratio pour tenir sur 1 page
+    // PNG lossless : texte + logos parfaitement nets (vs JPEG qui compresse et floute)
+    const imgData = canvas.toDataURL('image/png');
+
     const imgW = pageW;
     const imgH = (canvas.height * pageW) / canvas.width;
 
     if (imgH <= pageH) {
-      // Contenu tient en largeur → on colle en haut
-      pdf.addImage(canvas.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, imgW, imgH);
+      pdf.addImage(imgData, 'PNG', 0, 0, imgW, imgH, undefined, 'FAST');
     } else {
-      // Contenu trop haut → on redimensionne pour tenir en hauteur (centré horizontalement)
       const scaledW = (canvas.width * pageH) / canvas.height;
       const xOffset = (pageW - scaledW) / 2;
-      pdf.addImage(canvas.toDataURL('image/jpeg', 0.95), 'JPEG', xOffset, 0, scaledW, pageH);
+      pdf.addImage(imgData, 'PNG', xOffset, 0, scaledW, pageH, undefined, 'FAST');
     }
 
     const filename = `Devis-${state.numero || 'brouillon'}.pdf`;
