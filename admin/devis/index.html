@@ -41,41 +41,23 @@
       text-align: center;
       box-shadow: 0 20px 60px rgba(0,0,0,0.3);
     }
-    .auth-box h1 {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-      letter-spacing: 0.3px;
-    }
+    .auth-box h1 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.4rem; letter-spacing: 0.3px; }
     .auth-box p { color: #777; font-size: 0.85rem; margin-bottom: 1.5rem; }
     .auth-box input {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 16px;
-      margin-bottom: 0.6rem;
-      outline: none;
-      transition: border-color 0.2s;
+      width: 100%; padding: 0.75rem 1rem;
+      border: 1px solid #ddd; border-radius: 8px;
+      font-size: 16px; margin-bottom: 0.6rem;
+      outline: none; transition: border-color 0.2s;
     }
     .auth-box input:focus { border-color: #111; }
     .auth-box button {
-      width: 100%;
-      padding: 0.75rem;
-      background: #111; color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
+      width: 100%; padding: 0.75rem;
+      background: #111; color: #fff; border: none;
+      border-radius: 8px; font-weight: 600; cursor: pointer;
       transition: background 0.2s;
     }
     .auth-box button:hover { background: #333; }
-    .auth-error {
-      color: #c00;
-      font-size: 0.8rem;
-      margin-top: 0.5rem;
-      min-height: 1em;
-    }
+    .auth-error { color: #c00; font-size: 0.8rem; margin-top: 0.5rem; min-height: 1em; }
 
     /* ============================================================
        TOP BAR
@@ -87,22 +69,11 @@
       display: flex; align-items: center; justify-content: space-between;
       position: sticky; top: 0; z-index: 100;
     }
-    .topbar-left {
-      display: flex; align-items: center; gap: 1rem;
-    }
-    .topbar-logo {
-      height: 26px;
-      width: auto;
-      display: block;
-    }
+    .topbar-left { display: flex; align-items: center; gap: 1rem; }
+    .topbar-logo { height: 26px; width: auto; display: block; }
     .topbar-sep { color: #ccc; }
-    .topbar-title {
-      font-size: 0.95rem;
-      color: #666;
-    }
-    .topbar-actions {
-      display: flex; gap: 0.5rem;
-    }
+    .topbar-title { font-size: 0.95rem; color: #666; }
+    .topbar-actions { display: flex; gap: 0.5rem; }
     .btn {
       padding: 0.55rem 1rem;
       border: 1px solid #ddd;
@@ -119,7 +90,7 @@
     .btn-danger:hover { background: #fee; border-color: #f99; color: #c00; }
 
     /* ============================================================
-       LAYOUT : 2 COLONNES (form / preview)
+       LAYOUT : 2 COLONNES
        ============================================================ */
     .layout {
       display: grid;
@@ -135,7 +106,7 @@
     }
 
     /* ============================================================
-       COLONNE FORM
+       FORM PANEL
        ============================================================ */
     .form-panel {
       background: #fff;
@@ -167,7 +138,7 @@
       margin: 0.6rem 0 0.2rem;
       font-weight: 500;
     }
-    .form-panel input, .form-panel textarea {
+    .form-panel input, .form-panel textarea, .form-panel select {
       width: 100%;
       padding: 0.55rem 0.7rem;
       border: 1px solid #ddd;
@@ -176,15 +147,14 @@
       background: #fafafa;
       transition: all 0.15s;
     }
-    .form-panel input:focus, .form-panel textarea:focus {
-      outline: none;
-      border-color: #111;
-      background: #fff;
+    .form-panel input:focus, .form-panel textarea:focus, .form-panel select:focus {
+      outline: none; border-color: #111; background: #fff;
     }
     .form-panel textarea { resize: vertical; min-height: 60px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; }
 
-    /* Autocomplete adresse (API gouv) */
+    /* Autocomplete adresse */
     .autocomplete-wrap { position: relative; }
     .autocomplete-list {
       position: absolute;
@@ -193,10 +163,8 @@
       border: 1px solid #ddd;
       border-radius: 6px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-      max-height: 220px;
-      overflow-y: auto;
-      z-index: 50;
-      margin-top: 2px;
+      max-height: 220px; overflow-y: auto;
+      z-index: 50; margin-top: 2px;
     }
     .autocomplete-item {
       padding: 0.55rem 0.7rem;
@@ -208,7 +176,7 @@
     .autocomplete-item:hover { background: #f5f5f5; }
     .autocomplete-item .city { color: #999; font-size: 0.75rem; }
 
-    /* Lignes de prestations */
+    /* Lignes prestations dans l'éditeur */
     .ligne-item {
       background: #fafafa;
       padding: 0.7rem;
@@ -225,13 +193,11 @@
       background: none; border: none;
       color: #c00; cursor: pointer;
       font-size: 0.75rem;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
+      padding: 0.2rem 0.5rem; border-radius: 4px;
     }
     .ligne-remove:hover { background: #fee; }
-    .ligne-item input, .ligne-item textarea {
-      background: #fff;
-      margin-bottom: 0.3rem;
+    .ligne-item input, .ligne-item textarea, .ligne-item select {
+      background: #fff; margin-bottom: 0.3rem;
     }
     .ligne-add {
       width: 100%;
@@ -239,195 +205,252 @@
       border: 1px dashed #ccc;
       background: transparent;
       border-radius: 6px;
-      color: #666;
-      cursor: pointer;
-      font-size: 0.85rem;
-      margin-top: 0.4rem;
+      color: #666; cursor: pointer;
+      font-size: 0.85rem; margin-top: 0.4rem;
     }
     .ligne-add:hover { border-color: #111; color: #111; background: #f5f5f5; }
 
     /* ============================================================
-       COLONNE PREVIEW (le devis rendu = ce qui sera imprimé)
+       PREVIEW = le devis rendu (imprimable)
+       Layout compact pour tenir sur 1 page A4
        ============================================================ */
-    .preview-wrapper {
-      display: flex;
-      justify-content: center;
-    }
-    .devis {
+    .preview-wrapper { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+
+    .devis-page {
       background: #fff;
       width: 100%;
-      max-width: 210mm; /* A4 */
+      max-width: 210mm;
       min-height: 297mm;
-      padding: 20mm 22mm;
+      padding: 12mm 15mm;
       box-shadow: 0 4px 24px rgba(0,0,0,0.08);
       color: #111;
-      font-size: 10.5pt;
-      line-height: 1.55;
+      font-size: 9pt;
+      line-height: 1.45;
+      display: flex; flex-direction: column;
     }
+    .devis-page.page-2 { padding: 15mm 20mm; }
+
+    /* --- HEADER --- */
     .devis-header {
       display: flex; justify-content: space-between; align-items: flex-start;
-      padding-bottom: 1.5rem;
+      padding-bottom: 0.6rem;
       border-bottom: 2px solid #111;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.9rem;
     }
-    .devis-brand img {
-      height: 34px;
-      width: auto;
-      display: block;
-      margin-bottom: 0.4rem;
-    }
+    .devis-brand img { height: 30px; width: auto; display: block; margin-bottom: 0.2rem; }
     .devis-brand p {
-      color: #666; font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
+      color: #666; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.15em;
     }
-    .devis-meta { text-align: right; font-size: 0.85rem; }
-    .devis-meta .num { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.15rem; }
+    .devis-meta { text-align: right; font-size: 0.8rem; }
+    .devis-meta .num { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.1rem; letter-spacing: 0.3px; }
     .devis-meta .date { color: #666; }
+    .devis-meta .valid { color: #666; font-size: 0.72rem; margin-top: 0.15rem; }
 
+    /* --- PARTIES --- */
     .devis-parties {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-bottom: 1.5rem;
+      gap: 1.5rem;
+      margin-bottom: 0.9rem;
     }
     .party h3 {
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       color: #999;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.3rem;
     }
-    .party .name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
-    .party .info { color: #444; font-size: 0.82rem; white-space: pre-line; }
+    .party .name { font-weight: 600; font-size: 0.88rem; margin-bottom: 0.15rem; }
+    .party .info { color: #444; font-size: 0.75rem; white-space: pre-line; line-height: 1.5; }
 
+    /* --- OBJET --- */
     .devis-objet {
       background: #fafafa;
-      padding: 0.8rem 1rem;
+      padding: 0.5rem 0.8rem;
       border-left: 3px solid #111;
-      margin-bottom: 1.5rem;
-      border-radius: 0 6px 6px 0;
+      margin-bottom: 0.9rem;
+      border-radius: 0 4px 4px 0;
     }
-    .devis-objet .label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: #999; margin-bottom: 0.2rem; }
-    .devis-objet .value { font-weight: 500; font-size: 0.95rem; }
-    .devis-objet .projet { color: #666; font-size: 0.85rem; margin-top: 0.15rem; }
+    .devis-objet .label {
+      font-size: 0.6rem; text-transform: uppercase;
+      letter-spacing: 0.12em; color: #999; margin-bottom: 0.1rem;
+    }
+    .devis-objet .value { font-weight: 500; font-size: 0.88rem; }
+    .devis-objet .projet { color: #666; font-size: 0.78rem; margin-top: 0.1rem; }
 
+    /* --- TABLEAU PRESTATIONS --- */
     .devis-lignes {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 1rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.8rem;
     }
     .devis-lignes thead th {
       background: #111;
       color: #fff;
-      padding: 0.7rem 0.9rem;
+      padding: 0.45rem 0.55rem;
       text-align: left;
-      font-size: 0.75rem;
+      font-size: 0.68rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       font-weight: 500;
     }
-    .devis-lignes thead th:last-child { text-align: right; }
+    .devis-lignes thead th.num-col { width: 5%; text-align: center; }
+    .devis-lignes thead th.qte-col { width: 8%; text-align: center; }
+    .devis-lignes thead th.unite-col { width: 10%; text-align: center; }
+    .devis-lignes thead th.pu-col { width: 14%; text-align: right; }
+    .devis-lignes thead th.total-col { width: 14%; text-align: right; }
     .devis-lignes tbody td {
-      padding: 0.9rem;
+      padding: 0.5rem 0.55rem;
       border-bottom: 1px solid #eee;
       vertical-align: top;
     }
-    .devis-lignes tbody td:last-child { text-align: right; font-weight: 500; white-space: nowrap; }
-    .ligne-titre { font-weight: 600; font-size: 0.92rem; margin-bottom: 0.2rem; }
-    .ligne-desc { color: #666; font-size: 0.8rem; }
+    .devis-lignes tbody td.num { text-align: center; color: #999; font-size: 0.75rem; }
+    .devis-lignes tbody td.qte { text-align: center; }
+    .devis-lignes tbody td.unite { text-align: center; color: #666; font-size: 0.75rem; }
+    .devis-lignes tbody td.pu { text-align: right; white-space: nowrap; }
+    .devis-lignes tbody td.total { text-align: right; font-weight: 500; white-space: nowrap; }
+    .ligne-titre { font-weight: 600; font-size: 0.82rem; margin-bottom: 0.1rem; }
+    .ligne-desc { color: #666; font-size: 0.72rem; line-height: 1.4; }
 
+    /* --- TOTAUX --- */
     .devis-totaux {
       display: flex; justify-content: flex-end;
-      margin-top: 0.5rem; margin-bottom: 1.5rem;
+      margin-top: 0.4rem; margin-bottom: 0.8rem;
     }
     .devis-totaux table {
-      min-width: 260px;
+      min-width: 240px;
       border-collapse: collapse;
     }
     .devis-totaux td {
-      padding: 0.4rem 0.8rem;
-      font-size: 0.9rem;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.82rem;
     }
     .devis-totaux td:first-child { color: #666; }
     .devis-totaux td:last-child { text-align: right; font-weight: 500; white-space: nowrap; }
     .devis-totaux tr.total-final td {
       background: #111; color: #fff;
       font-weight: 600;
-      font-size: 1rem;
-      padding: 0.7rem 0.8rem;
+      font-size: 0.95rem;
+      padding: 0.55rem 0.7rem;
     }
 
-    .devis-mention {
-      font-size: 0.78rem;
-      color: #666;
-      font-style: italic;
-      padding: 0.6rem 0.9rem;
+    /* --- MENTIONS + IBAN + SIGNATURE (bas de devis) --- */
+    .devis-bas {
+      margin-top: auto;
+      padding-top: 0.6rem;
+    }
+    .devis-mentions {
       background: #fafafa;
+      padding: 0.55rem 0.75rem;
       border-radius: 4px;
-      margin-bottom: 1.5rem;
+      font-size: 0.72rem;
+      color: #444;
+      margin-bottom: 0.7rem;
+      line-height: 1.55;
     }
+    .devis-mentions strong { color: #111; }
 
-    .devis-conditions {
-      font-size: 0.78rem;
-      color: #555;
-      margin-bottom: 2rem;
+    .devis-paiement {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 0.7rem;
+      font-size: 0.75rem;
     }
-    .devis-conditions strong { color: #111; }
+    .paiement-block h4 {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #999;
+      margin-bottom: 0.2rem;
+      font-weight: 600;
+    }
+    .paiement-block p { color: #444; line-height: 1.5; }
 
     .devis-signature {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 2rem;
-      padding-top: 1.5rem;
+      gap: 1.5rem;
+      padding-top: 0.7rem;
       border-top: 1px solid #eee;
     }
-    .signature-block {
-      font-size: 0.8rem;
-    }
-    .signature-block .title { font-weight: 600; margin-bottom: 0.6rem; }
-    .signature-block .line { color: #999; }
-    .signature-space { height: 40px; border-bottom: 1px dotted #ccc; margin-top: 0.6rem; }
+    .signature-block { font-size: 0.75rem; }
+    .signature-block .title { font-weight: 600; margin-bottom: 0.35rem; font-size: 0.78rem; }
+    .signature-block .line { color: #999; font-size: 0.68rem; }
+    .signature-space { height: 32px; border-bottom: 1px dotted #ccc; margin-top: 0.4rem; }
 
     .devis-footer {
-      margin-top: 2rem;
-      padding-top: 1rem;
+      margin-top: 0.7rem;
+      padding-top: 0.5rem;
       border-top: 1px solid #eee;
       text-align: center;
-      font-size: 0.7rem;
+      font-size: 0.62rem;
       color: #999;
+      line-height: 1.5;
     }
 
+    /* --- PAGE 2 : CGV --- */
+    .cgv h2 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid #111;
+      letter-spacing: 0.3px;
+    }
+    .cgv h3 {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #111;
+      margin-top: 0.85rem;
+      margin-bottom: 0.3rem;
+    }
+    .cgv p {
+      font-size: 0.78rem;
+      color: #333;
+      line-height: 1.55;
+      margin-bottom: 0.4rem;
+    }
+    .cgv ul {
+      font-size: 0.78rem;
+      color: #333;
+      padding-left: 1.2rem;
+      margin-bottom: 0.4rem;
+    }
+    .cgv ul li { line-height: 1.55; margin-bottom: 0.15rem; }
+    .cgv .cgv-header { text-align: center; font-size: 0.7rem; color: #999; margin-bottom: 1rem; }
+
     /* ============================================================
-       PRINT — cache l'UI, montre juste le devis
+       PRINT
        ============================================================ */
     @media print {
       @page { size: A4; margin: 0; }
       html, body { background: #fff !important; }
-      .topbar, .form-panel, .auth-gate { display: none !important; }
+      .topbar, .form-panel, .auth-gate, .save-toast { display: none !important; }
       .layout { display: block !important; padding: 0 !important; max-width: none !important; }
-      .preview-wrapper { display: block !important; }
-      .devis {
+      .preview-wrapper { display: block !important; gap: 0 !important; }
+      .devis-page {
         box-shadow: none !important;
         max-width: none !important;
         width: 100% !important;
-        min-height: auto !important;
-        padding: 15mm 18mm !important;
+        min-height: 297mm !important;
+        page-break-after: always;
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
       }
-      /* Force impression des couleurs sombres (bandeau prestation + total) */
+      .devis-page:last-child { page-break-after: auto; }
       .devis-lignes thead th,
-      .devis-totaux tr.total-final td {
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
-      }
+      .devis-totaux tr.total-final td,
+      .devis-header { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
     }
 
     /* ============================================================
-       AIDE VISUELLE
+       TOAST
        ============================================================ */
     .save-toast {
       position: fixed;
@@ -449,7 +472,7 @@
 <body>
 
 <!-- ============================================================
-     AUTH GATE — Protection mot de passe (client-side, obfuscation)
+     AUTH GATE
      ============================================================ -->
 <div id="auth" class="auth-gate">
   <form class="auth-box" onsubmit="return checkAuth(event)">
@@ -485,11 +508,13 @@
   <!-- ===== FORM PANEL ===== -->
   <div class="form-panel">
 
-    <h2>Numéro & date</h2>
+    <h2>Numéro & dates</h2>
     <label>Numéro de devis</label>
     <input type="text" id="f-numero" oninput="render()">
     <label>Date d'émission</label>
     <input type="date" id="f-date" oninput="render()">
+    <label>Validité (jours)</label>
+    <input type="number" id="f-validite" value="30" oninput="render()">
 
     <h2>Client (destinataire)</h2>
     <label>Nom / Société</label>
@@ -501,6 +526,8 @@
     </div>
     <label>Complément d'adresse (optionnel)</label>
     <input type="text" id="f-client-adresse2" oninput="render()" placeholder="Bâtiment B, Étage 3...">
+    <label>SIRET du client (optionnel — pour un pro)</label>
+    <input type="text" id="f-client-siret" oninput="render()" placeholder="123 456 789 00012">
     <label>Email</label>
     <input type="email" id="f-client-email" oninput="render()" placeholder="contact@hmnop.fr">
     <label>Téléphone</label>
@@ -511,24 +538,28 @@
     <input type="text" id="f-objet" oninput="render()" placeholder="Sous-traitance — Conception & Visualisation intérieure">
     <label>Projet (détails)</label>
     <input type="text" id="f-projet" oninput="render()" placeholder="Rénovation complète + surélévation — 160 m²">
+    <label>Lieu du projet (optionnel)</label>
+    <input type="text" id="f-lieu" oninput="render()" placeholder="Lyon, France">
 
     <h2>Prestations</h2>
     <div id="lignes-editor"></div>
     <button class="ligne-add" onclick="ajouterLigne()">+ Ajouter une prestation</button>
 
-    <h2>Conditions & notes</h2>
-    <label>Validité (jours)</label>
-    <input type="number" id="f-validite" value="30" oninput="render()">
-    <label>Notes (optionnel)</label>
-    <textarea id="f-notes" oninput="render()" placeholder="Ex: Acompte 30% à la commande."></textarea>
+    <h2>Modalités</h2>
+    <label>Modalités de paiement</label>
+    <textarea id="f-paiement" oninput="render()" placeholder="Ex: 30 % à la commande, solde à la livraison. Virement bancaire."></textarea>
+    <label>Délai d'exécution estimé</label>
+    <input type="text" id="f-delai" oninput="render()" placeholder="Ex: 15-20 jours répartis sur ~2 mois à compter de l'acceptation">
+
+    <h2>Notes (optionnel)</h2>
+    <textarea id="f-notes" oninput="render()" placeholder="Notes complémentaires visibles sur le devis..."></textarea>
 
   </div>
 
-  <!-- ===== PREVIEW PANEL (ce qui sera imprimé) ===== -->
+  <!-- ===== PREVIEW PANEL (page 1 = devis, page 2 = CGV) ===== -->
   <div class="preview-wrapper">
-    <div class="devis" id="devis">
-      <!-- Rendu dynamique via JS -->
-    </div>
+    <div class="devis-page" id="devis-page-1"></div>
+    <div class="devis-page page-2" id="devis-page-2"></div>
   </div>
 
 </div>
@@ -537,7 +568,7 @@
 
 <script>
 // ============================================================
-// AUTH — Hash SHA-256 du mot de passe (obfuscation légère)
+// AUTH
 // ============================================================
 const PWD_HASH = 'cb98aae9699415ea2c0885fb17244fdd70ed4a8538dc805c27af29eea7708b20';
 
@@ -562,26 +593,35 @@ async function checkAuth(e) {
   return false;
 }
 
-// Skip auth si déjà validé dans la session
 if (sessionStorage.getItem('stm-auth') === '1') {
   document.getElementById('auth').classList.add('hidden');
-  // initDevis appelé plus bas après définition
 }
 
 // ============================================================
-// EMETTEUR — infos StudioTM (fixes)
+// EMETTEUR (infos StudioTM — modifie ici pour changer partout)
 // ============================================================
 const EMETTEUR = {
   nom: 'Tom Maradan',
   societe: 'StudioTM',
+  formeJuridique: 'Micro-entrepreneur (EI)',
   adresse: '6 chemin des Ardillaux\n69720 Saint-Bonnet-de-Mure',
   siret: '99180546600018',
+  ape: '7111Z', // à ajuster : code APE architecture d'intérieur
   email: 'contact@studiotm.fr',
-  telephone: '+33 6 72 25 67 83'
+  telephone: '+33 6 72 25 67 83',
+  site: 'studiotm.fr',
+  // À COMPLÉTER PAR TOM :
+  iban: 'FR76 __________________________', // remplace par ton IBAN
+  bic: '__________', // remplace par ton BIC
+  banque: 'Nom de ta banque',
+  // Assurance : obligatoire pour la RC pro si l'activité l'exige
+  assureur: '',       // ex: 'MAAF Pro'
+  numPolice: '',      // ex: 'N° 12345678'
+  couvertureGeo: 'France' // couverture géographique
 };
 
 // ============================================================
-// NUMÉROTATION AUTO — STM-YYYY-NNN
+// NUMÉROTATION AUTO STM-YYYY-NNN
 // ============================================================
 function nextDevisNumber() {
   const year = new Date().getFullYear();
@@ -589,47 +629,50 @@ function nextDevisNumber() {
   let counter = parseInt(localStorage.getItem(key) || '0', 10) + 1;
   return `STM-${year}-${String(counter).padStart(3, '0')}`;
 }
-
 function incrementCounter(numero) {
-  // Extrait le compteur du numéro et le sauvegarde
   const match = numero.match(/^STM-(\d{4})-(\d+)$/);
   if (!match) return;
-  const year = match[1];
-  const num = parseInt(match[2], 10);
-  localStorage.setItem(`stm-devis-counter-${year}`, num);
+  localStorage.setItem(`stm-devis-counter-${match[1]}`, parseInt(match[2], 10));
 }
 
 // ============================================================
-// STATE — devis en cours
+// STATE
 // ============================================================
 let state = {
   numero: '',
   date: '',
-  client: { nom: '', adresse: '', adresse2: '', email: '', tel: '' },
+  validite: 30,
+  client: { nom: '', adresse: '', adresse2: '', siret: '', email: '', tel: '' },
   objet: '',
   projet: '',
-  lignes: [],
-  validite: 30,
+  lieu: '',
+  lignes: [], // { titre, description, quantite, unite, prixUnitaire }
+  paiement: '',
+  delai: '',
   notes: ''
 };
 
 // ============================================================
-// LIGNES — édition dynamique
+// LIGNES
 // ============================================================
-function ajouterLigne(titre = '', description = '', montant = 0) {
-  state.lignes.push({ titre, description, montant });
+const UNITES = ['forfait', 'jour', 'heure', 'unité', 'm²', 'ml', 'lot'];
+
+function ajouterLigne(titre = '', description = '', quantite = 1, unite = 'forfait', prixUnitaire = 0) {
+  state.lignes.push({ titre, description, quantite, unite, prixUnitaire });
   renderLignesEditor();
   render();
 }
-
 function supprimerLigne(idx) {
   state.lignes.splice(idx, 1);
   renderLignesEditor();
   render();
 }
-
 function updateLigne(idx, champ, value) {
-  state.lignes[idx][champ] = champ === 'montant' ? parseFloat(value) || 0 : value;
+  if (champ === 'quantite' || champ === 'prixUnitaire') {
+    state.lignes[idx][champ] = parseFloat(value) || 0;
+  } else {
+    state.lignes[idx][champ] = value;
+  }
   render();
 }
 
@@ -645,8 +688,15 @@ function renderLignesEditor() {
         oninput="updateLigne(${i}, 'titre', this.value)">
       <textarea placeholder="Description (optionnelle)"
         oninput="updateLigne(${i}, 'description', this.value)">${escapeHtml(l.description)}</textarea>
-      <input type="number" step="0.01" placeholder="Montant HT (€)" value="${l.montant || ''}"
-        oninput="updateLigne(${i}, 'montant', this.value)">
+      <div class="form-row-3">
+        <input type="number" step="0.01" placeholder="Qté" value="${l.quantite || ''}"
+          oninput="updateLigne(${i}, 'quantite', this.value)" title="Quantité">
+        <select onchange="updateLigne(${i}, 'unite', this.value)" title="Unité">
+          ${UNITES.map(u => `<option value="${u}" ${l.unite === u ? 'selected' : ''}>${u}</option>`).join('')}
+        </select>
+        <input type="number" step="0.01" placeholder="PU HT" value="${l.prixUnitaire || ''}"
+          oninput="updateLigne(${i}, 'prixUnitaire', this.value)" title="Prix unitaire HT">
+      </div>
     </div>
   `).join('');
 }
@@ -655,12 +705,21 @@ function renderLignesEditor() {
 // FORMATTERS
 // ============================================================
 function formatMontant(n) {
-  return n.toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + ' €';
+  return n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+}
+function formatQte(n) {
+  return n.toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
 }
 function formatDate(iso) {
   if (!iso) return '';
   const [y, m, d] = iso.split('-');
   return `${d}/${m}/${y}`;
+}
+function addDays(iso, days) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  d.setDate(d.getDate() + (days || 0));
+  return d.toISOString().slice(0, 10);
 }
 function formatSiret(s) {
   return s.replace(/(\d{3})(\d{3})(\d{3})(\d{5})/, '$1 $2 $3 $4');
@@ -671,87 +730,76 @@ function escapeHtml(s) {
 }
 
 // ============================================================
-// SYNC form → state
+// SYNC form <-> state
 // ============================================================
 function syncFromForm() {
   state.numero = document.getElementById('f-numero').value;
   state.date = document.getElementById('f-date').value;
+  state.validite = parseInt(document.getElementById('f-validite').value, 10) || 30;
   state.client.nom = document.getElementById('f-client-nom').value;
   state.client.adresse = document.getElementById('f-client-adresse').value;
   state.client.adresse2 = document.getElementById('f-client-adresse2').value;
+  state.client.siret = document.getElementById('f-client-siret').value;
   state.client.email = document.getElementById('f-client-email').value;
   state.client.tel = document.getElementById('f-client-tel').value;
   state.objet = document.getElementById('f-objet').value;
   state.projet = document.getElementById('f-projet').value;
-  state.validite = parseInt(document.getElementById('f-validite').value, 10) || 30;
+  state.lieu = document.getElementById('f-lieu').value;
+  state.paiement = document.getElementById('f-paiement').value;
+  state.delai = document.getElementById('f-delai').value;
   state.notes = document.getElementById('f-notes').value;
 }
-
 function syncToForm() {
   document.getElementById('f-numero').value = state.numero;
   document.getElementById('f-date').value = state.date;
+  document.getElementById('f-validite').value = state.validite;
   document.getElementById('f-client-nom').value = state.client.nom;
   document.getElementById('f-client-adresse').value = state.client.adresse;
   document.getElementById('f-client-adresse2').value = state.client.adresse2 || '';
+  document.getElementById('f-client-siret').value = state.client.siret || '';
   document.getElementById('f-client-email').value = state.client.email || '';
   document.getElementById('f-client-tel').value = state.client.tel || '';
   document.getElementById('f-objet').value = state.objet;
   document.getElementById('f-projet').value = state.projet;
-  document.getElementById('f-validite').value = state.validite;
+  document.getElementById('f-lieu').value = state.lieu || '';
+  document.getElementById('f-paiement').value = state.paiement || '';
+  document.getElementById('f-delai').value = state.delai || '';
   document.getElementById('f-notes').value = state.notes;
 }
 
 // ============================================================
-// AUTOCOMPLETE ADRESSE — API BAN gouvernementale (gratuite, sans clé)
-// https://adresse.data.gouv.fr/api-doc/adresse
+// AUTOCOMPLETE ADRESSE — API BAN gouvernementale
 // ============================================================
 let adresseDebounce = null;
 function onAdresseInput(query) {
-  render(); // met à jour la preview en temps réel
-
+  render();
   const list = document.getElementById('adresse-suggestions');
   clearTimeout(adresseDebounce);
-
-  if (!query || query.length < 3) {
-    list.style.display = 'none';
-    return;
-  }
-
+  if (!query || query.length < 3) { list.style.display = 'none'; return; }
   adresseDebounce = setTimeout(async () => {
     try {
       const url = `https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(query)}&limit=5&autocomplete=1`;
       const res = await fetch(url);
       const data = await res.json();
-      if (!data.features || !data.features.length) {
-        list.style.display = 'none';
-        return;
-      }
+      if (!data.features || !data.features.length) { list.style.display = 'none'; return; }
       list.innerHTML = data.features.map(f => {
         const p = f.properties;
-        const label = escapeHtml(p.name);
-        const city = escapeHtml(`${p.postcode} ${p.city}`);
         return `<div class="autocomplete-item"
                      onclick="selectAdresse('${escapeHtml(p.name)}', '${escapeHtml(p.postcode)}', '${escapeHtml(p.city)}')">
-                  <div>${label}</div>
-                  <div class="city">${city}</div>
+                  <div>${escapeHtml(p.name)}</div>
+                  <div class="city">${escapeHtml(p.postcode)} ${escapeHtml(p.city)}</div>
                 </div>`;
       }).join('');
       list.style.display = 'block';
-    } catch (e) {
-      console.warn('API adresse indisponible :', e);
-      list.style.display = 'none';
-    }
+    } catch (e) { list.style.display = 'none'; }
   }, 300);
 }
-
 function selectAdresse(rue, cp, ville) {
   document.getElementById('f-client-adresse').value = `${rue}\n${cp} ${ville}`;
   document.getElementById('adresse-suggestions').style.display = 'none';
   render();
   autoSaveDraft();
 }
-
-// Ferme le dropdown si clic ailleurs
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.autocomplete-wrap')) {
     const list = document.getElementById('adresse-suggestions');
@@ -760,22 +808,33 @@ document.addEventListener('click', (e) => {
 });
 
 // ============================================================
-// RENDER — le devis (preview + version imprimable)
+// RENDER — page 1 (devis) + page 2 (CGV)
 // ============================================================
 function render() {
   syncFromForm();
-  const totalHT = state.lignes.reduce((sum, l) => sum + (l.montant || 0), 0);
-  const lignesRows = state.lignes.map(l => `
-    <tr>
-      <td>
-        <div class="ligne-titre">${escapeHtml(l.titre || '—')}</div>
-        ${l.description ? `<div class="ligne-desc">${escapeHtml(l.description)}</div>` : ''}
-      </td>
-      <td>${formatMontant(l.montant || 0)}</td>
-    </tr>
-  `).join('');
 
-  document.getElementById('devis').innerHTML = `
+  const totalHT = state.lignes.reduce((sum, l) => sum + (l.quantite || 0) * (l.prixUnitaire || 0), 0);
+  const dateValidite = addDays(state.date, state.validite);
+
+  const lignesRows = state.lignes.map((l, i) => {
+    const totalLigne = (l.quantite || 0) * (l.prixUnitaire || 0);
+    return `
+      <tr>
+        <td class="num">${i + 1}</td>
+        <td>
+          <div class="ligne-titre">${escapeHtml(l.titre || '—')}</div>
+          ${l.description ? `<div class="ligne-desc">${escapeHtml(l.description)}</div>` : ''}
+        </td>
+        <td class="qte">${formatQte(l.quantite || 0)}</td>
+        <td class="unite">${escapeHtml(l.unite || '')}</td>
+        <td class="pu">${formatMontant(l.prixUnitaire || 0)}</td>
+        <td class="total">${formatMontant(totalLigne)}</td>
+      </tr>
+    `;
+  }).join('');
+
+  // ===== PAGE 1 : DEVIS =====
+  document.getElementById('devis-page-1').innerHTML = `
     <div class="devis-header">
       <div class="devis-brand">
         <img src="/photosite/logo/Noirlong.webp" alt="StudioTM">
@@ -784,90 +843,155 @@ function render() {
       <div class="devis-meta">
         <div class="num">Devis ${escapeHtml(state.numero)}</div>
         <div class="date">Émis le ${formatDate(state.date)}</div>
+        <div class="valid">Valable jusqu'au ${formatDate(dateValidite)}</div>
       </div>
     </div>
 
     <div class="devis-parties">
       <div class="party">
-        <h3>Émetteur</h3>
+        <h3>Émetteur — Prestataire</h3>
         <div class="name">${EMETTEUR.nom} — ${EMETTEUR.societe}</div>
-        <div class="info">${EMETTEUR.adresse}
-SIRET : ${formatSiret(EMETTEUR.siret)}
-${EMETTEUR.email}
-${EMETTEUR.telephone}</div>
+        <div class="info">${EMETTEUR.formeJuridique}
+${EMETTEUR.adresse}
+SIRET : ${formatSiret(EMETTEUR.siret)}${EMETTEUR.ape ? ' — APE ' + EMETTEUR.ape : ''}
+${EMETTEUR.email} · ${EMETTEUR.telephone}</div>
       </div>
       <div class="party">
-        <h3>Destinataire</h3>
+        <h3>Destinataire — Client</h3>
         <div class="name">${escapeHtml(state.client.nom || '—')}</div>
-        <div class="info">${escapeHtml(state.client.adresse || '')}${state.client.adresse2 ? '\n' + escapeHtml(state.client.adresse2) : ''}${state.client.email ? '\n' + escapeHtml(state.client.email) : ''}${state.client.tel ? '\n' + escapeHtml(state.client.tel) : ''}</div>
+        <div class="info">${escapeHtml(state.client.adresse || '')}${state.client.adresse2 ? '\n' + escapeHtml(state.client.adresse2) : ''}${state.client.siret ? '\nSIRET : ' + escapeHtml(state.client.siret) : ''}${state.client.email ? '\n' + escapeHtml(state.client.email) : ''}${state.client.tel ? ' · ' + escapeHtml(state.client.tel) : ''}</div>
       </div>
     </div>
 
     <div class="devis-objet">
       <div class="label">Objet</div>
       <div class="value">${escapeHtml(state.objet || '—')}</div>
-      ${state.projet ? `<div class="projet">${escapeHtml(state.projet)}</div>` : ''}
+      ${state.projet ? `<div class="projet">${escapeHtml(state.projet)}${state.lieu ? ' — ' + escapeHtml(state.lieu) : ''}</div>` : ''}
     </div>
 
     <table class="devis-lignes">
       <thead>
         <tr>
+          <th class="num-col">#</th>
           <th>Prestation</th>
-          <th>Montant HT</th>
+          <th class="qte-col">Qté</th>
+          <th class="unite-col">Unité</th>
+          <th class="pu-col">PU HT</th>
+          <th class="total-col">Total HT</th>
         </tr>
       </thead>
       <tbody>
-        ${lignesRows || '<tr><td colspan="2" style="text-align:center; color:#999; padding:2rem;">Aucune prestation ajoutée</td></tr>'}
+        ${lignesRows || '<tr><td colspan="6" style="text-align:center; color:#999; padding:1.5rem;">Aucune prestation ajoutée</td></tr>'}
       </tbody>
     </table>
 
     <div class="devis-totaux">
       <table>
-        <tr>
-          <td>Total HT</td>
-          <td>${formatMontant(totalHT)}</td>
-        </tr>
-        <tr>
-          <td>TVA (0 %)</td>
-          <td>${formatMontant(0)}</td>
-        </tr>
-        <tr class="total-final">
-          <td>Total TTC</td>
-          <td>${formatMontant(totalHT)}</td>
-        </tr>
+        <tr><td>Total HT</td><td>${formatMontant(totalHT)}</td></tr>
+        <tr><td>TVA 0 % (art. 293 B CGI)</td><td>${formatMontant(0)}</td></tr>
+        <tr class="total-final"><td>Total TTC à payer</td><td>${formatMontant(totalHT)}</td></tr>
       </table>
     </div>
 
-    <div class="devis-mention">
-      TVA non applicable — article 293 B du CGI (micro-entreprise en franchise en base de TVA).
-    </div>
-
-    <div class="devis-conditions">
-      <strong>Validité du devis :</strong> ${state.validite} jours à compter de la date d'émission.
-      ${state.notes ? `<br><br>${escapeHtml(state.notes)}` : ''}
-    </div>
-
-    <div class="devis-signature">
-      <div class="signature-block">
-        <div class="title">Bon pour accord</div>
-        <div class="line">Date :</div>
-        <div class="signature-space"></div>
+    <div class="devis-bas">
+      <div class="devis-mentions">
+        <strong>TVA non applicable — art. 293 B du CGI</strong> (franchise en base de TVA, micro-entreprise).
+        Devis établi en deux exemplaires — un pour le client, un pour le prestataire.
+        ${EMETTEUR.assureur ? `Assurance RC Pro : ${escapeHtml(EMETTEUR.assureur)} — ${escapeHtml(EMETTEUR.numPolice)} — couverture ${escapeHtml(EMETTEUR.couvertureGeo)}.` : ''}
       </div>
-      <div class="signature-block">
-        <div class="title">Signature du client</div>
-        <div class="line">Précédée de la mention « Bon pour accord »</div>
-        <div class="signature-space"></div>
+
+      <div class="devis-paiement">
+        <div class="paiement-block">
+          <h4>Modalités de paiement</h4>
+          <p>${escapeHtml(state.paiement || 'Virement bancaire à réception de facture.')}<br>
+          <strong>IBAN :</strong> ${escapeHtml(EMETTEUR.iban)}<br>
+          <strong>BIC :</strong> ${escapeHtml(EMETTEUR.bic)}${EMETTEUR.banque ? ' — ' + escapeHtml(EMETTEUR.banque) : ''}</p>
+        </div>
+        <div class="paiement-block">
+          <h4>Délai d'exécution</h4>
+          <p>${escapeHtml(state.delai || 'À définir à l\'acceptation du devis.')}</p>
+          ${state.notes ? `<h4 style="margin-top:0.4rem;">Notes</h4><p>${escapeHtml(state.notes)}</p>` : ''}
+        </div>
+      </div>
+
+      <div class="devis-signature">
+        <div class="signature-block">
+          <div class="title">Bon pour accord</div>
+          <div class="line">Date :</div>
+          <div class="signature-space"></div>
+        </div>
+        <div class="signature-block">
+          <div class="title">Signature du client</div>
+          <div class="line">Précédée de la mention manuscrite « Bon pour accord »</div>
+          <div class="signature-space"></div>
+        </div>
+      </div>
+
+      <div class="devis-footer">
+        ${EMETTEUR.societe} — ${EMETTEUR.nom} · ${EMETTEUR.adresse.replace('\n', ' · ')} · SIRET ${formatSiret(EMETTEUR.siret)} · ${EMETTEUR.email} · ${EMETTEUR.telephone}<br>
+        Conditions générales détaillées au verso — page 2.
       </div>
     </div>
+  `;
 
-    <div class="devis-footer">
-      ${EMETTEUR.societe} · ${EMETTEUR.nom} · ${EMETTEUR.adresse.replace('\n', ' · ')} · SIRET ${formatSiret(EMETTEUR.siret)} · ${EMETTEUR.email}
+  // ===== PAGE 2 : CGV =====
+  document.getElementById('devis-page-2').innerHTML = `
+    <div class="cgv">
+      <div class="cgv-header">Devis ${escapeHtml(state.numero)} — Page 2/2</div>
+      <h2>Conditions générales de prestation</h2>
+
+      <h3>1. Objet</h3>
+      <p>Les présentes conditions générales de prestation (ci-après « CGP ») régissent les rapports contractuels entre ${EMETTEUR.nom}, exerçant sous l'enseigne ${EMETTEUR.societe} (${EMETTEUR.formeJuridique}), et le client identifié au recto (ci-après « le Client »). Elles s'appliquent à toute prestation de conception d'espaces intérieurs, visualisation 3D, plans techniques ou tout autre service proposé par le Prestataire.</p>
+
+      <h3>2. Devis et commande</h3>
+      <p>Le présent devis est valable ${state.validite} jours à compter de sa date d'émission. Toute prestation fait l'objet d'un devis préalable, accepté et signé par le Client avec la mention manuscrite « Bon pour accord » et la date. L'acceptation du devis vaut commande ferme et acceptation sans réserve des présentes CGP.</p>
+
+      <h3>3. Prix et modalités de paiement</h3>
+      <p>Les prix sont exprimés en euros, hors taxes. En application de l'article 293 B du CGI, la TVA n'est pas applicable (franchise en base). Sauf accord contraire, les modalités de paiement sont : ${escapeHtml(state.paiement || 'virement bancaire à réception de facture').toLowerCase()}.</p>
+      <p>IBAN : ${escapeHtml(EMETTEUR.iban)} — BIC : ${escapeHtml(EMETTEUR.bic)}${EMETTEUR.banque ? ' (' + escapeHtml(EMETTEUR.banque) + ')' : ''}.</p>
+
+      <h3>4. Retard de paiement</h3>
+      <p>En cas de non-paiement à échéance, des pénalités de retard sont dues de plein droit et sans mise en demeure préalable, au taux annuel équivalent à trois fois le taux d'intérêt légal en vigueur. En sus, une indemnité forfaitaire de recouvrement de <strong>40 €</strong> est due (art. L. 441-10 du code de commerce), sans préjudice de toute autre indemnité complémentaire justifiée par les frais de recouvrement engagés.</p>
+      <p>Aucun escompte n'est accordé pour paiement anticipé.</p>
+
+      <h3>5. Exécution des prestations</h3>
+      <p>Le délai d'exécution indiqué au recto est donné à titre indicatif. Les délais courent à compter de la réception par le Prestataire de tous les éléments nécessaires à la réalisation de la mission (documents, plans, cahier des charges, réponses aux demandes). Aucun dépassement de délai imputable au retard de fourniture d'éléments par le Client ne pourra engager la responsabilité du Prestataire.</p>
+
+      <h3>6. Propriété intellectuelle</h3>
+      <p>Les études, plans, visuels 3D, croquis et documents produits par le Prestataire restent sa propriété intellectuelle jusqu'au paiement intégral du prix. À l'issue du règlement complet, une cession d'usage est accordée au Client dans le cadre du projet objet du devis. Toute réutilisation, reproduction ou diffusion à d'autres fins nécessite l'accord écrit préalable du Prestataire.</p>
+      <p>Le Prestataire se réserve le droit d'utiliser les visuels et rendus du projet réalisé à des fins de promotion de son activité (portfolio, réseaux sociaux, site web) sauf mention contraire expresse du Client.</p>
+
+      <h3>7. Confidentialité</h3>
+      <p>Le Prestataire s'engage à préserver la confidentialité des informations, documents et données transmis par le Client dans le cadre de la mission. Il s'interdit de les divulguer à des tiers sans l'accord préalable du Client, hors sous-traitants nécessaires à la bonne exécution de la mission.</p>
+
+      <h3>8. Modifications et prestations complémentaires</h3>
+      <p>Toute modification substantielle du programme, du périmètre ou du calendrier après acceptation du devis fera l'objet d'un avenant chiffré et signé. Les prestations non prévues au devis initial (visites supplémentaires, refontes majeures, itérations au-delà du raisonnable, plans supplémentaires) seront facturées en sus, sur la base d'un taux horaire ou d'un devis complémentaire à convenir.</p>
+
+      <h3>9. Responsabilité</h3>
+      <p>Le Prestataire est tenu à une obligation de moyens et non de résultat. Sa responsabilité ne saurait être engagée pour tout dommage résultant d'une utilisation non conforme des livrables, d'une décision de tiers (maître d'ouvrage, artisans, entreprises) ou d'une modification apportée aux documents sans son accord.
+      ${EMETTEUR.assureur ? `Le Prestataire est couvert par une assurance responsabilité civile professionnelle souscrite auprès de ${escapeHtml(EMETTEUR.assureur)} (${escapeHtml(EMETTEUR.numPolice)}), couverture géographique : ${escapeHtml(EMETTEUR.couvertureGeo)}.` : ''}</p>
+
+      <h3>10. Résiliation</h3>
+      <p>En cas de manquement grave d'une partie à ses obligations, le contrat pourra être résilié de plein droit par l'autre partie, quinze (15) jours après une mise en demeure restée sans effet. Les prestations réalisées jusqu'à la date de résiliation restent dues.</p>
+
+      <h3>11. Force majeure</h3>
+      <p>Aucune des parties ne pourra être tenue pour responsable de l'inexécution ou du retard dans l'exécution de ses obligations en cas de force majeure au sens de l'article 1218 du Code civil.</p>
+
+      <h3>12. Droit applicable et litiges</h3>
+      <p>Les présentes CGP sont soumises au droit français. En cas de litige, les parties s'efforceront de trouver une solution amiable préalablement à toute action judiciaire. À défaut, le tribunal compétent sera celui du ressort du siège du Prestataire.</p>
+
+      <h3>13. Médiation de la consommation (clients particuliers)</h3>
+      <p>Conformément à l'article L. 612-1 du Code de la consommation, tout client particulier a la possibilité, en cas de litige, de recourir gratuitement au service de médiation de la consommation. Le Prestataire adhère à un service de médiation dont les coordonnées sont communiquées sur demande.</p>
+
+      <div style="margin-top:1.2rem; padding-top:0.8rem; border-top:1px solid #eee; font-size:0.72rem; color:#999; text-align:center;">
+        ${EMETTEUR.societe} — ${EMETTEUR.nom} · ${EMETTEUR.adresse.replace('\n', ' · ')} · SIRET ${formatSiret(EMETTEUR.siret)}
+      </div>
     </div>
   `;
 }
 
 // ============================================================
-// PERSISTANCE — localStorage
+// PERSISTANCE
 // ============================================================
 function saveDevis() {
   syncFromForm();
@@ -876,9 +1000,7 @@ function saveDevis() {
   incrementCounter(state.numero);
   showToast('Devis sauvegardé ✓');
 }
-
 function loadCurrentDevis() {
-  // Charge le dernier devis en cours de travail (draft)
   const draft = localStorage.getItem('stm-devis-draft');
   if (draft) {
     try {
@@ -891,23 +1013,23 @@ function loadCurrentDevis() {
   }
   return false;
 }
-
-// Auto-save draft à chaque modif
 function autoSaveDraft() {
   syncFromForm();
   localStorage.setItem('stm-devis-draft', JSON.stringify(state));
 }
-
 function resetDevis() {
   if (!confirm('Créer un nouveau devis ? Le devis en cours sera perdu si non sauvegardé.')) return;
   state = {
     numero: nextDevisNumber(),
     date: new Date().toISOString().slice(0, 10),
-    client: { nom: '', adresse: '', adresse2: '', email: '', tel: '' },
+    validite: 30,
+    client: { nom: '', adresse: '', adresse2: '', siret: '', email: '', tel: '' },
     objet: '',
     projet: '',
+    lieu: '',
     lignes: [],
-    validite: 30,
+    paiement: '',
+    delai: '',
     notes: ''
   };
   localStorage.removeItem('stm-devis-draft');
@@ -915,7 +1037,6 @@ function resetDevis() {
   renderLignesEditor();
   render();
 }
-
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -924,46 +1045,39 @@ function showToast(msg) {
 }
 
 // ============================================================
-// INIT — au chargement (après auth)
+// INIT
 // ============================================================
 function initDevis() {
-  // Charge draft ou init avec devis exemple HMNOP
   if (!loadCurrentDevis()) {
     state = {
       numero: nextDevisNumber(),
       date: new Date().toISOString().slice(0, 10),
-      client: {
-        nom: 'Cabinet HMNOP',
-        adresse: '',
-        adresse2: '',
-        email: '',
-        tel: ''
-      },
+      validite: 30,
+      client: { nom: 'Cabinet HMNOP', adresse: '', adresse2: '', siret: '', email: '', tel: '' },
       objet: 'Sous-traitance — Conception & Visualisation intérieure',
       projet: 'Rénovation complète + surélévation — 160 m²',
+      lieu: '',
       lignes: [
-        { titre: 'Conception aménagement intérieur', description: "Plans d'implantation de toutes les pièces, zoning, cotations — approche globale du projet intérieur.", montant: 1100 },
-        { titre: 'Détails techniques', description: 'Coupes, élévations et détails sur les éléments clés (salles de bain, escalier, surélévation, points singuliers).', montant: 850 },
-        { titre: 'Visualisation 3D (5 à 10 vues)', description: "Perspectives 3D pour valider les volumes et les ambiances. Outil de communication avec le client final et l'archi.", montant: 550 },
-        { titre: 'Dossier menuiseries', description: "Plans d'agencement complets à destination du menuisier : dressings, meubles sur mesure, rangements intégrés. Document technique transmissible directement à l'artisan.", montant: 1000 }
+        { titre: 'Conception aménagement intérieur', description: "Plans d'implantation de toutes les pièces, zoning, cotations — approche globale du projet intérieur.", quantite: 1, unite: 'forfait', prixUnitaire: 1100 },
+        { titre: 'Détails techniques', description: 'Coupes, élévations et détails sur les éléments clés (salles de bain, escalier, surélévation, points singuliers).', quantite: 1, unite: 'forfait', prixUnitaire: 850 },
+        { titre: 'Visualisation 3D (5 à 10 vues)', description: "Perspectives 3D pour valider les volumes et les ambiances. Outil de communication avec le client final et l'archi.", quantite: 1, unite: 'forfait', prixUnitaire: 550 },
+        { titre: 'Dossier menuiseries', description: "Plans d'agencement complets à destination du menuisier : dressings, meubles sur mesure, rangements intégrés. Document technique transmissible directement à l'artisan.", quantite: 1, unite: 'forfait', prixUnitaire: 1000 }
       ],
-      validite: 30,
+      paiement: '30 % à la commande (soit 1 050 € HT) — solde à la livraison des documents. Virement bancaire.',
+      delai: '15 à 20 jours ouvrés répartis sur environ 2 mois à compter de l\'acceptation du devis.',
       notes: ''
     };
     syncToForm();
     renderLignesEditor();
     render();
   }
-  // Auto-save draft à chaque changement
-  document.querySelectorAll('input, textarea').forEach(el => {
+  document.querySelectorAll('input, textarea, select').forEach(el => {
     el.addEventListener('input', autoSaveDraft);
+    el.addEventListener('change', autoSaveDraft);
   });
 }
 
-// Init si déjà authentifié
-if (sessionStorage.getItem('stm-auth') === '1') {
-  initDevis();
-}
+if (sessionStorage.getItem('stm-auth') === '1') { initDevis(); }
 </script>
 
 </body>
