@@ -147,9 +147,10 @@
         font-size: 16px;
       }
 
-      /* Preview A4 scaled pour tenir sur mobile */
+      /* Preview A4 scaled pour tenir sur mobile
+         .exporting = classe posée pendant l'export PDF → annule le zoom pour éviter le double rendu */
       .preview-wrapper { display: block; overflow: hidden; }
-      .devis-page {
+      .devis-page:not(.exporting) {
         zoom: 0.55;
         transform-origin: top left;
       }
@@ -159,11 +160,11 @@
       .topbar-logo { height: 22px; }
       .btn { padding: 0.4rem 0.55rem; font-size: 0.72rem; }
       .form-panel { padding: 1rem; }
-      .devis-page { zoom: 0.42; }
+      .devis-page:not(.exporting) { zoom: 0.42; }
     }
 
     @media (max-width: 380px) {
-      .devis-page { zoom: 0.36; }
+      .devis-page:not(.exporting) { zoom: 0.36; }
     }
     .form-panel h2 {
       font-size: 0.7rem;
@@ -1251,9 +1252,10 @@ async function exportPDF() {
 
     const element = document.getElementById('devis-page-1');
 
-    // Réduit les marges internes juste pour l'export (rendu preview inchangé)
+    // Réduit les marges internes juste pour l'export + désactive le zoom mobile
     const originalPadding = element.style.padding;
     element.style.padding = '8mm 8mm';
+    element.classList.add('exporting');
 
     // Capture ULTRA haute résolution (scale 3 = ~300 DPI, netteté proche du print)
     const canvas = await html2canvas(element, {
@@ -1293,9 +1295,12 @@ async function exportPDF() {
     console.error('Erreur export PDF :', err);
     alert('Erreur lors de la génération du PDF : ' + (err.message || err));
   } finally {
-    // Restaure le padding original du preview
+    // Restaure le padding et retire la classe exporting (rétablit le zoom mobile si applicable)
     const el = document.getElementById('devis-page-1');
-    if (el) el.style.padding = '';
+    if (el) {
+      el.style.padding = '';
+      el.classList.remove('exporting');
+    }
     btn.textContent = originalTxt;
     btn.disabled = false;
   }
