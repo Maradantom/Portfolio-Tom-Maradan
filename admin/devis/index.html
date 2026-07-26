@@ -431,7 +431,7 @@
     @media print {
       @page { size: A4; margin: 0; }
       html, body { background: #fff !important; height: auto !important; }
-      .topbar, .form-panel, .auth-gate, .save-toast { display: none !important; }
+      .topbar, .form-panel, .auth-gate, .save-toast, .modal-overlay { display: none !important; }
       .layout { display: block !important; padding: 0 !important; max-width: none !important; margin: 0 !important; }
       .preview-wrapper { display: block !important; gap: 0 !important; }
       .devis-page {
@@ -450,6 +450,91 @@
       }
       .devis-lignes thead th,
       .devis-totaux tr.total-final td { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+
+    /* ============================================================
+       MODAL — Liste des devis sauvegardés
+       ============================================================ */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: none;
+      align-items: center; justify-content: center;
+      z-index: 500;
+      padding: 2rem;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal-content {
+      background: #fff;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 680px;
+      max-height: 85vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .modal-header {
+      padding: 1rem 1.3rem;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-header h2 { font-size: 1rem; font-weight: 600; letter-spacing: 0.3px; }
+    .modal-close {
+      background: none; border: none;
+      font-size: 1.4rem; cursor: pointer;
+      color: #999; padding: 0 0.3rem;
+    }
+    .modal-close:hover { color: #111; }
+    .modal-body {
+      overflow-y: auto;
+      padding: 0.7rem;
+      flex: 1;
+    }
+    .modal-footer {
+      padding: 0.8rem 1.3rem;
+      border-top: 1px solid #eee;
+      display: flex;
+      gap: 0.5rem;
+      justify-content: space-between;
+      align-items: center;
+      background: #fafafa;
+    }
+    .modal-footer-info { font-size: 0.75rem; color: #999; }
+    .modal-footer-actions { display: flex; gap: 0.5rem; }
+    .devis-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7rem 0.9rem;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      margin-bottom: 0.4rem;
+      gap: 0.8rem;
+    }
+    .devis-row:hover { background: #fafafa; border-color: #ddd; }
+    .devis-row-info { flex: 1; min-width: 0; }
+    .devis-row-num { font-weight: 600; font-size: 0.88rem; }
+    .devis-row-meta { color: #666; font-size: 0.75rem; margin-top: 0.15rem; }
+    .devis-row-actions { display: flex; gap: 0.3rem; flex-shrink: 0; }
+    .devis-row-actions button {
+      padding: 0.35rem 0.7rem;
+      border: 1px solid #ddd;
+      background: #fff;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .devis-row-actions button:hover { background: #f5f5f5; border-color: #bbb; }
+    .devis-row-actions .del:hover { background: #fee; border-color: #f99; color: #c00; }
+    .empty-list {
+      text-align: center; color: #999;
+      padding: 2rem 1rem;
+      font-size: 0.85rem;
     }
 
     /* ============================================================
@@ -497,6 +582,7 @@
     <span class="topbar-title">Devis</span>
   </div>
   <div class="topbar-actions">
+    <button class="btn" onclick="openDevisList()">📁 Mes devis</button>
     <button class="btn btn-danger" onclick="resetDevis()">Nouveau</button>
     <button class="btn" onclick="saveDevis()">Sauvegarder</button>
     <button class="btn btn-primary" onclick="window.print()">Imprimer / PDF</button>
@@ -564,6 +650,27 @@
     <div class="devis-page" id="devis-page-1"></div>
   </div>
 
+</div>
+
+<!-- ============================================================
+     MODAL — Mes devis
+     ============================================================ -->
+<div class="modal-overlay" id="devis-list-modal" onclick="if(event.target===this) closeDevisList()">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>📁 Mes devis sauvegardés</h2>
+      <button class="modal-close" onclick="closeDevisList()">×</button>
+    </div>
+    <div class="modal-body" id="devis-list-body"></div>
+    <div class="modal-footer">
+      <div class="modal-footer-info">Stockés en local sur ton Mac (Safari)</div>
+      <div class="modal-footer-actions">
+        <input type="file" id="import-file" accept="application/json" style="display:none" onchange="importDevis(this.files)">
+        <button class="btn" onclick="document.getElementById('import-file').click()">Importer</button>
+        <button class="btn" onclick="exportAllDevis()">Exporter tout (JSON)</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="save-toast" id="toast">Devis sauvegardé ✓</div>
@@ -1070,6 +1177,141 @@ function showToast(msg) {
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 1800);
 }
+
+// ============================================================
+// LISTE DES DEVIS SAUVEGARDÉS
+// ============================================================
+function listSavedDevis() {
+  const keys = Object.keys(localStorage).filter(k =>
+    k.startsWith('stm-devis-') &&
+    k !== 'stm-devis-draft' &&
+    !k.startsWith('stm-devis-counter')
+  );
+  return keys.map(k => {
+    try { return { key: k, data: migrateState(JSON.parse(localStorage.getItem(k))) }; }
+    catch { return null; }
+  }).filter(Boolean).sort((a, b) => (b.data.numero || '').localeCompare(a.data.numero || ''));
+}
+
+function openDevisList() {
+  const devis = listSavedDevis();
+  const body = document.getElementById('devis-list-body');
+  if (devis.length === 0) {
+    body.innerHTML = `<div class="empty-list">Aucun devis sauvegardé.<br>Utilise le bouton "Sauvegarder" en haut pour enregistrer ton devis en cours.</div>`;
+  } else {
+    body.innerHTML = devis.map(d => {
+      const total = (d.data.lignes || []).reduce((s, l) => s + (l.quantite || 0) * (l.prixUnitaire || 0), 0);
+      const client = d.data.client?.nom || 'Sans client';
+      return `
+        <div class="devis-row">
+          <div class="devis-row-info">
+            <div class="devis-row-num">${escapeHtml(d.data.numero)}</div>
+            <div class="devis-row-meta">${formatDate(d.data.date)} · ${escapeHtml(client)} · ${formatMontant(total)} HT</div>
+          </div>
+          <div class="devis-row-actions">
+            <button onclick="loadSavedDevis('${d.key}')">Ouvrir</button>
+            <button onclick="duplicateDevis('${d.key}')">Dupliquer</button>
+            <button class="del" onclick="deleteSavedDevis('${d.key}')">Suppr.</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+  document.getElementById('devis-list-modal').classList.add('show');
+}
+
+function closeDevisList() {
+  document.getElementById('devis-list-modal').classList.remove('show');
+}
+
+function loadSavedDevis(key) {
+  try {
+    const data = migrateState(JSON.parse(localStorage.getItem(key)));
+    state = data;
+    localStorage.setItem('stm-devis-draft', JSON.stringify(state));
+    syncToForm();
+    renderLignesEditor();
+    render();
+    closeDevisList();
+    showToast(`Devis ${state.numero} ouvert ✓`);
+  } catch (e) {
+    alert('Impossible de charger ce devis.');
+  }
+}
+
+function duplicateDevis(key) {
+  try {
+    const data = migrateState(JSON.parse(localStorage.getItem(key)));
+    state = data;
+    state.numero = nextDevisNumber(); // nouveau numéro
+    state.date = new Date().toISOString().slice(0, 10);
+    localStorage.setItem('stm-devis-draft', JSON.stringify(state));
+    syncToForm();
+    renderLignesEditor();
+    render();
+    closeDevisList();
+    showToast(`Duplication en ${state.numero} ✓`);
+  } catch (e) {
+    alert('Impossible de dupliquer ce devis.');
+  }
+}
+
+function deleteSavedDevis(key) {
+  const numero = key.replace('stm-devis-', '');
+  if (!confirm(`Supprimer définitivement le devis ${numero} ?\n(Le PDF déjà exporté n'est pas concerné.)`)) return;
+  localStorage.removeItem(key);
+  openDevisList(); // refresh
+}
+
+function exportAllDevis() {
+  const devis = listSavedDevis();
+  if (devis.length === 0) { alert('Aucun devis à exporter.'); return; }
+  const payload = {
+    exported_at: new Date().toISOString(),
+    version: 1,
+    devis: {}
+  };
+  devis.forEach(d => { payload.devis[d.key] = d.data; });
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `studiotm-devis-backup-${new Date().toISOString().slice(0,10)}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('Export téléchargé ✓');
+}
+
+function importDevis(files) {
+  if (!files || !files[0]) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const payload = JSON.parse(e.target.result);
+      const devis = payload.devis || payload;
+      let count = 0;
+      Object.entries(devis).forEach(([k, v]) => {
+        if (k.startsWith('stm-devis-') && v && v.numero) {
+          localStorage.setItem(k, JSON.stringify(v));
+          count++;
+        }
+      });
+      openDevisList();
+      showToast(`${count} devis importé(s) ✓`);
+    } catch (err) {
+      alert('Fichier invalide ou format non reconnu.');
+    }
+  };
+  reader.readAsText(files[0]);
+  document.getElementById('import-file').value = ''; // reset
+}
+
+// Fermer le modal avec Échap
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeDevisList();
+});
 
 // ============================================================
 // INIT
