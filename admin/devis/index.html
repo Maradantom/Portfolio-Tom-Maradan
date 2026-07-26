@@ -374,6 +374,14 @@
     }
     .paiement-block p { color: #444; line-height: 1.5; }
 
+    .devis-merci {
+      text-align: center;
+      font-style: italic;
+      color: #555;
+      font-size: 0.78rem;
+      padding: 0.5rem 0 0.7rem;
+      line-height: 1.6;
+    }
     .devis-signature {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1023,6 +1031,11 @@ ${EMETTEUR.email} · ${EMETTEUR.telephone}</div>
         </div>
       </div>
 
+      <div class="devis-merci">
+        Je vous remercie de votre confiance.<br>
+        Pour toute question, n'hésitez pas à me contacter au ${EMETTEUR.telephone}.
+      </div>
+
       <div class="devis-signature">
         <div class="signature-block">
           <div class="title">Bon pour accord</div>
@@ -1037,7 +1050,8 @@ ${EMETTEUR.email} · ${EMETTEUR.telephone}</div>
       </div>
 
       <div class="devis-footer">
-        ${EMETTEUR.societe} — ${EMETTEUR.nom} · ${EMETTEUR.adresse.replace('\n', ' · ')} · SIRET ${formatSiret(EMETTEUR.siret)} · ${EMETTEUR.email} · ${EMETTEUR.telephone}<br>
+        ${EMETTEUR.societe} — ${EMETTEUR.nom} · ${EMETTEUR.adresse.replace('\n', ' · ')} · SIRET ${formatSiret(EMETTEUR.siret)}<br>
+        ${EMETTEUR.email} · ${EMETTEUR.telephone} · ${EMETTEUR.site}<br>
         Conditions générales de prestation disponibles sur simple demande.
       </div>
     </div>
