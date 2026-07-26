@@ -124,6 +124,47 @@
     @media (max-width: 900px) {
       .form-panel { position: static; max-height: none; }
     }
+
+    /* ============================================================
+       📱 RESPONSIVE MOBILE
+       ============================================================ */
+    @media (max-width: 900px) {
+      .layout { padding: 0.7rem; gap: 0.9rem; }
+
+      /* Topbar compact : cache titre, wrap boutons */
+      .topbar { padding: 0.6rem 0.8rem; flex-wrap: wrap; gap: 0.5rem; }
+      .topbar-title, .topbar-sep { display: none; }
+      .topbar-actions { flex-wrap: wrap; gap: 0.3rem; }
+      .btn { padding: 0.45rem 0.7rem; font-size: 0.75rem; }
+
+      /* Inputs 16px pour éviter le zoom auto iOS Safari */
+      .form-panel input,
+      .form-panel textarea,
+      .form-panel select,
+      .ligne-item input,
+      .ligne-item textarea,
+      .ligne-item select {
+        font-size: 16px;
+      }
+
+      /* Preview A4 scaled pour tenir sur mobile */
+      .preview-wrapper { display: block; overflow: hidden; }
+      .devis-page {
+        zoom: 0.55;
+        transform-origin: top left;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .topbar-logo { height: 22px; }
+      .btn { padding: 0.4rem 0.55rem; font-size: 0.72rem; }
+      .form-panel { padding: 1rem; }
+      .devis-page { zoom: 0.42; }
+    }
+
+    @media (max-width: 380px) {
+      .devis-page { zoom: 0.36; }
+    }
     .form-panel h2 {
       font-size: 0.7rem;
       font-weight: 600;
