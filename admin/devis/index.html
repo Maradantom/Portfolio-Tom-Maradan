@@ -430,23 +430,26 @@
        ============================================================ */
     @media print {
       @page { size: A4; margin: 0; }
-      html, body { background: #fff !important; }
+      html, body { background: #fff !important; height: auto !important; }
       .topbar, .form-panel, .auth-gate, .save-toast { display: none !important; }
-      .layout { display: block !important; padding: 0 !important; max-width: none !important; }
+      .layout { display: block !important; padding: 0 !important; max-width: none !important; margin: 0 !important; }
       .preview-wrapper { display: block !important; gap: 0 !important; }
       .devis-page {
         box-shadow: none !important;
         max-width: none !important;
         width: 100% !important;
-        min-height: 297mm !important;
-        page-break-after: always;
+        min-height: 0 !important;
+        height: auto !important;
+        page-break-after: avoid;
+        page-break-inside: avoid;
+        break-after: avoid;
+        break-inside: avoid;
+        padding: 10mm 12mm !important;
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
       }
-      .devis-page:last-child { page-break-after: auto; }
       .devis-lignes thead th,
-      .devis-totaux tr.total-final td,
-      .devis-header { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .devis-totaux tr.total-final td { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
     }
 
     /* ============================================================
@@ -519,9 +522,9 @@
     <h2>Client (destinataire)</h2>
     <label>Nom / Société</label>
     <input type="text" id="f-client-nom" oninput="render()" placeholder="Cabinet HMNOP">
-    <label>Adresse (tape pour rechercher)</label>
+    <label>Adresse (tape pour rechercher — rue sur la 1ère ligne, CP+ville sur la 2ème)</label>
     <div class="autocomplete-wrap">
-      <input type="text" id="f-client-adresse" oninput="onAdresseInput(this.value)" autocomplete="off" placeholder="10 rue de la République, Lyon...">
+      <textarea id="f-client-adresse" oninput="onAdresseInput(this.value)" autocomplete="off" placeholder="10 rue de la République&#10;69000 Lyon" rows="2"></textarea>
       <div class="autocomplete-list" id="adresse-suggestions" style="display:none;"></div>
     </div>
     <label>Complément d'adresse (optionnel)</label>
@@ -556,10 +559,9 @@
 
   </div>
 
-  <!-- ===== PREVIEW PANEL (page 1 = devis, page 2 = CGV) ===== -->
+  <!-- ===== PREVIEW PANEL (1 page A4) ===== -->
   <div class="preview-wrapper">
     <div class="devis-page" id="devis-page-1"></div>
-    <div class="devis-page page-2" id="devis-page-2"></div>
   </div>
 
 </div>
@@ -601,23 +603,21 @@ if (sessionStorage.getItem('stm-auth') === '1') {
 // EMETTEUR (infos StudioTM — modifie ici pour changer partout)
 // ============================================================
 const EMETTEUR = {
-  nom: 'Tom Maradan',
+  nom: 'Tom Maradan (EI)',       // mention EI obligatoire depuis 2022 (Décret 2022-725)
   societe: 'StudioTM',
-  formeJuridique: 'Micro-entrepreneur (EI)',
   adresse: '6 chemin des Ardillaux\n69720 Saint-Bonnet-de-Mure',
   siret: '99180546600018',
-  ape: '7111Z', // à ajuster : code APE architecture d'intérieur
+  ape: '7410Z',                  // Activités spécialisées de design
   email: 'contact@studiotm.fr',
   telephone: '+33 6 72 25 67 83',
   site: 'studiotm.fr',
   // À COMPLÉTER PAR TOM :
-  iban: 'FR76 __________________________', // remplace par ton IBAN
-  bic: '__________', // remplace par ton BIC
+  iban: 'FR76 __________________________',
+  bic: '__________',
   banque: 'Nom de ta banque',
-  // Assurance : obligatoire pour la RC pro si l'activité l'exige
-  assureur: '',       // ex: 'MAAF Pro'
-  numPolice: '',      // ex: 'N° 12345678'
-  couvertureGeo: 'France' // couverture géographique
+  assureur: '',
+  numPolice: '',
+  couvertureGeo: 'France'
 };
 
 // ============================================================
@@ -851,8 +851,7 @@ function render() {
       <div class="party">
         <h3>Émetteur — Prestataire</h3>
         <div class="name">${EMETTEUR.nom} — ${EMETTEUR.societe}</div>
-        <div class="info">${EMETTEUR.formeJuridique}
-${EMETTEUR.adresse}
+        <div class="info">${EMETTEUR.adresse}
 SIRET : ${formatSiret(EMETTEUR.siret)}${EMETTEUR.ape ? ' — APE ' + EMETTEUR.ape : ''}
 ${EMETTEUR.email} · ${EMETTEUR.telephone}</div>
       </div>
@@ -929,13 +928,13 @@ ${EMETTEUR.email} · ${EMETTEUR.telephone}</div>
 
       <div class="devis-footer">
         ${EMETTEUR.societe} — ${EMETTEUR.nom} · ${EMETTEUR.adresse.replace('\n', ' · ')} · SIRET ${formatSiret(EMETTEUR.siret)} · ${EMETTEUR.email} · ${EMETTEUR.telephone}<br>
-        Conditions générales détaillées au verso — page 2.
+        Conditions générales de prestation disponibles sur simple demande.
       </div>
     </div>
   `;
 
-  // ===== PAGE 2 : CGV =====
-  document.getElementById('devis-page-2').innerHTML = `
+  // Ancien bloc page 2 CGV désactivé (non obligatoire en B2B, art. L. 441-1 code de commerce)
+  const _unusedCGV = `
     <div class="cgv">
       <div class="cgv-header">Devis ${escapeHtml(state.numero)} — Page 2/2</div>
       <h2>Conditions générales de prestation</h2>
@@ -1000,11 +999,39 @@ function saveDevis() {
   incrementCounter(state.numero);
   showToast('Devis sauvegardé ✓');
 }
+function migrateState(s) {
+  // Migration ancien format ligne (montant seul) -> nouveau (quantite/unite/prixUnitaire)
+  if (s && Array.isArray(s.lignes)) {
+    s.lignes = s.lignes.map(l => {
+      if (l.quantite === undefined && l.prixUnitaire === undefined && l.montant !== undefined) {
+        return { titre: l.titre || '', description: l.description || '', quantite: 1, unite: 'forfait', prixUnitaire: l.montant };
+      }
+      return {
+        titre: l.titre || '',
+        description: l.description || '',
+        quantite: l.quantite != null ? l.quantite : 1,
+        unite: l.unite || 'forfait',
+        prixUnitaire: l.prixUnitaire != null ? l.prixUnitaire : 0
+      };
+    });
+  }
+  if (s && s.client) {
+    s.client.adresse2 = s.client.adresse2 || '';
+    s.client.siret = s.client.siret || '';
+    s.client.email = s.client.email || s.client.contact || '';
+    s.client.tel = s.client.tel || '';
+  }
+  s.lieu = s.lieu || '';
+  s.paiement = s.paiement || '';
+  s.delai = s.delai || '';
+  return s;
+}
+
 function loadCurrentDevis() {
   const draft = localStorage.getItem('stm-devis-draft');
   if (draft) {
     try {
-      state = JSON.parse(draft);
+      state = migrateState(JSON.parse(draft));
       syncToForm();
       renderLignesEditor();
       render();
