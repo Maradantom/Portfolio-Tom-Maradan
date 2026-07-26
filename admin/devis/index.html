@@ -9,6 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- Librairies pour export PDF (single page A4 garanti) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
   <style>
     /* ============================================================
        RESET + BASE
@@ -585,7 +589,7 @@
     <button class="btn" onclick="openDevisList()">📁 Mes devis</button>
     <button class="btn btn-danger" onclick="resetDevis()">Nouveau</button>
     <button class="btn" onclick="saveDevis()">Sauvegarder</button>
-    <button class="btn btn-primary" onclick="window.print()">Imprimer / PDF</button>
+    <button class="btn btn-primary" onclick="exportPDF()" id="btn-export">Exporter PDF</button>
   </div>
 </div>
 
@@ -1176,6 +1180,63 @@ function showToast(msg) {
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+// ============================================================
+// EXPORT PDF — single page A4 garanti (html2canvas + jsPDF)
+// ============================================================
+async function exportPDF() {
+  const btn = document.getElementById('btn-export');
+  const originalTxt = btn.textContent;
+  btn.textContent = 'Génération…';
+  btn.disabled = true;
+
+  try {
+    // Sauvegarde auto avant export
+    autoSaveDraft();
+
+    const element = document.getElementById('devis-page-1');
+
+    // Capture haute résolution
+    const canvas = await html2canvas(element, {
+      scale: 2,
+      useCORS: true,
+      allowTaint: false,
+      backgroundColor: '#ffffff',
+      logging: false,
+      windowWidth: element.scrollWidth,
+      windowHeight: element.scrollHeight
+    });
+
+    // Init jsPDF format A4 portrait
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+    const pageW = 210, pageH = 297;
+
+    // Calcul du ratio pour tenir sur 1 page
+    const imgW = pageW;
+    const imgH = (canvas.height * pageW) / canvas.width;
+
+    if (imgH <= pageH) {
+      // Contenu tient en largeur → on colle en haut
+      pdf.addImage(canvas.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, imgW, imgH);
+    } else {
+      // Contenu trop haut → on redimensionne pour tenir en hauteur (centré horizontalement)
+      const scaledW = (canvas.width * pageH) / canvas.height;
+      const xOffset = (pageW - scaledW) / 2;
+      pdf.addImage(canvas.toDataURL('image/jpeg', 0.95), 'JPEG', xOffset, 0, scaledW, pageH);
+    }
+
+    const filename = `Devis-${state.numero || 'brouillon'}.pdf`;
+    pdf.save(filename);
+    showToast(`${filename} téléchargé ✓`);
+  } catch (err) {
+    console.error('Erreur export PDF :', err);
+    alert('Erreur lors de la génération du PDF : ' + (err.message || err));
+  } finally {
+    btn.textContent = originalTxt;
+    btn.disabled = false;
+  }
 }
 
 // ============================================================
