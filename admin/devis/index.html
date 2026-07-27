@@ -416,6 +416,17 @@
     }
     .paiement-block p { color: #444; line-height: 1.5; }
 
+    .devis-disclaimer {
+      font-size: 0.7rem;
+      color: #666;
+      line-height: 1.55;
+      text-align: justify;
+      background: #fafafa;
+      padding: 0.55rem 0.75rem;
+      border-radius: 4px;
+      border-left: 2px solid #ddd;
+      margin-top: 0.5rem;
+    }
     .devis-merci {
       text-align: center;
       font-style: italic;
@@ -1073,9 +1084,13 @@ ${EMETTEUR.email} · ${EMETTEUR.telephone}</div>
         </div>
       </div>
 
+      <div class="devis-disclaimer">
+        Les prestations de ${EMETTEUR.societe} se limitent à la conception et à la production de documents graphiques. ${EMETTEUR.societe} ne saurait être tenu responsable de l'interprétation, de l'exécution ou de la conformité des travaux réalisés par des tiers sur la base des documents livrés. Toute modification apportée aux documents après livraison engage la seule responsabilité du donneur d'ordre.
+      </div>
+
       <div class="devis-merci">
         Je vous remercie de votre confiance.<br>
-        Pour toute question, n'hésitez pas à me contacter au ${EMETTEUR.telephone}.
+        Pour toute question, n'hésitez pas à me contacter au ${EMETTEUR.telephone} — ${EMETTEUR.email}.
       </div>
 
       <div class="devis-signature">
