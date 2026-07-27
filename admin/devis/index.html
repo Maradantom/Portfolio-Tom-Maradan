@@ -750,6 +750,63 @@
     <label>Couverture géographique</label>
     <input type="text" id="f-em-geo" oninput="renderAll()" placeholder="France">
 
+    <h2>📝 Textes & libellés du devis</h2>
+    <label>Tagline sous le logo</label>
+    <input type="text" id="f-tx-tagline" oninput="renderAll()">
+
+    <label>Libellé "Émetteur"</label>
+    <input type="text" id="f-tx-labelEmetteur" oninput="renderAll()">
+    <label>Libellé "Destinataire"</label>
+    <input type="text" id="f-tx-labelDestinataire" oninput="renderAll()">
+    <label>Libellé "Objet"</label>
+    <input type="text" id="f-tx-labelObjet" oninput="renderAll()">
+
+    <label>Colonnes du tableau</label>
+    <div class="form-row-3">
+      <input type="text" id="f-tx-colNum" oninput="renderAll()" placeholder="#" title="Colonne #">
+      <input type="text" id="f-tx-colPrestation" oninput="renderAll()" title="Colonne Prestation">
+      <input type="text" id="f-tx-colQte" oninput="renderAll()" title="Colonne Qté">
+    </div>
+    <div class="form-row-3">
+      <input type="text" id="f-tx-colUnite" oninput="renderAll()" title="Colonne Unité">
+      <input type="text" id="f-tx-colPu" oninput="renderAll()" title="Colonne PU">
+      <input type="text" id="f-tx-colTotal" oninput="renderAll()" title="Colonne Total">
+    </div>
+
+    <label>Labels totaux</label>
+    <div class="form-row-3">
+      <input type="text" id="f-tx-labelTotalHT" oninput="renderAll()" title="Label Total HT">
+      <input type="text" id="f-tx-labelTva" oninput="renderAll()" title="Label TVA">
+      <input type="text" id="f-tx-labelTotalTTC" oninput="renderAll()" title="Label Total TTC">
+    </div>
+
+    <label>Mention TVA — titre (en gras)</label>
+    <input type="text" id="f-tx-mentionTvaTitre" oninput="renderAll()">
+    <label>Mention TVA — suite</label>
+    <textarea id="f-tx-mentionTvaSuite" oninput="renderAll()" rows="2"></textarea>
+
+    <label>Label "Modalités de paiement"</label>
+    <input type="text" id="f-tx-labelPaiement" oninput="renderAll()">
+    <label>Label "Délai d'exécution"</label>
+    <input type="text" id="f-tx-labelDelai" oninput="renderAll()">
+    <label>Label "Notes"</label>
+    <input type="text" id="f-tx-labelNotes" oninput="renderAll()">
+
+    <label>Bloc signature — "Bon pour accord"</label>
+    <input type="text" id="f-tx-labelSignatureAccord" oninput="renderAll()">
+    <label>Bloc signature — "Date :"</label>
+    <input type="text" id="f-tx-labelSignatureDate" oninput="renderAll()">
+    <label>Bloc signature — "Signature du client"</label>
+    <input type="text" id="f-tx-labelSignatureClient" oninput="renderAll()">
+    <label>Bloc signature — mention</label>
+    <input type="text" id="f-tx-labelSignatureMention" oninput="renderAll()">
+
+    <label>Ligne contact bas de devis ({tel} et {email} = variables)</label>
+    <textarea id="f-tx-contactTemplate" oninput="renderAll()" rows="2"></textarea>
+
+    <label>Mention CGV pied de page</label>
+    <input type="text" id="f-tx-cgvMention" oninput="renderAll()">
+
   </div>
 
   <!-- ===== PREVIEW PANEL (1 page A4) ===== -->
@@ -843,6 +900,43 @@ function saveEmetteur() { localStorage.setItem('stm-emetteur', JSON.stringify(EM
 
 const DISCLAIMER_DEFAULT = "Les prestations de StudioTM se limitent à la conception et à la production de documents graphiques. StudioTM ne saurait être tenu responsable de l'interprétation, de l'exécution ou de la conformité des travaux réalisés par des tiers sur la base des documents livrés. Toute modification apportée aux documents après livraison engage la seule responsabilité du donneur d'ordre.";
 
+// ============================================================
+// TEXTES — Tous les libellés/mentions du devis (100% éditables)
+// ============================================================
+const TEXTES_DEFAULT = {
+  tagline: "Architecture d'intérieur · Lyon",
+  labelEmetteur: "Émetteur — Prestataire",
+  labelDestinataire: "Destinataire — Client",
+  labelObjet: "Objet",
+  colNum: "#",
+  colPrestation: "Prestation",
+  colQte: "Qté",
+  colUnite: "Unité",
+  colPu: "PU HT",
+  colTotal: "Total HT",
+  labelTotalHT: "Total HT",
+  labelTva: "TVA 0 % (art. 293 B CGI)",
+  labelTotalTTC: "Total TTC à payer",
+  mentionTvaTitre: "TVA non applicable — art. 293 B du CGI",
+  mentionTvaSuite: "(franchise en base de TVA, micro-entreprise). Devis établi en deux exemplaires — un pour le client, un pour le prestataire.",
+  labelPaiement: "Modalités de paiement",
+  labelDelai: "Délai d'exécution",
+  labelNotes: "Notes",
+  labelSignatureAccord: "Bon pour accord",
+  labelSignatureDate: "Date :",
+  labelSignatureClient: "Signature du client",
+  labelSignatureMention: "Précédée de la mention manuscrite « Bon pour accord »",
+  contactTemplate: "Pour toute question, n'hésitez pas à me contacter au {tel} — {email}.",
+  cgvMention: "Conditions générales de prestation disponibles sur simple demande."
+};
+
+let TEXTES = { ...TEXTES_DEFAULT };
+try {
+  const saved = JSON.parse(localStorage.getItem('stm-textes') || '{}');
+  TEXTES = { ...TEXTES_DEFAULT, ...saved };
+} catch (e) {}
+function saveTextes() { localStorage.setItem('stm-textes', JSON.stringify(TEXTES)); }
+
 // Sync form → EMETTEUR + sauvegarde + re-render
 function renderAll() {
   const g = (id) => document.getElementById(id).value;
@@ -861,6 +955,12 @@ function renderAll() {
   EMETTEUR.numPolice = g('f-em-police');
   EMETTEUR.couvertureGeo = g('f-em-geo');
   saveEmetteur();
+  // TEXTES
+  Object.keys(TEXTES_DEFAULT).forEach(k => {
+    const el = document.getElementById('f-tx-' + k);
+    if (el) TEXTES[k] = el.value;
+  });
+  saveTextes();
   render();
 }
 
@@ -880,6 +980,7 @@ function loadEmetteurToForm() {
   s('f-em-assureur', EMETTEUR.assureur);
   s('f-em-police', EMETTEUR.numPolice);
   s('f-em-geo', EMETTEUR.couvertureGeo);
+  Object.keys(TEXTES_DEFAULT).forEach(k => s('f-tx-' + k, TEXTES[k]));
 }
 
 // ============================================================
@@ -1098,12 +1199,16 @@ function render() {
     `;
   }).join('');
 
-  // ===== PAGE 1 : DEVIS =====
+  // ===== PAGE 1 : DEVIS (tous les textes viennent de TEXTES pour être 100% éditables) =====
+  const contactLine = TEXTES.contactTemplate
+    .replace('{tel}', EMETTEUR.telephone)
+    .replace('{email}', EMETTEUR.email);
+
   document.getElementById('devis-page-1').innerHTML = `
     <div class="devis-header">
       <div class="devis-brand">
         <img src="/photosite/logo/Noirlong.webp" alt="StudioTM">
-        <p>Architecture d'intérieur · Lyon</p>
+        <p>${escapeHtml(TEXTES.tagline)}</p>
       </div>
       <div class="devis-meta">
         <div class="num">Devis ${escapeHtml(state.numero)}</div>
@@ -1114,21 +1219,21 @@ function render() {
 
     <div class="devis-parties">
       <div class="party">
-        <h3>Émetteur — Prestataire</h3>
-        <div class="name">${EMETTEUR.nom} — ${EMETTEUR.societe}</div>
-        <div class="info">${EMETTEUR.adresse}
-SIRET : ${formatSiret(EMETTEUR.siret)}${EMETTEUR.ape ? ' — APE ' + EMETTEUR.ape : ''}
-${EMETTEUR.email} · ${EMETTEUR.telephone}</div>
+        <h3>${escapeHtml(TEXTES.labelEmetteur)}</h3>
+        <div class="name">${escapeHtml(EMETTEUR.nom)} — ${escapeHtml(EMETTEUR.societe)}</div>
+        <div class="info">${escapeHtml(EMETTEUR.adresse)}
+SIRET : ${formatSiret(EMETTEUR.siret)}${EMETTEUR.ape ? ' — APE ' + escapeHtml(EMETTEUR.ape) : ''}
+${escapeHtml(EMETTEUR.email)} · ${escapeHtml(EMETTEUR.telephone)}</div>
       </div>
       <div class="party">
-        <h3>Destinataire — Client</h3>
+        <h3>${escapeHtml(TEXTES.labelDestinataire)}</h3>
         <div class="name">${escapeHtml(state.client.nom || '—')}</div>
         <div class="info">${escapeHtml(state.client.adresse || '')}${state.client.adresse2 ? '\n' + escapeHtml(state.client.adresse2) : ''}${state.client.siret ? '\nSIRET : ' + escapeHtml(state.client.siret) : ''}${state.client.email ? '\n' + escapeHtml(state.client.email) : ''}${state.client.tel ? ' · ' + escapeHtml(state.client.tel) : ''}</div>
       </div>
     </div>
 
     <div class="devis-objet">
-      <div class="label">Objet</div>
+      <div class="label">${escapeHtml(TEXTES.labelObjet)}</div>
       <div class="value">${escapeHtml(state.objet || '—')}</div>
       ${state.projet ? `<div class="projet">${escapeHtml(state.projet)}${state.lieu ? ' — ' + escapeHtml(state.lieu) : ''}</div>` : ''}
     </div>
@@ -1136,12 +1241,12 @@ ${EMETTEUR.email} · ${EMETTEUR.telephone}</div>
     <table class="devis-lignes">
       <thead>
         <tr>
-          <th class="num-col">#</th>
-          <th>Prestation</th>
-          <th class="qte-col">Qté</th>
-          <th class="unite-col">Unité</th>
-          <th class="pu-col">PU HT</th>
-          <th class="total-col">Total HT</th>
+          <th class="num-col">${escapeHtml(TEXTES.colNum)}</th>
+          <th>${escapeHtml(TEXTES.colPrestation)}</th>
+          <th class="qte-col">${escapeHtml(TEXTES.colQte)}</th>
+          <th class="unite-col">${escapeHtml(TEXTES.colUnite)}</th>
+          <th class="pu-col">${escapeHtml(TEXTES.colPu)}</th>
+          <th class="total-col">${escapeHtml(TEXTES.colTotal)}</th>
         </tr>
       </thead>
       <tbody>
@@ -1151,56 +1256,53 @@ ${EMETTEUR.email} · ${EMETTEUR.telephone}</div>
 
     <div class="devis-totaux">
       <table>
-        <tr><td>Total HT</td><td>${formatMontant(totalHT)}</td></tr>
-        <tr><td>TVA 0 % (art. 293 B CGI)</td><td>${formatMontant(0)}</td></tr>
-        <tr class="total-final"><td>Total TTC à payer</td><td>${formatMontant(totalHT)}</td></tr>
+        <tr><td>${escapeHtml(TEXTES.labelTotalHT)}</td><td>${formatMontant(totalHT)}</td></tr>
+        <tr><td>${escapeHtml(TEXTES.labelTva)}</td><td>${formatMontant(0)}</td></tr>
+        <tr class="total-final"><td>${escapeHtml(TEXTES.labelTotalTTC)}</td><td>${formatMontant(totalHT)}</td></tr>
       </table>
     </div>
 
     <div class="devis-bas">
       <div class="devis-mentions">
-        <strong>TVA non applicable — art. 293 B du CGI</strong> (franchise en base de TVA, micro-entreprise).
-        Devis établi en deux exemplaires — un pour le client, un pour le prestataire.
+        <strong>${escapeHtml(TEXTES.mentionTvaTitre)}</strong> ${escapeHtml(TEXTES.mentionTvaSuite)}
         ${EMETTEUR.assureur ? `Assurance RC Pro : ${escapeHtml(EMETTEUR.assureur)} — ${escapeHtml(EMETTEUR.numPolice)} — couverture ${escapeHtml(EMETTEUR.couvertureGeo)}.` : ''}
       </div>
 
       <div class="devis-paiement">
         <div class="paiement-block">
-          <h4>Modalités de paiement</h4>
+          <h4>${escapeHtml(TEXTES.labelPaiement)}</h4>
           <p>${escapeHtml(state.paiement || 'Virement bancaire à réception de facture.')}<br>
           <strong>IBAN :</strong> ${escapeHtml(EMETTEUR.iban)}<br>
           <strong>BIC :</strong> ${escapeHtml(EMETTEUR.bic)}${EMETTEUR.banque ? ' — ' + escapeHtml(EMETTEUR.banque) : ''}</p>
         </div>
         <div class="paiement-block">
-          <h4>Délai d'exécution</h4>
+          <h4>${escapeHtml(TEXTES.labelDelai)}</h4>
           <p>${escapeHtml(state.delai || 'À définir à l\'acceptation du devis.')}</p>
-          ${state.notes ? `<h4 style="margin-top:0.4rem;">Notes</h4><p>${escapeHtml(state.notes)}</p>` : ''}
+          ${state.notes ? `<h4 style="margin-top:0.4rem;">${escapeHtml(TEXTES.labelNotes)}</h4><p>${escapeHtml(state.notes)}</p>` : ''}
         </div>
       </div>
 
       ${state.disclaimer ? `<div class="devis-disclaimer">${escapeHtml(state.disclaimer)}</div>` : ''}
 
-      <div class="devis-merci">
-        Pour toute question, n'hésitez pas à me contacter au ${EMETTEUR.telephone} — ${EMETTEUR.email}.
-      </div>
+      <div class="devis-merci">${escapeHtml(contactLine)}</div>
 
       <div class="devis-signature">
         <div class="signature-block">
-          <div class="title">Bon pour accord</div>
-          <div class="line">Date :</div>
+          <div class="title">${escapeHtml(TEXTES.labelSignatureAccord)}</div>
+          <div class="line">${escapeHtml(TEXTES.labelSignatureDate)}</div>
           <div class="signature-space"></div>
         </div>
         <div class="signature-block">
-          <div class="title">Signature du client</div>
-          <div class="line">Précédée de la mention manuscrite « Bon pour accord »</div>
+          <div class="title">${escapeHtml(TEXTES.labelSignatureClient)}</div>
+          <div class="line">${escapeHtml(TEXTES.labelSignatureMention)}</div>
           <div class="signature-space"></div>
         </div>
       </div>
 
       <div class="devis-footer">
-        ${EMETTEUR.societe} — ${EMETTEUR.nom} · ${EMETTEUR.adresse.replace('\n', ' · ')} · SIRET ${formatSiret(EMETTEUR.siret)}<br>
-        ${EMETTEUR.email} · ${EMETTEUR.telephone} · ${EMETTEUR.site}<br>
-        Conditions générales de prestation disponibles sur simple demande.
+        ${escapeHtml(EMETTEUR.societe)} — ${escapeHtml(EMETTEUR.nom)} · ${escapeHtml(EMETTEUR.adresse.replace('\n', ' · '))} · SIRET ${formatSiret(EMETTEUR.siret)}<br>
+        ${escapeHtml(EMETTEUR.email)} · ${escapeHtml(EMETTEUR.telephone)} · ${escapeHtml(EMETTEUR.site)}<br>
+        ${escapeHtml(TEXTES.cgvMention)}
       </div>
     </div>
   `;
