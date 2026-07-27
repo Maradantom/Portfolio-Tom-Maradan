@@ -98,7 +98,7 @@
        ============================================================ */
     .layout {
       display: grid;
-      grid-template-columns: 380px 1fr;
+      grid-template-columns: auto 1fr;
       gap: 1.5rem;
       padding: 1.5rem;
       max-width: 1500px;
@@ -118,8 +118,12 @@
       padding: 1.3rem;
       position: sticky; top: 80px;
       max-height: calc(100vh - 100px);
-      overflow-y: auto;
+      overflow: auto;
       border: 1px solid #e5e5e5;
+      width: 380px;
+      min-width: 320px;
+      max-width: 800px;
+      resize: horizontal;
     }
     @media (max-width: 900px) {
       .form-panel { position: static; max-height: none; }
@@ -708,6 +712,44 @@
     <h2>Notes (optionnel)</h2>
     <textarea id="f-notes" oninput="render()" placeholder="Notes complémentaires visibles sur le devis..."></textarea>
 
+    <h2>Clause de non-responsabilité</h2>
+    <label>Texte affiché en bas du devis (juste avant la ligne de contact)</label>
+    <textarea id="f-disclaimer" oninput="render()" rows="4" placeholder="Ex: Les prestations de StudioTM se limitent à..."></textarea>
+
+    <h2>⚙️ Paramètres émetteur</h2>
+    <label>Nom (avec mention EI)</label>
+    <input type="text" id="f-em-nom" oninput="renderAll()" placeholder="Tom Maradan (EI)">
+    <label>Société / Enseigne</label>
+    <input type="text" id="f-em-societe" oninput="renderAll()" placeholder="StudioTM">
+    <label>Adresse (multi-lignes)</label>
+    <textarea id="f-em-adresse" oninput="renderAll()" rows="2"></textarea>
+    <div class="form-row">
+      <div><label>SIRET</label><input type="text" id="f-em-siret" oninput="renderAll()"></div>
+      <div><label>Code APE</label><input type="text" id="f-em-ape" oninput="renderAll()"></div>
+    </div>
+    <label>Email</label>
+    <input type="email" id="f-em-email" oninput="renderAll()">
+    <label>Téléphone</label>
+    <input type="tel" id="f-em-tel" oninput="renderAll()">
+    <label>Site web</label>
+    <input type="text" id="f-em-site" oninput="renderAll()">
+
+    <h2>🏦 Coordonnées bancaires</h2>
+    <label>IBAN</label>
+    <input type="text" id="f-em-iban" oninput="renderAll()">
+    <label>BIC</label>
+    <input type="text" id="f-em-bic" oninput="renderAll()">
+    <label>Banque</label>
+    <input type="text" id="f-em-banque" oninput="renderAll()">
+
+    <h2>🛡️ Assurance RC Pro (optionnel)</h2>
+    <label>Nom de l'assureur</label>
+    <input type="text" id="f-em-assureur" oninput="renderAll()" placeholder="Ex: MAAF Pro">
+    <label>N° de police</label>
+    <input type="text" id="f-em-police" oninput="renderAll()">
+    <label>Couverture géographique</label>
+    <input type="text" id="f-em-geo" oninput="renderAll()" placeholder="France">
+
   </div>
 
   <!-- ===== PREVIEW PANEL (1 page A4) ===== -->
@@ -774,22 +816,71 @@ if (sessionStorage.getItem('stm-auth') === '1') {
 // ============================================================
 // EMETTEUR (infos StudioTM — modifie ici pour changer partout)
 // ============================================================
-const EMETTEUR = {
-  nom: 'Tom Maradan (EI)',       // mention EI obligatoire depuis 2022 (Décret 2022-725)
+const EMETTEUR_DEFAULT = {
+  nom: 'Tom Maradan (EI)',
   societe: 'StudioTM',
   adresse: '6 chemin des Ardillaux\n69720 Saint-Bonnet-de-Mure',
   siret: '99180546600018',
-  ape: '7410Z',                  // Activités spécialisées de design
+  ape: '7410Z',
   email: 'contact@studiotm.fr',
   telephone: '+33 6 72 25 67 83',
   site: 'studiotm.fr',
   iban: 'FR76 1027 8361 5300 0113 3850 654',
   bic: 'CMCIFR2A',
   banque: 'Crédit Mutuel',
-  assureur: '',      // à compléter quand tu auras souscrit
+  assureur: '',
   numPolice: '',
   couvertureGeo: 'France'
 };
+
+let EMETTEUR = { ...EMETTEUR_DEFAULT };
+try {
+  const saved = JSON.parse(localStorage.getItem('stm-emetteur') || '{}');
+  EMETTEUR = { ...EMETTEUR_DEFAULT, ...saved };
+} catch (e) {}
+
+function saveEmetteur() { localStorage.setItem('stm-emetteur', JSON.stringify(EMETTEUR)); }
+
+const DISCLAIMER_DEFAULT = "Les prestations de StudioTM se limitent à la conception et à la production de documents graphiques. StudioTM ne saurait être tenu responsable de l'interprétation, de l'exécution ou de la conformité des travaux réalisés par des tiers sur la base des documents livrés. Toute modification apportée aux documents après livraison engage la seule responsabilité du donneur d'ordre.";
+
+// Sync form → EMETTEUR + sauvegarde + re-render
+function renderAll() {
+  const g = (id) => document.getElementById(id).value;
+  EMETTEUR.nom = g('f-em-nom');
+  EMETTEUR.societe = g('f-em-societe');
+  EMETTEUR.adresse = g('f-em-adresse');
+  EMETTEUR.siret = g('f-em-siret');
+  EMETTEUR.ape = g('f-em-ape');
+  EMETTEUR.email = g('f-em-email');
+  EMETTEUR.telephone = g('f-em-tel');
+  EMETTEUR.site = g('f-em-site');
+  EMETTEUR.iban = g('f-em-iban');
+  EMETTEUR.bic = g('f-em-bic');
+  EMETTEUR.banque = g('f-em-banque');
+  EMETTEUR.assureur = g('f-em-assureur');
+  EMETTEUR.numPolice = g('f-em-police');
+  EMETTEUR.couvertureGeo = g('f-em-geo');
+  saveEmetteur();
+  render();
+}
+
+function loadEmetteurToForm() {
+  const s = (id, v) => { const el = document.getElementById(id); if (el) el.value = v || ''; };
+  s('f-em-nom', EMETTEUR.nom);
+  s('f-em-societe', EMETTEUR.societe);
+  s('f-em-adresse', EMETTEUR.adresse);
+  s('f-em-siret', EMETTEUR.siret);
+  s('f-em-ape', EMETTEUR.ape);
+  s('f-em-email', EMETTEUR.email);
+  s('f-em-tel', EMETTEUR.telephone);
+  s('f-em-site', EMETTEUR.site);
+  s('f-em-iban', EMETTEUR.iban);
+  s('f-em-bic', EMETTEUR.bic);
+  s('f-em-banque', EMETTEUR.banque);
+  s('f-em-assureur', EMETTEUR.assureur);
+  s('f-em-police', EMETTEUR.numPolice);
+  s('f-em-geo', EMETTEUR.couvertureGeo);
+}
 
 // ============================================================
 // NUMÉROTATION AUTO STM-YYYY-NNN
@@ -820,7 +911,8 @@ let state = {
   lignes: [], // { titre, description, quantite, unite, prixUnitaire }
   paiement: '',
   delai: '',
-  notes: ''
+  notes: '',
+  disclaimer: ''
 };
 
 // ============================================================
@@ -919,6 +1011,7 @@ function syncFromForm() {
   state.paiement = document.getElementById('f-paiement').value;
   state.delai = document.getElementById('f-delai').value;
   state.notes = document.getElementById('f-notes').value;
+  state.disclaimer = document.getElementById('f-disclaimer').value;
 }
 function syncToForm() {
   document.getElementById('f-numero').value = state.numero;
@@ -936,6 +1029,7 @@ function syncToForm() {
   document.getElementById('f-paiement').value = state.paiement || '';
   document.getElementById('f-delai').value = state.delai || '';
   document.getElementById('f-notes').value = state.notes;
+  document.getElementById('f-disclaimer').value = state.disclaimer || DISCLAIMER_DEFAULT;
 }
 
 // ============================================================
@@ -1084,9 +1178,7 @@ ${EMETTEUR.email} · ${EMETTEUR.telephone}</div>
         </div>
       </div>
 
-      <div class="devis-disclaimer">
-        Les prestations de ${EMETTEUR.societe} se limitent à la conception et à la production de documents graphiques. ${EMETTEUR.societe} ne saurait être tenu responsable de l'interprétation, de l'exécution ou de la conformité des travaux réalisés par des tiers sur la base des documents livrés. Toute modification apportée aux documents après livraison engage la seule responsabilité du donneur d'ordre.
-      </div>
+      ${state.disclaimer ? `<div class="devis-disclaimer">${escapeHtml(state.disclaimer)}</div>` : ''}
 
       <div class="devis-merci">
         Pour toute question, n'hésitez pas à me contacter au ${EMETTEUR.telephone} — ${EMETTEUR.email}.
@@ -1204,6 +1296,7 @@ function migrateState(s) {
   s.lieu = s.lieu || '';
   s.paiement = s.paiement || '';
   s.delai = s.delai || '';
+  s.disclaimer = s.disclaimer != null ? s.disclaimer : DISCLAIMER_DEFAULT;
   return s;
 }
 
@@ -1237,7 +1330,8 @@ function resetDevis() {
     lignes: [],
     paiement: '',
     delai: '',
-    notes: ''
+    notes: '',
+    disclaimer: DISCLAIMER_DEFAULT
   };
   localStorage.removeItem('stm-devis-draft');
   syncToForm();
@@ -1459,6 +1553,7 @@ document.addEventListener('keydown', (e) => {
 // INIT
 // ============================================================
 function initDevis() {
+  loadEmetteurToForm();
   if (!loadCurrentDevis()) {
     state = {
       numero: nextDevisNumber(),
@@ -1476,7 +1571,8 @@ function initDevis() {
       ],
       paiement: '30 % à la commande (soit 1 050 € HT) — solde à la livraison des documents. Virement bancaire.',
       delai: '15 à 20 jours ouvrés répartis sur environ 2 mois à compter de l\'acceptation du devis.',
-      notes: ''
+      notes: '',
+      disclaimer: DISCLAIMER_DEFAULT
     };
     syncToForm();
     renderLignesEditor();
