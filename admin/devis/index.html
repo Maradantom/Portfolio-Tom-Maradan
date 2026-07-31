@@ -651,8 +651,9 @@
     <span class="topbar-title">Devis</span>
   </div>
   <div class="topbar-actions">
-    <button class="btn" onclick="openDevisList()">📁 Mes devis</button>
+    <button class="btn" onclick="openDevisList()">📁 Mes docs</button>
     <button class="btn btn-danger" onclick="resetDevis()">Nouveau</button>
+    <button class="btn" onclick="toggleType()" id="btn-convert">💶 Facturer</button>
     <button class="btn" onclick="saveDevis()">Sauvegarder</button>
     <button class="btn btn-primary" onclick="exportPDF()" id="btn-export">Exporter PDF</button>
   </div>
@@ -671,8 +672,10 @@
     <input type="text" id="f-numero" oninput="render()">
     <label>Date d'émission</label>
     <input type="date" id="f-date" oninput="render()">
-    <label>Validité (jours)</label>
+    <label>Validité (jours) — devis</label>
     <input type="number" id="f-validite" value="30" oninput="render()">
+    <label>Date d'échéance — facture</label>
+    <input type="date" id="f-echeance" oninput="render()">
 
     <h2>Client (destinataire)</h2>
     <label>Nom / Société</label>
@@ -822,7 +825,7 @@
 <div class="modal-overlay" id="devis-list-modal" onclick="if(event.target===this) closeDevisList()">
   <div class="modal-content">
     <div class="modal-header">
-      <h2>📁 Mes devis sauvegardés</h2>
+      <h2>📁 Mes documents (devis + factures)</h2>
       <button class="modal-close" onclick="closeDevisList()">×</button>
     </div>
     <div class="modal-body" id="devis-list-body"></div>
@@ -927,7 +930,14 @@ const TEXTES_DEFAULT = {
   labelSignatureClient: "Signature du client",
   labelSignatureMention: "Précédée de la mention manuscrite « Bon pour accord »",
   contactTemplate: "Pour toute question, n'hésitez pas à me contacter au {tel} — {email}.",
-  cgvMention: "Conditions générales de prestation disponibles sur simple demande."
+  cgvMention: "Conditions générales de prestation disponibles sur simple demande.",
+  // Spécifique FACTURE
+  titreDevis: "Devis",
+  titreFacture: "Facture",
+  labelEcheance: "Échéance de paiement",
+  labelRefDevis: "Facture faisant suite au devis",
+  mentionRetard: "En cas de retard de paiement, application d'un intérêt de retard au taux annuel équivalent à trois fois le taux d'intérêt légal, plus une indemnité forfaitaire de 40 € pour frais de recouvrement (art. L. 441-10 et D. 441-5 du code de commerce).",
+  mentionEscompte: "Aucun escompte accordé pour paiement anticipé."
 };
 
 let TEXTES = { ...TEXTES_DEFAULT };
@@ -994,8 +1004,16 @@ function nextDevisNumber() {
 }
 function incrementCounter(numero) {
   const match = numero.match(/^STM-(\d{4})-(\d+)$/);
-  if (!match) return;
-  localStorage.setItem(`stm-devis-counter-${match[1]}`, parseInt(match[2], 10));
+  if (match) { localStorage.setItem(`stm-devis-counter-${match[1]}`, parseInt(match[2], 10)); return; }
+  const fmatch = numero.match(/^F-(\d{4})-(\d+)$/);
+  if (fmatch) { localStorage.setItem(`stm-facture-counter-${fmatch[1]}`, parseInt(fmatch[2], 10)); }
+}
+
+function nextFactureNumber() {
+  const year = new Date().getFullYear();
+  const key = `stm-facture-counter-${year}`;
+  let counter = parseInt(localStorage.getItem(key) || '0', 10) + 1;
+  return `F-${year}-${String(counter).padStart(3, '0')}`;
 }
 
 // ============================================================
@@ -1013,7 +1031,10 @@ let state = {
   paiement: '',
   delai: '',
   notes: '',
-  disclaimer: ''
+  disclaimer: '',
+  type: 'devis',       // 'devis' | 'facture'
+  refDevis: '',        // n° du devis d'origine (si facture)
+  dateEcheance: ''     // date d'échéance (obligatoire pour facture)
 };
 
 // ============================================================
@@ -1113,6 +1134,7 @@ function syncFromForm() {
   state.delai = document.getElementById('f-delai').value;
   state.notes = document.getElementById('f-notes').value;
   state.disclaimer = document.getElementById('f-disclaimer').value;
+  state.dateEcheance = document.getElementById('f-echeance').value;
 }
 function syncToForm() {
   document.getElementById('f-numero').value = state.numero;
@@ -1131,6 +1153,8 @@ function syncToForm() {
   document.getElementById('f-delai').value = state.delai || '';
   document.getElementById('f-notes').value = state.notes;
   document.getElementById('f-disclaimer').value = state.disclaimer || DISCLAIMER_DEFAULT;
+  document.getElementById('f-echeance').value = state.dateEcheance || '';
+  updateTypeUI();
 }
 
 // ============================================================
@@ -1211,9 +1235,12 @@ function render() {
         <p>${escapeHtml(TEXTES.tagline)}</p>
       </div>
       <div class="devis-meta">
-        <div class="num">Devis ${escapeHtml(state.numero)}</div>
-        <div class="date">Émis le ${formatDate(state.date)}</div>
-        <div class="valid">Valable jusqu'au ${formatDate(dateValidite)}</div>
+        <div class="num">${escapeHtml(state.type === 'facture' ? TEXTES.titreFacture : TEXTES.titreDevis)} ${escapeHtml(state.numero)}</div>
+        <div class="date">${state.type === 'facture' ? 'Facturé le' : 'Émis le'} ${formatDate(state.date)}</div>
+        ${state.type === 'facture'
+          ? `<div class="valid">${escapeHtml(TEXTES.labelEcheance)} : ${formatDate(state.dateEcheance || addDays(state.date, 30))}</div>${state.refDevis ? `<div class="valid">${escapeHtml(TEXTES.labelRefDevis)} ${escapeHtml(state.refDevis)}</div>` : ''}`
+          : `<div class="valid">Valable jusqu'au ${formatDate(dateValidite)}</div>`
+        }
       </div>
     </div>
 
@@ -1266,6 +1293,7 @@ ${escapeHtml(EMETTEUR.email)} · ${escapeHtml(EMETTEUR.telephone)}</div>
       <div class="devis-mentions">
         <strong>${escapeHtml(TEXTES.mentionTvaTitre)}</strong> ${escapeHtml(TEXTES.mentionTvaSuite)}
         ${EMETTEUR.assureur ? `Assurance RC Pro : ${escapeHtml(EMETTEUR.assureur)} — ${escapeHtml(EMETTEUR.numPolice)} — couverture ${escapeHtml(EMETTEUR.couvertureGeo)}.` : ''}
+        ${state.type === 'facture' ? `<br><br>${escapeHtml(TEXTES.mentionRetard)}<br>${escapeHtml(TEXTES.mentionEscompte)}` : ''}
       </div>
 
       <div class="devis-paiement">
@@ -1286,6 +1314,7 @@ ${escapeHtml(EMETTEUR.email)} · ${escapeHtml(EMETTEUR.telephone)}</div>
 
       <div class="devis-merci">${escapeHtml(contactLine)}</div>
 
+      ${state.type === 'facture' ? '' : `
       <div class="devis-signature">
         <div class="signature-block">
           <div class="title">${escapeHtml(TEXTES.labelSignatureAccord)}</div>
@@ -1297,7 +1326,7 @@ ${escapeHtml(EMETTEUR.email)} · ${escapeHtml(EMETTEUR.telephone)}</div>
           <div class="line">${escapeHtml(TEXTES.labelSignatureMention)}</div>
           <div class="signature-space"></div>
         </div>
-      </div>
+      </div>`}
 
       <div class="devis-footer">
         ${escapeHtml(EMETTEUR.societe)} — ${escapeHtml(EMETTEUR.nom)} · ${escapeHtml(EMETTEUR.adresse.replace('\n', ' · '))} · SIRET ${formatSiret(EMETTEUR.siret)}<br>
@@ -1306,6 +1335,8 @@ ${escapeHtml(EMETTEUR.email)} · ${escapeHtml(EMETTEUR.telephone)}</div>
       </div>
     </div>
   `;
+
+  updateTypeUI();
 
   // Ancien bloc page 2 CGV désactivé (non obligatoire en B2B, art. L. 441-1 code de commerce)
   const _unusedCGV = `
@@ -1399,6 +1430,9 @@ function migrateState(s) {
   s.paiement = s.paiement || '';
   s.delai = s.delai || '';
   s.disclaimer = s.disclaimer != null ? s.disclaimer : DISCLAIMER_DEFAULT;
+  s.type = s.type || 'devis';
+  s.refDevis = s.refDevis || '';
+  s.dateEcheance = s.dateEcheance || '';
   return s;
 }
 
@@ -1433,7 +1467,10 @@ function resetDevis() {
     paiement: '',
     delai: '',
     notes: '',
-    disclaimer: DISCLAIMER_DEFAULT
+    disclaimer: DISCLAIMER_DEFAULT,
+    type: 'devis',
+    refDevis: '',
+    dateEcheance: ''
   };
   localStorage.removeItem('stm-devis-draft');
   syncToForm();
@@ -1445,6 +1482,77 @@ function showToast(msg) {
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+// ============================================================
+// CONVERSION DEVIS → FACTURE
+// Crée un nouveau document facture à partir du devis courant
+// (garde le devis d'origine intact)
+// ============================================================
+function convertToFacture() {
+  if (state.type === 'facture') {
+    alert('Ce document est déjà une facture.');
+    return;
+  }
+  if (!state.numero || !state.numero.startsWith('STM-')) {
+    if (!confirm('Le devis courant n\'a pas de numéro STM. Continuer quand même ?')) return;
+  }
+  if (!confirm(`Créer une facture à partir du devis ${state.numero} ?\n(Le devis reste intact.)`)) return;
+
+  // Sauve le devis courant d'abord (au cas où non sauvegardé)
+  autoSaveDraft();
+  const refDevisOriginal = state.numero;
+
+  // Nouveau document facture avec les mêmes données
+  const today = new Date().toISOString().slice(0, 10);
+  const echeance = addDays(today, 30); // 30 jours par défaut
+
+  state = {
+    ...state,
+    type: 'facture',
+    numero: nextFactureNumber(),
+    date: today,
+    dateEcheance: echeance,
+    refDevis: refDevisOriginal
+  };
+
+  localStorage.setItem('stm-devis-draft', JSON.stringify(state));
+  syncToForm();
+  renderLignesEditor();
+  render();
+  showToast(`Facture ${state.numero} créée à partir de ${refDevisOriginal} ✓`);
+}
+
+// Bascule le titre du bouton selon le type
+function updateTypeUI() {
+  const btn = document.getElementById('btn-convert');
+  if (!btn) return;
+  if (state.type === 'facture') {
+    btn.textContent = '↩ Repasser en devis';
+    btn.title = 'Convertir cette facture en devis';
+  } else {
+    btn.textContent = '💶 Facturer';
+    btn.title = 'Créer une facture à partir de ce devis';
+  }
+}
+
+function convertToDevis() {
+  if (state.type !== 'facture') return;
+  if (!confirm('Repasser ce document en devis ?')) return;
+  state.type = 'devis';
+  state.refDevis = '';
+  state.dateEcheance = '';
+  if (!state.numero.startsWith('STM-')) {
+    state.numero = nextDevisNumber();
+  }
+  syncToForm();
+  render();
+  showToast('Repassé en devis ✓');
+}
+
+function toggleType() {
+  if (state.type === 'facture') convertToDevis();
+  else convertToFacture();
 }
 
 // ============================================================
@@ -1498,7 +1606,8 @@ async function exportPDF() {
       pdf.addImage(imgData, 'PNG', xOffset, 0, scaledW, pageH, undefined, 'FAST');
     }
 
-    const filename = `Devis-${state.numero || 'brouillon'}.pdf`;
+    const prefix = state.type === 'facture' ? 'Facture' : 'Devis';
+    const filename = `${prefix}-${state.numero || 'brouillon'}.pdf`;
     pdf.save(filename);
     showToast(`${filename} téléchargé ✓`);
   } catch (err) {
@@ -1540,10 +1649,11 @@ function openDevisList() {
     body.innerHTML = devis.map(d => {
       const total = (d.data.lignes || []).reduce((s, l) => s + (l.quantite || 0) * (l.prixUnitaire || 0), 0);
       const client = d.data.client?.nom || 'Sans client';
+      const typeBadge = d.data.type === 'facture' ? '💶 Facture' : '📄 Devis';
       return `
         <div class="devis-row">
           <div class="devis-row-info">
-            <div class="devis-row-num">${escapeHtml(d.data.numero)}</div>
+            <div class="devis-row-num">${typeBadge} ${escapeHtml(d.data.numero)}</div>
             <div class="devis-row-meta">${formatDate(d.data.date)} · ${escapeHtml(client)} · ${formatMontant(total)} HT</div>
           </div>
           <div class="devis-row-actions">
