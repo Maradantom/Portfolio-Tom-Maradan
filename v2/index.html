@@ -4,12 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>StudioTM — Architecture intérieure augmentée</title>
+  <title>StudioTM</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon-v2.png">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
   <style>
@@ -17,26 +16,38 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0a0a0a;
-      color: #fafafa;
+      background: #f6f5f2;
+      color: #1a1a1a;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.6;
+      letter-spacing: 0.01em;
       overflow-x: hidden;
-      line-height: 1.5;
     }
     a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
-    /* Progress bar top */
+    :root {
+      --gutter: 3rem;
+      --ink: #1a1a1a;
+      --mute: #7d7a72;
+      --line: #d9d5cc;
+      --paper: #f6f5f2;
+    }
+
+    /* Progress line très fine en haut */
     .progress {
       position: fixed;
       top: 0; left: 0;
-      height: 2px;
-      background: #fafafa;
+      height: 1px;
+      background: var(--ink);
       z-index: 200;
       width: 0%;
-      transition: width 0.1s linear;
+      opacity: 0.4;
     }
 
     /* ============================================================
-       NAV
+       NAV — ultra minimal
        ============================================================ */
     .nav {
       position: fixed;
@@ -45,459 +56,409 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 2.5rem;
-      mix-blend-mode: difference;
-      color: #fafafa;
+      padding: 1.5rem var(--gutter);
+      background: rgba(246, 245, 242, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.4s;
     }
+    .nav.scrolled { border-bottom-color: var(--line); }
     .nav-logo {
-      font-weight: 900;
-      font-size: 1.05rem;
-      letter-spacing: 1px;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
     }
     .nav-links {
       display: flex;
-      gap: 2rem;
-      font-size: 0.85rem;
-      letter-spacing: 0.5px;
+      gap: 2.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 400;
     }
-    .nav-links a {
-      opacity: 0.7;
-      transition: opacity 0.3s;
-    }
+    .nav-links a { transition: opacity 0.3s; opacity: 0.7; }
     .nav-links a:hover { opacity: 1; }
     .nav-cta {
-      font-size: 0.85rem;
-      letter-spacing: 0.5px;
-      padding: 0.5rem 1.2rem;
-      border: 1px solid #fafafa;
-      border-radius: 30px;
-      transition: all 0.3s;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+      position: relative;
     }
-    .nav-cta:hover { background: #fafafa; color: #0a0a0a; }
+    .nav-cta::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -3px;
+      height: 1px;
+      background: currentColor;
+      transform-origin: right;
+      transition: transform 0.4s cubic-bezier(.22,.61,.36,1);
+    }
+    .nav-cta:hover { opacity: 1; }
+    .nav-cta:hover::after { transform: scaleX(1); }
 
     /* ============================================================
-       HERO
+       HERO — grand vide + typo fine
        ============================================================ */
     .hero {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 8rem 2rem 4rem;
-      position: relative;
-      overflow: hidden;
+      display: grid;
+      grid-template-rows: 1fr auto 1fr;
+      padding: 8rem var(--gutter) 3rem;
     }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      opacity: 0.15;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.08) 0%, transparent 40%);
-      z-index: 0;
-    }
-    .hero-content { position: relative; z-index: 1; text-align: center; }
-    .hero h1 {
-      font-size: clamp(3.5rem, 12vw, 12rem);
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 0.9;
-      margin-bottom: 2rem;
-    }
-    .hero h1 span {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: heroReveal 0.9s cubic-bezier(.22,.61,.36,1) forwards;
-    }
-    @keyframes heroReveal {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .hero-tagline {
-      font-size: clamp(1rem, 2vw, 1.4rem);
-      font-weight: 300;
-      letter-spacing: 0.1em;
+    .hero-eyebrow {
+      align-self: end;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
+      color: var(--mute);
+      display: flex;
+      justify-content: space-between;
       opacity: 0;
-      animation: heroReveal 0.9s 0.8s cubic-bezier(.22,.61,.36,1) forwards;
-      color: #999;
+      animation: fade 1s 0.2s ease forwards;
+    }
+    @keyframes fade { to { opacity: 1; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 200;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      max-width: 1400px;
+      margin: 2.5rem 0;
+      opacity: 0;
+      animation: fadeUp 1.2s 0.5s cubic-bezier(.22,.61,.36,1) forwards;
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 200;
+    }
+
+    .hero-foot {
+      align-self: end;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 2rem;
+      align-items: end;
+      opacity: 0;
+      animation: fade 1s 1.2s ease forwards;
+    }
+    .hero-foot p {
+      max-width: 320px;
+      color: var(--mute);
+      font-size: 0.85rem;
+      line-height: 1.7;
     }
     .hero-scroll {
-      position: absolute;
-      bottom: 3rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: #666;
-      opacity: 0;
-      animation: heroReveal 0.9s 1.4s cubic-bezier(.22,.61,.36,1) forwards;
+      color: var(--mute);
+      text-align: center;
+      position: relative;
     }
     .hero-scroll::after {
       content: '';
       display: block;
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(#666, transparent);
-      animation: scrollLine 2s ease-in-out infinite;
+      width: 1px; height: 32px;
+      background: var(--line);
+      margin: 0.6rem auto 0;
     }
-    @keyframes scrollLine {
-      0%, 100% { transform: scaleY(1); opacity: 0.5; }
-      50% { transform: scaleY(0.5); opacity: 1; }
+    .hero-index {
+      text-align: right;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mute);
     }
 
     /* ============================================================
-       MANIFESTO — mots qui apparaissent au scroll
+       SECTION labels (mini header pour chaque section)
        ============================================================ */
-    .manifesto {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6rem 2rem;
-    }
-    .manifesto-text {
-      font-size: clamp(2rem, 6vw, 5rem);
-      font-weight: 200;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      max-width: 1200px;
-      text-align: center;
-    }
-    .manifesto-word {
-      display: inline-block;
-      opacity: 0.15;
-      transition: opacity 0.6s cubic-bezier(.22,.61,.36,1);
-      margin-right: 0.4em;
-    }
-    .manifesto-word.on { opacity: 1; }
-    .manifesto-word strong { font-weight: 900; letter-spacing: -0.03em; }
-
-    /* ============================================================
-       SERVICES — horizontal scroll section
-       ============================================================ */
-    .services {
-      position: relative;
-      background: #fafafa;
-      color: #0a0a0a;
-      padding: 6rem 0;
-    }
-    .services-intro {
-      padding: 0 2.5rem;
-      margin-bottom: 3rem;
+    .section-label {
       display: flex;
       justify-content: space-between;
-      align-items: end;
-      flex-wrap: wrap;
-      gap: 2rem;
+      align-items: baseline;
+      padding: 6rem var(--gutter) 2.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mute);
+      border-top: 1px solid var(--line);
     }
-    .services-intro h2 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 0.95;
+    .section-label .n { opacity: 0.7; }
+
+    /* ============================================================
+       APPROCHE — deux colonnes, une pensée
+       ============================================================ */
+    .approche { padding: 0 var(--gutter) 8rem; }
+    .approche-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 6rem;
     }
-    .services-intro p {
-      font-size: 0.9rem;
-      color: #666;
-      max-width: 340px;
-      letter-spacing: 0.02em;
+    .approche h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      position: sticky;
+      top: 8rem;
+      align-self: start;
     }
-    .services-track {
-      display: flex;
-      gap: 1.5rem;
-      padding: 2rem 2.5rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
+    .approche-body p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #2a2a2a;
+      margin-bottom: 1.5rem;
+      max-width: 620px;
     }
-    .services-track::-webkit-scrollbar { display: none; }
-    .service-card {
-      flex: 0 0 min(500px, 85vw);
-      scroll-snap-align: start;
-      aspect-ratio: 3/4;
-      background: #0a0a0a;
-      color: #fafafa;
-      padding: 2.5rem;
-      border-radius: 16px;
+    .approche-body p:first-child::first-letter {
+      float: left;
+      font-size: 3.4rem;
+      line-height: 0.9;
+      font-weight: 200;
+      margin: 0.15rem 0.6rem 0 0;
+      color: var(--ink);
+    }
+    .approche-body em { font-style: italic; color: var(--mute); }
+
+    /* ============================================================
+       CHAMPS — les 3 compétences (au lieu de "services")
+       ============================================================ */
+    .champs { padding: 0 var(--gutter) 8rem; }
+    .champs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+    .champ {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.4s cubic-bezier(.22,.61,.36,1);
+      padding-top: 2rem;
+      border-top: 1px solid var(--line);
     }
-    .service-card:hover { transform: translateY(-8px); }
-    .service-num {
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      color: #666;
+    .champ-num {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--mute);
+      margin-bottom: 3rem;
     }
-    .service-card h3 {
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
-    .service-card p {
-      font-size: 0.9rem;
-      color: #999;
-      max-width: 360px;
-      line-height: 1.6;
-    }
-    .service-card ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1.2rem;
-    }
-    .service-card ul li {
-      font-size: 0.72rem;
-      padding: 0.4rem 0.8rem;
-      border: 1px solid #333;
-      border-radius: 20px;
-      color: #999;
-    }
-    .services-hint {
-      padding: 0 2.5rem;
-      margin-top: 1rem;
-      font-size: 0.75rem;
-      color: #666;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
-
-    /* ============================================================
-       PROJETS — grille asymétrique
-       ============================================================ */
-    .projets {
-      padding: 8rem 2.5rem;
-    }
-    .projets-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      margin-bottom: 4rem;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-    .projets-header h2 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 0.95;
-    }
-    .projets-header a {
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding-bottom: 4px;
-      border-bottom: 1px solid #fafafa;
-      transition: opacity 0.3s;
-    }
-    .projets-header a:hover { opacity: 0.6; }
-    .projets-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 1.5rem;
-    }
-    .projet-tile {
-      overflow: hidden;
-      border-radius: 8px;
-      position: relative;
-      cursor: pointer;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.9s cubic-bezier(.22,.61,.36,1),
-                  transform 0.9s cubic-bezier(.22,.61,.36,1);
-    }
-    .projet-tile.reveal { opacity: 1; transform: translateY(0); }
-    .projet-tile img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.9s cubic-bezier(.22,.61,.36,1);
-    }
-    .projet-tile:hover img { transform: scale(1.05); }
-    .projet-tile-info {
-      position: absolute;
-      inset: auto 0 0 0;
-      padding: 1.5rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
-      transform: translateY(20px);
-      opacity: 0;
-      transition: all 0.4s cubic-bezier(.22,.61,.36,1);
-    }
-    .projet-tile:hover .projet-tile-info { transform: translateY(0); opacity: 1; }
-    .projet-tile-info h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.2rem; }
-    .projet-tile-info p { font-size: 0.75rem; color: #ccc; letter-spacing: 0.05em; }
-    .projet-tile.big { grid-column: span 8; aspect-ratio: 16/10; }
-    .projet-tile.small { grid-column: span 4; aspect-ratio: 4/5; }
-    .projet-tile.medium { grid-column: span 6; aspect-ratio: 4/3; }
-    .projet-tile.wide { grid-column: span 12; aspect-ratio: 21/9; }
-
-    /* ============================================================
-       MÉTHODE — timeline sticky
-       ============================================================ */
-    .methode {
-      padding: 8rem 2.5rem;
-      background: #fafafa;
-      color: #0a0a0a;
-    }
-    .methode-inner {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 4rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .methode-title { position: sticky; top: 10rem; align-self: start; }
-    .methode-title span {
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: #666;
-    }
-    .methode-title h2 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 0.95;
-      margin-top: 1rem;
-    }
-    .methode-steps { display: flex; flex-direction: column; gap: 3rem; }
-    .methode-step {
-      display: grid;
-      grid-template-columns: 60px 1fr;
-      gap: 2rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid #e5e5e5;
-    }
-    .methode-step:last-child { border-bottom: none; }
-    .methode-step-num {
-      font-size: 3rem;
-      font-weight: 900;
-      color: #ddd;
-      letter-spacing: -0.05em;
-      line-height: 1;
-    }
-    .methode-step-content h3 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
+    .champ h3 {
+      font-size: 1.4rem;
+      font-weight: 300;
       letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+      line-height: 1.2;
     }
-    .methode-step-content p {
-      color: #666;
+    .champ p {
+      color: var(--mute);
+      font-size: 0.9rem;
       line-height: 1.7;
-      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
     }
-
-    /* ============================================================
-       PREUVES — chiffres qui comptent
-       ============================================================ */
-    .preuves {
-      padding: 6rem 2.5rem;
-    }
-    .preuves-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .preuve {
-      padding: 2rem 0;
-      border-top: 1px solid #333;
-    }
-    .preuve-num {
-      font-size: clamp(3rem, 6vw, 5rem);
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-    .preuve-label {
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #999;
-    }
-
-    /* ============================================================
-       CONTACT
-       ============================================================ */
-    .contact {
-      padding: 8rem 2.5rem;
-      text-align: center;
-    }
-    .contact h2 {
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 0.95;
-      margin-bottom: 2rem;
-    }
-    .contact-mail {
-      display: inline-block;
-      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-      padding-bottom: 6px;
-      border-bottom: 1px solid #fafafa;
-      transition: opacity 0.3s;
-      letter-spacing: -0.01em;
-    }
-    .contact-mail:hover { opacity: 0.6; }
-    .contact-info {
-      margin-top: 2rem;
-      color: #666;
-      font-size: 0.9rem;
+    .champ ul {
+      list-style: none;
+      font-size: 0.78rem;
+      color: var(--mute);
       letter-spacing: 0.05em;
     }
-    .contact-info a { color: #fafafa; }
+    .champ ul li { padding: 0.3rem 0; border-bottom: 1px dotted var(--line); }
+    .champ ul li:last-child { border-bottom: none; }
+
+    /* ============================================================
+       PROJETS — hommage à l'espace, images grand format
+       ============================================================ */
+    .projets { padding: 0 var(--gutter) 8rem; }
+    .projet {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 5rem 0;
+      border-top: 1px solid var(--line);
+    }
+    .projet:nth-child(even) .projet-img { grid-column: 1; grid-row: 1; }
+    .projet:nth-child(even) .projet-info { grid-column: 2; grid-row: 1; }
+    .projet-img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s cubic-bezier(.22,.61,.36,1), transform 1s cubic-bezier(.22,.61,.36,1);
+    }
+    .projet.on .projet-img { opacity: 1; transform: translateY(0); }
+    .projet-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.22,.61,.36,1); }
+    .projet:hover .projet-img img { transform: scale(1.03); }
+    .projet-info { max-width: 460px; }
+    .projet-info .meta {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin-bottom: 1.2rem;
+    }
+    .projet-info h3 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 300;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .projet-info p { color: var(--mute); font-size: 0.95rem; line-height: 1.7; }
+    .projet-info a {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--ink);
+      transition: opacity 0.3s;
+    }
+    .projet-info a:hover { opacity: 0.5; }
+
+    /* ============================================================
+       METHODE — sobre, listée
+       ============================================================ */
+    .methode { padding: 0 var(--gutter) 8rem; }
+    .methode-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 6rem;
+    }
+    .methode h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      position: sticky;
+      top: 8rem;
+      align-self: start;
+    }
+    .methode-list { counter-reset: step; }
+    .methode-item {
+      display: grid;
+      grid-template-columns: 50px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .methode-item:first-child { border-top: 1px solid var(--line); }
+    .methode-item .step {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--mute);
+      padding-top: 0.4rem;
+    }
+    .methode-item h3 {
+      font-size: 1.15rem;
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.005em;
+    }
+    .methode-item p {
+      color: var(--mute);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: 540px;
+    }
+
+    /* ============================================================
+       CONTACT — hommage au blanc
+       ============================================================ */
+    .contact {
+      padding: 10rem var(--gutter);
+      text-align: center;
+      border-top: 1px solid var(--line);
+    }
+    .contact .label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin-bottom: 2.5rem;
+    }
+    .contact h2 {
+      font-size: clamp(2rem, 4.5vw, 3.6rem);
+      font-weight: 200;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      max-width: 900px;
+      margin: 0 auto 3rem;
+    }
+    .contact h2 em { font-style: italic; }
+    .contact-mail {
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--ink);
+      transition: opacity 0.3s;
+    }
+    .contact-mail:hover { opacity: 0.5; }
+    .contact-info {
+      margin-top: 2.5rem;
+      color: var(--mute);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+    .contact-info a { color: var(--ink); opacity: 0.7; transition: opacity 0.3s; }
+    .contact-info a:hover { opacity: 1; }
 
     /* ============================================================
        FOOTER
        ============================================================ */
     footer {
-      padding: 3rem 2.5rem 2rem;
-      border-top: 1px solid #222;
+      padding: 2.5rem var(--gutter) 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.75rem;
-      color: #666;
-      letter-spacing: 0.05em;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mute);
+      border-top: 1px solid var(--line);
     }
-    footer a { color: #999; margin-left: 1.2rem; transition: color 0.3s; }
-    footer a:hover { color: #fafafa; }
+    footer a { transition: color 0.3s; }
+    footer a:hover { color: var(--ink); }
+    footer .footer-right a { margin-left: 1.5rem; }
+
+    /* ============================================================
+       REVEAL générique
+       ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s cubic-bezier(.22,.61,.36,1), transform 1s cubic-bezier(.22,.61,.36,1);
+    }
+    .reveal.on { opacity: 1; transform: translateY(0); }
 
     /* ============================================================
        MOBILE
        ============================================================ */
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
+      :root { --gutter: 1.5rem; }
       .nav { padding: 1rem 1.2rem; }
       .nav-links { display: none; }
-      .nav-cta { padding: 0.4rem 0.9rem; font-size: 0.75rem; }
-      .hero { padding: 6rem 1.5rem 4rem; }
-      .services-intro { flex-direction: column; align-items: start; }
-      .services { padding: 4rem 0; }
-      .projets, .methode, .preuves, .contact { padding: 4rem 1.2rem; }
-      .methode-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .methode-title { position: static; }
-      .projets-grid { grid-template-columns: 1fr; gap: 1rem; }
-      .projet-tile.big, .projet-tile.small, .projet-tile.medium, .projet-tile.wide {
-        grid-column: span 1; aspect-ratio: 4/3;
+      .hero { padding-top: 6rem; }
+      .hero-foot { grid-template-columns: 1fr; gap: 1.5rem; text-align: left; }
+      .hero-index, .hero-scroll { text-align: left; }
+      .hero-scroll::after { margin-left: 0; }
+      .approche-inner, .methode-inner {
+        grid-template-columns: 1fr; gap: 2rem;
       }
-      footer { flex-direction: column; text-align: center; }
+      .approche h2, .methode h2 { position: static; }
+      .champs-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .projet, .projet:nth-child(even) .projet-img, .projet:nth-child(even) .projet-info {
+        grid-template-columns: 1fr; gap: 1.5rem; grid-column: auto; grid-row: auto;
+      }
+      .projet { padding: 3rem 0; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      footer .footer-right a { margin: 0 0.6rem; }
     }
   </style>
 </head>
@@ -505,193 +466,159 @@
 
   <div class="progress" id="progress"></div>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <a href="#" class="nav-logo">STUDIOTM</a>
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">Studio·TM</a>
     <div class="nav-links">
-      <a href="#services">Services</a>
+      <a href="#approche">Approche</a>
+      <a href="#champs">Champs</a>
       <a href="#projets">Projets</a>
       <a href="#methode">Méthode</a>
-      <a href="#contact">Contact</a>
     </div>
-    <a href="#contact" class="nav-cta">Prendre RDV</a>
+    <a href="#contact" class="nav-cta">Contact</a>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <h1>
-        <span style="animation-delay:0s">S</span><span style="animation-delay:.05s">T</span><span style="animation-delay:.1s">U</span><span style="animation-delay:.15s">D</span><span style="animation-delay:.2s">I</span><span style="animation-delay:.25s">O</span><span style="animation-delay:.3s">T</span><span style="animation-delay:.35s">M</span>
-      </h1>
-      <div class="hero-tagline">Architecture intérieure augmentée</div>
+    <div class="hero-eyebrow">
+      <span>Studio d'architecture intérieure</span>
+      <span>Lyon · France</span>
     </div>
-    <div class="hero-scroll">Scroll</div>
+
+    <h1 class="hero-title">
+      Concevoir des espaces <em>précis,</em><br>
+      les rendre visibles <em>avant</em> qu'ils existent.
+    </h1>
+
+    <div class="hero-foot">
+      <p>Un atelier basé à Lyon dédié à la conception d'espaces intérieurs, la visualisation 3D et la prise de vue architecturale par drone.</p>
+      <div class="hero-scroll">Défilez</div>
+      <div class="hero-index">2026 — Édition 01</div>
+    </div>
   </section>
 
-  <!-- MANIFESTO -->
-  <section class="manifesto">
-    <div class="manifesto-text" id="manifesto">
-      Un studio, <strong>trois outils.</strong> Concevoir, <strong>modéliser</strong>, filmer — pour donner à voir un projet <strong>autrement.</strong>
+  <!-- APPROCHE -->
+  <div class="section-label"><span>Approche</span><span class="n">— 01</span></div>
+  <section class="approche" id="approche">
+    <div class="approche-inner">
+      <h2 class="reveal">Un projet se pense avant de se dessiner.</h2>
+      <div class="approche-body reveal">
+        <p>StudioTM aborde chaque projet comme une lecture <em>attentive</em> du lieu — de ses volumes, de ses lumières, de ses usages. La conception ne commence pas par un croquis ; elle commence par une écoute.</p>
+        <p>Les outils — plans techniques, modélisation 3D photoréaliste, captation par drone FPV — ne sont jamais une fin. Ils servent une même exigence : rendre visible la juste mesure d'un espace avant que le premier mur ne soit touché.</p>
+      </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="services" id="services">
-    <div class="services-intro">
-      <h2>Services<br>intégrés.</h2>
-      <p>Trois compétences qui parlent le même langage : celui de votre projet. De l'esquisse à la vidéo finale.</p>
+  <!-- CHAMPS -->
+  <div class="section-label"><span>Champs d'intervention</span><span class="n">— 02</span></div>
+  <section class="champs" id="champs">
+    <div class="champs-grid">
+      <div class="champ reveal">
+        <div class="champ-num">A</div>
+        <h3>Conception<br>d'espace</h3>
+        <p>Étude de faisabilité, zoning, plans techniques, coupes, dossiers menuiseries. Une architecture pensée dans le détail.</p>
+        <ul>
+          <li>Étude & relevé</li>
+          <li>Plans & coupes</li>
+          <li>Menuiseries sur mesure</li>
+          <li>Suivi de chantier</li>
+        </ul>
+      </div>
+      <div class="champ reveal">
+        <div class="champ-num">B</div>
+        <h3>Visualisation<br>3D</h3>
+        <p>Rendus photoréalistes et visites 360° pour rendre tangible un projet avant sa réalisation. Un outil de décision autant que de communication.</p>
+        <ul>
+          <li>Rendus photoréalistes</li>
+          <li>Visites 360°</li>
+          <li>Ambiances & matières</li>
+        </ul>
+      </div>
+      <div class="champ reveal">
+        <div class="champ-num">C</div>
+        <h3>Prise de vue<br>architecturale</h3>
+        <p>Photographie et drone FPV pour analyser, documenter, valoriser. Un regard aérien qui change la lecture d'un lieu.</p>
+        <ul>
+          <li>Photographie d'architecture</li>
+          <li>Drone FPV & classique</li>
+          <li>Films de projet</li>
+        </ul>
+      </div>
     </div>
-    <div class="services-track">
-
-      <div class="service-card">
-        <div>
-          <div class="service-num">01 / CONCEPTION</div>
-          <h3 style="margin-top:1rem">Penser l'espace.</h3>
-        </div>
-        <div>
-          <p>Plans d'implantation, zoning, coupes techniques, dossiers menuiseries. Chaque mètre carré pensé pour son usage.</p>
-          <ul>
-            <li>Plans techniques</li><li>Zoning</li><li>Menuiseries</li><li>Suivi</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div>
-          <div class="service-num">02 / VISUALISATION</div>
-          <h3 style="margin-top:1rem">Rendre visible.</h3>
-        </div>
-        <div>
-          <p>Rendus 3D photoréalistes, visites 360°, ambiances matières. Le projet devient tangible avant même le premier coup de pelle.</p>
-          <ul>
-            <li>3D photoréaliste</li><li>Visite 360°</li><li>Moodboards</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div>
-          <div class="service-num">03 / PRISE DE VUE</div>
-          <h3 style="margin-top:1rem">Révéler le lieu.</h3>
-        </div>
-        <div>
-          <p>Photo d'architecture et drone FPV pour analyser, documenter et valoriser. Un regard aérien qui change la lecture d'un projet.</p>
-          <ul>
-            <li>Photo archi</li><li>Drone FPV</li><li>Vidéo immersive</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-    <div class="services-hint">← Faites défiler →</div>
   </section>
 
   <!-- PROJETS -->
+  <div class="section-label"><span>Réalisations sélectionnées</span><span class="n">— 03</span></div>
   <section class="projets" id="projets">
-    <div class="projets-header">
-      <h2>Réalisations<br>sélectionnées.</h2>
-      <a href="/portfolio/projets/">Voir tous les projets →</a>
-    </div>
-    <div class="projets-grid">
-      <div class="projet-tile big">
-        <img src="/photoprojet/6-projet-villa-annecy-2025/3D/1.webp" alt="Villa Annecy" loading="lazy">
-        <div class="projet-tile-info"><h3>Villa Annecy</h3><p>Rénovation résidentielle · 2025</p></div>
+
+    <article class="projet">
+      <div class="projet-img"><img src="/photoprojet/6-projet-villa-annecy-2025/3D/1.webp" alt="Villa Annecy" loading="lazy"></div>
+      <div class="projet-info">
+        <div class="meta">Résidentiel · Annecy · 2025</div>
+        <h3>Villa contemporaine</h3>
+        <p>Rénovation complète d'une villa en bord de lac, incluant une extension sur pilotis et une refonte totale des espaces jour.</p>
+        <a href="/portfolio/projetdetail/villa-2025/">Voir le projet</a>
       </div>
-      <div class="projet-tile small">
-        <img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E1.webp" alt="Showroom Samples Room" loading="lazy">
-        <div class="projet-tile-info"><h3>Showroom</h3><p>Aménagement tertiaire · 2025</p></div>
+    </article>
+
+    <article class="projet">
+      <div class="projet-img"><img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E1.webp" alt="Showroom" loading="lazy"></div>
+      <div class="projet-info">
+        <div class="meta">Tertiaire · Genas · 2025</div>
+        <h3>Showroom Samples Room</h3>
+        <p>Aménagement d'un showroom de 320 m² dédié aux matériaux d'architecture. Zoning, mobilier sur mesure, mise en scène produit.</p>
+        <a href="/portfolio/projetdetail/showroom-2025/">Voir le projet</a>
       </div>
-      <div class="projet-tile medium">
-        <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 1.webp" alt="Projet Présentation" loading="lazy">
-        <div class="projet-tile-info"><h3>MAPAO</h3><p>Concept résidentiel · 2025</p></div>
+    </article>
+
+    <article class="projet">
+      <div class="projet-img"><img src="/photoprojet/4-projet-appartement-lyon-2024/Rendu/Projet Shelter1.webp" alt="Appartement Lyon" loading="lazy"></div>
+      <div class="projet-info">
+        <div class="meta">Résidentiel · Lyon · 2024</div>
+        <h3>Shelter</h3>
+        <p>Rénovation d'un appartement haussmannien : ouverture des volumes, restauration du parquet d'origine, nouvelle cuisine.</p>
+        <a href="/portfolio/projetdetail/appartement-lyon-2024/">Voir le projet</a>
       </div>
-      <div class="projet-tile medium">
-        <img src="/photoprojet/4-projet-appartement-lyon-2024/Rendu/Projet Shelter1.webp" alt="Appartement Lyon" loading="lazy">
-        <div class="projet-tile-info"><h3>Shelter</h3><p>Rénovation appartement · 2024</p></div>
-      </div>
-      <div class="projet-tile wide">
-        <img src="/photosite/passion-photo/contact.webp" alt="Vue drone" loading="lazy">
-        <div class="projet-tile-info"><h3>Vues aériennes</h3><p>Prises de vue drone FPV</p></div>
-      </div>
-    </div>
+    </article>
+
   </section>
 
   <!-- MÉTHODE -->
+  <div class="section-label"><span>Méthode</span><span class="n">— 04</span></div>
   <section class="methode" id="methode">
     <div class="methode-inner">
-      <div class="methode-title">
-        <span>Méthode</span>
-        <h2>Cinq étapes,<br>zéro compromis.</h2>
-      </div>
-      <div class="methode-steps">
-        <div class="methode-step">
-          <div class="methode-step-num">01</div>
-          <div class="methode-step-content">
-            <h3>Écoute</h3>
-            <p>Un premier échange pour comprendre le lieu, les usages, les contraintes et les envies. Sans engagement, sans jargon.</p>
-          </div>
-        </div>
-        <div class="methode-step">
-          <div class="methode-step-num">02</div>
-          <div class="methode-step-content">
-            <h3>Analyse</h3>
-            <p>Relevé du lieu, prises de vue drone si pertinent, étude technique. Le projet commence là où d'autres s'arrêtent.</p>
-          </div>
-        </div>
-        <div class="methode-step">
-          <div class="methode-step-num">03</div>
-          <div class="methode-step-content">
-            <h3>Conception</h3>
-            <p>Zoning, plans, matières. Plusieurs pistes proposées et discutées. Vous choisissez, je détaille.</p>
-          </div>
-        </div>
-        <div class="methode-step">
-          <div class="methode-step-num">04</div>
-          <div class="methode-step-content">
-            <h3>Visualisation</h3>
-            <p>Rendus 3D photoréalistes pour valider volumes et ambiances. Vous voyez le résultat final avant les travaux.</p>
-          </div>
-        </div>
-        <div class="methode-step">
-          <div class="methode-step-num">05</div>
-          <div class="methode-step-content">
-            <h3>Livraison</h3>
-            <p>Dossier complet transmissible aux artisans. Suivi possible en option pour garantir l'exécution.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PREUVES -->
-  <section class="preuves">
-    <div class="preuves-grid">
-      <div class="preuve">
-        <div class="preuve-num">15+</div>
-        <div class="preuve-label">Projets menés</div>
-      </div>
-      <div class="preuve">
-        <div class="preuve-num">3</div>
-        <div class="preuve-label">Cabinets partenaires</div>
-      </div>
-      <div class="preuve">
-        <div class="preuve-num">160m²</div>
-        <div class="preuve-label">Surface projet moyenne</div>
-      </div>
-      <div class="preuve">
-        <div class="preuve-num">Lyon</div>
-        <div class="preuve-label">Base d'intervention</div>
-      </div>
+      <h2 class="reveal">Cinq temps pour<br>chaque projet.</h2>
+      <ol class="methode-list reveal">
+        <li class="methode-item">
+          <span class="step">i</span>
+          <div><h3>Écoute</h3><p>Un premier échange, sur place ou à distance, pour comprendre le lieu, les usages, le budget.</p></div>
+        </li>
+        <li class="methode-item">
+          <span class="step">ii</span>
+          <div><h3>Analyse</h3><p>Relevé du lieu, prise de vue drone si pertinente, étude technique et contraintes.</p></div>
+        </li>
+        <li class="methode-item">
+          <span class="step">iii</span>
+          <div><h3>Conception</h3><p>Zoning, plans, matières. Deux à trois pistes proposées puis affinées ensemble.</p></div>
+        </li>
+        <li class="methode-item">
+          <span class="step">iv</span>
+          <div><h3>Visualisation</h3><p>Rendus 3D photoréalistes pour valider les volumes, les lumières, les ambiances.</p></div>
+        </li>
+        <li class="methode-item">
+          <span class="step">v</span>
+          <div><h3>Livraison</h3><p>Dossier technique complet transmissible aux artisans. Suivi de chantier en option.</p></div>
+        </li>
+      </ol>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section class="contact" id="contact">
-    <h2>Votre projet,<br>notre prochaine étape.</h2>
+    <div class="label">— 05 · Contact</div>
+    <h2>Un projet, une idée, une <em>question.</em><br>Écrivons-nous.</h2>
     <a href="mailto:contact@studiotm.fr" class="contact-mail">contact@studiotm.fr</a>
     <div class="contact-info">
-      <a href="tel:+33672256783">+33 6 72 25 67 83</a> · Lyon, France<br>
+      <a href="tel:+33672256783">+33 6 72 25 67 83</a> · Lyon, France<br><br>
       <a href="https://www.instagram.com/studiotm___" target="_blank" rel="noopener">Instagram</a>
       · <a href="https://www.linkedin.com/in/tom-maradan" target="_blank" rel="noopener">LinkedIn</a>
       · <a href="/portfolio/">Portfolio étudiant</a>
@@ -699,59 +626,31 @@
   </section>
 
   <footer>
-    <div>© 2026 StudioTM — Tom Maradan (EI) — SIRET 991 805 466 00018</div>
-    <div>
+    <div>© 2026 Studio·TM — Tom Maradan (EI)</div>
+    <div class="footer-right">
       <a href="/portfolio/">Portfolio</a>
       <a href="/portfolio/mentions-legales/">Mentions légales</a>
     </div>
   </footer>
 
   <script>
-    // ============================================================
-    // Progress bar au scroll
-    // ============================================================
+    // Progress
     const progress = document.getElementById('progress');
+    const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       const h = document.documentElement;
-      const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-      progress.style.width = scrolled + '%';
+      const s = h.scrollTop;
+      progress.style.width = (s / (h.scrollHeight - h.clientHeight) * 100) + '%';
+      nav.classList.toggle('scrolled', s > 30);
     }, { passive: true });
 
-    // ============================================================
-    // Manifesto : chaque mot s'allume au scroll
-    // ============================================================
-    const manifesto = document.getElementById('manifesto');
-    const rawHTML = manifesto.innerHTML;
-    // Sépare en tokens en préservant les <strong>
-    const tokens = rawHTML.split(/(<strong>.*?<\/strong>|\s+)/).filter(t => t.trim().length);
-    manifesto.innerHTML = tokens.map(t => `<span class="manifesto-word">${t}</span>`).join(' ');
-    const words = manifesto.querySelectorAll('.manifesto-word');
-
-    function updateManifesto() {
-      const rect = manifesto.getBoundingClientRect();
-      const start = window.innerHeight * 0.85;
-      const end = window.innerHeight * 0.15;
-      const range = start - end;
-      const progress = Math.min(Math.max((start - rect.top) / range, 0), 1);
-      const activeCount = Math.floor(progress * words.length);
-      words.forEach((w, i) => w.classList.toggle('on', i < activeCount));
-    }
-    window.addEventListener('scroll', updateManifesto, { passive: true });
-    updateManifesto();
-
-    // ============================================================
-    // Projets : reveal on scroll (stagger)
-    // ============================================================
-    const tiles = document.querySelectorAll('.projet-tile');
+    // Reveal on scroll
     const io = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('reveal'), i * 80);
-          io.unobserve(e.target);
-        }
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
-    tiles.forEach(t => io.observe(t));
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal, .projet').forEach(el => io.observe(el));
   </script>
 
 </body>
