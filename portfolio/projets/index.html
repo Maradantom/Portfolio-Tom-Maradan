@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, follow">
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon-v2.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96-v2.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon-v2.svg">
+  <link rel="shortcut icon" href="/favicon/favicon-v2.ico">
+  <link rel="manifest" href="/favicon/site-v2.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>Tom Maradan | StudioTM - Projets</title>
+  <meta name="description" content="Découvrez l'ensemble de mes projets d'architecture intérieure : villas, rénovations, showrooms, escaliers, design sur mesure.">
+  <link rel="canonical" href="https://studiotm.fr/projets/">
+
+  <!-- Open Graph (partage WhatsApp, LinkedIn, iMessage…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://studiotm.fr/projets/">
+  <meta property="og:title" content="Mes projets — Tom Maradan">
+  <meta property="og:description" content="Découvrez l'ensemble de mes projets d'architecture intérieure : villas, rénovations, showrooms, escaliers, design sur mesure.">
+  <meta property="og:image" content="https://studiotm.fr/photoprojet/6-projet-villa-annecy-2025/3D/1.webp">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Tom Maradan — StudioTM">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mes projets — Tom Maradan">
+  <meta name="twitter:description" content="Découvrez l'ensemble de mes projets d'architecture intérieure : villas, rénovations, showrooms, escaliers, design sur mesure.">
+  <meta name="twitter:image" content="https://studiotm.fr/photoprojet/6-projet-villa-annecy-2025/3D/1.webp">
+
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    :root {
+  --main-color: #111;
+  --bg-color: #fdfdfd;
+  --card-bg: #fff;
+  --accent-color: #eee;
+}
+
+html, body {
+  margin: 0;
+  max-width: 100%;
+  overflow-x: hidden; /* empêche tout dépassement horizontal */
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-color);
+  color: var(--main-color);
+}
+
+.titre {
+  text-align: center;
+  padding: 3rem 1rem 1.5rem;
+}
+
+h1 {
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border-radius: 12px;
+  max-width: 800px;
+  margin: auto;
+}
+.no-results {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #999;
+  font-style: italic;
+  grid-column: 1 / -1;
+}
+
+.filters select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0.7rem 2.5rem 0.7rem 1rem;
+  font-size: 1rem;
+  font-family: 'Outfit', sans-serif;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="gray" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 16px 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  width: 100%;
+  color: #111;
+  -webkit-text-fill-color: #111;
+  text-indent: 0.01px;
+  text-overflow: '';
+}
+
+.filters select:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.filters select:hover {
+  border-color: #bbb;
+  background-color: #f8f8f8;
+}
+
+.grid-projets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.project-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project-card .content {
+  padding: 1.2rem;
+}
+
+.project-card h2 {
+  font-size: 1.2rem;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.project-card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.footer-logo {
+  max-width: 100px;
+  height: auto;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.footer-logo:hover {
+  opacity: 1;
+}
+
+/* BANDEAU FIXE */
+.fixed-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+  height: 60px;
+  box-sizing: border-box;
+}
+
+.fixed-nav.visible {
+  transform: translateY(0);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo img {
+  height: 28px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-links a {
+  color: #000;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ccc;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .fixed-nav {
+    flex-direction: column;
+    padding: 15px 15px;
+    height: auto;
+    gap: 8px;
+    padding-top: 20px;
+  }
+
+  .nav-logo img {
+    height: 20px;
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
+
+  .nav-links a {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .titre {
+    padding: 1rem 1rem 0.8rem;
+  }
+  h1 { font-size: 1.6rem; }
+
+  /* 3 filtres compacts sur la même ligne */
+  .filters {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.4rem;
+    padding: 0.6rem;
+    max-width: 96%;
+    border-radius: 10px;
+  }
+  .filters select {
+    padding: 0.45rem 1.6rem 0.45rem 0.5rem;
+    font-size: 0.72rem;
+    border-radius: 8px;
+    background-position: right 0.4rem center;
+    background-size: 12px 12px;
+  }
+}
+  </style>
+</head>
+<body>
+
+<!-- BANDEAU DE NAVIGATION FIXE -->
+<!-- BANDEAU DE NAVIGATION FIXE (partial partagé) -->
+  <div data-include="header-portfolio"></div>
+
+  <div class="titre">
+    <h1>Mes projets</h1>
+  </div>
+
+  <div class="filters">
+    <select id="year-filter">
+      <option value="">Années de production</option>
+      <option value="2025">2025</option>
+      <option value="2024">2024</option>
+    </select>
+
+    <select id="sector-filter">
+      <option value="">Type de construction</option>
+      <option value="Construction">Construction</option>
+      <option value="Rénovation">Rénovation</option>
+    </select>
+
+    <select id="type-filter">
+      <option value="">Tous les secteurs</option>
+      <option value="Résidentiel">Résidentielle</option>
+      <option value="Tertiaire">Tertiaire</option>
+    </select>
+  </div>
+
+  <main>
+    <div class="grid-projets">
+      <!-- Projet 8 -->
+      <a href="/portfolio/projetdetail/presentation/" class="project-card" data-year="2025" data-sector="Construction" data-type="Résidentiel">
+        <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-2-C03-1.webp" alt="Projet Showroom">
+        <div class="content">
+          <h2>Projet Présentation</h2>
+          <p>Construction résidentiel – 2025</p>
+        </div>
+      </a>
+      
+      <!-- Projet 7 -->
+      <a href="/portfolio/projetdetail/showroom-2025/" class="project-card" data-year="2025" data-sector="Construction" data-type="Tertiaire">
+        <img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E1.webp" alt="Projet Showroom">
+        <div class="content">
+          <h2>Projet Showroom</h2>
+          <p>Construction tertiaire – 2025</p>
+        </div>
+      </a>
+
+      <!-- Projet 6 -->
+      <a href="/portfolio/projetdetail/villa-2025/" class="project-card" data-year="2025" data-sector="Rénovation" data-type="Résidentiel">
+        <img src="/photoprojet/6-projet-villa-annecy-2025/3D/1.webp" alt="Projet Villa">
+        <div class="content">
+          <h2>Projet Villa</h2>
+          <p>Rénovation résidentiel – 2025</p>
+        </div>
+      </a>
+
+      <!-- Projet 5 -->
+      <a href="/portfolio/projetdetail/maison-2025/" class="project-card" data-year="2025" data-sector="Construction" data-type="Résidentiel">
+        <img src="/photoprojet/5-projet-maison-2025/3D/Maison__Drone 1.webp" alt="Projet Maison">
+        <div class="content">
+          <h2>Projet Maison</h2>
+          <p>Construction résidentiel – 2025</p>
+        </div>
+      </a>
+
+      <!-- Projet 4 -->
+      <a href="/portfolio/projetdetail/appartement-lyon-2024/" class="project-card" data-year="2024" data-sector="Rénovation" data-type="Résidentiel">
+        <img src="/photoprojet/4-projet-appartement-lyon-2024/3D/Cuisine-salon.webp" alt="Projet Appartement">
+        <div class="content">
+          <h2>Projet Appartement</h2>
+          <p>Rénovation résidentiel – 2024</p>
+        </div>
+      </a>
+
+      <!-- Projet 3 -->
+      <a href="/portfolio/projetdetail/escalier-2024/" class="project-card" data-year="2024" data-sector="Construction" data-type="Résidentiel">
+        <img src="/photoprojet/3-projet-escalier-2024/3D/1_o.effectsResult.webp" alt="Projet Escalier">
+        <div class="content">
+          <h2>Projet Escalier</h2>
+          <p>Construction résidentiel – 2024</p>
+        </div>
+      </a>
+
+      <!-- Projet 2 -->
+      <a href="/portfolio/projetdetail/cabane-2024/" class="project-card" data-year="2024" data-sector="Construction" data-type="Résidentiel">
+        <img src="/photoprojet/2-projet-cabane-2024/3D/Zoom 60mm.webp" alt="Projet Cabane">
+        <div class="content">
+          <h2>Projet Cabane</h2>
+          <p>Construction résidentiel – 2024</p>
+        </div>
+      </a>
+
+      <!-- Projet 1 -->
+      <a href="/portfolio/projetdetail/appartement-2024/" class="project-card" data-year="2024" data-sector="Rénovation" data-type="Résidentiel">
+        <img src="/photoprojet/1-projet-appartement-2024/3D.webp" alt="Projet Horizon">
+        <div class="content">
+          <h2>Projet Horizon</h2>
+          <p>Rénovation résidentiel – 2024</p>
+        </div>
+      </a>
+    </div>
+  </main>
+
+
+
+<script>
+  (function() {
+    const yearFilter = document.getElementById("year-filter");
+    const sectorFilter = document.getElementById("sector-filter");
+    const typeFilter = document.getElementById("type-filter");
+    const cards = document.querySelectorAll(".project-card");
+    const grid = document.querySelector(".grid-projets");
+
+    function filterProjects() {
+      const year = yearFilter.value;
+      const sector = sectorFilter.value;
+      const type = typeFilter.value;
+      let shown = 0;
+
+      cards.forEach(card => {
+        const ok =
+          (!year   || card.dataset.year   === year) &&
+          (!sector || card.dataset.sector === sector) &&
+          (!type   || card.dataset.type   === type);
+        card.style.display = ok ? "" : "none";
+        if (ok) shown++;
+      });
+
+      // Message "aucun résultat"
+      let empty = grid.querySelector(".no-results");
+      if (shown === 0 && !empty) {
+        empty = document.createElement("p");
+        empty.className = "no-results";
+        empty.textContent = "Aucun projet ne correspond à ces filtres.";
+        grid.appendChild(empty);
+      } else if (shown > 0 && empty) {
+        empty.remove();
+      }
+    }
+
+    yearFilter.addEventListener("change", filterProjects);
+    sectorFilter.addEventListener("change", filterProjects);
+    typeFilter.addEventListener("change", filterProjects);
+  })();
+</script>
+
+    <div class="scene">
+    <div class="card" id="card">
+      <div class="face front"></div>
+      <div class="face back"></div>
+    </div>
+  </div>
+
+  <style>
+    .scene {
+      width: 85mm;
+      height: 54mm;
+      perspective: 1000px;
+      margin: 40px auto;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out;
+      transform: rotateY(15deg) rotateX(10deg);
+      will-change: transform;
+      touch-action: none;
+    }
+
+    .face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      backface-visibility: hidden;
+    }
+
+    .front {
+      background-image: url('/photosite/logo/Carte de visite.webp');
+      /* Remplace par ton image */
+    }
+
+    .back {
+      background-image: url('/photosite/logo/Carte de visite2.webp');
+      /* Remplace par ton image */
+      transform: rotateY(180deg);
+    }
+  </style>
+
+
+  <script>
+    const card = document.getElementById('card');
+    let isDragging = false;
+    let startX, startY;
+    let currentX = 20, currentY = -15;
+    let targetX = currentX, targetY = currentY;
+    let baseX = currentX, baseY = currentY;
+    let animationId = null;
+    let autoRotate = true;
+    let autoSpeedX = 0.2; // vitesse de rotation horizontale
+    let autoSpeedY = 0;   // tu peux aussi mettre une rotation verticale lente si tu veux
+
+    function updateTransform() {
+      if (!isDragging && autoRotate) {
+        targetX += autoSpeedX;
+        targetY += autoSpeedY;
+      }
+
+      currentX += (targetX - currentX) * 0.1;
+      currentY += (targetY - currentY) * 0.1;
+      card.style.transform = `rotateY(${currentX}deg) rotateX(${-currentY}deg)`;
+      animationId = requestAnimationFrame(updateTransform);
+    }
+
+    function startAnimation() {
+      if (!animationId) {
+        animationId = requestAnimationFrame(updateTransform);
+      }
+    }
+
+    function stopAnimation() {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+
+function updateTarget(deltaX, deltaY) {
+  if (isBackFaceVisible()) {
+    deltaY = -deltaY; 
+  }
+  targetX = baseX + deltaX * 0.3;
+  targetY = baseY + deltaY * 0.3;
+}
+    function isBackFaceVisible() {
+  const y = (currentX % 360 + 360) % 360; 
+  return y > 90 && y < 270;
+}
+    // Souris
+    document.addEventListener('mousedown', (e) => {
+      if (e.target.closest('#card')) {
+        isDragging = true;
+        autoRotate = false;
+        startX = e.clientX;
+        startY = e.clientY;
+        baseX = currentX;
+        baseY = currentY;
+        startAnimation();
+      }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - startX;
+      const deltaY = e.clientY - startY;
+      updateTarget(deltaX, deltaY);
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      autoRotate = true;
+    });
+
+    // Mobile
+    card.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      autoRotate = false;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      baseX = currentX;
+      baseY = currentY;
+      startAnimation();
+      e.preventDefault();
+    }, { passive: false });
+
+    card.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.touches[0].clientX - startX;
+      const deltaY = e.touches[0].clientY - startY;
+      updateTarget(deltaX, deltaY);
+      e.preventDefault();
+    }, { passive: false });
+
+    card.addEventListener('touchend', () => {
+      isDragging = false;
+      autoRotate = true;
+    });
+
+    // Lancer l'animation au chargement
+    card.style.transform = `rotateY(${currentX}deg) rotateX(${-currentY}deg)`;
+    startAnimation();
+  </script>
+
+<div class="back-btn-wrapper">
+  <a href="/portfolio/" class="voir-projets-btn">Page principale</a>
+</div>
+
+<style>
+  .back-btn-wrapper {
+    text-align: center;
+    margin: 4rem 0 2rem;
+  }
+
+  .voir-projets-btn {
+    display: inline-block;
+    padding: 0.8rem 1.6rem;
+    background: #eee;
+    color: #111;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s ease;
+    border: 1px solid #ddd;
+  }
+
+  .voir-projets-btn:hover {
+    background: #e0e0e0;
+    transform: scale(1.05);
+  }
+</style>
+  <!-- FOOTER (partial partagé) -->
+  <div data-include="footer-portfolio"></div>
+
+    <!-- ICÔNES SOCIALES (partial partagé) -->
+  <div data-include="footer-socials-portfolio"></div>
+  <style>
+  </style>
+
+
+
+  <div id="dowm"></div>
+  <a href="#top" class="to-top">↑</a>
+
+  <style>
+    html {
+  scroll-behavior: smooth;
+}
+    .to-top {
+      position: fixed;
+      bottom: 60px;
+      left: 15px;
+      font-size: 40px;
+      text-decoration: none;
+      color: #999;
+      z-index: 9999;
+      /* plus élevé */
+    }
+
+    .to-top:hover {
+      color: #000;
+      transform: scale(1.2);
+      transition: transform 0.3s ease;
+    }
+  </style>
+
+<!-- Script pour le bandeau fixe -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const fixedNav = document.getElementById('fixed-nav');
+  
+  function checkScrollPosition() {
+    // Vous pouvez ajuster cette condition selon vos besoins
+    // Par exemple, afficher le bandeau après 200px de scroll
+    if (window.scrollY > 200) {
+      fixedNav.classList.add('visible');
+    } else {
+      fixedNav.classList.remove('visible');
+    }
+  }
+  
+  window.addEventListener('scroll', checkScrollPosition);
+  checkScrollPosition();
+});
+</script>
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>
