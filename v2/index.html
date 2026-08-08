@@ -57,6 +57,23 @@
     }
     .nav.scrolled { border-bottom-color: var(--line); }
     .nav-logo img { height: 28px; width: auto; }
+    .nav-menu {
+      display: flex;
+      gap: 0.4rem;
+    }
+    .nav-pill {
+      padding: 0.75rem 1.4rem;
+      border-radius: 999px;
+      background: var(--paper-2);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      transition: background 0.3s;
+    }
+    .nav-pill:hover { background: #e8e3d8; }
+    @media (max-width: 900px) { .nav-menu { display: none; } }
     .pill {
       display: inline-flex;
       align-items: center;
@@ -119,16 +136,16 @@
     }
     @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
     .hero-title {
-      font-size: clamp(2.6rem, 6.5vw, 5.5rem);
-      font-weight: 300;
+      font-size: clamp(2.8rem, 7vw, 6.5rem);
+      font-weight: 200;
       line-height: 1.02;
-      letter-spacing: -0.025em;
-      max-width: 900px;
+      letter-spacing: -0.03em;
+      max-width: 1000px;
       margin-top: 3rem;
       opacity: 0;
       animation: fadeUp 1.2s 0.5s cubic-bezier(.22,.61,.36,1) forwards;
     }
-    .hero-title em { font-style: italic; font-weight: 300; }
+    .hero-title em { font-style: italic; font-weight: 200; }
     .hero-desc {
       max-width: 520px;
       margin-top: 1.8rem;
@@ -140,12 +157,14 @@
     }
     .hero-actions {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: flex-start;
       gap: 0.7rem;
       margin-top: 2rem;
       opacity: 0;
       animation: fadeUp 1s 1.1s cubic-bezier(.22,.61,.36,1) forwards;
     }
+    .hero-actions .pill { padding: 1.1rem 2rem; font-size: 0.72rem; }
     .hero-tags {
       display: flex;
       flex-wrap: wrap;
@@ -561,6 +580,12 @@
 
   <nav class="nav" id="nav">
     <a href="#" class="nav-logo"><img src="/photosite/logo/Noirlong.webp" alt="StudioTM"></a>
+    <div class="nav-menu">
+      <a href="#methode" class="nav-pill">Méthode</a>
+      <a href="#realisations" class="nav-pill">Réalisations</a>
+      <a href="#drone" class="nav-pill">Photo & Drone</a>
+      <a href="#contact" class="nav-pill">Contact</a>
+    </div>
     <a href="#contact" class="pill pill-dark">Discutons</a>
   </nav>
 
@@ -569,7 +594,7 @@
     <div class="hero-media">
       <div class="hero-eyebrow">Tom Maradan · Architecture intérieure — Lyon</div>
       <div>
-        <h1 class="hero-title">Voyez votre projet <em>avant</em> de le construire.</h1>
+        <h1 class="hero-title">Voyez votre projet avant de le construire.</h1>
         <p class="hero-desc">Plans techniques, modélisation 3D et rendus photo-réalistes. Je transforme vos idées en visuels clairs et inspirants — pour décider sans vous tromper.</p>
         <div class="hero-actions">
           <a href="#contact" class="pill pill-light">Discutons de votre projet</a>
@@ -680,7 +705,7 @@
   </section>
 
   <!-- RÉALISATIONS -->
-  <section>
+  <section id="realisations">
     <div class="section-label"><span>Réalisations</span><span class="n">— 03</span></div>
     <div class="realisations-header">
       <h2 class="section-title reveal">Villas, showrooms & <em>rendus 3D.</em></h2>
@@ -707,7 +732,7 @@
   </section>
 
   <!-- PHOTO & DRONE -->
-  <section>
+  <section id="drone">
     <div class="section-label"><span>Photo & drone</span><span class="n">— 04</span></div>
     <div class="drone">
       <div class="drone-media reveal"></div>
