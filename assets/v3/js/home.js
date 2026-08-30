@@ -45,8 +45,8 @@
         imgs[idx].classList.remove('active');
         idx = (idx + 1) % imgs.length;
         imgs[idx].classList.add('active');
-      }, 4200);
-    }, cardIdx * 700);
+      }, 8000);
+    }, cardIdx * 1200);
   });
 
   // ---------- Hero carousel ----------
@@ -92,7 +92,7 @@
       'proc.eyebrow':'Déroulement','proc.title':'Comment se passe une mission.','proc.tab1':'Particulier','proc.tab2':'Professionnel',
       'cs.eyebrow':'Prenons contact','cs.title':"Un projet, une idée, une question ?<br>Je réponds sous 48h.",'cs.form':'Formulaire complet',
       'foot.baseline':"StudioTM — Studio d'architecture d'intérieur basé à Lyon. Plans, 3D, rénovation, suivi de chantier.",
-      'foot.site':'Site','foot.form':'Formulaire','foot.follow':'Suivre','foot.rights':'Tous droits réservés.','foot.legal':'Mentions légales','foot.privacy':'Politique de confidentialité',
+      'foot.site':'Site','foot.form':'Formulaire','foot.follow':'Suivre','foot.rights':'Tous droits réservés.','foot.legal':'Mentions légales','foot.privacy':'Politique de confidentialité','foot.cgv':'CGV',
       'fc.wa':'WhatsApp','fc.mail':'Email','fc.tel':'Téléphone',
       'ck.title':"Un espace pensé jusqu'aux détails.",
       'ck.p':"StudioTM utilise des cookies de mesure d'audience pour comprendre le nombre de visiteurs, le temps passé sur chaque page et les projets qui vous intéressent. Aucune donnée n'est revendue.",
@@ -122,7 +122,7 @@
       'proc.eyebrow':'Process','proc.title':'How a project unfolds.','proc.tab1':'Private','proc.tab2':'Professional',
       'cs.eyebrow':"Let's talk",'cs.title':"A project, an idea, a question?<br>I reply within 48 hours.",'cs.form':'Full form',
       'foot.baseline':"StudioTM — Interior architecture studio based in Lyon. Drawings, 3D, renovation, site supervision.",
-      'foot.site':'Site','foot.form':'Form','foot.follow':'Follow','foot.rights':'All rights reserved.','foot.legal':'Legal notice','foot.privacy':'Privacy policy',
+      'foot.site':'Site','foot.form':'Form','foot.follow':'Follow','foot.rights':'All rights reserved.','foot.legal':'Legal notice','foot.privacy':'Privacy policy','foot.cgv':'Terms',
       'fc.wa':'WhatsApp','fc.mail':'Email','fc.tel':'Phone',
       'ck.title':'A space designed down to the details.',
       'ck.p':"StudioTM uses audience-measurement cookies to understand the number of visitors, the time spent on each page and the projects you care about. No data is ever sold.",

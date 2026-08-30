@@ -1,6 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
 Disallow: /rendu/
 Disallow: /presentation-360/
+Disallow: /projetdetail/
+Disallow: /templates/
+Disallow: /v2/
 
 Sitemap: https://studiotm.fr/sitemap.xml

@@ -3,115 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page introuvable — Tom Maradan | StudioTM</title>
-  <meta name="description" content="Désolé, cette page n'existe pas ou a été déplacée. Retournez à l'accueil pour découvrir le portfolio.">
   <meta name="robots" content="noindex">
+  <title>Page introuvable — StudioTM</title>
+  <meta name="description" content="Cette page n'existe pas ou a été déplacée. Retour à l'accueil StudioTM.">
 
-  <link rel="icon" type="image/svg+xml" href="/favicon/favicon-v2.svg">
-  <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96-v2.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon-v2.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96-v2.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon-v2.svg">
+  <link rel="shortcut icon" href="/favicon/favicon-v2.ico">
+  <meta name="theme-color" content="#ffffff">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root { --bg: #fafafa; --fg: #111; --muted: #777; }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    .err-wrap {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6rem 1.5rem 4rem;
-    }
-    .err {
-      text-align: center;
-      max-width: 600px;
-    }
-    .err-code {
-      font-size: clamp(5rem, 18vw, 9rem);
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      color: var(--fg);
-      margin-bottom: 1rem;
-    }
-    .err-title {
-      font-size: clamp(1.2rem, 3vw, 1.6rem);
-      font-weight: 600;
-      margin-bottom: 0.8rem;
-    }
-    .err-text {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 2.5rem;
-    }
-    .err-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      justify-content: center;
-    }
-    .err-btn {
-      display: inline-block;
-      padding: 0.8rem 1.6rem;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: all 0.25s ease;
-    }
-    .err-btn.primary {
-      background: var(--fg);
-      color: #fff;
-      border: 1px solid var(--fg);
-    }
-    .err-btn.primary:hover { background: #333; }
-    .err-btn.ghost {
-      background: transparent;
-      color: var(--fg);
-      border: 1px solid #ddd;
-    }
-    .err-btn.ghost:hover { background: #f0f0f0; }
-  </style>
+  <link rel="stylesheet" href="/assets/v3/css/home.css?v=3">
+  <link rel="stylesheet" href="/assets/v3/css/page.css?v=1">
 </head>
 <body>
 
-  <!-- Barre de nav -->
-  <div data-include="header"></div>
+<header class="site-header scrolled">
+  <a href="/" class="header-brand" aria-label="StudioTM — accueil">
+    <img src="/photosite/logo/Noirlong.webp" alt="StudioTM">
+    <span class="signature-line" aria-hidden="true"></span>
+  </a>
+  <nav class="header-nav" aria-label="Navigation principale">
+    <a href="/#about">À propos</a>
+    <a href="/#services">Services</a>
+    <a href="/#projects">Projets</a>
+    <a href="/#process">Déroulement</a>
+    <a href="/contact/">Contact</a>
+    <a href="/portfolio/">Portfolio</a>
+  </nav>
+  <div class="lang-toggle" style="visibility:hidden"><button>FR</button></div>
+  <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
 
-  <main class="err-wrap">
-    <div class="err">
-      <p class="err-code">404</p>
-      <h1 class="err-title">Cette page n'existe pas</h1>
-      <p class="err-text">
-        L'URL que vous avez tapée est introuvable, ou la page a peut-être été déplacée.<br>
-        Retournez à l'accueil pour découvrir mon portfolio.
-      </p>
-      <div class="err-actions">
-        <a href="/" class="err-btn primary">← Retour à l'accueil</a>
-        <a href="/projets/" class="err-btn ghost">Voir mes projets</a>
-      </div>
+<main class="err-hero">
+  <div class="err-hero-inner">
+    <span class="eyebrow">Erreur 404</span>
+    <h1>Cette page semble avoir été déplacée.</h1>
+    <p>Ou peut-être n'a-t-elle jamais existé. Revenez à l'accueil pour explorer les projets, ou contactez-moi si vous cherchez quelque chose de précis.</p>
+    <div class="actions">
+      <a href="/" class="btn-outline">Retour à l'accueil
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="/portfolio/" class="btn-outline">Voir le portfolio</a>
     </div>
-  </main>
+  </div>
+</main>
 
-  <!-- Footer -->
-  <div data-include="footer"></div>
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="/photosite/logo/Noirlong.webp" alt="StudioTM">
+      <p>StudioTM — Studio d'architecture d'intérieur basé à Lyon. Plans, 3D, rénovation, suivi de chantier.</p>
+    </div>
+    <div>
+      <h5>Site</h5>
+      <a href="/#about">À propos</a>
+      <a href="/#services">Services</a>
+      <a href="/#projects">Projets</a>
+      <a href="/portfolio/">Portfolio</a>
+    </div>
+    <div>
+      <h5>Contact</h5>
+      <a href="mailto:contact@studiotm.fr">contact@studiotm.fr</a>
+      <a href="tel:+33672256783">+33 6 72 25 67 83</a>
+      <a href="/contact/">Formulaire</a>
+    </div>
+    <div>
+      <h5>Suivre</h5>
+      <a href="https://www.instagram.com/studiotm___/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.linkedin.com/in/tom-maradan" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> StudioTM — Tom Maradan. Tous droits réservés.</span>
+    <span>
+      <a href="/mentions-legales/" style="display:inline; margin-right: 1rem;">Mentions légales</a>
+      <a href="/politique-confidentialite/" style="display:inline; margin-right: 1rem;">Politique de confidentialité</a>
+      <a href="/cgv/" style="display:inline;">CGV</a>
+    </span>
+  </div>
+</footer>
 
-  <!-- Icônes sociales flottantes -->
-  <div data-include="footer-socials"></div>
-
-  <script src="/assets/js/main.js" defer></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
