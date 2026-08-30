@@ -68,28 +68,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.75rem); }
   50% { opacity: 1; }
 }
 
-/* ---------- Curseur custom ---------- */
-@media (hover: hover) and (pointer: fine) {
-  html, body, a, button { cursor: none; }
-  #cursor-dot, #cursor-ring {
-    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10000;
-    transform: translate3d(-50%, -50%, 0);
-    transition: opacity 0.3s ease;
-  }
-  #cursor-dot {
-    width: 6px; height: 6px; border-radius: 50%; background: var(--ink);
-    transition: transform 0.15s ease, width 0.3s var(--ease), height 0.3s var(--ease), background 0.3s ease;
-  }
-  #cursor-ring {
-    width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--ink);
-    transition: transform 0.4s var(--ease), width 0.4s var(--ease), height 0.4s var(--ease), border-color 0.3s ease, opacity 0.3s ease;
-    opacity: 0.4;
-  }
-  body.cursor-hover #cursor-dot { transform: translate3d(-50%, -50%, 0) scale(0); }
-  body.cursor-hover #cursor-ring { width: 56px; height: 56px; opacity: 1; }
-  body.cursor-image #cursor-ring { width: 80px; height: 80px; background: rgba(255,255,255,0.1); backdrop-filter: blur(2px); border-color: #fff; opacity: 1; }
-  body.cursor-image #cursor-dot { background: #fff; }
-}
+/* Curseur custom retiré */
 
 /* ---------- Signature ligne verticale ---------- */
 .signature-line {
@@ -222,9 +201,12 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.75rem); }
 .about-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
 .about-photo:hover img { transform: scale(1.04); }
 .about-photo::after {
-  content: "TM"; position: absolute; bottom: 1rem; right: 1rem;
-  font-size: 0.75rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.7);
-  border: 1px solid rgba(255,255,255,0.5); padding: 0.35rem 0.6rem;
+  content: ""; position: absolute; bottom: 1rem; right: 1rem;
+  width: 72px; height: 22px;
+  background: url('/photosite/logo/Noirlong.webp') center/contain no-repeat;
+  filter: invert(1) brightness(2);
+  opacity: 0.55;
+  pointer-events: none;
 }
 .about-text h2 { margin-bottom: 1.75rem; }
 .about-text p { margin-bottom: 1rem; color: var(--ink-soft); }
@@ -265,11 +247,15 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.75rem); }
 }
 .project-card:hover img { transform: scale(1.05); filter: none; }
 .project-card::after {
-  content: "TM"; position: absolute; bottom: 0.75rem; right: 0.75rem;
-  font-size: 0.65rem; letter-spacing: 0.25em; color: rgba(255,255,255,0.75);
-  padding: 0.25rem 0.5rem; border: 1px solid rgba(255,255,255,0.4);
-  backdrop-filter: blur(4px);
+  content: ""; position: absolute; bottom: 0.75rem; right: 0.85rem;
+  width: 64px; height: 20px;
+  background: url('/photosite/logo/Noirlong.webp') center/contain no-repeat;
+  filter: invert(1) brightness(2);
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease);
 }
+.project-card:hover::after { opacity: 0.85; }
 .project-card .caption {
   position: absolute; left: 1.25rem; bottom: 1.25rem; color: #fff;
   transform: translateY(20px); opacity: 0; transition: transform 0.5s var(--ease), opacity 0.5s var(--ease);
@@ -305,7 +291,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.75rem); }
 .news-visual { position: relative; overflow: hidden; aspect-ratio: 4/3; }
 .news-visual img { width: 100%; height: 100%; object-fit: cover; }
 .news-visual::after {
-  content: "DERNIER PROJET"; position: absolute; top: 1rem; left: 1rem;
+  content: attr(data-badge); position: absolute; top: 1rem; left: 1rem;
   background: #fff; color: var(--ink);
   padding: 0.4rem 0.75rem; font-size: 0.65rem; letter-spacing: 0.25em;
 }
@@ -313,18 +299,22 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.75rem); }
 /* ---------- Process ---------- */
 .process { background: var(--bg); }
 .process-toggle {
-  display: inline-flex; margin-top: 1.5rem; margin-bottom: 3rem;
-  border: 1px solid var(--ink); border-radius: 999px; padding: 0.25rem;
+  display: inline-grid; grid-template-columns: 1fr 1fr;
+  margin-top: 1.5rem; margin-bottom: 3rem;
+  border: 1px solid var(--ink); border-radius: 999px; padding: 4px;
   position: relative;
+  min-width: 320px;
 }
 .process-toggle button {
   padding: 0.6rem 1.75rem; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
   border-radius: 999px; position: relative; z-index: 2;
+  text-align: center;
   transition: color 0.4s var(--ease);
 }
 .process-toggle button.active { color: #fff; }
 .process-toggle .toggle-thumb {
-  position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px);
+  position: absolute; top: 4px; bottom: 4px; left: 4px;
+  width: calc(50% - 4px);
   background: var(--ink); border-radius: 999px; z-index: 1;
   transition: transform 0.5s var(--ease);
 }
