@@ -34,6 +34,21 @@
     }));
   }
 
+  // ---------- Grille projets : rotation photos ----------
+  document.querySelectorAll('.project-card .rot').forEach((rot, cardIdx) => {
+    const imgs = rot.querySelectorAll('img');
+    if (imgs.length < 2) return;
+    let idx = 0;
+    // Décalage entre cartes pour un effet aléatoire
+    setTimeout(() => {
+      setInterval(() => {
+        imgs[idx].classList.remove('active');
+        idx = (idx + 1) % imgs.length;
+        imgs[idx].classList.add('active');
+      }, 4200);
+    }, cardIdx * 700);
+  });
+
   // ---------- Hero carousel ----------
   const slides = document.querySelectorAll('.hero-slide');
   if (slides.length > 1) {
@@ -69,7 +84,7 @@
       'services.s2t':'Modélisation 3D','services.s2d':"Volumes, matières, éclairages. Une image qui parle au client avant même que le chantier ne démarre.",
       'services.s3t':'Rénovation','services.s3d':"Conception complète, choix des matériaux et coordination pour transformer un espace existant.",
       'services.s4t':'Suivi de chantier','services.s4d':"Présence sur site, coordination des artisans, respect du planning et de la vision.",
-      'services.s5t':'Conseil archi','services.s5d':"Regard extérieur, prise de recul, soutien ponctuel pour architectes et bureaux d'études.",
+      'services.s5t':'Vues drone','services.s5d':"Captures aériennes de vos projets — reveal, chantier, communication. Une signature visuelle qui vous démarque.",
       'proj.eyebrow':'Projets','proj.title':'Sélection.','proj.lead':"Un aperçu d'univers travaillés récemment. L'intégralité des projets est visible sur le portfolio.",'proj.cta':'Voir tous les projets',
       'news.eyebrow':'Actualité','news.title':'Un projet frais sur la table.',
       'news.p':"Direction les combles d'un bâtiment lyonnais transformés en logement lumineux. Un chantier récent qui illustre bien la démarche StudioTM : lecture précise du volume, projection 3D et visite drone.",
@@ -99,7 +114,7 @@
       'services.s2t':'3D modelling','services.s2d':"Volumes, materials, lighting. Images that speak to the client long before the site opens.",
       'services.s3t':'Renovation','services.s3d':"Full design, material selection and coordination to transform an existing space.",
       'services.s4t':'Site supervision','services.s4d':"On-site presence, coordination of trades, respect for the schedule and the vision.",
-      'services.s5t':'Architectural advisory','services.s5d':"Outside perspective and punctual support for architects and design offices.",
+      'services.s5t':'Drone shots','services.s5d':"Aerial captures of your projects — reveal, works in progress, communication. A visual signature that sets you apart.",
       'proj.eyebrow':'Projects','proj.title':'Selection.','proj.lead':"A glimpse of recent work. The full body of projects lives on the portfolio.",'proj.cta':'See all projects',
       'news.eyebrow':'News','news.title':'A fresh project on the table.',
       'news.p':"An attic in Lyon turned into a bright, functional home. A recent project that shows the StudioTM approach: precise reading of the volume, 3D projection and drone survey.",
