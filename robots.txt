@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /preview/
 Disallow: /rendu/
 Disallow: /presentation-360/
 Disallow: /projetdetail/
