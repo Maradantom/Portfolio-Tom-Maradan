@@ -47,7 +47,8 @@
   <link rel="preload" as="image" href="/photosite/passion-photo/dji_fly_20260730_125704_0363_1785601341574_aeb.webp">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/assets/v3/css/home.css?v=4">
+  <link rel="stylesheet" href="/assets/v3/css/home.css?v=5">
+  <link rel="stylesheet" href="/assets/v3/css/wow.css?v=2">
 
   <!-- JSON-LD (SEO local) -->
   <script type="application/ld+json">
@@ -113,7 +114,7 @@
 
   <div class="hero-inner">
     <span class="eyebrow" data-i18n="hero.eyebrow">StudioTM — Architecte d'intérieur, Lyon</span>
-    <h1 data-i18n="hero.title">L'architecture qui prend de la hauteur.</h1>
+    <h1 class="split" data-i18n="hero.title">L'architecture qui prend de la hauteur.</h1>
     <p class="lead" data-i18n="hero.lead">Conception d'espaces, plans techniques, visualisation 3D, rénovation et suivi de chantier. Une approche visuelle rare, servie par l'œil du drone et le sens du détail.</p>
     <a href="#contact" class="hero-cta">
       <span data-i18n="hero.cta">Discutons de votre projet</span>
@@ -127,16 +128,16 @@
 <!-- ============ À propos ============ -->
 <section class="section about" id="about">
   <div class="about-photo reveal">
-    <img src="/photosite/logo/IMG_1901.webp" alt="Tom Maradan, architecte d'intérieur — StudioTM" loading="lazy">
+    <img class="parallax" data-speed="-0.15" src="/photosite/logo/IMG_1901.webp" alt="Tom Maradan, architecte d'intérieur — StudioTM" loading="lazy">
   </div>
   <div class="about-text reveal delay-1">
     <span class="eyebrow" data-i18n="about.eyebrow">À propos</span>
-    <h2 data-i18n="about.title">Un regard neuf sur l'architecture d'intérieur.</h2>
+    <h2 class="split" data-i18n="about.title">Un regard neuf sur l'architecture d'intérieur.</h2>
     <p data-i18n="about.p1">Tom Maradan, fondateur de StudioTM, se forme à l'école CREAD Lyon et développe depuis plusieurs années une pratique qui mêle conception spatiale, visualisation 3D et prises de vue drone. Cette double compétence — architecturale et visuelle — permet de faire lire un projet avant même qu'il n'existe.</p>
     <p data-i18n="about.p2">StudioTM accompagne particuliers, professionnels et confrères architectes sur des projets qui vont de la rénovation d'appartement à la villa complète, avec la même exigence : rendre le projet lisible, désirable et exécutable.</p>
     <div class="about-meta">
-      <div><strong>5+</strong><span data-i18n="about.m1">Années de pratique</span></div>
-      <div><strong>20+</strong><span data-i18n="about.m2">Projets livrés</span></div>
+      <div><strong><span class="count" data-count="5+">5+</span></strong><span data-i18n="about.m1">Années de pratique</span></div>
+      <div><strong><span class="count" data-count="20+">20+</span></strong><span data-i18n="about.m2">Projets livrés</span></div>
       <div><strong data-i18n="about.m3s">Lyon</strong><span data-i18n="about.m3">& Sud de la France</span></div>
     </div>
   </div>
@@ -147,7 +148,7 @@
   <div class="services-inner">
     <div class="section-header reveal">
       <span class="eyebrow" data-i18n="services.eyebrow">Services</span>
-      <h2 data-i18n="services.title">De l'idée au chantier livré.</h2>
+      <h2 class="split" data-i18n="services.title">De l'idée au chantier livré.</h2>
       <p style="color: var(--ink-soft); margin-top: 1rem; max-width: 560px;" data-i18n="services.lead">Cinq pôles de compétence pensés pour couvrir un projet de bout en bout — ou intervenir au juste besoin, en soutien d'un archi ou d'un particulier.</p>
     </div>
     <div class="services-list">
@@ -160,11 +161,19 @@
   </div>
 </section>
 
+<!-- ============ Marquee bandeau ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Plans</span><span>3D</span><span>Rénovation</span><span>Suivi de chantier</span><span>Vues drone</span><span>Lyon</span><span>Architecture d'intérieur</span>
+    <span>Plans</span><span>3D</span><span>Rénovation</span><span>Suivi de chantier</span><span>Vues drone</span><span>Lyon</span><span>Architecture d'intérieur</span>
+  </div>
+</div>
+
 <!-- ============ Projets ============ -->
 <section class="section projects" id="projects">
   <div class="section-header reveal">
     <span class="eyebrow" data-i18n="proj.eyebrow">Projets</span>
-    <h2 data-i18n="proj.title">Sélection.</h2>
+    <h2 class="split" data-i18n="proj.title">Sélection.</h2>
     <p style="color: var(--ink-soft); margin-top: 1rem; max-width: 560px;" data-i18n="proj.lead">Un aperçu d'univers travaillés récemment. L'intégralité des projets est visible sur le portfolio.</p>
   </div>
   <div class="projects-grid">
@@ -221,14 +230,14 @@
   <div class="news-inner">
     <div class="reveal">
       <span class="eyebrow" data-i18n="news.eyebrow">Actualité</span>
-      <h2 data-i18n="news.title">Un projet frais sur la table.</h2>
+      <h2 class="split" data-i18n="news.title">Un projet frais sur la table.</h2>
       <p data-i18n="news.p">Direction les combles d'un bâtiment lyonnais transformés en logement lumineux. Un chantier récent qui illustre bien la démarche StudioTM : lecture précise du volume, projection 3D et visite drone.</p>
       <a href="/portfolio/projets/" class="btn-outline"><span data-i18n="news.cta">Découvrir le projet</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
     <div class="news-visual reveal delay-1" data-i18n-attr="badge:news.badge" data-badge="DERNIER PROJET">
-      <img src="/photosite/passion-photo/BAT%20A%20%26%20B%20-%20COMBLES%20-%20_A1_SAM.webp" alt="Combles — projet récent">
+      <img class="parallax" data-speed="-0.2" src="/photosite/passion-photo/BAT%20A%20%26%20B%20-%20COMBLES%20-%20_A1_SAM.webp" alt="Combles — projet récent">
     </div>
   </div>
 </section>
@@ -237,7 +246,7 @@
 <section class="section process" id="process">
   <div class="section-header reveal">
     <span class="eyebrow" data-i18n="proc.eyebrow">Déroulement</span>
-    <h2 data-i18n="proc.title">Comment se passe une mission.</h2>
+    <h2 class="split" data-i18n="proc.title">Comment se passe une mission.</h2>
     <div class="process-toggle" data-mode="particulier" role="tablist" aria-label="Type de projet">
       <span class="toggle-thumb" aria-hidden="true"></span>
       <button class="active" data-mode="particulier" data-i18n="proc.tab1">Particulier</button>
@@ -364,6 +373,7 @@
 </aside>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script src="/assets/v3/js/home.js?v=4" defer></script>
+<script src="/assets/v3/js/home.js?v=5" defer></script>
+<script src="/assets/v3/js/wow.js?v=2" defer></script>
 </body>
 </html>

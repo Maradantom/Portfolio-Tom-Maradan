@@ -194,6 +194,8 @@
     document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
     // Re-appliquer les steps
     applySteps();
+    // Notifier les autres modules (wow.js re-split)
+    document.dispatchEvent(new CustomEvent('stm:i18n-applied', { detail: { lang } }));
   };
 
   const applySteps = () => {

@@ -1,0 +1,139 @@
+/* =========================================================
+   StudioTM V3 — WOW animations
+   Chargé uniquement sur la home V3 (pas les pages légales)
+   ========================================================= */
+
+/* ---------- Split text ---------- */
+.split-line { display: block; overflow: hidden; }
+.split-char {
+  display: inline-block;
+  transform: translateY(105%);
+  opacity: 0;
+  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1),
+              opacity 1s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.split-word { display: inline-block; white-space: nowrap; }
+.split-space { display: inline-block; width: 0.3em; }
+.split.in .split-char { transform: none; opacity: 1; }
+
+/* Cascade délai */
+.split.in .split-char:nth-child(1)  { transition-delay: 0.02s; }
+.split.in .split-char:nth-child(2)  { transition-delay: 0.04s; }
+.split.in .split-char:nth-child(3)  { transition-delay: 0.06s; }
+.split.in .split-char:nth-child(4)  { transition-delay: 0.08s; }
+.split.in .split-char:nth-child(5)  { transition-delay: 0.10s; }
+.split.in .split-char:nth-child(6)  { transition-delay: 0.12s; }
+.split.in .split-char:nth-child(7)  { transition-delay: 0.14s; }
+.split.in .split-char:nth-child(8)  { transition-delay: 0.16s; }
+.split.in .split-char:nth-child(9)  { transition-delay: 0.18s; }
+.split.in .split-char:nth-child(10) { transition-delay: 0.20s; }
+.split.in .split-char:nth-child(11) { transition-delay: 0.22s; }
+.split.in .split-char:nth-child(12) { transition-delay: 0.24s; }
+.split.in .split-char:nth-child(13) { transition-delay: 0.26s; }
+.split.in .split-char:nth-child(14) { transition-delay: 0.28s; }
+.split.in .split-char:nth-child(15) { transition-delay: 0.30s; }
+.split.in .split-char:nth-child(n+16) { transition-delay: 0.32s; }
+
+/* ---------- Curtain reveal ---------- */
+.section, .services, .news, .contact-strip {
+  position: relative;
+}
+.curtain {
+  position: absolute; inset: 0; z-index: 5;
+  transform-origin: top;
+  pointer-events: none;
+  will-change: transform;
+}
+.curtain.dark  { background: #0a0a0a; }
+.curtain.light { background: #ffffff; }
+.curtain.soft  { background: #f7f6f4; }
+.curtain.reveal-up { transform: scaleY(1); transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1); transform-origin: bottom; }
+.curtain.reveal-up.done { transform: scaleY(0); }
+
+/* ---------- Parallax images ---------- */
+.parallax {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+/* Élargit l'image dans son cadre pour laisser du "jeu" au translate */
+.about-photo img.parallax,
+.news-visual img.parallax {
+  height: 120%;
+  width: 100%;
+  object-fit: cover;
+  margin-top: -10%;
+}
+
+/* ---------- Hero enhancements ---------- */
+.hero {
+  overflow: hidden;
+}
+.hero-inner {
+  will-change: transform, opacity;
+}
+.hero-slide.parallax-bg {
+  will-change: transform;
+}
+
+/* ---------- Counter ---------- */
+.count { display: inline-block; min-width: 2ch; }
+
+/* ---------- Sections snap ---------- */
+/* Snap léger pour sensation "chapitres" sans forcer */
+@media (min-width: 900px) {
+  html.snap { scroll-snap-type: y proximity; }
+  .hero, .about, .services, .projects, .news, .process, .contact-strip {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+}
+
+/* ---------- Marquee bandeau ---------- */
+.marquee {
+  overflow: hidden;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+.marquee-track {
+  display: inline-flex;
+  gap: 3rem;
+  animation: marquee 30s linear infinite;
+  white-space: nowrap;
+  will-change: transform;
+}
+.marquee-track span {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 200;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  display: inline-flex; align-items: center; gap: 3rem;
+}
+.marquee-track span::after {
+  content: "✦";
+  color: var(--ink-soft);
+  font-size: 0.7em;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* ---------- Section reveal cascade ---------- */
+.stagger > * { opacity: 0; transform: translateY(20px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.stagger.in > *:nth-child(1) { transition-delay: 0.05s; }
+.stagger.in > *:nth-child(2) { transition-delay: 0.15s; }
+.stagger.in > *:nth-child(3) { transition-delay: 0.25s; }
+.stagger.in > *:nth-child(4) { transition-delay: 0.35s; }
+.stagger.in > *:nth-child(5) { transition-delay: 0.45s; }
+.stagger.in > * { opacity: 1; transform: none; }
+
+/* ---------- Motion safe ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .split-char { transform: none; opacity: 1; }
+  .curtain { display: none; }
+  .parallax { transform: none !important; }
+  .marquee-track { animation: none; }
+}
