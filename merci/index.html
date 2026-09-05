@@ -2,91 +2,89 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Merci – Tom Maradan</title>
-  <meta name="description" content="Merci pour votre message ! Je reviens vers vous très rapidement.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, follow">
+  <title>Merci — StudioTM</title>
+  <meta name="description" content="Merci pour votre message. Je reviens vers vous rapidement.">
   <link rel="canonical" href="https://studiotm.fr/merci/">
 
-  <!-- Open Graph (partage WhatsApp, LinkedIn, iMessage…) -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://studiotm.fr/merci/">
-  <meta property="og:title" content="Merci — Tom Maradan">
-  <meta property="og:description" content="Merci pour votre message ! Je reviens vers vous très rapidement.">
-  <meta property="og:image" content="https://studiotm.fr/photosite/logo/Noirlong.webp">
-  <meta property="og:locale" content="fr_FR">
-  <meta property="og:site_name" content="Tom Maradan — StudioTM">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon-v2.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96-v2.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon-v2.svg">
+  <link rel="shortcut icon" href="/favicon/favicon-v2.ico">
+  <meta name="theme-color" content="#ffffff">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Merci — Tom Maradan">
-  <meta name="twitter:description" content="Merci pour votre message ! Je reviens vers vous très rapidement.">
-  <meta name="twitter:image" content="https://studiotm.fr/photosite/logo/Noirlong.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Outfit', sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      background: #fff;
-      color: #111;
-    }
-    .merci-main {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 4rem 2rem;
-    }
-    .merci-content h1 {
-      font-weight: 700;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    .merci-content p {
-      font-size: 1rem;
-      color: #555;
-    }
-    .merci-btn {
-      display: inline-block;
-      margin-top: 2rem;
-      color: #111;
-      text-decoration: none;
-      border: 1px solid #111;
-      padding: 0.6rem 1.4rem;
-      border-radius: 25px;
-      font-size: 0.9rem;
-      transition: all 0.25s ease;
-    }
-    .merci-btn:hover {
-      background-color: #111;
-      color: #fff;
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/v3/css/home.css?v=7">
+  <link rel="stylesheet" href="/assets/v3/css/page.css?v=2">
 </head>
 <body>
 
-  <!-- BANDEAU DE NAVIGATION FIXE (partial partagé) -->
-  <div data-include="header"></div>
+<header class="site-header scrolled">
+  <a href="/" class="header-brand" aria-label="StudioTM — accueil">
+    <img src="/photosite/logo/Noirlong.webp" alt="StudioTM">
+    <span class="signature-line" aria-hidden="true"></span>
+  </a>
+  <nav class="header-nav" aria-label="Navigation principale">
+    <a href="/">Accueil</a>
+    <a href="/portfolio/">Portfolio</a>
+    <a href="/contact/">Contact</a>
+  </nav>
+  <div class="lang-toggle" style="visibility:hidden"><button>FR</button></div>
+  <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
 
-  <main class="merci-main">
-    <div class="merci-content">
-      <h1>Merci pour votre message</h1>
-      <p>Je vous répondrai dans les plus brefs délais.</p>
-      <a href="/" class="merci-btn">Retour à l'accueil</a>
+<main class="err-hero">
+  <div class="err-hero-inner">
+    <span class="eyebrow">Message envoyé</span>
+    <h1>Merci pour votre message.</h1>
+    <p>Il est bien arrivé. Je vous réponds personnellement sous 48h — souvent plus vite. En attendant, vous pouvez découvrir mes projets.</p>
+    <div class="actions">
+      <a href="/portfolio/" class="btn-outline">Voir le portfolio
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="/" class="btn-outline">Retour à l'accueil</a>
     </div>
-  </main>
+  </div>
+</main>
 
-  <!-- FOOTER (partial partagé) -->
-  <div data-include="footer"></div>
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="/photosite/logo/Noirlong.webp" alt="StudioTM">
+      <p>StudioTM — Studio d'architecture d'intérieur basé à Lyon. Plans, 3D, rénovation, suivi de chantier.</p>
+    </div>
+    <div>
+      <h5>Site</h5>
+      <a href="/">Accueil</a>
+      <a href="/portfolio/">Portfolio</a>
+      <a href="/contact/">Contact</a>
+    </div>
+    <div>
+      <h5>Contact</h5>
+      <a href="mailto:contact@studiotm.fr">contact@studiotm.fr</a>
+      <a href="tel:+33672256783">+33 6 72 25 67 83</a>
+      <a href="https://wa.me/33672256783" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <div>
+      <h5>Suivre</h5>
+      <a href="https://www.instagram.com/studiotm___/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.linkedin.com/in/tom-maradan" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> StudioTM — Tom Maradan. Tous droits réservés.</span>
+    <span>
+      <a href="/mentions-legales/" style="display:inline; margin-right: 1rem;">Mentions légales</a>
+      <a href="/politique-confidentialite/" style="display:inline; margin-right: 1rem;">Politique de confidentialité</a>
+      <a href="/cgv/" style="display:inline;">CGV</a>
+    </span>
+  </div>
+</footer>
 
-  <!-- ICÔNES SOCIALES (partial partagé) -->
-  <div data-include="footer-socials"></div>
-
-  <script src="/assets/js/main.js" defer></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
