@@ -1,42 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
+  <!-- Page principale (splash + futur site pro) -->
   <url>
     <loc>https://studiotm.fr/</loc>
     <priority>1.0</priority>
     <changefreq>monthly</changefreq>
   </url>
 
+  <!-- Contact -->
   <url>
-    <loc>https://studiotm.fr/portfolio/</loc>
+    <loc>https://studiotm.fr/contact/</loc>
     <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <changefreq>yearly</changefreq>
   </url>
 
+  <!-- Portfolio (indépendant du site pro) -->
   <url>
-    <loc>https://studiotm.fr/portfolio/projets/</loc>
+    <loc>https://studiotm.fr/portfolio/</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
 
   <url>
-    <loc>https://studiotm.fr/portfolio/photo/</loc>
+    <loc>https://studiotm.fr/portfolio/projets/</loc>
     <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://studiotm.fr/portfolio/photo/</loc>
+    <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
 
   <url>
     <loc>https://studiotm.fr/portfolio/studiotm/</loc>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
 
-  <url>
-    <loc>https://studiotm.fr/contact/</loc>
-    <priority>0.6</priority>
-    <changefreq>yearly</changefreq>
-  </url>
-
+  <!-- Pages légales -->
   <url>
     <loc>https://studiotm.fr/mentions-legales/</loc>
     <priority>0.3</priority>
