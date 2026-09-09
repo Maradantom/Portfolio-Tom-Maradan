@@ -664,6 +664,29 @@
 }
 .pin-content > * { background: #fff; }
 
+/* Sections qui restent SUR l'image (transparentes, texte blanc) */
+.pin-over {
+  position: relative; z-index: 2;
+  color: #fff;
+  background: transparent !important;
+}
+.pin-over::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+.pin-over.fb3-breadcrumb, .pin-over.fb3-breadcrumb a { color: rgba(255,255,255,0.85); }
+.pin-over.fb3-title h1 { color: #fff; }
+.pin-over.fb3-lede h2 { color: #fff; }
+.pin-over.fb3-lede p { color: rgba(255,255,255,0.85); }
+.pin-over.fb3-facts {
+  border-top-color: rgba(255,255,255,0.15);
+  border-bottom-color: rgba(255,255,255,0.15);
+}
+.pin-over.fb3-facts .label { color: rgba(255,255,255,0.6); }
+.pin-over.fb3-facts .value { color: #fff; }
+
 /* Plus de projets — bas de page */
 .fb3-more {
   max-width: var(--max); margin: 5rem auto 6rem;
