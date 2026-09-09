@@ -22,7 +22,7 @@
 
   <link rel="stylesheet" href="/assets/v3/css/home.css?v=7">
   <link rel="stylesheet" href="/assets/v3/css/page.css?v=2">
-  <link rel="stylesheet" href="/assets/v3/css/projects.css?v=9">
+  <link rel="stylesheet" href="/assets/v3/css/projects.css?v=10">
 </head>
 <body>
 
@@ -156,6 +156,24 @@
   </div><!-- /pin-content -->
 </main>
 
+<!-- Lightbox pour agrandir les photos de galerie -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Précédent">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6l-6 6 6 6"/></svg>
+  </button>
+  <button class="lightbox-nav next" id="lightboxNext" aria-label="Suivant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6l6 6-6 6"/></svg>
+  </button>
+  <div class="lightbox-inner">
+    <span class="lightbox-count" id="lightboxCount"></span>
+    <img id="lightboxImg" src="" alt="">
+    <span class="lightbox-caption" id="lightboxCaption"></span>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
@@ -248,6 +266,53 @@
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+  })();
+
+  // Lightbox galerie
+  (function () {
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightboxImg');
+    const cap = document.getElementById('lightboxCaption');
+    const count = document.getElementById('lightboxCount');
+    const close = document.getElementById('lightboxClose');
+    const prev = document.getElementById('lightboxPrev');
+    const next = document.getElementById('lightboxNext');
+    const figures = document.querySelectorAll('.fb3-gallery figure img');
+    if (!figures.length) return;
+
+    const items = Array.from(figures).map(el => ({ src: el.src, alt: el.alt || '' }));
+    let idx = 0;
+
+    const render = () => {
+      img.src = items[idx].src;
+      img.alt = items[idx].alt;
+      cap.textContent = items[idx].alt;
+      count.textContent = `${String(idx + 1).padStart(2, '0')} / ${String(items.length).padStart(2, '0')}`;
+    };
+    const open = (i) => {
+      idx = i; render();
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lightbox-open');
+    };
+    const closeLb = () => {
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lightbox-open');
+    };
+    const go = (delta) => { idx = (idx + delta + items.length) % items.length; render(); };
+
+    figures.forEach((el, i) => el.parentElement.addEventListener('click', () => open(i)));
+    close.addEventListener('click', closeLb);
+    prev.addEventListener('click', (e) => { e.stopPropagation(); go(-1); });
+    next.addEventListener('click', (e) => { e.stopPropagation(); go(1); });
+    lb.addEventListener('click', (e) => { if (e.target === lb || e.target === img) closeLb(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLb();
+      else if (e.key === 'ArrowLeft') go(-1);
+      else if (e.key === 'ArrowRight') go(1);
+    });
   })();
 </script>
 <script src="/assets/v3/js/analytics.js" defer></script>
