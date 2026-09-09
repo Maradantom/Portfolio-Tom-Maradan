@@ -603,43 +603,59 @@
   .fb3-facts { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 }
 
-/* --- HERO PINNÉ (image fixe qui reste au scroll) --- */
+/* --- HERO PINNÉ (image visible seulement pendant le hero) --- */
 .pin-hero {
   position: relative;
   height: 100vh;
-  min-height: 560px;
+  min-height: 620px;
   overflow: hidden;
+  color: #fff;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 }
-.pin-hero-bg {
-  position: fixed; top: 0; left: 0; right: 0;
-  width: 100%; height: 100vh; z-index: -1;
-  background-size: cover; background-position: center;
-  transform: scale(1.04);
+/* Compatibilité mobile — background-attachment:fixed cassé sur iOS */
+@media (hover: none) and (pointer: coarse) {
+  .pin-hero { background-attachment: scroll; }
 }
+/* L'ancien pin-hero-bg reste comme fallback, mais on ne l'utilise plus */
+.pin-hero-bg { display: none; }
 .pin-hero::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.7) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.65) 100%);
   pointer-events: none;
+  z-index: 0;
 }
-.pin-hero-inner {
-  position: absolute; bottom: 4rem; left: 0; right: 0;
+.pin-hero-top, .pin-hero-bottom {
+  position: absolute; left: 0; right: 0;
   padding: 0 var(--pad-x);
   max-width: var(--max); margin: 0 auto;
-  color: #fff;
   z-index: 2;
 }
-.pin-hero-inner .meta {
+.pin-hero-top { top: 8rem; }
+.pin-hero-bottom { bottom: 5rem; }
+
+.pin-hero-top .meta {
   display: inline-flex; align-items: center; gap: 0.75rem;
   font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
   color: rgba(255,255,255,0.85); margin-bottom: 1.25rem;
 }
-.pin-hero-inner .meta::before { content: ""; width: 32px; height: 1px; background: currentColor; }
-.pin-hero-inner h1 {
+.pin-hero-top .meta::before { content: ""; width: 32px; height: 1px; background: currentColor; }
+.pin-hero-top h1 {
   color: #fff; font-weight: 200;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  line-height: 1.05; letter-spacing: -0.02em;
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
   max-width: 1000px;
 }
+.pin-hero-bottom p {
+  color: rgba(255,255,255,0.92);
+  max-width: 560px;
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
 .pin-hero-scroll {
   position: absolute; bottom: 2rem; right: var(--pad-x);
   color: rgba(255,255,255,0.7); font-size: 0.7rem;
@@ -656,36 +672,20 @@
   50% { transform: scaleX(1.6); }
 }
 
-/* Contenu qui recouvre le hero fixe */
+/* Contenu blanc qui recouvre l'image fixe */
 .pin-content {
   position: relative; z-index: 1;
   background: #fff;
-  margin-top: 0;
+  min-height: 100vh; /* garantit que le blanc couvre bien la fenêtre entière au bas */
 }
-.pin-content > * { background: #fff; }
-
-/* Sections qui restent SUR l'image (transparentes, texte blanc) */
-.pin-over {
-  position: relative; z-index: 2;
-  color: #fff;
-  background: transparent !important;
+.pin-content::before {
+  /* Barre supplémentaire pour éviter tout gap au tout début */
+  content: ""; display: block; height: 1px; background: #fff;
 }
-.pin-over::before {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%);
-  z-index: -1;
-  pointer-events: none;
+@media (max-width: 700px) {
+  .pin-hero-top { top: 6rem; }
+  .pin-hero-bottom { bottom: 3.5rem; }
 }
-.pin-over.fb3-breadcrumb, .pin-over.fb3-breadcrumb a { color: rgba(255,255,255,0.85); }
-.pin-over.fb3-title h1 { color: #fff; }
-.pin-over.fb3-lede h2 { color: #fff; }
-.pin-over.fb3-lede p { color: rgba(255,255,255,0.85); }
-.pin-over.fb3-facts {
-  border-top-color: rgba(255,255,255,0.15);
-  border-bottom-color: rgba(255,255,255,0.15);
-}
-.pin-over.fb3-facts .label { color: rgba(255,255,255,0.6); }
-.pin-over.fb3-facts .value { color: #fff; }
 
 /* Plus de projets — bas de page */
 .fb3-more {
