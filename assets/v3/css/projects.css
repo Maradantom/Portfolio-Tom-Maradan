@@ -285,3 +285,126 @@
   .proj-nav { grid-template-columns: 1fr; }
   .proj-nav a.next { text-align: left; }
 }
+
+/* =========================================================
+   VARIANTES DE LAYOUT PROJET
+   ========================================================= */
+
+/* ------------ VARIANTE A — Éditorial par chapitres ------------ */
+.proj-chapters {
+  max-width: var(--max); margin: 0 auto;
+  padding: 4rem var(--pad-x);
+}
+.chapter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  padding: 5rem 0;
+  border-top: 1px solid var(--line);
+  position: relative;
+}
+.chapter:first-child { border-top: 0; padding-top: 2rem; }
+.chapter.reverse { direction: rtl; }
+.chapter.reverse > * { direction: ltr; }
+.chapter-media {
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--bg-soft);
+}
+.chapter-media img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.6s var(--ease);
+}
+.chapter-media:hover img { transform: scale(1.04); }
+.chapter-body { position: relative; }
+.chapter-num {
+  position: absolute; top: -2rem; left: -0.5rem;
+  font-size: clamp(6rem, 12vw, 10rem);
+  font-weight: 200; line-height: 1;
+  color: var(--bg-soft);
+  z-index: 0;
+  letter-spacing: -0.05em;
+}
+.chapter-body > * { position: relative; z-index: 1; }
+.chapter-eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--ink-soft); margin-bottom: 1rem;
+  display: inline-flex; align-items: center; gap: 0.75rem;
+}
+.chapter-eyebrow::before { content: ""; width: 24px; height: 1px; background: currentColor; }
+.chapter h3 {
+  font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+  font-weight: 300;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+.chapter p {
+  color: var(--ink-soft);
+  line-height: 1.75;
+  font-size: 0.97rem;
+}
+
+/* Chapitre pleine largeur (image seule) */
+.chapter.full {
+  grid-template-columns: 1fr;
+  padding: 3rem 0;
+}
+.chapter.full .chapter-media { aspect-ratio: 21/9; }
+
+@media (max-width: 900px) {
+  .chapter, .chapter.reverse { grid-template-columns: 1fr; direction: ltr; }
+  .chapter-num { top: -1rem; font-size: 5rem; }
+}
+
+/* ------------ VARIANTE B — Grille immersive photo ------------ */
+.proj-immersive {
+  padding: 0;
+}
+.proj-immersive .col-2 {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+}
+.proj-immersive .col-2 img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1/1; }
+.proj-immersive .full-img { width: 100%; height: auto; display: block; }
+.proj-immersive .full-img.tall { aspect-ratio: 3/4; object-fit: cover; }
+.proj-immersive .text-band {
+  padding: clamp(3rem, 8vw, 6rem) var(--pad-x);
+  max-width: 720px; margin: 0 auto; text-align: center;
+}
+.proj-immersive .text-band h3 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 300; margin-bottom: 1rem;
+}
+.proj-immersive .text-band p { color: var(--ink-soft); line-height: 1.75; }
+@media (max-width: 700px) {
+  .proj-immersive .col-2 { grid-template-columns: 1fr; }
+}
+
+/* ------------ VARIANTE C — Magazine vertical ------------ */
+.proj-magazine {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 4rem var(--pad-x);
+}
+.proj-magazine h3 {
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem); font-weight: 400;
+  margin: 3rem 0 1rem; letter-spacing: -0.005em;
+}
+.proj-magazine p { color: var(--ink-soft); line-height: 1.8; margin-bottom: 1.25rem; font-size: 1.02rem; }
+.proj-magazine figure {
+  margin: 2.5rem calc(var(--pad-x) * -1);
+  max-width: none;
+}
+.proj-magazine figure img {
+  width: 100%; height: auto; display: block;
+}
+.proj-magazine figure figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--ink-soft); text-align: center;
+}
+.proj-magazine .drop-cap::first-letter {
+  font-size: 4.5em; font-weight: 200; float: left;
+  line-height: 0.85; margin: 0.05em 0.15em 0 0;
+  color: var(--ink);
+}
