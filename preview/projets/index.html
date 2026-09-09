@@ -20,7 +20,7 @@
 
   <link rel="stylesheet" href="/assets/v3/css/home.css?v=7">
   <link rel="stylesheet" href="/assets/v3/css/page.css?v=2">
-  <link rel="stylesheet" href="/assets/v3/css/projects.css?v=4">
+  <link rel="stylesheet" href="/assets/v3/css/projects.css?v=5">
 </head>
 <body>
 
@@ -45,15 +45,15 @@
     <h1>Chaque projet,<br>une histoire d'espace.</h1>
   </section>
 
-  <!-- Filtres (groupés) -->
+  <!-- Filtres (groupés — un seul par groupe) -->
   <div class="fb3-filters" role="group" aria-label="Filtres">
     <button class="active" data-filter="all">Afficher tout</button>
     <span class="sep" aria-hidden="true"></span>
-    <button data-filter="residentiel">Résidentiel</button>
-    <button data-filter="tertiaire">Tertiaire</button>
+    <button data-filter="residentiel" data-group="type">Résidentiel</button>
+    <button data-filter="tertiaire" data-group="type">Tertiaire</button>
     <span class="sep" aria-hidden="true"></span>
-    <button data-filter="construction">Construction</button>
-    <button data-filter="renovation">Rénovation</button>
+    <button data-filter="construction" data-group="nature">Construction</button>
+    <button data-filter="renovation" data-group="nature">Rénovation</button>
   </div>
 
   <!-- Grille projets style FB3 -->
@@ -130,9 +130,9 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Filtres — multi-sélection AND
+  // Filtres — radio par groupe, AND entre groupes
   const btnAll = document.querySelector('.fb3-filters button[data-filter="all"]');
-  const btns = document.querySelectorAll('.fb3-filters button:not([data-filter="all"])');
+  const btns = document.querySelectorAll('.fb3-filters button[data-group]');
   const cards = document.querySelectorAll('.fb3-card[data-tags]');
 
   const applyFilters = () => {
@@ -144,7 +144,6 @@
       btnAll.classList.remove('active');
       cards.forEach(c => {
         const tags = (c.dataset.tags || '').split(' ');
-        // AND: doit avoir tous les tags actifs
         c.classList.toggle('hide', !active.every(f => tags.includes(f)));
       });
     }
@@ -155,7 +154,12 @@
     applyFilters();
   });
   btns.forEach(b => b.addEventListener('click', () => {
-    b.classList.toggle('active');
+    const group = b.dataset.group;
+    const wasActive = b.classList.contains('active');
+    // Déselectionne les autres du MÊME groupe
+    document.querySelectorAll(`.fb3-filters button[data-group="${group}"]`).forEach(x => x.classList.remove('active'));
+    // Toggle : si déjà actif, le clic le désélectionne ; sinon on l'active
+    if (!wasActive) b.classList.add('active');
     applyFilters();
   }));
 </script>

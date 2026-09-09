@@ -22,16 +22,16 @@
 
   <link rel="stylesheet" href="/assets/v3/css/home.css?v=7">
   <link rel="stylesheet" href="/assets/v3/css/page.css?v=2">
-  <link rel="stylesheet" href="/assets/v3/css/projects.css?v=4">
+  <link rel="stylesheet" href="/assets/v3/css/projects.css?v=5">
 </head>
 <body>
 
-<header class="site-header scrolled">
+<header class="site-header">
   <a href="/preview/" class="header-brand" aria-label="StudioTM — accueil">
-    <img src="/photosite/logo/Noirlong.webp" alt="StudioTM">
-    <span class="signature-line" aria-hidden="true"></span>
+    <img src="/photosite/logo/Noirlong.webp" alt="StudioTM" style="filter: invert(1);">
+    <span class="signature-line" aria-hidden="true" style="background:#fff;"></span>
   </a>
-  <nav class="header-nav" aria-label="Navigation principale">
+  <nav class="header-nav" aria-label="Navigation principale" style="color:#fff;">
     <a href="/preview/">Accueil</a>
     <a href="/preview/projets/">Projets</a>
     <a href="/contact/">Contact</a>
@@ -39,7 +39,21 @@
   <div class="lang-toggle" style="visibility:hidden"><button>FR</button></div>
 </header>
 
+<!-- HERO PINNÉ — image fixe qui reste au scroll -->
+<div class="pin-hero-bg" style="background-image: url('/photoprojet/6-projet-villa-annecy-2025/3D/1.webp');" aria-hidden="true"></div>
+
 <main>
+
+  <section class="pin-hero">
+    <div class="pin-hero-inner">
+      <div class="meta">2025 · Villa · Annecy</div>
+      <h1>Villa Annecy</h1>
+    </div>
+    <div class="pin-hero-scroll" aria-hidden="true">Défiler</div>
+  </section>
+
+  <!-- Contenu qui recouvre le hero fixe -->
+  <div class="pin-content">
 
   <!-- Fil d'Ariane -->
   <div class="fb3-breadcrumb">
@@ -48,12 +62,7 @@
 
   <!-- Titre -->
   <section class="fb3-title">
-    <h1>Villa Annecy — Une renaissance minérale au bord du lac.</h1>
-  </section>
-
-  <!-- Photo hero -->
-  <section class="fb3-cover">
-    <img src="/photoprojet/6-projet-villa-annecy-2025/3D/1.webp" alt="Villa Annecy — Vue extérieure">
+    <h1>Une renaissance minérale au bord du lac.</h1>
   </section>
 
   <!-- Paragraphe lede -->
@@ -139,6 +148,7 @@
     </div>
   </section>
 
+  </div><!-- /pin-content -->
 </main>
 
 <footer class="site-footer">
