@@ -8,10 +8,7 @@
 (function () {
   'use strict';
 
-  const GA_ID = 'G-XXXXXXXXXX'; // ← À REMPLACER par ton ID GA4 réel
-
-  // Ne fait rien si placeholder non modifié (évite d'appeler Google avec un faux ID)
-  if (GA_ID === 'G-XXXXXXXXXX') return;
+  const GA_ID = 'G-GFHBS8S2BH';
 
   const CONSENT_KEY = 'stm_cookies_v1';
   const consent = () => localStorage.getItem(CONSENT_KEY) === 'accepted';
