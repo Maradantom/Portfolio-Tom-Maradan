@@ -659,10 +659,11 @@
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 .pin-hero-desc p {
-  color: rgba(255,255,255,0.92);
+  color: #ffffff;
   font-size: clamp(1rem, 1.35vw, 1.15rem);
   line-height: 1.6;
   font-weight: 300;
+  text-shadow: 0 1px 20px rgba(0,0,0,0.35);
 }
 .pin-hero-scroll {
   position: absolute; bottom: 2rem; right: var(--pad-x);
