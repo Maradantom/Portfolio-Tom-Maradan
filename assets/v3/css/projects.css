@@ -436,31 +436,37 @@
 .fb3-filters {
   max-width: var(--max); margin: 0 auto;
   padding: 2rem var(--pad-x) 3rem;
-  display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;
+  display: flex; flex-wrap: wrap; gap: 1rem 0.75rem; justify-content: center; align-items: center;
 }
 .fb3-filters button {
-  padding: 0.55rem 1.25rem;
-  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-  border: 1px solid var(--line);
-  color: var(--ink-soft); background: transparent;
-  border-radius: 999px;
-  transition: background 0.4s var(--ease), color 0.4s var(--ease), border-color 0.4s var(--ease);
+  padding: 0.4rem 0.25rem;
+  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  border: 0; background: transparent;
+  color: var(--ink-soft);
+  transition: color 0.3s ease, border-color 0.3s ease;
   cursor: pointer;
+  border-bottom: 1px solid transparent;
+  font-family: inherit; font-weight: 400;
 }
-.fb3-filters button:hover { border-color: var(--ink); color: var(--ink); }
-.fb3-filters button.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+.fb3-filters button:hover { color: var(--ink); }
+.fb3-filters button.active { color: var(--ink); border-bottom-color: var(--ink); font-weight: 500; }
+.fb3-filters .sep {
+  display: inline-block; width: 1px; height: 14px; background: var(--line);
+  margin: 0 0.25rem;
+}
 
 .fb3-grid {
-  max-width: var(--max); margin: 0 auto;
+  max-width: 1240px; margin: 0 auto;
   padding: 0 var(--pad-x) 6rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
+  gap: 1.5rem;
 }
 .fb3-card {
   position: relative; overflow: hidden;
   aspect-ratio: 1/1;
   background: var(--bg-soft);
+  border-radius: 10px;
 }
 .fb3-card img {
   width: 100%; height: 100%; object-fit: cover;
@@ -607,9 +613,11 @@
 }
 .fb3-more h4::before { content: ""; width: 32px; height: 1px; background: currentColor; }
 .fb3-more-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
 }
-.fb3-more-grid .fb3-card { aspect-ratio: 4/5; }
+.fb3-more-grid .fb3-card { aspect-ratio: 4/5; border-radius: 8px; }
+.fb3-more-grid .fb3-card .category { font-size: 0.6rem; letter-spacing: 0.22em; }
+.fb3-more-grid .fb3-card h3 { font-size: clamp(0.95rem, 1.15vw, 1.1rem); }
 @media (max-width: 900px) {
   .fb3-more-grid { grid-template-columns: repeat(2, 1fr); }
 }
