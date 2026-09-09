@@ -603,23 +603,89 @@
   .fb3-facts { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 }
 
-/* --- HERO PINNÉ (image visible seulement pendant le hero) --- */
-.pin-hero {
+/* --- HERO PINNÉ AVEC SCROLL-DRIVEN ANIMATION --- */
+.pin-hero-wrap {
   position: relative;
-  height: 100vh;
+  height: 200vh; /* Zone de scroll pour l'animation */
+  background: #0a0a0a;
+}
+.pin-hero {
+  position: sticky;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
   min-height: 620px;
   overflow: hidden;
   color: #fff;
-  background-attachment: fixed;
   background-size: cover;
   background-position: center;
 }
-/* Compatibilité mobile — background-attachment:fixed cassé sur iOS */
-@media (hover: none) and (pointer: coarse) {
-  .pin-hero { background-attachment: scroll; }
+.pin-hero::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.7) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
-/* L'ancien pin-hero-bg reste comme fallback, mais on ne l'utilise plus */
+.pin-hero-content {
+  position: absolute; inset: 0;
+  padding: 0 var(--pad-x);
+  max-width: var(--max); margin: 0 auto;
+  z-index: 2;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.pin-hero-title {
+  will-change: transform;
+  transform-origin: left bottom;
+  margin-bottom: 5rem;
+}
+.pin-hero-title .meta {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(255,255,255,0.85); margin-bottom: 1.25rem;
+}
+.pin-hero-title .meta::before { content: ""; width: 32px; height: 1px; background: currentColor; }
+.pin-hero-title h1 {
+  color: #fff; font-weight: 200;
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  max-width: 1000px;
+}
+.pin-hero-desc {
+  position: absolute; left: var(--pad-x); right: var(--pad-x);
+  bottom: 5rem;
+  max-width: 560px;
+  opacity: 0; transform: translateY(30px);
+  will-change: opacity, transform;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.pin-hero-desc p {
+  color: rgba(255,255,255,0.92);
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
+  line-height: 1.6;
+  font-weight: 300;
+}
+.pin-hero-scroll {
+  position: absolute; bottom: 2rem; right: var(--pad-x);
+  color: rgba(255,255,255,0.7); font-size: 0.7rem;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 0.75rem; z-index: 3;
+  transition: opacity 0.4s ease;
+}
+.pin-hero-scroll::after {
+  content: ""; display: block; width: 40px; height: 1px; background: currentColor;
+  animation: pinScrollHint 2s ease-in-out infinite;
+  transform-origin: left;
+}
+@keyframes pinScrollHint {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(1.6); }
+}
 .pin-hero-bg { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .pin-hero-wrap { height: 100vh; }
+  .pin-hero-title { transform: none !important; }
+  .pin-hero-desc { opacity: 1; transform: none; }
+}
 .pin-hero::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.65) 100%);
