@@ -408,3 +408,211 @@
   line-height: 0.85; margin: 0.05em 0.15em 0 0;
   color: var(--ink);
 }
+
+/* =========================================================
+   STYLE FB3 — Refonte projets
+   ========================================================= */
+
+/* --- Liste projets style masonry FB3 --- */
+.fb3-hero {
+  padding: 10rem var(--pad-x) 3rem;
+  max-width: var(--max); margin: 0 auto;
+  text-align: center;
+}
+.fb3-hero .eyebrow {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--ink-soft); margin-bottom: 1.5rem;
+}
+.fb3-hero .eyebrow::before, .fb3-hero .eyebrow::after {
+  content: ""; width: 32px; height: 1px; background: currentColor;
+}
+.fb3-hero h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 200; line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.fb3-filters {
+  max-width: var(--max); margin: 0 auto;
+  padding: 2rem var(--pad-x) 3rem;
+  display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;
+}
+.fb3-filters button {
+  padding: 0.55rem 1.25rem;
+  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+  border: 1px solid var(--line);
+  color: var(--ink-soft); background: transparent;
+  border-radius: 999px;
+  transition: background 0.4s var(--ease), color 0.4s var(--ease), border-color 0.4s var(--ease);
+  cursor: pointer;
+}
+.fb3-filters button:hover { border-color: var(--ink); color: var(--ink); }
+.fb3-filters button.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+.fb3-grid {
+  max-width: var(--max); margin: 0 auto;
+  padding: 0 var(--pad-x) 6rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+.fb3-card {
+  position: relative; overflow: hidden;
+  aspect-ratio: 1/1;
+  background: var(--bg-soft);
+}
+.fb3-card img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.6s var(--ease), filter 0.6s var(--ease);
+  filter: grayscale(0.1);
+}
+.fb3-card:hover img { transform: scale(1.05); filter: none; }
+.fb3-card::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.55) 100%);
+  z-index: 1;
+}
+.fb3-card .category {
+  position: absolute; top: 1.25rem; left: 1.25rem; z-index: 2;
+  font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: #fff; opacity: 0.9;
+}
+.fb3-card h3 {
+  position: absolute; bottom: 1.25rem; left: 1.25rem; right: 1.25rem; z-index: 2;
+  color: #fff; font-weight: 300; font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+  letter-spacing: -0.005em; line-height: 1.15;
+}
+.fb3-card.hide { display: none; }
+
+@media (max-width: 900px) { .fb3-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .fb3-grid { grid-template-columns: 1fr; } }
+
+/* --- Page projet style FB3 --- */
+.fb3-breadcrumb {
+  max-width: var(--max); margin: 0 auto;
+  padding: 8rem var(--pad-x) 1rem;
+  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.fb3-breadcrumb a { color: inherit; }
+.fb3-breadcrumb a:hover { color: var(--ink); }
+.fb3-breadcrumb span { margin: 0 0.5rem; opacity: 0.5; }
+
+.fb3-title {
+  max-width: var(--max); margin: 0 auto;
+  padding: 0 var(--pad-x) 3rem;
+}
+.fb3-title h1 {
+  font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+  font-weight: 200; line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 1100px;
+}
+
+.fb3-cover {
+  width: 100%; margin: 0 auto 0;
+  padding: 0 var(--pad-x);
+  max-width: var(--max);
+}
+.fb3-cover img {
+  width: 100%; height: auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+}
+
+.fb3-lede {
+  max-width: 780px;
+  margin: 5rem auto;
+  padding: 0 var(--pad-x);
+  text-align: left;
+}
+.fb3-lede h2 {
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.005em;
+}
+.fb3-lede p {
+  color: var(--ink-soft);
+  line-height: 1.85;
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Galerie libre — mix formats variés */
+.fb3-gallery {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 3rem var(--pad-x) 4rem;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.25rem;
+  grid-auto-flow: dense;
+}
+.fb3-gallery figure { margin: 0; overflow: hidden; background: var(--bg-soft); }
+.fb3-gallery figure img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 1.6s var(--ease), filter 0.6s var(--ease);
+}
+.fb3-gallery figure:hover img { transform: scale(1.03); }
+
+/* Formats de cellules variés */
+.fb3-gallery .g-3 { grid-column: span 3; aspect-ratio: 4/3; }
+.fb3-gallery .g-2 { grid-column: span 2; aspect-ratio: 3/4; }
+.fb3-gallery .g-4 { grid-column: span 4; aspect-ratio: 16/9; }
+.fb3-gallery .g-6 { grid-column: span 6; aspect-ratio: 21/9; }
+.fb3-gallery .g-2sq { grid-column: span 2; aspect-ratio: 1/1; }
+.fb3-gallery .g-3land { grid-column: span 3; aspect-ratio: 16/10; }
+
+@media (max-width: 900px) {
+  .fb3-gallery { grid-template-columns: repeat(2, 1fr); }
+  .fb3-gallery figure { grid-column: span 2 !important; aspect-ratio: 4/3 !important; }
+}
+
+/* Bloc infos techniques FB3 */
+.fb3-facts {
+  max-width: var(--max); margin: 4rem auto;
+  padding: 3rem var(--pad-x);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+.fb3-fact {
+  display: flex; flex-direction: column; gap: 0.35rem;
+}
+.fb3-fact .label {
+  font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.fb3-fact .value {
+  font-size: 1.05rem; color: var(--ink); font-weight: 400;
+}
+@media (max-width: 700px) {
+  .fb3-facts { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Plus de projets — bas de page */
+.fb3-more {
+  max-width: var(--max); margin: 5rem auto 6rem;
+  padding: 0 var(--pad-x);
+}
+.fb3-more h4 {
+  font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--ink-soft); margin-bottom: 2rem;
+  display: inline-flex; align-items: center; gap: 0.75rem;
+}
+.fb3-more h4::before { content: ""; width: 32px; height: 1px; background: currentColor; }
+.fb3-more-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+.fb3-more-grid .fb3-card { aspect-ratio: 4/5; }
+@media (max-width: 900px) {
+  .fb3-more-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .fb3-more-grid { grid-template-columns: 1fr; }
+}
