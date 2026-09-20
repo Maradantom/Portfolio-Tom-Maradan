@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reset — Workshop Mercurey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #141414;
+      color: #fff;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      padding: 40px;
+      text-align: center;
+    }
+    .label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #555;
+    }
+    .title {
+      font-size: 22px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+    }
+    .state-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      padding: 16px 28px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      min-width: 220px;
+    }
+    .state-box span { color: #C8865A; font-weight: 500; }
+    .btn {
+      padding: 16px 40px;
+      border: none;
+      border-radius: 3px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn:active { opacity: 0.7; }
+    .btn-reset { background: #C8865A; color: #fff; }
+    .btn-go { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); font-size: 11px; }
+    .status {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      height: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="label">Admin — Avant la présentation</div>
+  <div class="title">Réinitialiser le workshop</div>
+  <div class="state-box" id="state-box">Chargement…</div>
+  <button class="btn btn-reset" id="btn-reset">Remettre à zéro</button>
+  <div class="status" id="status"></div>
+  <button class="btn btn-go" onclick="location.href='../'" >Ouvrir le projecteur →</button>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+    import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCQjIPdy6i_NZjH78ffiuZjUFW4cmlWp7o",
+      authDomain: "mercurey-workshop.firebaseapp.com",
+      databaseURL: "https://mercurey-workshop-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "mercurey-workshop",
+      storageBucket: "mercurey-workshop.firebasestorage.app",
+      messagingSenderId: "744676802442",
+      appId: "1:744676802442:web:dc1cbe5179d859d4fb1273"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const stateRef = ref(db, 'workshop');
+
+    onValue(stateRef, (snap) => {
+      const d = snap.val() || {};
+      const persona = d.current_persona || '—';
+      const count = d.scan_count || 0;
+      document.getElementById('state-box').innerHTML =
+        `scan_count : <span>${count}</span> &nbsp;·&nbsp; persona : <span>${persona || '—'}</span>`;
+    });
+
+    document.getElementById('btn-reset').addEventListener('click', async () => {
+      const btn = document.getElementById('btn-reset');
+      btn.disabled = true;
+      btn.textContent = '…';
+      try {
+        await set(stateRef, { scan_count: 0, current_persona: '' });
+        document.getElementById('status').textContent = 'Remis à zéro.';
+      } catch(e) {
+        document.getElementById('status').textContent = 'Erreur : ' + e.message;
+      }
+      btn.disabled = false;
+      btn.textContent = 'Remettre à zéro';
+    });
+  </script>
+</body>
+</html>
