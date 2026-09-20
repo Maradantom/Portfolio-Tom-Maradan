@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>90 Grande Rue — Mercurey</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --ochre: #C8865A;
-      --dark: #1a1a1a;
-      --light: #f5f0eb;
-      --mid: #8a7d70;
-      --white: #ffffff;
+      --ochre-dim: rgba(200,134,90,0.6);
+      --dark: #0e0e0e;
+      --white: #f8f4f0;
+      --mid: rgba(248,244,240,0.35);
     }
 
     html, body {
@@ -23,101 +23,243 @@
       background: var(--dark);
       color: var(--white);
       overflow: hidden;
+      cursor: none;
     }
 
-    /* ── ÉCRAN D'ATTENTE ── */
+    /* ── CURSOR ── */
+    .cursor {
+      position: fixed;
+      width: 6px; height: 6px;
+      background: var(--ochre);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: transform 0.1s;
+    }
+
+    /* ── GRAIN OVERLAY ── */
+    .grain {
+      position: fixed; inset: 0; z-index: 100;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 128px;
+      animation: grain-shift 0.4s steps(1) infinite;
+    }
+
+    @keyframes grain-shift {
+      0%   { transform: translate(0,0); }
+      20%  { transform: translate(-2px,1px); }
+      40%  { transform: translate(1px,-2px); }
+      60%  { transform: translate(-1px,2px); }
+      80%  { transform: translate(2px,-1px); }
+      100% { transform: translate(0,0); }
+    }
+
+    /* ── TRANSITION VEIL ── */
+    .veil {
+      position: fixed; inset: 0; z-index: 50;
+      background: var(--dark);
+      transform: translateX(100%);
+      pointer-events: none;
+    }
+
+    .veil.sweep-in {
+      animation: veil-in 0.7s cubic-bezier(0.76,0,0.24,1) forwards;
+    }
+
+    .veil.sweep-out {
+      animation: veil-out 0.6s cubic-bezier(0.76,0,0.24,1) forwards;
+    }
+
+    @keyframes veil-in {
+      0%   { transform: translateX(100%); }
+      100% { transform: translateX(0%); }
+    }
+
+    @keyframes veil-out {
+      0%   { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ══════════════════════════════
+       ÉCRAN D'ATTENTE
+    ══════════════════════════════ */
     #screen-waiting {
       position: fixed; inset: 0;
-      display: flex;
-      transition: opacity 0.8s ease;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.4s;
     }
 
-    .waiting-photo {
+    #screen-waiting.hidden { opacity: 0; pointer-events: none; }
+
+    .w-photo {
       position: absolute; inset: 0;
-      background: url('assets/facade2.jpg') center center / cover no-repeat;
-      filter: brightness(0.45);
+      background: url('assets/facade2.jpg') center / cover no-repeat;
+      animation: ken-burns 20s ease-in-out infinite alternate;
     }
 
-    .waiting-content {
+    @keyframes ken-burns {
+      from { transform: scale(1) translateX(0); }
+      to   { transform: scale(1.06) translateX(-1%); }
+    }
+
+    .w-overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, rgba(14,14,14,0.5) 0%, rgba(14,14,14,0.1) 50%, rgba(14,14,14,0.6) 100%),
+        linear-gradient(to bottom, rgba(14,14,14,0.3) 0%, rgba(14,14,14,0.15) 40%, rgba(14,14,14,0.7) 100%);
+    }
+
+    .w-content {
       position: relative; z-index: 2;
-      width: 100%; height: 100%;
       display: flex; flex-direction: column;
-      justify-content: flex-end;
-      padding: 64px 72px;
+      align-items: center;
+      text-align: center;
     }
 
-    .tag {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 3px;
+    .w-eyebrow {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--ochre);
-      margin-bottom: 20px;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fade-up 1s 0.3s ease forwards;
     }
 
-    .waiting-title {
+    .w-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(48px, 7vw, 88px);
+      font-size: clamp(72px, 10vw, 130px);
       font-weight: 400;
-      line-height: 1.05;
+      font-style: italic;
+      line-height: 1;
       color: var(--white);
-      margin-bottom: 16px;
+      margin-bottom: 6px;
+      opacity: 0;
+      animation: fade-up 1.1s 0.5s ease forwards;
     }
 
-    .waiting-subtitle {
-      font-size: 16px;
+    .w-title-sub {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 400;
+      color: rgba(248,244,240,0.45);
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fade-up 1.1s 0.65s ease forwards;
+    }
+
+    .w-divider {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, transparent, var(--ochre-dim), transparent);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fade-up 1s 0.9s ease forwards;
+    }
+
+    .w-address {
+      font-size: 12px;
       font-weight: 300;
-      color: rgba(255,255,255,0.55);
-      letter-spacing: 0.5px;
-      margin-bottom: 56px;
-      max-width: 500px;
+      letter-spacing: 2.5px;
+      color: var(--mid);
+      text-transform: uppercase;
+      margin-bottom: 64px;
+      opacity: 0;
+      animation: fade-up 1s 1s ease forwards;
     }
 
-    .waiting-indicator {
-      display: flex; align-items: center; gap: 14px;
+    .w-pulse-wrap {
+      display: flex; align-items: center; gap: 12px;
+      opacity: 0;
+      animation: fade-up 1s 1.3s ease forwards;
     }
 
-    .pulse-dot {
-      width: 8px; height: 8px;
+    .pulse-ring {
+      position: relative;
+      width: 10px; height: 10px;
+    }
+
+    .pulse-ring::before {
+      content: '';
+      position: absolute; inset: 0;
       border-radius: 50%;
       background: var(--ochre);
-      animation: pulse 2s ease-in-out infinite;
+      animation: pulse-core 2.5s ease-in-out infinite;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.7); }
-    }
-
-    .waiting-label {
-      font-size: 13px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.4);
-      letter-spacing: 1px;
-    }
-
-    .corner-info {
+    .pulse-ring::after {
+      content: '';
       position: absolute;
-      top: 56px; right: 72px;
-      text-align: right;
-      z-index: 2;
+      inset: -5px;
+      border-radius: 50%;
+      border: 1px solid var(--ochre);
+      opacity: 0;
+      animation: pulse-wave 2.5s ease-in-out infinite;
     }
 
-    .corner-address {
-      font-size: 13px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.35);
-      letter-spacing: 0.5px;
-      line-height: 1.8;
+    @keyframes pulse-core {
+      0%,100% { opacity:1; transform: scale(1); }
+      50% { opacity:0.5; transform: scale(0.7); }
     }
 
-    /* ── ÉCRAN PERSONA ── */
+    @keyframes pulse-wave {
+      0% { transform: scale(0.5); opacity: 0.6; }
+      100% { transform: scale(2.5); opacity: 0; }
+    }
+
+    .w-pulse-label {
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(248,244,240,0.3);
+    }
+
+    /* scan dots */
+    .scan-dots {
+      position: fixed;
+      bottom: 36px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 10;
+    }
+
+    .sdot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(248,244,240,0.15);
+      transition: background 0.5s, transform 0.3s;
+    }
+
+    .sdot.done {
+      background: var(--ochre);
+      transform: scale(1.3);
+    }
+
+    /* corner label */
+    .corner-label {
+      position: fixed; top: 40px; right: 48px;
+      font-size: 10px; letter-spacing: 2px;
+      color: rgba(248,244,240,0.2);
+      text-transform: uppercase;
+      z-index: 10;
+    }
+
+    @keyframes fade-up {
+      from { opacity:0; transform: translateY(18px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    /* ══════════════════════════════
+       ÉCRAN PERSONA
+    ══════════════════════════════ */
     #screen-persona {
       position: fixed; inset: 0;
       display: flex;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.9s ease;
     }
 
     #screen-persona.visible {
@@ -125,181 +267,221 @@
       pointer-events: auto;
     }
 
-    .persona-photo-col {
-      width: 52%;
+    /* Photo col */
+    .p-photo-col {
+      width: 55%;
       position: relative;
       overflow: hidden;
     }
 
-    .persona-photo-bg {
-      position: absolute; inset: 0;
+    .p-photo-bg {
+      position: absolute; inset: -5%;
       background-size: cover;
       background-position: center;
-      transform: scale(1.05);
-      transition: transform 8s ease;
     }
 
-    #screen-persona.visible .persona-photo-bg {
-      transform: scale(1);
+    .p-photo-bg.animating {
+      animation: ken-burns-persona 12s ease-out forwards;
     }
 
-    .persona-photo-overlay {
+    @keyframes ken-burns-persona {
+      from { transform: scale(1.08); filter: brightness(0.3); }
+      to   { transform: scale(1.02); filter: brightness(0.55); }
+    }
+
+    .p-photo-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to right, transparent 60%, var(--dark) 100%);
+      background: linear-gradient(to right, rgba(14,14,14,0) 40%, var(--dark) 100%);
     }
 
-    .persona-info-col {
-      width: 48%;
+    /* Info col */
+    .p-info-col {
+      width: 45%;
       background: var(--dark);
       display: flex; flex-direction: column;
       justify-content: center;
-      padding: 64px 72px 64px 56px;
+      padding: 72px 80px 72px 60px;
+      position: relative;
     }
 
-    .persona-eyebrow {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 3.5px;
+    .p-numero {
+      font-size: 10px; letter-spacing: 4px;
       text-transform: uppercase;
-      color: var(--ochre);
-      margin-bottom: 28px;
-    }
-
-    .persona-name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(42px, 5vw, 68px);
-      font-weight: 400;
-      line-height: 1.08;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-
-    .persona-age {
-      font-size: 15px;
-      font-weight: 300;
       color: var(--ochre);
       margin-bottom: 32px;
+      opacity: 0;
+    }
+
+    .p-numero.in { animation: fade-up 0.7s 0.1s ease forwards; }
+
+    .p-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(64px, 7vw, 100px);
+      font-weight: 400;
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .p-name-inner {
+      display: block;
+      transform: translateY(110%);
+      transition: transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .p-name-inner.in { transform: translateY(0); }
+
+    .p-line {
+      width: 0; height: 1px;
+      background: var(--ochre);
+      margin-bottom: 20px;
+      transition: width 0.8s 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .p-line.in { width: 48px; }
+
+    .p-age {
+      font-size: 14px; font-weight: 300;
+      color: var(--ochre);
       letter-spacing: 0.5px;
+      margin-bottom: 28px;
+      opacity: 0;
     }
 
-    .persona-desc {
-      font-size: 15px;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.6);
+    .p-age.in { animation: fade-up 0.7s 0.5s ease forwards; }
+
+    .p-desc {
+      font-size: 14px; line-height: 1.8;
+      color: rgba(248,244,240,0.5);
       font-weight: 300;
-      margin-bottom: 40px;
-      max-width: 380px;
+      max-width: 340px;
+      margin-bottom: 44px;
+      opacity: 0;
     }
 
-    .persona-specs {
+    .p-desc.in { animation: fade-up 0.7s 0.65s ease forwards; }
+
+    .p-specs {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px 32px;
-      margin-bottom: 40px;
+      gap: 18px 36px;
+      margin-bottom: 36px;
     }
 
-    .spec-item {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 14px;
+    .spec {
+      border-top: 1px solid rgba(248,244,240,0.07);
+      padding-top: 12px;
+      opacity: 0;
     }
 
-    .spec-label {
-      font-size: 10px;
-      letter-spacing: 2px;
+    .spec.in { animation: fade-up 0.6s ease forwards; }
+
+    .spec-l {
+      font-size: 9px; letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: var(--mid);
-      margin-bottom: 6px;
+      color: rgba(248,244,240,0.25);
+      margin-bottom: 5px;
     }
 
-    .spec-value {
-      font-size: 14px;
-      font-weight: 400;
+    .spec-v {
+      font-size: 15px; font-weight: 400;
       color: var(--white);
     }
 
-    .persona-tag-list {
-      display: flex; flex-wrap: wrap; gap: 8px;
+    .p-tags {
+      display: flex; flex-wrap: wrap; gap: 7px;
+      opacity: 0;
     }
 
-    .persona-tag {
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      color: rgba(255,255,255,0.55);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 2px;
+    .p-tags.in { animation: fade-up 0.6s 1.1s ease forwards; }
+
+    .p-tag {
+      font-size: 10px; font-weight: 400;
+      letter-spacing: 0.8px;
+      color: rgba(248,244,240,0.4);
+      border: 1px solid rgba(248,244,240,0.1);
       padding: 5px 12px;
+      border-radius: 1px;
     }
 
-    /* ── TRANSITION ── */
-    #screen-waiting.hidden { opacity: 0; pointer-events: none; }
-
-    /* ── NUMÉRO SCAN ── */
-    .scan-counter {
-      position: fixed;
-      bottom: 32px; right: 40px;
-      z-index: 10;
-      display: flex; gap: 6px;
+    /* numero coin photo */
+    .p-photo-num {
+      position: absolute;
+      bottom: 40px; left: 44px;
+      font-family: 'Playfair Display', serif;
+      font-size: 120px; font-weight: 400; font-style: italic;
+      color: rgba(248,244,240,0.04);
+      line-height: 1;
+      pointer-events: none;
+      z-index: 2;
     }
-
-    .scan-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.15);
-      transition: background 0.4s;
-    }
-
-    .scan-dot.done { background: var(--ochre); }
   </style>
 </head>
 <body>
 
-  <!-- ÉCRAN D'ATTENTE (projecteur au départ) -->
+  <div class="cursor" id="cursor"></div>
+  <div class="grain"></div>
+  <div class="veil" id="veil"></div>
+
+  <!-- COIN -->
+  <div class="corner-label">Mercurey — 2026</div>
+
+  <!-- DOTS -->
+  <div class="scan-dots">
+    <div class="sdot" id="dot-0"></div>
+    <div class="sdot" id="dot-1"></div>
+    <div class="sdot" id="dot-2"></div>
+  </div>
+
+  <!-- WAITING -->
   <div id="screen-waiting">
-    <div class="waiting-photo"></div>
-    <div class="corner-info">
-      <div class="corner-address">90 Grande Rue<br>71640 Mercurey<br>Saône-et-Loire</div>
-    </div>
-    <div class="waiting-content">
-      <div class="tag">Conception sociale des habitats — CREAD 4</div>
-      <h1 class="waiting-title">Une maison.<br>Trois destins.</h1>
-      <p class="waiting-subtitle">Ancienne propriété de l'OPAC de Saône-et-Loire, restituée à la commune de Mercurey. Un bâtiment à réinventer.</p>
-      <div class="waiting-indicator">
-        <div class="pulse-dot"></div>
-        <span class="waiting-label">En attente d'une clé</span>
+    <div class="w-photo"></div>
+    <div class="w-overlay"></div>
+    <div class="w-content">
+      <div class="w-eyebrow">Conception sociale des habitats · CREAD 4</div>
+      <div class="w-title">90 Grande Rue</div>
+      <div class="w-title-sub">Mercurey</div>
+      <div class="w-divider"></div>
+      <div class="w-address">Saône-et-Loire · Bourgogne</div>
+      <div class="w-pulse-wrap">
+        <div class="pulse-ring"></div>
+        <span class="w-pulse-label">En attente d'une clé</span>
       </div>
     </div>
   </div>
 
-  <!-- ÉCRAN PERSONA -->
+  <!-- PERSONA -->
   <div id="screen-persona">
-    <div class="persona-photo-col">
-      <div class="persona-photo-bg" id="persona-photo"></div>
-      <div class="persona-photo-overlay"></div>
+    <div class="p-photo-col">
+      <div class="p-photo-bg" id="p-photo"></div>
+      <div class="p-photo-overlay"></div>
+      <div class="p-photo-num" id="p-num">—</div>
     </div>
-    <div class="persona-info-col">
-      <div class="persona-eyebrow" id="persona-eyebrow">Résident · Appartement A</div>
-      <h2 class="persona-name" id="persona-name">—</h2>
-      <div class="persona-age" id="persona-age">—</div>
-      <p class="persona-desc" id="persona-desc">—</p>
-      <div class="persona-specs" id="persona-specs"></div>
-      <div class="persona-tag-list" id="persona-tags"></div>
+    <div class="p-info-col">
+      <div class="p-numero" id="p-eyebrow"></div>
+      <div class="p-name"><span class="p-name-inner" id="p-name">—</span></div>
+      <div class="p-line" id="p-line"></div>
+      <div class="p-age" id="p-age"></div>
+      <div class="p-desc" id="p-desc"></div>
+      <div class="p-specs" id="p-specs"></div>
+      <div class="p-tags" id="p-tags"></div>
     </div>
   </div>
 
-  <!-- Indicateur de progression (3 scans) -->
-  <div class="scan-counter">
-    <div class="scan-dot" id="dot-0"></div>
-    <div class="scan-dot" id="dot-1"></div>
-    <div class="scan-dot" id="dot-2"></div>
-  </div>
+  <script>
+    // cursor
+    const cur = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cur.style.left = e.clientX + 'px';
+      cur.style.top = e.clientY + 'px';
+    });
+  </script>
 
-  <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
     import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
 
-    // ── REMPLACER PAR VOTRE CONFIG FIREBASE ──
     const firebaseConfig = {
       apiKey: "AIzaSyCQjIPdy6i_NZjH78ffiuZjUFW4cmlWp7o",
       authDomain: "mercurey-workshop.firebaseapp.com",
@@ -312,50 +494,51 @@
 
     const PERSONAS = {
       lucas: {
-        eyebrow: "Résident · Appartement A — Rez-de-chaussée",
+        num: "I",
+        eyebrow: "Appartement A · Rez-de-chaussée",
         name: "Lucas",
         age: "20 ans — Apprenti CIFA Jean Lameloise",
-        desc: "Lucas suit une formation en hôtellerie-restauration au CIFA de Mercurey. Chaque soir, il parcourait 35 km pour rentrer chez ses parents. Désormais, il habite à deux minutes à pied de son centre de formation.",
-        photo: "assets/facade1.jpg", // remplacer par 3D
+        desc: "Chaque soir, il parcourait 35 km pour rentrer chez ses parents. Désormais, il habite à deux minutes à pied de son centre de formation.",
+        photo: "assets/facade1.jpg",
         specs: [
-          { label: "Surface", value: "32 m²" },
-          { label: "Type", value: "Studio aménagé" },
-          { label: "Loyer", value: "320 €/mois" },
-          { label: "Statut", value: "Logement social" },
+          { l:"Surface", v:"32 m²" },
+          { l:"Type", v:"Studio" },
+          { l:"Loyer", v:"320 €/mois" },
+          { l:"Statut", v:"Logement social" },
         ],
-        tags: ["Jeune actif", "Mobilité douce", "Espaces communs", "Jardin partagé"]
+        tags: ["Jeune actif","Mobilité douce","Espaces communs","Jardin partagé"]
       },
       genevieve: {
-        eyebrow: "Résidente · Appartement B — Rez-de-chaussée",
+        num: "II",
+        eyebrow: "Appartement B · Rez-de-chaussée",
         name: "Geneviève",
         age: "74 ans — Mercurey depuis 1978",
-        desc: "Geneviève vivait seule dans sa grande maison de 160 m² depuis le départ de ses enfants. La vendre était impensable. La quitter, une trahison. Ici, elle reste au village — avec moins à entretenir, et plus de monde autour.",
+        desc: "Seule dans 160 m². La quitter était une trahison. Ici, elle reste au village — avec moins à entretenir, et plus de monde autour.",
         photo: "assets/facade2.jpg",
         specs: [
-          { label: "Surface", value: "58 m²" },
-          { label: "Type", value: "T3 de plain-pied" },
-          { label: "Loyer", value: "480 €/mois" },
-          { label: "Statut", value: "Logement adapté" },
+          { l:"Surface", v:"58 m²" },
+          { l:"Type", v:"T3 de plain-pied" },
+          { l:"Loyer", v:"480 €/mois" },
+          { l:"Statut", v:"Logement adapté" },
         ],
-        tags: ["Senior autonome", "Plain-pied", "Jardin privatif", "Centre-village"]
+        tags: ["Senior autonome","Plain-pied","Jardin privatif","Centre-village"]
       },
       raymond: {
-        eyebrow: "Résident · Appartement C — Rez-de-chaussée",
+        num: "III",
+        eyebrow: "Appartement C · Rez-de-chaussée",
         name: "Raymond",
         age: "71 ans — En fauteuil roulant depuis 2021",
-        desc: "Raymond ne cherchait pas à déménager — il cherchait à rester. À rester à Mercurey, là où il a vendangé quarante ans. Un logement pensé pour lui : pas d'obstacle, pas de compromis, et vue sur les vignes.",
+        desc: "Quarante ans de vendanges à Mercurey. Un logement pensé pour lui — pas d'obstacle, pas de compromis, et vue sur les vignes.",
         photo: "assets/facade3.jpg",
         specs: [
-          { label: "Surface", value: "62 m²" },
-          { label: "Type", value: "T3 PMR" },
-          { label: "Loyer", value: "490 €/mois" },
-          { label: "Accessibilité", value: "Norme PMR complète" },
+          { l:"Surface", v:"62 m²" },
+          { l:"Type", v:"T3 PMR" },
+          { l:"Loyer", v:"490 €/mois" },
+          { l:"Accessibilité", v:"Norme PMR" },
         ],
-        tags: ["PMR", "Rez-de-chaussée", "Salle de bain adaptée", "Accès plain-pied"]
+        tags: ["PMR","Rez-de-chaussée","Salle de bain adaptée","Accès sans obstacle"]
       }
     };
-
-    const ORDER = ['lucas', 'genevieve', 'raymond'];
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
@@ -363,47 +546,104 @@
 
     let lastPersona = null;
 
-    onValue(stateRef, (snapshot) => {
-      const data = snapshot.val();
-      if (!data) return;
+    onValue(stateRef, snap => {
+      const d = snap.val();
+      if (!d) return;
+      const { current_persona, scan_count } = d;
 
-      const { current_persona, scan_count } = data;
-
-      // Mettre à jour les dots
       for (let i = 0; i < 3; i++) {
         document.getElementById(`dot-${i}`).classList.toggle('done', i < (scan_count || 0));
       }
 
       if (current_persona && current_persona !== lastPersona) {
         lastPersona = current_persona;
-        showPersona(current_persona);
+        revealPersona(current_persona);
+      }
+
+      if (!current_persona || current_persona === '') {
+        lastPersona = null;
+        document.getElementById('screen-waiting').classList.remove('hidden');
+        document.getElementById('screen-persona').classList.remove('visible');
       }
     });
 
-    function showPersona(key) {
+    function revealPersona(key) {
       const p = PERSONAS[key];
       if (!p) return;
 
-      document.getElementById('persona-eyebrow').textContent = p.eyebrow;
-      document.getElementById('persona-name').textContent = p.name;
-      document.getElementById('persona-age').textContent = p.age;
-      document.getElementById('persona-desc').textContent = p.desc;
-      document.getElementById('persona-photo').style.backgroundImage = `url('${p.photo}')`;
+      const veil = document.getElementById('veil');
 
-      const specsEl = document.getElementById('persona-specs');
-      specsEl.innerHTML = p.specs.map(s => `
-        <div class="spec-item">
-          <div class="spec-label">${s.label}</div>
-          <div class="spec-value">${s.value}</div>
-        </div>
-      `).join('');
+      // Phase 1 : veil ferme
+      veil.classList.remove('sweep-in','sweep-out');
+      void veil.offsetWidth;
+      veil.classList.add('sweep-in');
 
-      const tagsEl = document.getElementById('persona-tags');
-      tagsEl.innerHTML = p.tags.map(t => `<span class="persona-tag">${t}</span>`).join('');
+      setTimeout(() => {
+        // Remplir le contenu pendant que le veil est opaque
+        fillPersona(p);
 
-      // Transition
-      document.getElementById('screen-waiting').classList.add('hidden');
-      document.getElementById('screen-persona').classList.add('visible');
+        // Masquer waiting, montrer persona (sans transition, le veil couvre)
+        document.getElementById('screen-waiting').classList.add('hidden');
+        document.getElementById('screen-persona').classList.add('visible');
+
+        // Phase 2 : veil s'ouvre
+        veil.classList.remove('sweep-in');
+        void veil.offsetWidth;
+        veil.classList.add('sweep-out');
+
+        // Lancer les animations de contenu
+        setTimeout(() => startAnimations(), 100);
+
+      }, 680);
+    }
+
+    function fillPersona(p) {
+      document.getElementById('p-photo').style.backgroundImage = `url('${p.photo}')`;
+      document.getElementById('p-num').textContent = p.num;
+      document.getElementById('p-eyebrow').textContent = p.eyebrow;
+      document.getElementById('p-name').textContent = p.name;
+      document.getElementById('p-age').textContent = p.age;
+      document.getElementById('p-desc').textContent = p.desc;
+
+      document.getElementById('p-specs').innerHTML = p.specs.map((s,i) =>
+        `<div class="spec" style="animation-delay:${0.7+i*0.1}s">
+          <div class="spec-l">${s.l}</div>
+          <div class="spec-v">${s.v}</div>
+        </div>`
+      ).join('');
+
+      document.getElementById('p-tags').innerHTML = p.tags.map(t =>
+        `<span class="p-tag">${t}</span>`
+      ).join('');
+
+      // Reset animation classes
+      ['p-eyebrow','p-name-inner','p-line','p-age','p-desc','p-tags'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('in');
+      });
+      document.querySelectorAll('.spec').forEach(el => el.classList.remove('in'));
+
+      // Reset ken burns
+      const photoBg = document.getElementById('p-photo');
+      photoBg.classList.remove('animating');
+    }
+
+    function startAnimations() {
+      document.getElementById('p-eyebrow').classList.add('in');
+      document.getElementById('p-name-inner').classList.add('in');
+
+      setTimeout(() => document.getElementById('p-line').classList.add('in'), 200);
+      setTimeout(() => document.getElementById('p-age').classList.add('in'), 400);
+      setTimeout(() => document.getElementById('p-desc').classList.add('in'), 550);
+      setTimeout(() => {
+        document.querySelectorAll('.spec').forEach(el => el.classList.add('in'));
+      }, 700);
+      setTimeout(() => document.getElementById('p-tags').classList.add('in'), 1000);
+
+      // Ken burns photo
+      const photoBg = document.getElementById('p-photo');
+      void photoBg.offsetWidth;
+      photoBg.classList.add('animating');
     }
   </script>
 </body>

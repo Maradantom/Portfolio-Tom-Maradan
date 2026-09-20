@@ -5,15 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Clé — 90 Grande Rue</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --ochre: #C8865A;
-      --dark: #141414;
-      --mid: #5a5a5a;
-      --white: #ffffff;
+      --dark: #0e0e0e;
+      --white: #f8f4f0;
     }
 
     html, body {
@@ -21,296 +20,302 @@
       background: var(--dark);
       color: var(--white);
       font-family: 'Inter', sans-serif;
-      display: flex; flex-direction: column;
-      align-items: center;
     }
 
-    /* ── ÉTAT : CHARGEMENT ── */
-    #state-loading {
+    /* ── LOADING ── */
+    #s-loading {
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      min-height: 100dvh; padding: 40px;
-      gap: 16px;
+      min-height: 100dvh; gap: 20px;
     }
 
-    .spinner {
-      width: 28px; height: 28px;
-      border: 2px solid rgba(255,255,255,0.1);
-      border-top-color: var(--ochre);
+    .ring {
+      width: 32px; height: 32px;
       border-radius: 50%;
-      animation: spin 0.8s linear infinite;
+      border: 1.5px solid rgba(248,244,240,0.08);
+      border-top-color: var(--ochre);
+      animation: spin 0.9s linear infinite;
     }
 
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    .loading-text {
-      font-size: 13px; font-weight: 300;
-      color: rgba(255,255,255,0.35);
-      letter-spacing: 1px;
+    .loading-txt {
+      font-size: 11px; letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(248,244,240,0.2);
     }
 
-    /* ── ÉTAT : CONFIRMATION ── */
-    #state-confirm {
+    /* ── CONFIRM ── */
+    #s-confirm {
       display: none;
       flex-direction: column;
       min-height: 100dvh;
-      width: 100%;
     }
 
-    .photo-top {
-      width: 100%;
-      height: 38vh;
-      position: relative;
-      overflow: hidden;
+    .photo-hero {
+      width: 100%; height: 44vh;
+      position: relative; overflow: hidden;
     }
 
-    .photo-top-bg {
+    .photo-hero-bg {
+      position: absolute; inset: -5%;
+      background-size: cover; background-position: center;
+      animation: hero-zoom 6s ease-out forwards;
+    }
+
+    @keyframes hero-zoom {
+      from { transform: scale(1.1); filter: brightness(0.3); }
+      to   { transform: scale(1.02); filter: brightness(0.5); }
+    }
+
+    .photo-hero-grad {
       position: absolute; inset: 0;
-      background-size: cover;
-      background-position: center;
-      filter: brightness(0.5);
+      background: linear-gradient(to bottom, rgba(14,14,14,0.1) 0%, var(--dark) 100%);
     }
 
-    .photo-top-gradient {
-      position: absolute; inset: 0;
-      background: linear-gradient(to bottom, transparent 40%, var(--dark) 100%);
-    }
-
-    .photo-top-label {
-      position: absolute;
-      bottom: 20px; left: 24px;
-      font-size: 10px;
-      letter-spacing: 3px;
+    .hero-label {
+      position: absolute; bottom: 20px; left: 22px;
+      font-size: 9px; letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--ochre);
-      font-weight: 500;
+      color: rgba(248,244,240,0.4);
     }
 
     .confirm-body {
       flex: 1;
-      padding: 32px 28px 48px;
+      padding: 28px 24px 40px;
       display: flex; flex-direction: column;
-      gap: 0;
     }
 
-    .confirm-intro {
-      font-size: 11px;
-      letter-spacing: 2.5px;
+    .c-eyebrow {
+      font-size: 9px; letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--mid);
-      margin-bottom: 12px;
+      color: var(--ochre);
+      margin-bottom: 10px;
+      opacity: 0;
+      animation: fade-up 0.6s 0.2s ease forwards;
     }
 
-    .confirm-name {
+    .c-name {
       font-family: 'Playfair Display', serif;
-      font-size: 42px;
-      font-weight: 400;
+      font-size: 52px; font-weight: 400; font-style: italic;
+      line-height: 1;
       color: var(--white);
       margin-bottom: 6px;
-      line-height: 1.1;
+      overflow: hidden;
     }
 
-    .confirm-age {
-      font-size: 14px;
-      font-weight: 300;
+    .c-name-inner {
+      display: block;
+      transform: translateY(110%);
+      animation: slide-in 0.8s 0.3s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+
+    @keyframes slide-in {
+      to { transform: translateY(0); }
+    }
+
+    .c-age {
+      font-size: 13px; font-weight: 300;
       color: var(--ochre);
-      margin-bottom: 24px;
-    }
-
-    .confirm-desc {
-      font-size: 14px;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.5);
-      font-weight: 300;
-      margin-bottom: 40px;
-    }
-
-    .confirm-question {
-      font-size: 13px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.35);
       margin-bottom: 20px;
-      letter-spacing: 0.3px;
+      opacity: 0;
+      animation: fade-up 0.6s 0.5s ease forwards;
     }
 
-    .btn-confirm {
-      width: 100%;
-      padding: 18px;
+    .c-sep {
+      width: 32px; height: 1px;
+      background: rgba(248,244,240,0.12);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fade-up 0.5s 0.55s ease forwards;
+    }
+
+    .c-desc {
+      font-size: 13px; line-height: 1.75;
+      color: rgba(248,244,240,0.4);
+      font-weight: 300;
+      flex: 1;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fade-up 0.6s 0.65s ease forwards;
+    }
+
+    .c-question {
+      font-size: 11px; letter-spacing: 1px;
+      color: rgba(248,244,240,0.25);
+      margin-bottom: 16px;
+      text-align: center;
+      opacity: 0;
+      animation: fade-up 0.5s 0.85s ease forwards;
+    }
+
+    .btn-main {
+      width: 100%; padding: 18px;
       background: var(--ochre);
       color: var(--white);
-      border: none;
-      border-radius: 3px;
+      border: none; border-radius: 2px;
       font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase;
       cursor: pointer;
-      transition: opacity 0.2s;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      opacity: 0;
+      animation: fade-up 0.5s 0.95s ease forwards;
+      -webkit-tap-highlight-color: transparent;
+      transition: filter 0.2s;
     }
 
-    .btn-confirm:active { opacity: 0.8; }
+    .btn-main:active { filter: brightness(0.85); }
 
-    .btn-cancel {
-      width: 100%;
-      padding: 14px;
+    .btn-sec {
+      width: 100%; padding: 14px;
       background: transparent;
-      color: rgba(255,255,255,0.3);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 3px;
+      color: rgba(248,244,240,0.2);
+      border: 1px solid rgba(248,244,240,0.08);
+      border-radius: 2px;
       font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      letter-spacing: 1px;
+      font-size: 11px; letter-spacing: 1.5px;
       text-transform: uppercase;
       cursor: pointer;
-      transition: opacity 0.2s;
+      opacity: 0;
+      animation: fade-up 0.5s 1.05s ease forwards;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .btn-cancel:active { opacity: 0.6; }
-
-    /* ── ÉTAT : SUCCÈS ── */
-    #state-success {
+    /* ── SUCCESS ── */
+    #s-success {
       display: none;
       flex-direction: column;
       align-items: center; justify-content: center;
-      min-height: 100dvh;
-      padding: 48px 32px;
-      text-align: center;
-      gap: 20px;
+      min-height: 100dvh; padding: 48px 32px;
+      text-align: center; gap: 18px;
     }
 
-    .success-icon {
-      width: 56px; height: 56px;
+    .check-circle {
+      width: 64px; height: 64px;
       border-radius: 50%;
-      border: 1.5px solid var(--ochre);
+      border: 1px solid var(--ochre);
       display: flex; align-items: center; justify-content: center;
-      color: var(--ochre);
-      font-size: 22px;
-      margin-bottom: 8px;
+      animation: scale-in 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
     }
 
-    .success-title {
+    @keyframes scale-in {
+      from { transform: scale(0.5); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    .check-icon {
+      width: 20px; height: 20px;
+      stroke: var(--ochre); stroke-width: 2;
+      fill: none;
+      stroke-dasharray: 40;
+      stroke-dashoffset: 40;
+      animation: draw-check 0.4s 0.3s ease forwards;
+    }
+
+    @keyframes draw-check {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .s-name {
       font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      font-weight: 400;
+      font-size: 34px; font-style: italic;
       color: var(--white);
     }
 
-    .success-sub {
-      font-size: 13px;
-      font-weight: 300;
-      color: rgba(255,255,255,0.35);
-      line-height: 1.6;
-      max-width: 260px;
+    .s-sub {
+      font-size: 12px; letter-spacing: 1px;
+      color: rgba(248,244,240,0.3);
+      line-height: 1.7;
     }
 
-    /* ── ÉTAT : TERMINÉ ── */
-    #state-done {
+    /* ── DONE / ALREADY ── */
+    #s-done, #s-already {
       display: none;
       flex-direction: column;
       align-items: center; justify-content: center;
-      min-height: 100dvh;
-      padding: 48px 32px;
-      text-align: center;
-      gap: 16px;
+      min-height: 100dvh; padding: 48px 32px;
+      text-align: center; gap: 14px;
     }
 
-    .done-title {
+    .end-title {
       font-family: 'Playfair Display', serif;
-      font-size: 26px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.4);
+      font-size: 28px; font-style: italic;
+      color: rgba(248,244,240,0.35);
     }
 
-    .done-sub {
-      font-size: 13px;
-      color: rgba(255,255,255,0.2);
-      font-weight: 300;
+    .end-sub {
+      font-size: 12px; letter-spacing: 0.5px;
+      color: rgba(248,244,240,0.18);
+      line-height: 1.7; max-width: 260px;
     }
 
-    /* ── ÉTAT : DÉJÀ PRÉSENTÉ ── */
-    #state-already {
-      display: none;
-      flex-direction: column;
-      align-items: center; justify-content: center;
-      min-height: 100dvh;
-      padding: 48px 32px;
-      text-align: center;
-      gap: 16px;
+    @keyframes fade-up {
+      from { opacity:0; transform: translateY(12px); }
+      to   { opacity:1; transform: translateY(0); }
     }
 
-    .already-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px;
-      color: rgba(255,255,255,0.5);
-    }
-
-    .already-sub {
-      font-size: 13px;
-      color: rgba(255,255,255,0.25);
-      font-weight: 300;
-      line-height: 1.6;
-      max-width: 260px;
-    }
-
-    .address-footer {
-      position: fixed;
-      bottom: 24px;
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      color: rgba(255,255,255,0.15);
+    .foot {
+      position: fixed; bottom: 20px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 9px; letter-spacing: 2px;
+      color: rgba(248,244,240,0.1);
       text-transform: uppercase;
+      white-space: nowrap;
     }
   </style>
 </head>
 <body>
 
-  <div id="state-loading">
-    <div class="spinner"></div>
-    <p class="loading-text">Connexion…</p>
+  <div id="s-loading">
+    <div class="ring"></div>
+    <p class="loading-txt">Connexion</p>
   </div>
 
-  <div id="state-confirm">
-    <div class="photo-top">
-      <div class="photo-top-bg" id="confirm-photo"></div>
-      <div class="photo-top-gradient"></div>
-      <div class="photo-top-label">90 Grande Rue — Mercurey</div>
+  <div id="s-confirm">
+    <div class="photo-hero">
+      <div class="photo-hero-bg" id="c-photo"></div>
+      <div class="photo-hero-grad"></div>
+      <div class="hero-label">90 Grande Rue · Mercurey</div>
     </div>
     <div class="confirm-body">
-      <p class="confirm-intro">Vous avez déverrouillé</p>
-      <h2 class="confirm-name" id="confirm-name">—</h2>
-      <p class="confirm-age" id="confirm-age">—</p>
-      <p class="confirm-desc" id="confirm-desc">—</p>
-      <p class="confirm-question">Lancer la visite sur l'écran principal ?</p>
-      <button class="btn-confirm" id="btn-confirm">Oui, lancer la visite</button>
-      <button class="btn-cancel" id="btn-cancel">Annuler</button>
+      <p class="c-eyebrow" id="c-eyebrow">Vous avez déverrouillé</p>
+      <div class="c-name"><span class="c-name-inner" id="c-name">—</span></div>
+      <p class="c-age" id="c-age">—</p>
+      <div class="c-sep"></div>
+      <p class="c-desc" id="c-desc">—</p>
+      <p class="c-question">Lancer la visite sur l'écran principal ?</p>
+      <button class="btn-main" id="btn-confirm">Oui, lancer la visite</button>
+      <button class="btn-sec" id="btn-cancel">Annuler</button>
     </div>
   </div>
 
-  <div id="state-success">
-    <div class="success-icon">✓</div>
-    <h2 class="success-title" id="success-name">—</h2>
-    <p class="success-sub">La visite est lancée sur l'écran principal.</p>
+  <div id="s-success">
+    <div class="check-circle">
+      <svg class="check-icon" viewBox="0 0 24 24">
+        <polyline points="4,12 9,17 20,6"/>
+      </svg>
+    </div>
+    <div class="s-name" id="s-name">—</div>
+    <p class="s-sub">La visite est lancée<br>sur l'écran principal.</p>
   </div>
 
-  <div id="state-already">
-    <h2 class="already-title">Déjà présenté</h2>
-    <p class="already-sub">Ce profil est déjà affiché sur l'écran. Attendez la prochaine clé.</p>
+  <div id="s-already">
+    <div class="end-title">Déjà affiché</div>
+    <p class="end-sub">Ce profil est en cours de présentation. Attendez la prochaine clé.</p>
   </div>
 
-  <div id="state-done">
-    <h2 class="done-title">Fin de la présentation</h2>
-    <p class="done-sub">Les trois visites ont été réalisées.</p>
+  <div id="s-done">
+    <div class="end-title">Fin de la présentation</div>
+    <p class="end-sub">Les trois visites ont été réalisées.</p>
   </div>
 
-  <div class="address-footer">90 Grande Rue · Mercurey</div>
+  <div class="foot">90 Grande Rue · Mercurey · 2026</div>
 
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
     import { getDatabase, ref, get, set } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
 
-    // ── MÊME CONFIG QUE index.html ──
     const firebaseConfig = {
       apiKey: "AIzaSyCQjIPdy6i_NZjH78ffiuZjUFW4cmlWp7o",
       authDomain: "mercurey-workshop.firebaseapp.com",
@@ -323,21 +328,24 @@
 
     const PERSONAS = {
       lucas: {
+        eyebrow: "Vous avez déverrouillé",
         name: "Lucas",
         age: "20 ans — Apprenti CIFA Jean Lameloise",
-        desc: "Apprenti en hôtellerie-restauration, il vivait à 35 km. Désormais à deux minutes de son centre de formation.",
+        desc: "Chaque soir, il parcourait 35 km pour rentrer chez ses parents. Désormais à deux minutes de son centre de formation.",
         photo: "../assets/facade1.jpg",
       },
       genevieve: {
+        eyebrow: "Vous avez déverrouillé",
         name: "Geneviève",
         age: "74 ans — Mercurey depuis 1978",
-        desc: "Seule dans une maison de 160 m². Elle reste au village, avec moins à entretenir et plus de lien social.",
+        desc: "Seule dans 160 m². La quitter était une trahison. Ici, elle reste au village avec moins à entretenir.",
         photo: "../assets/facade2.jpg",
       },
       raymond: {
+        eyebrow: "Vous avez déverrouillé",
         name: "Raymond",
         age: "71 ans — En fauteuil roulant depuis 2021",
-        desc: "Quarante ans de vendanges à Mercurey. Un logement conçu pour lui, sans compromis, avec vue sur les vignes.",
+        desc: "Quarante ans de vendanges à Mercurey. Un logement sans obstacle, avec vue sur les vignes.",
         photo: "../assets/facade3.jpg",
       }
     };
@@ -352,75 +360,56 @@
 
     function show(id) {
       ['loading','confirm','success','already','done'].forEach(s => {
-        const el = document.getElementById(`state-${s}`);
-        el.style.display = s === id ? 'flex' : 'none';
+        document.getElementById(`s-${s}`).style.display = s === id ? 'flex' : 'none';
       });
     }
 
     async function init() {
       try {
         const snap = await get(stateRef);
-        const data = snap.val() || { scan_count: 0, current_persona: null };
-        const { scan_count, current_persona } = data;
+        const d = snap.val() || { scan_count: 0, current_persona: '' };
+        const { scan_count, current_persona } = d;
 
-        if (scan_count >= 3) {
-          show('done');
-          return;
-        }
+        if (scan_count >= 3) { show('done'); return; }
 
         const nextKey = ORDER[scan_count];
         const p = PERSONAS[nextKey];
 
-        // Si ce persona est déjà affiché
-        if (current_persona === nextKey) {
-          show('already');
-          return;
-        }
+        if (current_persona === nextKey) { show('already'); return; }
 
         pendingKey = nextKey;
 
-        document.getElementById('confirm-name').textContent = p.name;
-        document.getElementById('confirm-age').textContent = p.age;
-        document.getElementById('confirm-desc').textContent = p.desc;
-        document.getElementById('confirm-photo').style.backgroundImage = `url('${p.photo}')`;
-        document.getElementById('success-name').textContent = p.name;
+        document.getElementById('c-photo').style.backgroundImage = `url('${p.photo}')`;
+        document.getElementById('c-name').textContent = p.name;
+        document.getElementById('c-age').textContent = p.age;
+        document.getElementById('c-desc').textContent = p.desc;
+        document.getElementById('s-name').textContent = p.name;
 
         show('confirm');
-      } catch (e) {
-        console.error(e);
-        show('loading');
-        document.querySelector('.loading-text').textContent = 'Erreur de connexion';
+      } catch(e) {
+        document.querySelector('.loading-txt').textContent = 'Erreur de connexion';
       }
     }
 
     document.getElementById('btn-confirm').addEventListener('click', async () => {
       if (!pendingKey) return;
       const btn = document.getElementById('btn-confirm');
-      btn.disabled = true;
-      btn.textContent = '…';
-
+      btn.disabled = true; btn.textContent = '…';
       try {
         const snap = await get(stateRef);
-        const data = snap.val() || { scan_count: 0 };
-        const newCount = (data.scan_count || 0) + 1;
-
+        const d = snap.val() || { scan_count: 0 };
         await set(stateRef, {
-          scan_count: newCount,
+          scan_count: (d.scan_count || 0) + 1,
           current_persona: pendingKey
         });
-
         show('success');
-      } catch (e) {
-        btn.disabled = false;
-        btn.textContent = 'Oui, lancer la visite';
-        console.error(e);
+      } catch(e) {
+        btn.disabled = false; btn.textContent = 'Oui, lancer la visite';
       }
     });
 
     document.getElementById('btn-cancel').addEventListener('click', () => {
-      show('done');
-      document.querySelector('#state-done .done-title').textContent = 'Annulé';
-      document.querySelector('#state-done .done-sub').textContent = '';
+      window.close() || history.back();
     });
 
     init();
