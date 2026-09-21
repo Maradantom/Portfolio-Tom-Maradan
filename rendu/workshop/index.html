@@ -546,13 +546,17 @@
 
     let lastPersona = null;
 
+    const PERSONA_ORDER = ['lucas', 'genevieve', 'raymond'];
+
     onValue(stateRef, snap => {
       const d = snap.val();
       if (!d) return;
-      const { current_persona, scan_count } = d;
+      const { current_persona } = d;
 
+      // Dots : position du persona actuel dans l'ordre
+      const idx = PERSONA_ORDER.indexOf(current_persona);
       for (let i = 0; i < 3; i++) {
-        document.getElementById(`dot-${i}`).classList.toggle('done', i < (scan_count || 0));
+        document.getElementById(`dot-${i}`).classList.toggle('done', i <= idx && idx >= 0);
       }
 
       if (current_persona && current_persona !== lastPersona) {

@@ -350,13 +350,19 @@
       }
     };
 
-    const ORDER = ['lucas', 'genevieve', 'raymond'];
+    // Mapping clé (1-9) → persona
+    const KEY_MAP = {
+      1:'lucas', 4:'lucas', 7:'lucas',
+      2:'genevieve', 5:'genevieve', 8:'genevieve',
+      3:'raymond', 6:'raymond', 9:'raymond'
+    };
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     const stateRef = ref(db, 'workshop');
 
     let pendingKey = null;
+    let confirmed = false;
 
     function show(id) {
       ['loading','confirm','success','already','done'].forEach(s => {
@@ -364,20 +370,30 @@
       });
     }
 
+    function getKeyParam() {
+      const params = new URLSearchParams(window.location.search);
+      const k = parseInt(params.get('k'));
+      return (k >= 1 && k <= 9) ? k : null;
+    }
+
     async function init() {
       try {
+        const keyNum = getKeyParam();
+
+        // Pas de paramètre k → page générique (scan 1 = lucas par défaut)
+        const personaKey = keyNum ? KEY_MAP[keyNum] : 'lucas';
+        const p = PERSONAS[personaKey];
+
         const snap = await get(stateRef);
-        const d = snap.val() || { scan_count: 0, current_persona: '' };
-        const { scan_count, current_persona } = d;
+        const d = snap.val() || { current_persona: '' };
 
-        if (scan_count >= 3) { show('done'); return; }
+        // Si ce persona est déjà affiché sur le projecteur
+        if (d.current_persona === personaKey) {
+          show('already');
+          return;
+        }
 
-        const nextKey = ORDER[scan_count];
-        const p = PERSONAS[nextKey];
-
-        if (current_persona === nextKey) { show('already'); return; }
-
-        pendingKey = nextKey;
+        pendingKey = personaKey;
 
         document.getElementById('c-photo').style.backgroundImage = `url('${p.photo}')`;
         document.getElementById('c-name').textContent = p.name;
@@ -385,31 +401,34 @@
         document.getElementById('c-desc').textContent = p.desc;
         document.getElementById('s-name').textContent = p.name;
 
+        // Toujours afficher la confirmation — jamais envoyer automatiquement
         show('confirm');
+
       } catch(e) {
         document.querySelector('.loading-txt').textContent = 'Erreur de connexion';
+        console.error(e);
       }
     }
 
     document.getElementById('btn-confirm').addEventListener('click', async () => {
-      if (!pendingKey) return;
+      if (!pendingKey || confirmed) return;
+      confirmed = true;
       const btn = document.getElementById('btn-confirm');
       btn.disabled = true; btn.textContent = '…';
       try {
-        const snap = await get(stateRef);
-        const d = snap.val() || { scan_count: 0 };
-        await set(stateRef, {
-          scan_count: (d.scan_count || 0) + 1,
-          current_persona: pendingKey
-        });
+        await set(stateRef, { current_persona: pendingKey });
         show('success');
       } catch(e) {
+        confirmed = false;
         btn.disabled = false; btn.textContent = 'Oui, lancer la visite';
+        console.error(e);
       }
     });
 
     document.getElementById('btn-cancel').addEventListener('click', () => {
-      window.close() || history.back();
+      show('done');
+      document.querySelector('#s-done .end-title').textContent = 'Annulé';
+      document.querySelector('#s-done .end-sub').textContent = '';
     });
 
     init();
