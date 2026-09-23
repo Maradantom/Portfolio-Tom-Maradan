@@ -363,6 +363,7 @@
 
     let pendingKey = null;
     let confirmed = false;
+    let currentPersonaOnServer = '';
 
     function show(id) {
       ['loading','confirm','success','already','done'].forEach(s => {
@@ -386,6 +387,7 @@
 
         const snap = await get(stateRef);
         const d = snap.val() || { current_persona: '' };
+        currentPersonaOnServer = d.current_persona || '';
 
         // Si ce persona est déjà affiché sur le projecteur
         if (d.current_persona === personaKey) {
@@ -416,7 +418,7 @@
       const btn = document.getElementById('btn-confirm');
       btn.disabled = true; btn.textContent = '…';
       try {
-        await set(stateRef, { current_persona: d.current_persona || '', pending_persona: pendingKey });
+        await set(stateRef, { current_persona: currentPersonaOnServer, pending_persona: pendingKey });
         show('success');
       } catch(e) {
         confirmed = false;
