@@ -416,7 +416,7 @@
       const btn = document.getElementById('btn-confirm');
       btn.disabled = true; btn.textContent = '…';
       try {
-        await set(stateRef, { current_persona: pendingKey });
+        await set(stateRef, { current_persona: d.current_persona || '', pending_persona: pendingKey });
         show('success');
       } catch(e) {
         confirmed = false;

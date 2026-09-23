@@ -92,9 +92,9 @@
     onValue(stateRef, (snap) => {
       const d = snap.val() || {};
       const persona = d.current_persona || '—';
-      const count = d.scan_count || 0;
+      const pending = d.pending_persona || '—';
       document.getElementById('state-box').innerHTML =
-        `scan_count : <span>${count}</span> &nbsp;·&nbsp; persona : <span>${persona || '—'}</span>`;
+        `actuel : <span>${persona}</span> &nbsp;·&nbsp; en attente : <span>${pending}</span>`;
     });
 
     document.getElementById('btn-reset').addEventListener('click', async () => {
@@ -102,7 +102,7 @@
       btn.disabled = true;
       btn.textContent = '…';
       try {
-        await set(stateRef, { scan_count: 0, current_persona: '' });
+        await set(stateRef, { current_persona: '', pending_persona: '' });
         document.getElementById('status').textContent = 'Remis à zéro.';
       } catch(e) {
         document.getElementById('status').textContent = 'Erreur : ' + e.message;

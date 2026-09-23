@@ -247,6 +247,76 @@
       z-index: 10;
     }
 
+    /* ── NOTIFICATION PENDING ── */
+    #pending-notif {
+      position: fixed;
+      bottom: 40px; left: 50%;
+      transform: translateX(-50%) translateY(120px);
+      z-index: 200;
+      background: rgba(20,20,20,0.95);
+      border: 1px solid rgba(200,134,90,0.4);
+      border-radius: 4px;
+      padding: 18px 28px;
+      display: flex; align-items: center; gap: 20px;
+      backdrop-filter: blur(12px);
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), opacity 0.4s;
+      opacity: 0;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    #pending-notif.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .notif-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--ochre);
+      animation: pulse-core 1.5s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .notif-text {
+      font-size: 12px; font-weight: 300;
+      color: rgba(248,244,240,0.7);
+      letter-spacing: 0.5px;
+    }
+
+    .notif-text strong {
+      color: var(--white);
+      font-weight: 500;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+    }
+
+    .notif-btn {
+      padding: 8px 20px;
+      background: var(--ochre);
+      color: var(--white);
+      border: none; border-radius: 2px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      cursor: pointer;
+      transition: filter 0.2s;
+    }
+
+    .notif-btn:hover { filter: brightness(1.1); }
+
+    .notif-dismiss {
+      font-size: 11px; letter-spacing: 1px;
+      color: rgba(248,244,240,0.25);
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 8px;
+      transition: color 0.2s;
+    }
+
+    .notif-dismiss:hover { color: rgba(248,244,240,0.5); }
+
     @keyframes fade-up {
       from { opacity:0; transform: translateY(18px); }
       to   { opacity:1; transform: translateY(0); }
@@ -427,6 +497,14 @@
   <!-- COIN -->
   <div class="corner-label">Mercurey — 2026</div>
 
+  <!-- NOTIFICATION DOUBLE VALIDATION -->
+  <div id="pending-notif">
+    <div class="notif-dot"></div>
+    <div class="notif-text">Demande de visite — <strong id="notif-name">—</strong></div>
+    <button class="notif-btn" id="notif-confirm">Lancer</button>
+    <span class="notif-dismiss" id="notif-dismiss">Ignorer</span>
+  </div>
+
   <!-- DOTS -->
   <div class="scan-dots">
     <div class="sdot" id="dot-0"></div>
@@ -480,7 +558,7 @@
 
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-    import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+    import { getDatabase, ref, onValue, update } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
 
     const firebaseConfig = {
       apiKey: "AIzaSyCQjIPdy6i_NZjH78ffiuZjUFW4cmlWp7o",
@@ -545,30 +623,67 @@
     const stateRef = ref(db, 'workshop');
 
     let lastPersona = null;
+    let lastPending = null;
 
     const PERSONA_ORDER = ['lucas', 'genevieve', 'raymond'];
 
     onValue(stateRef, snap => {
-      const d = snap.val();
-      if (!d) return;
-      const { current_persona } = d;
+      const d = snap.val() || {};
+      const { current_persona, pending_persona } = d;
 
-      // Dots : position du persona actuel dans l'ordre
+      // Dots
       const idx = PERSONA_ORDER.indexOf(current_persona);
       for (let i = 0; i < 3; i++) {
         document.getElementById(`dot-${i}`).classList.toggle('done', i <= idx && idx >= 0);
       }
 
+      // Persona confirmé → révéler
       if (current_persona && current_persona !== lastPersona) {
         lastPersona = current_persona;
+        // Cacher la notif si elle était visible
+        hidePendingNotif();
         revealPersona(current_persona);
       }
 
+      // Reset
       if (!current_persona || current_persona === '') {
         lastPersona = null;
         document.getElementById('screen-waiting').classList.remove('hidden');
         document.getElementById('screen-persona').classList.remove('visible');
       }
+
+      // Persona en attente → montrer notification à Tom
+      if (pending_persona && pending_persona !== lastPending && pending_persona !== current_persona) {
+        lastPending = pending_persona;
+        showPendingNotif(pending_persona);
+      } else if (!pending_persona || pending_persona === current_persona) {
+        lastPending = null;
+        hidePendingNotif();
+      }
+    });
+
+    function showPendingNotif(key) {
+      const p = PERSONAS[key];
+      if (!p) return;
+      document.getElementById('notif-name').textContent = p.name;
+      document.getElementById('pending-notif').classList.add('show');
+    }
+
+    function hidePendingNotif() {
+      document.getElementById('pending-notif').classList.remove('show');
+    }
+
+    document.getElementById('notif-confirm').addEventListener('click', async () => {
+      if (!lastPending) return;
+      const key = lastPending;
+      hidePendingNotif();
+      await update(stateRef, { current_persona: key, pending_persona: '' });
+    });
+
+    document.getElementById('notif-dismiss').addEventListener('click', async () => {
+      hidePendingNotif();
+      lastPending = null;
+      await update(stateRef, { pending_persona: '' });
     });
 
     function revealPersona(key) {
