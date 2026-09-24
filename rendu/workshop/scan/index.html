@@ -380,30 +380,33 @@
     async function init() {
       try {
         const keyNum = getKeyParam();
-
-        // Pas de paramètre k → page générique (scan 1 = lucas par défaut)
         const personaKey = keyNum ? KEY_MAP[keyNum] : 'lucas';
         const p = PERSONAS[personaKey];
 
         const snap = await get(stateRef);
-        const d = snap.val() || { current_persona: '' };
+        const d = snap.val() || {};
+        const presented = d.presented || {};
         currentPersonaOnServer = d.current_persona || '';
 
-        // Si ce persona est déjà affiché sur le projecteur
-        if (d.current_persona === personaKey) {
+        // Persona déjà présenté → bloqué
+        if (presented[personaKey]) {
+          document.querySelector('#s-already .end-title').textContent = 'Déjà présenté';
+          document.querySelector('#s-already .end-sub').textContent =
+            'Ce profil a déjà été présenté au jury.';
           show('already');
           return;
         }
 
-        pendingKey = personaKey;
+        // Toutes les personas présentées → fin
+        const allDone = ['lucas','genevieve','raymond'].every(k => presented[k]);
+        if (allDone) { show('done'); return; }
 
+        pendingKey = personaKey;
         document.getElementById('c-photo').style.backgroundImage = `url('${p.photo}')`;
         document.getElementById('c-name').textContent = p.name;
         document.getElementById('c-age').textContent = p.age;
         document.getElementById('c-desc').textContent = p.desc;
         document.getElementById('s-name').textContent = p.name;
-
-        // Toujours afficher la confirmation — jamais envoyer automatiquement
         show('confirm');
 
       } catch(e) {

@@ -404,7 +404,11 @@
       if (!lastPending) return;
       const key = lastPending;
       hidePendingNotif();
-      await update(stateRef, { current_persona: key, pending_persona: '' });
+      await update(stateRef, {
+        current_persona: key,
+        pending_persona: '',
+        [`presented/${key}`]: true
+      });
     });
     document.getElementById('notif-dismiss').addEventListener('click', async () => {
       hidePendingNotif(); lastPending = null;
