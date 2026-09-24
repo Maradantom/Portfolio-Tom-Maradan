@@ -352,7 +352,10 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'ArrowRight' || e.key === ' ') {
         e.preventDefault();
-        const override = BLOCK_END_NEXT(SLIDES[cidx]);
+        const sid = SLIDES[cidx];
+        // Bloqué sur slide 17 tant qu'aucun scan n'est validé
+        if (sid === '17') return;
+        const override = BLOCK_END_NEXT(sid);
         goSlide(override !== null ? override : cidx + 1);
       }
       if (e.key === 'ArrowLeft')  { e.preventDefault(); goSlide(cidx - 1); }
