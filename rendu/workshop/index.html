@@ -52,48 +52,15 @@
     .notif-dismiss { font-size:11px; letter-spacing:1px; color:var(--sub); text-transform:uppercase; cursor:pointer; padding:9px; }
     .notif-dismiss:hover { color:var(--white); }
 
-    /* ── PERSONA OVERLAY ── */
-    #screen-persona { position:fixed; inset:0; z-index:80; display:flex; opacity:0; pointer-events:none; }
-    #screen-persona.visible { opacity:1; pointer-events:auto; }
-    .p-photo-col { width:55%; position:relative; overflow:hidden; }
-    .p-photo-bg { position:absolute; inset:-5%; background-size:cover; background-position:center; }
-    .p-photo-bg.animating { animation:kb-persona 12s ease-out forwards; }
-    @keyframes kb-persona { from{transform:scale(1.08);filter:brightness(0.25)} to{transform:scale(1.02);filter:brightness(0.5)} }
-    .p-photo-overlay { position:absolute; inset:0; background:linear-gradient(to right, rgba(10,10,10,0) 40%, var(--dark) 100%); }
-    .p-info-col { width:45%; background:var(--dark); display:flex; flex-direction:column; justify-content:center; padding:64px 72px 64px 52px; }
-    .p-numero { font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--ochre); margin-bottom:24px; opacity:0; }
-    .p-numero.in { animation:fade-up 0.7s 0.1s ease forwards; }
-    .p-name { font-family:'Playfair Display',serif; font-size:clamp(64px,7vw,100px); font-weight:400; line-height:1; color:var(--white); margin-bottom:18px; overflow:hidden; }
-    .p-name-inner { display:block; transform:translateY(110%); transition:transform 0.9s cubic-bezier(0.16,1,0.3,1); }
-    .p-name-inner.in { transform:translateY(0); }
-    .p-line { width:0; height:1px; background:var(--ochre); margin-bottom:18px; transition:width 0.8s 0.4s cubic-bezier(0.16,1,0.3,1); }
-    .p-line.in { width:48px; }
-    .p-age { font-size:15px; font-weight:300; color:var(--ochre); margin-bottom:22px; opacity:0; }
-    .p-age.in { animation:fade-up 0.7s 0.5s ease forwards; }
-    .p-desc { font-size:15px; line-height:1.75; color:var(--body); font-weight:300; max-width:360px; margin-bottom:22px; opacity:0; }
-    .p-desc.in { animation:fade-up 0.7s 0.65s ease forwards; }
-    .p-apt-block { margin-bottom:26px; opacity:0; }
-    .p-apt-block.in { animation:fade-up 0.7s 0.8s ease forwards; }
-    .p-apt-name { font-family:'Playfair Display',serif; font-size:18px; font-style:italic; color:rgba(248,244,240,0.45); margin-bottom:6px; }
-    .p-greffe { font-size:13px; line-height:1.65; color:rgba(248,244,240,0.4); font-weight:300; border-left:2px solid rgba(200,134,90,0.3); padding-left:14px; }
-    .p-specs { display:grid; grid-template-columns:1fr 1fr; gap:14px 28px; margin-bottom:28px; }
-    .spec { border-top:1px solid rgba(248,244,240,0.08); padding-top:10px; opacity:0; }
-    .spec.in { animation:fade-up 0.6s ease forwards; }
-    .spec-l { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--sub); margin-bottom:4px; }
-    .spec-v { font-size:16px; font-weight:400; color:var(--white); }
-    .p-tags { display:flex; flex-wrap:wrap; gap:7px; opacity:0; }
-    .p-tags.in { animation:fade-up 0.6s 1.1s ease forwards; }
-    .p-tag { font-size:11px; letter-spacing:0.8px; color:var(--sub); border:1px solid rgba(248,244,240,0.15); padding:5px 13px; border-radius:1px; }
-    .p-photo-num { position:absolute; bottom:36px; left:40px; font-family:'Playfair Display',serif; font-size:110px; font-style:italic; color:rgba(248,244,240,0.03); line-height:1; pointer-events:none; z-index:2; }
-    #persona-nav { position:fixed; bottom:20px; left:32px; z-index:160; font-size:10px; letter-spacing:2px; color:var(--dim); text-transform:uppercase; display:none; }
-
     /* ── KEYFRAMES ── */
-    @keyframes fade-up { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
-    @keyframes fade-in { from{opacity:0} to{opacity:1} }
-    @keyframes slide-up { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fade-up   { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fade-in   { from{opacity:0} to{opacity:1} }
+    @keyframes slide-up  { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
     @keyframes pulse-core { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
     @keyframes pulse-wave { 0%{transform:scale(0.5);opacity:0.6} 100%{transform:scale(2.5);opacity:0} }
-    @keyframes ken-burns { from{transform:scale(1)} to{transform:scale(1.06) translateX(-1%)} }
+    @keyframes title-rise { to { transform:translateY(0); } }
+    @keyframes stat-in   { to { opacity:1; transform:translateX(0); } }
+    @keyframes grain-shift { 0%{transform:translate(0,0)} 25%{transform:translate(-2px,1px)} 50%{transform:translate(1px,-2px)} 75%{transform:translate(-1px,2px)} }
 
     /* ── SLIDE DECK ── */
     #deck { position:fixed; inset:0; z-index:10; }
@@ -103,74 +70,45 @@
     /* ── PNG IMAGE SLIDES ── */
     .slide-img {
       width:100%; height:100%;
-      object-fit:contain;
-      object-position:center;
+      object-fit:contain; object-position:center;
       display:block;
-      opacity:0;
-      transform:scale(1.018);
+      opacity:0; transform:scale(1.018);
       will-change:transform,opacity;
     }
     .slide.active .slide-img {
       animation:img-reveal 0.72s cubic-bezier(0.16,1,0.3,1) 0.05s forwards;
     }
-    @keyframes img-reveal {
-      to { opacity:1; transform:scale(1); }
-    }
+    @keyframes img-reveal { to { opacity:1; transform:scale(1); } }
 
     /* ── SLIDE 2 · CHIFFRES CLÉS ── */
     #slide-2 { background:#080808; }
     .s2-layout { width:100%; height:100%; display:flex; align-items:stretch; }
     .s2-left {
-      flex:1;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      gap:clamp(14px,3.2vh,38px);
-      padding:8% 4% 8% 8%;
+      flex:1; display:flex; flex-direction:column; justify-content:center;
+      gap:clamp(14px,3.2vh,38px); padding:8% 4% 8% 8%;
     }
     .s2-stat {
-      display:flex;
-      align-items:baseline;
-      gap:clamp(14px,2vw,28px);
-      opacity:0;
-      transform:translateX(-24px);
+      display:flex; align-items:baseline; gap:clamp(14px,2vw,28px);
+      opacity:0; transform:translateX(-24px);
     }
     .s2-stat.in { animation:stat-in 0.75s cubic-bezier(0.16,1,0.3,1) forwards; }
-    @keyframes stat-in { to { opacity:1; transform:translateX(0); } }
-
     .s2-num {
-      font-family:'Black Han Sans', 'Barlow Condensed', sans-serif;
-      font-size:clamp(52px,9.5vw,128px);
-      line-height:1;
-      color:#fff;
-      min-width:clamp(110px,18vw,260px);
-      display:inline-block;
-      letter-spacing:-0.02em;
+      font-family:'Black Han Sans','Barlow Condensed',sans-serif;
+      font-size:clamp(52px,9.5vw,128px); line-height:1; color:#fff;
+      min-width:clamp(110px,18vw,260px); display:inline-block; letter-spacing:-0.02em;
     }
     .s2-desc {
-      font-size:clamp(12px,1.4vw,19px);
-      line-height:1.45;
-      color:rgba(255,255,255,0.42);
-      font-weight:300;
-      max-width:320px;
+      font-size:clamp(12px,1.4vw,19px); line-height:1.45;
+      color:rgba(255,255,255,0.42); font-weight:300; max-width:320px;
     }
     .s2-right {
-      width:40%;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:flex-end;
-      padding:6% 7% 6% 2%;
+      width:40%; display:flex; flex-direction:column;
+      justify-content:center; align-items:flex-end; padding:6% 7% 6% 2%;
     }
     .s2-title-word {
-      font-family:'Black Han Sans', 'Barlow Condensed', sans-serif;
-      font-size:clamp(68px,13.5vw,190px);
-      line-height:0.9;
-      color:#fff;
-      display:block;
-      text-align:right;
-      opacity:0;
-      transform:translateY(28px);
+      font-family:'Black Han Sans','Barlow Condensed',sans-serif;
+      font-size:clamp(68px,13.5vw,190px); line-height:0.9; color:#fff;
+      display:block; text-align:right; opacity:0; transform:translateY(28px);
     }
     .s2-title-word.in { animation:fade-up 0.85s cubic-bezier(0.16,1,0.3,1) forwards; }
 
@@ -178,53 +116,66 @@
     #slide-3 { background:#000; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:0 8%; }
     .s3-title-wrap { overflow:hidden; margin-bottom:clamp(28px,5vh,64px); }
     .s3-title {
-      font-family:'Black Han Sans', 'Barlow Condensed', sans-serif;
-      font-size:clamp(56px,10.5vw,142px);
-      font-weight:900;
-      line-height:1;
-      color:#fff;
-      letter-spacing:-0.01em;
-      display:block;
-      transform:translateY(110%);
+      font-family:'Black Han Sans','Barlow Condensed',sans-serif;
+      font-size:clamp(56px,10.5vw,142px); font-weight:900; line-height:1; color:#fff;
+      letter-spacing:-0.01em; display:block; transform:translateY(110%);
     }
     .s3-title.in { animation:title-rise 0.95s cubic-bezier(0.16,1,0.3,1) forwards; }
-    @keyframes title-rise { to { transform:translateY(0); } }
     .s3-question {
-      font-size:clamp(16px,2.4vw,32px);
-      line-height:1.6;
-      color:rgba(255,255,255,0.72);
-      font-weight:300;
-      letter-spacing:0.01em;
-      opacity:0;
-      transform:translateY(16px);
+      font-size:clamp(16px,2.4vw,32px); line-height:1.6;
+      color:rgba(255,255,255,0.72); font-weight:300; letter-spacing:0.01em;
+      opacity:0; transform:translateY(16px);
     }
     .s3-question.in { animation:fade-up 0.85s cubic-bezier(0.16,1,0.3,1) forwards; }
 
-    /* ── QR WAITING ── */
-    .w-photo { position:absolute; inset:0; background:center/cover no-repeat; animation:ken-burns 22s ease-in-out infinite alternate; filter:brightness(0.28); }
-    .w-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.6) 100%); }
-    .w-content { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; text-align:center; }
-    .w-apt { font-family:'Playfair Display',serif; font-size:clamp(18px,2.8vw,34px); color:rgba(248,244,240,0.42); margin-bottom:6px; font-style:italic; opacity:0; animation:slide-up 0.8s 0.2s cubic-bezier(0.16,1,0.3,1) forwards; }
-    .w-title { font-family:'Playfair Display',serif; font-size:clamp(58px,9vw,116px); font-style:italic; line-height:1; color:var(--white); margin-bottom:6px; opacity:0; animation:slide-up 0.8s 0.35s cubic-bezier(0.16,1,0.3,1) forwards; }
-    .w-age { font-size:clamp(13px,1.8vw,22px); color:var(--ochre); font-weight:300; margin-bottom:40px; opacity:0; animation:slide-up 0.8s 0.5s cubic-bezier(0.16,1,0.3,1) forwards; }
-    .w-divider { width:1px; height:40px; background:linear-gradient(to bottom, transparent, var(--ochre), transparent); margin-bottom:28px; opacity:0; animation:fade-in 0.8s 0.85s ease forwards; }
-    .w-pulse-wrap { display:flex; align-items:center; gap:12px; opacity:0; animation:fade-in 0.8s 1.05s ease forwards; }
-    .w-pulse-label { font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:var(--sub); font-weight:300; }
-    .pulse-ring { position:relative; width:10px; height:10px; }
-    .pulse-ring::before { content:''; position:absolute; inset:0; border-radius:50%; background:var(--ochre); animation:pulse-core 2.5s ease-in-out infinite; }
-    .pulse-ring::after { content:''; position:absolute; inset:-5px; border-radius:50%; border:1px solid var(--ochre); opacity:0; animation:pulse-wave 2.5s ease-in-out infinite; }
+    /* ── QR VEIL (slides 18 · 22 · 26) ── */
+    .qr-veil {
+      position:absolute; inset:0; z-index:6;
+      background:rgba(6,6,6,0.84);
+      backdrop-filter:blur(20px) saturate(0.15);
+      -webkit-backdrop-filter:blur(20px) saturate(0.15);
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      transition: opacity 1.5s cubic-bezier(0.16,1,0.3,1),
+                  backdrop-filter 1.5s ease,
+                  -webkit-backdrop-filter 1.5s ease;
+    }
+    .qr-veil.revealed {
+      opacity:0; pointer-events:none;
+      backdrop-filter:blur(0px) saturate(1);
+      -webkit-backdrop-filter:blur(0px) saturate(1);
+    }
+    .qv-persona-num {
+      font-size:11px; letter-spacing:5px; text-transform:uppercase;
+      color:rgba(200,134,90,0.6); margin-bottom:32px;
+      opacity:0; animation:fade-in 0.7s 0.15s ease forwards;
+    }
+    .qv-pulse-wrap {
+      position:relative; width:56px; height:56px; margin-bottom:36px;
+      opacity:0; animation:fade-in 0.7s 0.3s ease forwards;
+    }
+    .qv-pulse-core {
+      position:absolute; inset:18px; border-radius:50%;
+      background:var(--ochre); animation:pulse-core 2.4s ease-in-out infinite;
+    }
+    .qv-pulse-ring {
+      position:absolute; inset:0; border-radius:50%;
+      border:1px solid rgba(200,134,90,0.5);
+      animation:pulse-wave 2.4s ease-in-out infinite;
+    }
+    .qv-label {
+      font-size:12px; letter-spacing:3px; text-transform:uppercase;
+      color:rgba(248,244,240,0.35); font-weight:300;
+      opacity:0; animation:fade-in 0.7s 0.45s ease forwards;
+    }
 
-    /* ── SECTION TRANSITIONS ── */
-    .s-section { flex-direction:column; justify-content:flex-end; align-items:center; padding:0 80px 90px; }
+    /* ── slide 10 placeholder ── */
+    .s-center { align-items:center; justify-content:center; text-align:center; flex-direction:column; }
+    .end-glow { position:absolute; inset:0; background:radial-gradient(ellipse at 30% 50%, rgba(200,134,90,0.05) 0%, transparent 70%); }
     .section-big { font-family:'Black Han Sans','Barlow Condensed',sans-serif; font-size:clamp(180px,28vw,320px); font-weight:900; color:rgba(200,134,90,0.05); position:absolute; top:50%; left:50%; transform:translate(-50%,-60%); line-height:1; pointer-events:none; }
     .section-tag { font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--ochre); margin-bottom:16px; position:relative; z-index:1; opacity:0; }
     .section-title { font-family:'Playfair Display',serif; font-size:clamp(28px,4vw,52px); font-style:italic; color:var(--white); text-align:center; position:relative; z-index:1; opacity:0; }
     .slide.active .section-tag   { animation:fade-up 0.7s 0.1s ease forwards; }
     .slide.active .section-title { animation:fade-up 0.8s 0.25s cubic-bezier(0.16,1,0.3,1) forwards; }
-
-    /* slide 10 placeholder */
-    .s-center { align-items:center; justify-content:center; text-align:center; flex-direction:column; }
-    .end-glow { position:absolute; inset:0; background:radial-gradient(ellipse at 30% 50%, rgba(200,134,90,0.05) 0%, transparent 70%); }
   </style>
 </head>
 <body>
@@ -251,28 +202,6 @@
     <span class="notif-dismiss" id="notif-dismiss">Ignorer</span>
   </div>
 
-  <div id="screen-persona">
-    <div class="p-photo-col">
-      <div class="p-photo-bg" id="p-photo"></div>
-      <div class="p-photo-overlay"></div>
-      <div class="p-photo-num" id="p-num">—</div>
-    </div>
-    <div class="p-info-col">
-      <div class="p-numero" id="p-eyebrow"></div>
-      <div class="p-name"><span class="p-name-inner" id="p-name">—</span></div>
-      <div class="p-line" id="p-line"></div>
-      <div class="p-age" id="p-age"></div>
-      <div class="p-desc" id="p-desc"></div>
-      <div class="p-apt-block" id="p-apt-block">
-        <div class="p-apt-name" id="p-apt-name"></div>
-        <div class="p-greffe" id="p-greffe"></div>
-      </div>
-      <div class="p-specs" id="p-specs"></div>
-      <div class="p-tags" id="p-tags"></div>
-    </div>
-  </div>
-  <div id="persona-nav">→ continuer</div>
-
   <div id="deck">
 
     <!-- 1 · INTERSTICE -->
@@ -280,7 +209,7 @@
       <img class="slide-img" src="assets/slides/slide-1.png" alt="">
     </div>
 
-    <!-- 2 · CHIFFRES CLÉS — HTML -->
+    <!-- 2 · CHIFFRES CLÉS — HTML rebuilt -->
     <div class="slide" id="slide-2">
       <div class="s2-layout">
         <div class="s2-left">
@@ -308,7 +237,7 @@
       </div>
     </div>
 
-    <!-- 3 · PROBLÉMATIQUE — HTML -->
+    <!-- 3 · PROBLÉMATIQUE — HTML rebuilt -->
     <div class="slide" id="slide-3">
       <div class="s3-title-wrap">
         <span class="s3-title" id="s3-title">PROBLÉMATIQUE</span>
@@ -320,15 +249,15 @@
       </p>
     </div>
 
-    <!-- 4–9 · Cahier / Concept / Technique -->
-    <div class="slide" id="slide-4" style="background:#fff"><img class="slide-img" src="assets/slides/slide-4.png" alt=""></div>
-    <div class="slide" id="slide-5" style="background:#fff"><img class="slide-img" src="assets/slides/slide-5.png" alt=""></div>
-    <div class="slide" id="slide-6" style="background:#fff"><img class="slide-img" src="assets/slides/slide-6.png" alt=""></div>
-    <div class="slide" id="slide-7" style="background:#fff"><img class="slide-img" src="assets/slides/slide-7.png" alt=""></div>
-    <div class="slide" id="slide-8" style="background:#fff"><img class="slide-img" src="assets/slides/slide-8.png" alt=""></div>
-    <div class="slide" id="slide-9" style="background:#fff"><img class="slide-img" src="assets/slides/slide-9.png" alt=""></div>
+    <!-- 4–9 -->
+    <div class="slide" id="slide-4"  style="background:#fff"><img class="slide-img" src="assets/slides/slide-4.png"  alt=""></div>
+    <div class="slide" id="slide-5"  style="background:#fff"><img class="slide-img" src="assets/slides/slide-5.png"  alt=""></div>
+    <div class="slide" id="slide-6"  style="background:#fff"><img class="slide-img" src="assets/slides/slide-6.png"  alt=""></div>
+    <div class="slide" id="slide-7"  style="background:#fff"><img class="slide-img" src="assets/slides/slide-7.png"  alt=""></div>
+    <div class="slide" id="slide-8"  style="background:#fff"><img class="slide-img" src="assets/slides/slide-8.png"  alt=""></div>
+    <div class="slide" id="slide-9"  style="background:#fff"><img class="slide-img" src="assets/slides/slide-9.png"  alt=""></div>
 
-    <!-- 10 · Zoning ++ -->
+    <!-- 10 · Zoning placeholder (++ PDF vide) -->
     <div class="slide s-center" id="slide-10">
       <div class="end-glow"></div>
       <div class="section-big">Z</div>
@@ -336,7 +265,7 @@
       <h2 class="section-title">En cours</h2>
     </div>
 
-    <!-- 11–16 · Extérieur / Espaces / Signa -->
+    <!-- 11–16 -->
     <div class="slide" id="slide-11" style="background:#fff"><img class="slide-img" src="assets/slides/slide-11.png" alt=""></div>
     <div class="slide" id="slide-12" style="background:#fff"><img class="slide-img" src="assets/slides/slide-12.png" alt=""></div>
     <div class="slide" id="slide-13" style="background:#fff"><img class="slide-img" src="assets/slides/slide-13.png" alt=""></div>
@@ -344,75 +273,69 @@
     <div class="slide" id="slide-15" style="background:#fff"><img class="slide-img" src="assets/slides/slide-15.png" alt=""></div>
     <div class="slide" id="slide-16" style="background:#0a0a0a"><img class="slide-img" src="assets/slides/slide-16.png" alt=""></div>
 
-    <!-- 17 · Transition Appart 1 -->
-    <div class="slide s-section" id="slide-17">
-      <div class="section-big">A</div>
-      <p class="section-tag">Les appartements</p>
-      <h2 class="section-title">Appartement 1</h2>
+    <!-- 17 · Grille appartements (PNG Tom) -->
+    <div class="slide" id="slide-17" style="background:#fff">
+      <img class="slide-img" src="assets/slides/slide-17.png" alt="">
     </div>
 
-    <!-- 18 · QR Alex -->
-    <div class="slide s-center" id="slide-18">
-      <div class="w-photo" style="background-image:url('assets/slides/slide-11.png')"></div>
-      <div class="w-overlay"></div>
-      <div class="w-content">
-        <div class="w-apt">La Perrière</div>
-        <div class="w-title">Alex</div>
-        <div class="w-age">19 ans</div>
-        <div class="w-divider"></div>
-        <div class="w-pulse-wrap"><div class="pulse-ring"></div><span class="w-pulse-label">Scanner la clé pour révéler</span></div>
+    <!-- 18 · PERSONA 1 · Alex — PNG Tom + voile QR -->
+    <div class="slide" id="slide-18" style="background:#fff">
+      <img class="slide-img" src="assets/slides/slide-18.png" alt="">
+      <div class="qr-veil" id="qv-18">
+        <div class="qv-persona-num">Persona 1</div>
+        <div class="qv-pulse-wrap">
+          <div class="qv-pulse-core"></div>
+          <div class="qv-pulse-ring"></div>
+        </div>
+        <div class="qv-label">Scanner la clé pour révéler</div>
       </div>
     </div>
 
-    <!-- 19–20 · Appart 1 -->
+    <!-- 19–20 · La Perrière -->
     <div class="slide" id="slide-19" style="background:#fff"><img class="slide-img" src="assets/slides/slide-19.png" alt=""></div>
     <div class="slide" id="slide-20" style="background:#fff"><img class="slide-img" src="assets/slides/slide-20.png" alt=""></div>
 
-    <!-- 21 · Transition Appart 2 -->
-    <div class="slide s-section" id="slide-21">
-      <div class="section-big">B</div>
-      <p class="section-tag">Les appartements</p>
-      <h2 class="section-title">Appartement 2</h2>
+    <!-- 21 · Grille appartements (même PNG) -->
+    <div class="slide" id="slide-21" style="background:#fff">
+      <img class="slide-img" src="assets/slides/slide-21.png" alt="">
     </div>
 
-    <!-- 22 · QR Yann -->
-    <div class="slide s-center" id="slide-22">
-      <div class="w-photo" style="background-image:url('assets/slides/slide-12.png')"></div>
-      <div class="w-overlay"></div>
-      <div class="w-content">
-        <div class="w-apt">Les Morées</div>
-        <div class="w-title">Yann</div>
-        <div class="w-age">63 ans</div>
-        <div class="w-divider"></div>
-        <div class="w-pulse-wrap"><div class="pulse-ring"></div><span class="w-pulse-label">Scanner la clé pour révéler</span></div>
+    <!-- 22 · PERSONA 2 · Yann — PNG Tom + voile QR -->
+    <div class="slide" id="slide-22" style="background:#fff">
+      <img class="slide-img" src="assets/slides/slide-22.png" alt="">
+      <div class="qr-veil" id="qv-22">
+        <div class="qv-persona-num">Persona 2</div>
+        <div class="qv-pulse-wrap">
+          <div class="qv-pulse-core"></div>
+          <div class="qv-pulse-ring"></div>
+        </div>
+        <div class="qv-label">Scanner la clé pour révéler</div>
       </div>
     </div>
 
-    <!-- 23–24 · Appart 2 -->
+    <!-- 23–24 · Les Morées -->
     <div class="slide" id="slide-23" style="background:#fff"><img class="slide-img" src="assets/slides/slide-23.png" alt=""></div>
     <div class="slide" id="slide-24" style="background:#0a0a0a"><img class="slide-img" src="assets/slides/slide-24.png" alt=""></div>
 
-    <!-- 25 · Transition Appart 3 -->
-    <div class="slide s-section" id="slide-25">
-      <div class="section-big">C</div>
-      <p class="section-tag">Les appartements</p>
-      <h2 class="section-title">Appartement 3</h2>
+    <!-- 25 · Grille appartements (même PNG) -->
+    <div class="slide" id="slide-25" style="background:#fff">
+      <img class="slide-img" src="assets/slides/slide-25.png" alt="">
     </div>
 
-    <!-- 26 · QR Anne -->
-    <div class="slide s-center" id="slide-26">
-      <div class="w-photo" style="background-image:url('assets/slides/slide-28.png')"></div>
-      <div class="w-overlay"></div>
-      <div class="w-content">
-        <div class="w-apt">Les Puillets</div>
-        <div class="w-title">Anne</div>
-        <div class="w-age">68 ans</div>
-        <div class="w-divider"></div>
-        <div class="w-pulse-wrap"><div class="pulse-ring"></div><span class="w-pulse-label">Scanner la clé pour révéler</span></div>
+    <!-- 26 · PERSONA 3 · Anne — PNG Tom + voile QR -->
+    <div class="slide" id="slide-26" style="background:#fff">
+      <img class="slide-img" src="assets/slides/slide-26.png" alt="">
+      <div class="qr-veil" id="qv-26">
+        <div class="qv-persona-num">Persona 3</div>
+        <div class="qv-pulse-wrap">
+          <div class="qv-pulse-core"></div>
+          <div class="qv-pulse-ring"></div>
+        </div>
+        <div class="qv-label">Scanner la clé pour révéler</div>
       </div>
     </div>
 
-    <!-- 27–29 · Appart 3 + Plans masse -->
+    <!-- 27–29 · Les Puillets + Plans masse -->
     <div class="slide" id="slide-27" style="background:#fff"><img class="slide-img" src="assets/slides/slide-27.png" alt=""></div>
     <div class="slide" id="slide-28" style="background:#fff"><img class="slide-img" src="assets/slides/slide-28.png" alt=""></div>
     <div class="slide" id="slide-29" style="background:#fff"><img class="slide-img" src="assets/slides/slide-29.png" alt=""></div>
@@ -439,40 +362,11 @@
     };
 
     const PERSONAS = {
-      lucas: {
-        num:"I", eyebrow:"Appartement 1 · La Perrière", name:"Alex",
-        age:"19 ans — Apprenti CIFA Jean Lameloise",
-        desc:"Son premier logement. Abordable, fonctionnel, à deux minutes de son centre de formation. Il n'a plus à faire 35 km le soir pour rentrer.",
-        photo:"assets/slides/slide-11.png",
-        apt:"La Perrière",
-        greffe:"Un claustra traversant en chêne structure l'espace sans cloisonner — il sépare le coin nuit du séjour et signe l'appartement d'une identité forte.",
-        specs:[{l:"Surface",v:"32 m²"},{l:"Type",v:"Studio duplex"},{l:"Loyer",v:"320 €/mois"},{l:"Statut",v:"Logement social"}],
-        tags:["Premier logement","Proximité CIFA","Bureau intégré","Espaces communs"]
-      },
-      genevieve: {
-        num:"II", eyebrow:"Appartement 2 · Les Morées", name:"Yann",
-        age:"63 ans — Jeune retraité",
-        desc:"Seul, il voulait du calme et du monde en même temps. Un jardin, des voisins, une vie collective — sans perdre son indépendance.",
-        photo:"assets/slides/slide-12.png",
-        apt:"Les Morées",
-        greffe:"Une boîte dans la boîte — un volume compact en StoneLeaf et travertin qui flotte dans le séjour, libérant la lumière tout autour.",
-        specs:[{l:"Surface",v:"58 m²"},{l:"Type",v:"T3 R+1"},{l:"Loyer",v:"480 €/mois"},{l:"Statut",v:"Logement senior"}],
-        tags:["Retraité actif","Jardin partagé","Vie collective","Convivialité"]
-      },
-      raymond: {
-        num:"III", eyebrow:"Appartement 3 · Les Puillets", name:"Anne",
-        age:"68 ans — Retraitée",
-        desc:"Sa maison était devenue trop grande. Elle voulait rester à Mercurey, garder son autonomie, avoir de la lumière — et du lien social.",
-        photo:"assets/slides/slide-28.png",
-        apt:"Les Puillets",
-        greffe:"Un meuble-cuisine en acier Corten et chêne massif, entièrement dimensionné PMR — il structure le rez-de-chaussée et devient la pièce maîtresse du logement.",
-        specs:[{l:"Surface",v:"62 m²"},{l:"Type",v:"T3 plain-pied"},{l:"Loyer",v:"490 €/mois"},{l:"Accessibilité",v:"Norme PMR"}],
-        tags:["Senior autonome","Accessibilité","Lumière","Lien social"]
-      }
+      lucas:     { name:'Alex', slide:18 },
+      genevieve: { name:'Yann', slide:22 },
+      raymond:   { name:'Anne', slide:26 }
     };
-
     const PERSONA_ORDER = ['lucas','genevieve','raymond'];
-    const QR_SLIDES = [18, 22, 26];
     const TOTAL = 29;
     const SECTIONS = {
       1:'INTERSTICE', 2:'Chiffres clés', 3:'Problématique', 4:'Cahier des charges',
@@ -480,25 +374,24 @@
       10:'Zoning', 11:'Cour avant', 12:'Cour arrière',
       13:'Espace commun — Rencontre', 14:'Espace commun — Bibliothèque', 15:'Espace commun — Coworking',
       16:'Signalétique',
-      17:'Appartements', 18:'Appartement 1 — Alex',
+      17:'Les appartements', 18:'Persona 1 — Alex',
       19:'La Perrière', 20:'La Perrière',
-      21:'Appartements', 22:'Appartement 2 — Yann',
+      21:'Les appartements', 22:'Persona 2 — Yann',
       23:'Les Morées', 24:'Les Morées',
-      25:'Appartements', 26:'Appartement 3 — Anne',
-      27:'Les Puillets', 28:'Les Puillets',
-      29:'Plans masse'
+      25:'Les appartements', 26:'Persona 3 — Anne',
+      27:'Les Puillets', 28:'Les Puillets', 29:'Plans masse'
     };
 
     const app = initializeApp(firebaseConfig);
     const db  = getDatabase(app);
     const stateRef = ref(db, 'workshop');
 
-    let lastPersona = null, lastPending = null, personaVisible = false;
+    let lastPersona = null, lastPending = null;
     let current = 1, transitioning = false;
 
     const getSlide = n => document.getElementById('slide-' + n);
 
-    /* ── SLIDE-SPECIFIC ANIMATIONS ── */
+    /* ── SLIDE ANIMATIONS ── */
 
     function countUp(el, end, duration, fmt) {
       const t0 = performance.now();
@@ -514,32 +407,21 @@
     function animSlide2() {
       const ids = ['s2-a','s2-b','s2-c','s2-d','s2-w1','s2-w2'];
       ids.forEach(id => { const e = document.getElementById(id); e.classList.remove('in'); void e.offsetWidth; });
-
-      // Title
       setTimeout(() => document.getElementById('s2-w1').classList.add('in'), 60);
       setTimeout(() => document.getElementById('s2-w2').classList.add('in'), 180);
-
-      // Stats stagger
-      const delays = [200, 400, 600, 800];
-      ['s2-a','s2-b','s2-c','s2-d'].forEach((id,i) =>
-        setTimeout(() => document.getElementById(id).classList.add('in'), delays[i])
-      );
-
-      // CountUp
-      setTimeout(() => countUp(document.getElementById('s2-n1'), 28, 900, v => Math.round(v) + '%'), 200);
-      setTimeout(() => countUp(document.getElementById('s2-n2'), 31.1, 900, v => v.toFixed(1).replace('.',',') + '%'), 400);
-      setTimeout(() => countUp(document.getElementById('s2-n3'), 2, 700, v => 'X' + Math.round(v)), 600);
-      setTimeout(() => countUp(document.getElementById('s2-n4'), 4.9, 900, v => '−' + v.toFixed(1).replace('.',',') + '%'), 800);
+      [['s2-a',200],['s2-b',400],['s2-c',600],['s2-d',800]].forEach(([id,d]) =>
+        setTimeout(() => document.getElementById(id).classList.add('in'), d));
+      setTimeout(() => countUp(document.getElementById('s2-n1'), 28, 900, v => Math.round(v)+'%'), 200);
+      setTimeout(() => countUp(document.getElementById('s2-n2'), 31.1, 900, v => v.toFixed(1).replace('.',',')+  '%'), 400);
+      setTimeout(() => countUp(document.getElementById('s2-n3'), 2, 700, v => 'X'+Math.round(v)), 600);
+      setTimeout(() => countUp(document.getElementById('s2-n4'), 4.9, 900, v => '−'+v.toFixed(1).replace('.',',')+'%'), 800);
     }
 
     function animSlide3() {
       const title = document.getElementById('s3-title');
       const q     = document.getElementById('s3-question');
-      [title, q].forEach(e => { e.classList.remove('in'); void e.offsetWidth; });
-      setTimeout(() => {
-        title.classList.add('in');
-        setTimeout(() => q.classList.add('in'), 720);
-      }, 80);
+      [title,q].forEach(e => { e.classList.remove('in'); void e.offsetWidth; });
+      setTimeout(() => { title.classList.add('in'); setTimeout(() => q.classList.add('in'), 720); }, 80);
     }
 
     function onSlideEnter(n) {
@@ -552,7 +434,8 @@
       document.getElementById('counter').textContent = current + ' / ' + TOTAL;
       document.getElementById('progress').style.width = (current / TOTAL * 100) + '%';
       document.getElementById('section-badge').textContent = SECTIONS[current] || '';
-      document.getElementById('scan-dots').classList.toggle('visible', QR_SLIDES.includes(current));
+      // Show dots during apartment section
+      document.getElementById('scan-dots').classList.toggle('visible', current >= 17 && current <= 28);
     }
 
     function goSlide(next) {
@@ -571,10 +454,10 @@
     }
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); personaVisible ? dismissPersona() : goSlide(current + 1); }
-      if (e.key === 'ArrowLeft')  { e.preventDefault(); if (!personaVisible) goSlide(current - 1); }
-      if (e.key === 'Home')       { e.preventDefault(); if (!personaVisible) goSlide(1); }
-      if (e.key === 'End')        { e.preventDefault(); if (!personaVisible) goSlide(TOTAL); }
+      if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goSlide(current + 1); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); goSlide(current - 1); }
+      if (e.key === 'Home')       { e.preventDefault(); goSlide(1); }
+      if (e.key === 'End')        { e.preventDefault(); goSlide(TOTAL); }
     });
 
     /* ── FIREBASE ── */
@@ -582,17 +465,41 @@
       const d = snap.val() || {};
       const { current_persona, pending_persona } = d;
 
+      // Scan dots state
       const idx = PERSONA_ORDER.indexOf(current_persona);
       for (let i = 0; i < 3; i++) {
         const dot = document.getElementById('dot-' + i);
         if (dot) dot.classList.toggle('done', i <= idx && idx >= 0);
       }
 
+      // Persona reveal
       if (current_persona && current_persona !== lastPersona) {
-        lastPersona = current_persona; hidePendingNotif(); revealPersona(current_persona);
+        lastPersona = current_persona;
+        hidePendingNotif();
+        const p = PERSONAS[current_persona];
+        if (p) {
+          const targetSlide = p.slide;
+          const revealVeil = () => {
+            const veilEl = document.getElementById('qv-' + targetSlide);
+            if (veilEl) veilEl.classList.add('revealed');
+          };
+          if (current !== targetSlide) {
+            goSlide(targetSlide);
+            setTimeout(revealVeil, 800); // after slide transition
+          } else {
+            revealVeil();
+          }
+        }
       }
-      if (!current_persona) { lastPersona = null; if (personaVisible) dismissPersona(); }
+      if (!current_persona) {
+        lastPersona = null;
+        [18, 22, 26].forEach(n => {
+          const el = document.getElementById('qv-' + n);
+          if (el) el.classList.remove('revealed');
+        });
+      }
 
+      // Pending notification
       if (pending_persona && pending_persona !== lastPending && pending_persona !== current_persona) {
         lastPending = pending_persona; showPendingNotif(pending_persona);
       } else if (!pending_persona || pending_persona === current_persona) {
@@ -609,71 +516,14 @@
 
     document.getElementById('notif-confirm').addEventListener('click', async () => {
       if (!lastPending) return;
-      const key = lastPending; hidePendingNotif();
+      const key = lastPending;
+      hidePendingNotif();
       await update(stateRef, { current_persona: key, pending_persona: '' });
     });
     document.getElementById('notif-dismiss').addEventListener('click', async () => {
       hidePendingNotif(); lastPending = null;
       await update(stateRef, { pending_persona: '' });
     });
-
-    /* ── PERSONA ── */
-    function revealPersona(key) {
-      const p = PERSONAS[key]; if (!p) return;
-      const veil = document.getElementById('veil');
-      veil.classList.add('in');
-      setTimeout(() => {
-        fillPersona(p);
-        document.getElementById('screen-persona').classList.add('visible');
-        document.getElementById('persona-nav').style.display = 'block';
-        personaVisible = true;
-        setTimeout(() => { veil.classList.remove('in'); setTimeout(startPersonaAnims, 100); }, 60);
-      }, 320);
-    }
-
-    function dismissPersona() {
-      const veil = document.getElementById('veil');
-      veil.classList.add('in');
-      setTimeout(() => {
-        document.getElementById('screen-persona').classList.remove('visible');
-        document.getElementById('persona-nav').style.display = 'none';
-        personaVisible = false;
-        setTimeout(() => veil.classList.remove('in'), 60);
-      }, 300);
-    }
-
-    function fillPersona(p) {
-      document.getElementById('p-photo').style.backgroundImage = `url('${p.photo}')`;
-      document.getElementById('p-num').textContent     = p.num;
-      document.getElementById('p-eyebrow').textContent = p.eyebrow;
-      document.getElementById('p-name').textContent    = p.name;
-      document.getElementById('p-age').textContent     = p.age;
-      document.getElementById('p-desc').textContent    = p.desc;
-      document.getElementById('p-apt-name').textContent = p.apt;
-      document.getElementById('p-greffe').textContent  = p.greffe;
-      document.getElementById('p-specs').innerHTML = p.specs.map((s,i) =>
-        `<div class="spec" style="animation-delay:${0.7+i*0.1}s"><div class="spec-l">${s.l}</div><div class="spec-v">${s.v}</div></div>`
-      ).join('');
-      document.getElementById('p-tags').innerHTML = p.tags.map(t => `<span class="p-tag">${t}</span>`).join('');
-      ['p-eyebrow','p-name-inner','p-line','p-age','p-desc','p-apt-block','p-tags'].forEach(id => {
-        const el = document.getElementById(id); if (el) el.classList.remove('in');
-      });
-      document.querySelectorAll('.spec').forEach(el => el.classList.remove('in'));
-      document.getElementById('p-photo').classList.remove('animating');
-    }
-
-    function startPersonaAnims() {
-      document.getElementById('p-eyebrow').classList.add('in');
-      document.getElementById('p-name-inner').classList.add('in');
-      setTimeout(() => document.getElementById('p-line').classList.add('in'), 200);
-      setTimeout(() => document.getElementById('p-age').classList.add('in'), 400);
-      setTimeout(() => document.getElementById('p-desc').classList.add('in'), 550);
-      setTimeout(() => document.getElementById('p-apt-block').classList.add('in'), 800);
-      setTimeout(() => document.querySelectorAll('.spec').forEach(el => el.classList.add('in')), 950);
-      setTimeout(() => document.getElementById('p-tags').classList.add('in'), 1150);
-      const photo = document.getElementById('p-photo');
-      void photo.offsetWidth; photo.classList.add('animating');
-    }
 
     updateUI();
   </script>
