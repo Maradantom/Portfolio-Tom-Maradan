@@ -72,13 +72,54 @@
       width:100%; height:100%;
       object-fit:contain; object-position:center;
       display:block;
-      opacity:0; transform:scale(1.018);
+      opacity:0; transform:scale(1.05);
       will-change:transform,opacity;
     }
     .slide.active .slide-img {
-      animation:img-reveal 0.72s cubic-bezier(0.16,1,0.3,1) 0.05s forwards;
+      animation:img-reveal 0.9s cubic-bezier(0.16,1,0.3,1) 0.04s forwards;
     }
     @keyframes img-reveal { to { opacity:1; transform:scale(1); } }
+
+    /* ── SPLIT SLIDES (S6 · S7 · S8) ── */
+    .s-dual { flex-direction:row; background:#fff; align-items:stretch; }
+    .s-dual-left {
+      width:42%; display:flex; flex-direction:column; justify-content:center;
+      padding:6% 4% 6% 8%;
+    }
+    .s-dual-title {
+      font-family:'Black Han Sans','Barlow Condensed',sans-serif;
+      font-size:clamp(48px,9vw,128px); line-height:0.9; color:#0a0a0a;
+      margin-bottom:clamp(20px,3.5vh,44px);
+      opacity:0; transform:translateX(-28px);
+    }
+    .slide.active .s-dual-title { animation:stat-in 0.72s 0.08s cubic-bezier(0.16,1,0.3,1) forwards; }
+    .s-dual-sub {
+      font-size:10px; letter-spacing:3.5px; text-transform:uppercase;
+      color:rgba(10,10,10,0.4); margin-bottom:clamp(14px,2.5vh,28px);
+      opacity:0; transform:translateY(8px);
+    }
+    .slide.active .s-dual-sub { animation:fade-up 0.55s 0.32s ease forwards; }
+    .s-dual-list { list-style:none; display:flex; flex-direction:column; gap:clamp(9px,1.6vh,18px); }
+    .s-dual-list li {
+      font-size:clamp(12px,1.25vw,17px); color:#0a0a0a; font-weight:300;
+      line-height:1.45; border-left:2px solid rgba(10,10,10,0.1);
+      padding-left:14px;
+      opacity:0; transform:translateX(-14px);
+    }
+    .s-dual-list li strong { font-weight:600; }
+    .slide.active .s-dual-list li:nth-child(1) { animation:stat-in 0.55s 0.48s ease forwards; }
+    .slide.active .s-dual-list li:nth-child(2) { animation:stat-in 0.55s 0.62s ease forwards; }
+    .slide.active .s-dual-list li:nth-child(3) { animation:stat-in 0.55s 0.76s ease forwards; }
+    .slide.active .s-dual-list li:nth-child(4) { animation:stat-in 0.55s 0.90s ease forwards; }
+    .slide.active .s-dual-list li:nth-child(5) { animation:stat-in 0.55s 1.04s ease forwards; }
+    .slide.active .s-dual-list li:nth-child(6) { animation:stat-in 0.55s 1.18s ease forwards; }
+    .s-dual-right { flex:1; overflow:hidden; position:relative; }
+    .s-dual-right img {
+      width:100%; height:100%;
+      object-fit:cover; object-position:right center;
+      opacity:0; transform:scale(1.04);
+    }
+    .slide.active .s-dual-right img { animation:img-reveal 1s 0.18s cubic-bezier(0.16,1,0.3,1) forwards; }
 
     /* ── SLIDE 2 · CHIFFRES CLÉS ── */
     #slide-2 { background:#080808; }
@@ -267,9 +308,54 @@
     <!-- 4–9 -->
     <div class="slide" id="slide-4"  style="background:#fff"><img class="slide-img" src="assets/slides/slide-4.png"  alt=""></div>
     <div class="slide" id="slide-5"  style="background:#fff"><img class="slide-img" src="assets/slides/slide-5.png"  alt=""></div>
-    <div class="slide" id="slide-6"  style="background:#fff"><img class="slide-img" src="assets/slides/slide-6.png"  alt=""></div>
-    <div class="slide" id="slide-7"  style="background:#fff"><img class="slide-img" src="assets/slides/slide-7.png"  alt=""></div>
-    <div class="slide" id="slide-8"  style="background:#fff"><img class="slide-img" src="assets/slides/slide-8.png"  alt=""></div>
+    <!-- 6 · DUPLEX — HTML rebuild -->
+    <div class="slide s-dual" id="slide-6">
+      <div class="s-dual-left">
+        <div class="s-dual-title">DUPLEX</div>
+        <div class="s-dual-sub">Les avantages</div>
+        <ul class="s-dual-list">
+          <li><strong>Optimiser</strong> — Exploiter les deux niveaux.</li>
+          <li><strong>Agrandir</strong> — Renforcer la sensation d'espace.</li>
+          <li><strong>Séparer</strong> — Distinguer vie et intimité.</li>
+          <li><strong>Rationaliser</strong> — Limiter les espaces perdus.</li>
+          <li><strong>Densifier</strong> — Créer plus de logements confortables.</li>
+        </ul>
+      </div>
+      <div class="s-dual-right"><img src="assets/slides/slide-6.png" alt=""></div>
+    </div>
+
+    <!-- 7 · BIOCLIMATIQUE — HTML rebuild -->
+    <div class="slide s-dual" id="slide-7">
+      <div class="s-dual-left">
+        <div class="s-dual-title" style="font-size:clamp(34px,6.2vw,88px)">BIOCLIMATIQUE</div>
+        <div class="s-dual-sub">Les avantages</div>
+        <ul class="s-dual-list">
+          <li><strong>Orienter</strong> — Profiter des apports solaires naturels.</li>
+          <li><strong>Ventiler</strong> — Favoriser la circulation naturelle de l'air.</li>
+          <li><strong>Éclairer</strong> — Maximiser la lumière naturelle.</li>
+          <li><strong>Isoler</strong> — Limiter les déperditions thermiques.</li>
+          <li><strong>Économiser</strong> — Réduire les besoins énergétiques.</li>
+        </ul>
+      </div>
+      <div class="s-dual-right"><img src="assets/slides/slide-7.png" alt=""></div>
+    </div>
+
+    <!-- 8 · ARTISANS — HTML rebuild -->
+    <div class="slide s-dual" id="slide-8">
+      <div class="s-dual-left">
+        <div class="s-dual-title">ARTISANS</div>
+        <div class="s-dual-sub">Approvisionnement local · &lt;50 km</div>
+        <ul class="s-dual-list">
+          <li><strong>Pierre calcaire</strong> — Johan Mary, Bourgogne</li>
+          <li><strong>Enduit de chaux</strong> — Terra Calle, Nolay</li>
+          <li><strong>Osier</strong> — Un Brin de Tressage, Mercurey</li>
+          <li><strong>Chêne</strong> — Tonnellerie de Mercurey</li>
+          <li><strong>Staff</strong> — Acti'sol & Sereault, Saint-Marcel</li>
+          <li><strong>Acier Corten</strong> — Métallerie Grand, La Roche Vineuse</li>
+        </ul>
+      </div>
+      <div class="s-dual-right"><img src="assets/slides/slide-8.png" alt=""></div>
+    </div>
     <div class="slide" id="slide-9"  style="background:#fff"><img class="slide-img" src="assets/slides/slide-9.png"  alt=""></div>
 
     <!-- 10 · Zoning RDC -->
@@ -308,7 +394,7 @@
     <div class="slide" id="slide-13" style="background:#fff"><img class="slide-img" src="assets/slides/slide-13.png" alt=""></div>
     <div class="slide" id="slide-14" style="background:#fff"><img class="slide-img" src="assets/slides/slide-14.png" alt=""></div>
     <div class="slide" id="slide-15" style="background:#fff"><img class="slide-img" src="assets/slides/slide-15.png" alt=""></div>
-    <div class="slide" id="slide-16" style="background:#0a0a0a"><img class="slide-img" src="assets/slides/slide-16.png" alt=""></div>
+    <div class="slide" id="slide-16" style="background:#fff"><img class="slide-img" src="assets/slides/slide-16.png" alt=""></div>
 
     <!-- 17 · Grille appartements (PNG Tom) -->
     <div class="slide" id="slide-17" style="background:#fff">
