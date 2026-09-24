@@ -89,26 +89,30 @@
     const db = getDatabase(app);
     const stateRef = ref(db, 'workshop');
 
+    const NAMES = { lucas: 'Alex', genevieve: 'Yann', raymond: 'Anne' };
+
     onValue(stateRef, (snap) => {
       const d = snap.val() || {};
-      const persona = d.current_persona || '—';
-      const pending = d.pending_persona || '—';
-      document.getElementById('state-box').innerHTML =
-        `actuel : <span>${persona}</span> &nbsp;·&nbsp; en attente : <span>${pending}</span>`;
+      const presented = d.presented || {};
+      const rows = ['lucas','genevieve','raymond'].map(k => {
+        const done = presented[k] ? '✓ présenté' : '—';
+        const color = presented[k] ? '#C8865A' : 'rgba(255,255,255,0.2)';
+        return `<div style="display:flex;justify-content:space-between;gap:32px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05)">
+          <span>${NAMES[k]}</span><span style="color:${color}">${done}</span></div>`;
+      }).join('');
+      document.getElementById('state-box').innerHTML = rows;
     });
 
     document.getElementById('btn-reset').addEventListener('click', async () => {
       const btn = document.getElementById('btn-reset');
-      btn.disabled = true;
-      btn.textContent = '…';
+      btn.disabled = true; btn.textContent = '…';
       try {
-        await set(stateRef, { current_persona: '', pending_persona: '' });
+        await set(stateRef, { current_persona: '', pending_persona: '', presented: {} });
         document.getElementById('status').textContent = 'Remis à zéro.';
       } catch(e) {
         document.getElementById('status').textContent = 'Erreur : ' + e.message;
       }
-      btn.disabled = false;
-      btn.textContent = 'Remettre à zéro';
+      btn.disabled = false; btn.textContent = 'Remettre à zéro';
     });
   </script>
 </body>
