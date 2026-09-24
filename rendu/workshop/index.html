@@ -334,37 +334,37 @@
     const slideEl  = i => document.getElementById('slide-' + SLIDES[i]);
     const idxOf    = sid => SLIDES.indexOf(String(sid));
 
-    // Positions des cellules dans la grille PNG (% viewport 16:9)
-    // Calibré depuis screenshot : La Perrière=lucas, Les Morées=genevieve, Les Puillets=raymond
+    // Positions dans le PNG (% de la zone PNG, indépendant de l'aspect ratio du viewport)
     const APT_CELLS = {
-      lucas:     { top:8,  left:2,  w:31, h:29 }, // LA PERRIERE  — haut gauche
-      genevieve: { top:39, left:34, w:32, h:27 }, // LES MORÉES   — centre
-      raymond:   { top:67, left:68, w:31, h:28 }, // LES PUILLETS — bas droite
+      lucas:     { top:8,  left:6,  w:28, h:30 }, // LA PERRIERE  — haut gauche
+      genevieve: { top:39, left:36, w:29, h:28 }, // LES MORÉES   — centre
+      raymond:   { top:69, left:66, w:29, h:28 }, // LES PUILLETS — bas droite
     };
     const GRID_SLIDES = new Set(['17','21','25']);
 
+    // Zone réelle du PNG dans le viewport (object-fit:contain, ratio 16:9)
+    function getPngRect() {
+      const iR = 16 / 9, vW = window.innerWidth, vH = window.innerHeight;
+      if (vW / vH > iR) { const w = vH * iR; return { x:(vW-w)/2, y:0, w, h:vH }; }
+      else               { const h = vW / iR; return { x:0, y:(vH-h)/2, w:vW, h }; }
+    }
+
     function onSlideEnter(sid) {
       if (!lastPending) return;
-      if (GRID_SLIDES.has(sid)) {
-        positionAptHl(lastPending);
-      } else {
-        hideAptHl(); // silencieux sur les slides de détail
-      }
+      if (GRID_SLIDES.has(sid)) positionAptHl(lastPending);
+      else hideAptHl();
     }
 
     function positionAptHl(key) {
-      const cell = APT_CELLS[key];
-      const p = PERSONAS[key];
+      const cell = APT_CELLS[key], p = PERSONAS[key];
       if (!cell || !p) return;
+      const r = getPngRect();
+      const cL = r.x + cell.left/100 * r.w, cT = r.y + cell.top/100 * r.h;
+      const cW = cell.w/100 * r.w,           cH = cell.h/100 * r.h;
       const cellEl = document.getElementById('apt-hl-cell');
       const actEl  = document.getElementById('apt-hl-actions');
-      cellEl.style.top    = cell.top  + 'vh';
-      cellEl.style.left   = cell.left + 'vw';
-      cellEl.style.width  = cell.w    + 'vw';
-      cellEl.style.height = cell.h    + 'vh';
-      // Boutons juste sous la cellule, alignés à droite
-      actEl.style.top  = (cell.top + cell.h + 1) + 'vh';
-      actEl.style.left = cell.left + 'vw';
+      cellEl.style.cssText = `left:${cL}px;top:${cT}px;width:${cW}px;height:${cH}px;`;
+      actEl.style.cssText  = `left:${cL}px;top:${cT+cH+10}px;`;
       document.getElementById('apt-hl-name').textContent = p.name;
       document.getElementById('apt-hl').classList.add('active');
     }
@@ -448,7 +448,6 @@
           }
         }
       }
-      firstLoad = false;
       if (!current_persona) {
         lastPersona = null;
         [18, 22, 26].forEach(n => {
@@ -459,12 +458,16 @@
         });
       }
 
-      // Pending notification
-      if (pending_persona && pending_persona !== lastPending && pending_persona !== current_persona) {
-        lastPending = pending_persona; showPendingNotif(pending_persona);
-      } else if (!pending_persona || pending_persona === current_persona) {
+      // Pending notification — ignoré au premier chargement Firebase
+      if (pending_persona && pending_persona !== current_persona) {
+        if (pending_persona !== lastPending) {
+          lastPending = pending_persona;
+          if (!firstLoad) showPendingNotif(pending_persona); // firstLoad encore true au 1er appel
+        }
+      } else {
         lastPending = null; hidePendingNotif();
       }
+      firstLoad = false;
     });
 
     function showPendingNotif(key) {
