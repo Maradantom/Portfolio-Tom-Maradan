@@ -431,7 +431,7 @@
     const stateRef = ref(db, 'workshop');
 
     let lastPersona = null, lastPending = null;
-    let cidx = 0, transitioning = false; // cidx = index into SLIDES array
+    let cidx = 0, transitioning = false, firstLoad = true;
 
     const slideEl  = i => document.getElementById('slide-' + SLIDES[i]);
     const idxOf    = sid => SLIDES.indexOf(String(sid));
@@ -530,7 +530,8 @@
             const veilEl = document.getElementById('qv-' + p.slide);
             if (veilEl) veilEl.classList.add('revealed');
           };
-          if (cidx !== targetIdx) {
+          // Sur le premier chargement : révéler le voile sans naviguer
+          if (!firstLoad && cidx !== targetIdx) {
             goSlide(targetIdx);
             setTimeout(revealVeil, 800);
           } else {
@@ -538,6 +539,7 @@
           }
         }
       }
+      firstLoad = false;
       if (!current_persona) {
         lastPersona = null;
         [18, 22, 26].forEach(n => {
