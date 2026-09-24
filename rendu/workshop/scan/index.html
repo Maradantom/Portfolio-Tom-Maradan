@@ -256,12 +256,12 @@
     }
 
     .foot {
-      position: fixed; bottom: 20px; left: 50%;
-      transform: translateX(-50%);
       font-size: 9px; letter-spacing: 2px;
       color: rgba(248,244,240,0.1);
       text-transform: uppercase;
       white-space: nowrap;
+      text-align: center;
+      padding: 24px 0 8px;
     }
   </style>
 </head>
@@ -287,6 +287,7 @@
       <p class="c-question">Lancer la visite sur l'écran principal ?</p>
       <button class="btn-main" id="btn-confirm">Oui, lancer la visite</button>
       <button class="btn-sec" id="btn-cancel">Annuler</button>
+      <p class="foot">90 Grande Rue · Mercurey · 2026</p>
     </div>
   </div>
 
@@ -310,8 +311,6 @@
     <p class="end-sub">Les trois visites ont été réalisées.</p>
   </div>
 
-  <div class="foot">90 Grande Rue · Mercurey · 2026</div>
-
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
     import { getDatabase, ref, get, set } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
@@ -332,7 +331,7 @@
         name: "Alex",
         age: "19 ans — Apprenti CIFA Jean Lameloise",
         desc: "Son premier logement. Abordable, fonctionnel, à deux minutes de son centre de formation. Un espace à lui, dans un immeuble qui l'ancre dans la vie du village.",
-        photo: "../assets/slides/slide-19.png",
+        photo: "../assets/persona-alex.webp",
         tag: "La Perrière",
       },
       genevieve: {
@@ -340,7 +339,7 @@
         name: "Yann",
         age: "63 ans — Jeune retraité",
         desc: "Il voulait du calme et du monde en même temps. Un jardin, des voisins, une vie collective. Rester actif, mais autrement.",
-        photo: "../assets/slides/slide-23.png",
+        photo: "../assets/persona-yann.webp",
         tag: "Les Morées",
       },
       raymond: {
@@ -348,7 +347,7 @@
         name: "Anne",
         age: "68 ans — Retraitée",
         desc: "Sa maison était devenue trop grande. Elle voulait rester à Mercurey, garder son autonomie et ne plus être seule.",
-        photo: "../assets/slides/slide-27.png",
+        photo: "../assets/persona-anne.png",
         tag: "Les Puillets",
       }
     };
