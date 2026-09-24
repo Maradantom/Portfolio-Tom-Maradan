@@ -41,16 +41,6 @@
     .sdot { width:7px; height:7px; border-radius:50%; background:rgba(248,244,240,0.2); transition:background 0.5s, transform 0.3s; }
     .sdot.done { background:var(--ochre); transform:scale(1.4); }
 
-    /* ── PENDING NOTIF ── */
-    #pending-notif { position:fixed; bottom:44px; left:50%; transform:translateX(-50%) translateY(120px); z-index:180; opacity:0; pointer-events:none; background:rgba(10,10,10,0.97); border:1px solid rgba(200,134,90,0.4); border-radius:3px; padding:18px 28px; display:flex; align-items:center; gap:18px; backdrop-filter:blur(20px); white-space:nowrap; transition:transform 0.5s cubic-bezier(0.16,1,0.3,1), opacity 0.4s; }
-    #pending-notif.show { transform:translateX(-50%) translateY(0); opacity:1; pointer-events:auto; }
-    .notif-dot { width:8px; height:8px; border-radius:50%; background:var(--ochre); flex-shrink:0; animation:pulse-core 1.5s ease-in-out infinite; }
-    .notif-text { font-size:14px; font-weight:300; color:var(--body); }
-    .notif-text strong { color:var(--white); font-weight:500; font-family:'Playfair Display',serif; font-style:italic; }
-    .notif-btn { padding:9px 22px; background:var(--ochre); color:var(--white); border:none; border-radius:2px; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; transition:filter 0.2s; }
-    .notif-btn:hover { filter:brightness(1.1); }
-    .notif-dismiss { font-size:11px; letter-spacing:1px; color:var(--sub); text-transform:uppercase; cursor:pointer; padding:9px; }
-    .notif-dismiss:hover { color:var(--white); }
 
     /* ── APARTMENT GRID HIGHLIGHT ── */
     #apt-hl { position:fixed; inset:0; z-index:150; display:none; pointer-events:none; }
@@ -175,14 +165,8 @@
     </div>
   </div>
 
-  <div id="pending-notif">
-    <div class="notif-dot"></div>
-    <div class="notif-text">Demande de visite — <strong id="notif-name">—</strong></div>
-    <button class="notif-btn" id="notif-confirm">Lancer</button>
-    <span class="notif-dismiss" id="notif-dismiss">Ignorer</span>
-  </div>
 
-  <div id="deck">
+<div id="deck">
 
     <!-- 1 · INTERSTICE -->
     <div class="slide active" id="slide-1" style="background:#0a0a0a">
@@ -350,24 +334,21 @@
     const slideEl  = i => document.getElementById('slide-' + SLIDES[i]);
     const idxOf    = sid => SLIDES.indexOf(String(sid));
 
-    // Positions approx. des cellules dans la grille PNG (% viewport)
-    // La Perrière=lucas [row0,col0], Les Morées=genevieve [row1,col1], Les Puillets=raymond [row2,col2]
+    // Positions des cellules dans la grille PNG (% viewport 16:9)
+    // Calibré depuis screenshot : La Perrière=lucas, Les Morées=genevieve, Les Puillets=raymond
     const APT_CELLS = {
-      lucas:     { top:12, left:1,  w:32, h:27 },
-      genevieve: { top:41, left:34, w:32, h:27 },
-      raymond:   { top:70, left:67, w:32, h:27 },
+      lucas:     { top:8,  left:2,  w:31, h:29 }, // LA PERRIERE  — haut gauche
+      genevieve: { top:39, left:34, w:32, h:27 }, // LES MORÉES   — centre
+      raymond:   { top:67, left:68, w:31, h:28 }, // LES PUILLETS — bas droite
     };
     const GRID_SLIDES = new Set(['17','21','25']);
 
     function onSlideEnter(sid) {
       if (!lastPending) return;
       if (GRID_SLIDES.has(sid)) {
-        document.getElementById('pending-notif').classList.remove('show');
         positionAptHl(lastPending);
       } else {
-        hideAptHl();
-        document.getElementById('notif-name').textContent = PERSONAS[lastPending]?.name || '';
-        document.getElementById('pending-notif').classList.add('show');
+        hideAptHl(); // silencieux sur les slides de détail
       }
     }
 
@@ -487,21 +468,11 @@
     });
 
     function showPendingNotif(key) {
-      const p = PERSONAS[key]; if (!p) return;
-      const onGrid = GRID_SLIDES.has(SLIDES[cidx]);
-      if (onGrid) {
-        document.getElementById('pending-notif').classList.remove('show');
-        positionAptHl(key);
-      } else {
-        hideAptHl();
-        document.getElementById('notif-name').textContent = p.name;
-        document.getElementById('pending-notif').classList.add('show');
-      }
+      if (!PERSONAS[key]) return;
+      if (GRID_SLIDES.has(SLIDES[cidx])) positionAptHl(key);
+      // hors grille : en attente silencieuse, s'affiche dès retour sur grille
     }
-    function hidePendingNotif() {
-      document.getElementById('pending-notif').classList.remove('show');
-      hideAptHl();
-    }
+    function hidePendingNotif() { hideAptHl(); }
 
     async function doLancer() {
       if (!lastPending) return;
@@ -518,8 +489,6 @@
       await update(stateRef, { pending_persona: '' });
     }
 
-    document.getElementById('notif-confirm').addEventListener('click', doLancer);
-    document.getElementById('notif-dismiss').addEventListener('click', doIgnorer);
     document.getElementById('apt-hl-confirm').addEventListener('click', doLancer);
     document.getElementById('apt-hl-dismiss').addEventListener('click', doIgnorer);
 
