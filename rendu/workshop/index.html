@@ -299,6 +299,18 @@
 
     let lastPersona = null, lastPending = null;
     let cidx = 0, transitioning = false, firstLoad = true;
+    let presentedState = {};
+
+    // Fin de chaque bloc persona → slide suivant logique
+    // slide 20 → retour 17, slide 24 → retour 17, slide 28 → 17 ou 29
+    const BLOCK_END_NEXT = sid => {
+      if (sid === '20' || sid === '24') return idxOf('17');
+      if (sid === '28') {
+        const allDone = ['lucas','genevieve','raymond'].every(k => presentedState[k]);
+        return allDone ? idxOf('29') : idxOf('17');
+      }
+      return null; // navigation normale
+    };
 
     const slideEl  = i => document.getElementById('slide-' + SLIDES[i]);
     const idxOf    = sid => SLIDES.indexOf(String(sid));
@@ -338,7 +350,11 @@
     }
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goSlide(cidx + 1); }
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        const override = BLOCK_END_NEXT(SLIDES[cidx]);
+        goSlide(override !== null ? override : cidx + 1);
+      }
       if (e.key === 'ArrowLeft')  { e.preventDefault(); goSlide(cidx - 1); }
       if (e.key === 'Home')       { e.preventDefault(); goSlide(0); }
       if (e.key === 'End')        { e.preventDefault(); goSlide(TOTAL - 1); }
@@ -348,31 +364,31 @@
     onValue(stateRef, snap => {
       const d = snap.val() || {};
       const { current_persona, pending_persona } = d;
+      presentedState = d.presented || {};
 
-      // Scan dots state
-      const idx = PERSONA_ORDER.indexOf(current_persona);
-      for (let i = 0; i < 3; i++) {
+      // Scan dots — coché si présenté
+      PERSONA_ORDER.forEach((key, i) => {
         const dot = document.getElementById('dot-' + i);
-        if (dot) dot.classList.toggle('done', i <= idx && idx >= 0);
-      }
+        if (dot) dot.classList.toggle('done', !!presentedState[key]);
+      });
 
-      // Persona reveal
+      // Révéler les voiles de toutes les personas déjà présentées
+      Object.entries(presentedState).forEach(([key, done]) => {
+        if (done && PERSONAS[key]) {
+          const veilEl = document.getElementById('qv-' + PERSONAS[key].slide);
+          if (veilEl) veilEl.classList.add('revealed');
+        }
+      });
+
+      // Nouvelle persona lancée → naviguer vers son slide
       if (current_persona && current_persona !== lastPersona) {
         lastPersona = current_persona;
         hidePendingNotif();
         const p = PERSONAS[current_persona];
         if (p) {
           const targetIdx = idxOf(p.slide);
-          const revealVeil = () => {
-            const veilEl = document.getElementById('qv-' + p.slide);
-            if (veilEl) veilEl.classList.add('revealed');
-          };
-          // Sur le premier chargement : révéler le voile sans naviguer
           if (!firstLoad && cidx !== targetIdx) {
             goSlide(targetIdx);
-            setTimeout(revealVeil, 800);
-          } else {
-            revealVeil();
           }
         }
       }
@@ -381,7 +397,9 @@
         lastPersona = null;
         [18, 22, 26].forEach(n => {
           const el = document.getElementById('qv-' + n);
-          if (el) el.classList.remove('revealed');
+          if (el && !presentedState[Object.keys(PERSONAS).find(k => PERSONAS[k].slide === String(n))]) {
+            el.classList.remove('revealed');
+          }
         });
       }
 
