@@ -317,7 +317,7 @@
     const stateRef = ref(db, 'workshop');
 
     let lastPersona = null, lastPending = null;
-    let cidx = 0, transitioning = false, firstLoad = true;
+    let cidx = 0, transitioning = false, firstLoad = true, pendingIsLive = false;
     let presentedState = {};
 
     // Fin de chaque bloc persona → slide suivant logique
@@ -334,11 +334,11 @@
     const slideEl  = i => document.getElementById('slide-' + SLIDES[i]);
     const idxOf    = sid => SLIDES.indexOf(String(sid));
 
-    // Positions dans le PNG (% de la zone PNG, indépendant de l'aspect ratio du viewport)
+    // Positions dans le PNG mesurées pixel par pixel sur slide-17.png (3840x2160)
     const APT_CELLS = {
-      lucas:     { top:8,  left:6,  w:28, h:30 }, // LA PERRIERE  — haut gauche
-      genevieve: { top:39, left:36, w:29, h:28 }, // LES MORÉES   — centre
-      raymond:   { top:69, left:66, w:29, h:28 }, // LES PUILLETS — bas droite
+      lucas:     { top:7,  left:5,  w:29, h:23 }, // LA PERRIERE  — haut gauche
+      genevieve: { top:35, left:35, w:29, h:24 }, // LES MORÉES   — centre
+      raymond:   { top:63, left:65, w:29, h:27 }, // LES PUILLETS — bas droite
     };
     const GRID_SLIDES = new Set(['17','21','25']);
 
@@ -350,7 +350,7 @@
     }
 
     function onSlideEnter(sid) {
-      if (!lastPending) return;
+      if (!lastPending || !pendingIsLive) return;
       if (GRID_SLIDES.has(sid)) positionAptHl(lastPending);
       else hideAptHl();
     }
@@ -458,14 +458,15 @@
         });
       }
 
-      // Pending notification — ignoré au premier chargement Firebase
+      // Pending — ignoré si présent dès le chargement (stale Firebase)
       if (pending_persona && pending_persona !== current_persona) {
         if (pending_persona !== lastPending) {
           lastPending = pending_persona;
-          if (!firstLoad) showPendingNotif(pending_persona); // firstLoad encore true au 1er appel
+          pendingIsLive = !firstLoad; // false sur le 1er message Firebase
+          if (pendingIsLive) showPendingNotif(pending_persona);
         }
       } else {
-        lastPending = null; hidePendingNotif();
+        lastPending = null; pendingIsLive = false; hidePendingNotif();
       }
       firstLoad = false;
     });
