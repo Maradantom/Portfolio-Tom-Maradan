@@ -64,8 +64,8 @@
     }
 
     @keyframes hero-zoom {
-      from { transform: scale(1.1); filter: brightness(0.3); }
-      to   { transform: scale(1.02); filter: brightness(0.5); }
+      from { transform: scale(1.1); filter: brightness(0.25) saturate(0.6); }
+      to   { transform: scale(1.02); filter: brightness(0.38) saturate(0.7); }
     }
 
     .photo-hero-grad {
@@ -276,7 +276,7 @@
     <div class="photo-hero">
       <div class="photo-hero-bg" id="c-photo"></div>
       <div class="photo-hero-grad"></div>
-      <div class="hero-label">90 Grande Rue · Mercurey</div>
+      <div class="hero-label"><span id="hero-tag">—</span> · 90 Grande Rue · Mercurey</div>
     </div>
     <div class="confirm-body">
       <p class="c-eyebrow" id="c-eyebrow">Vous avez déverrouillé</p>
@@ -328,25 +328,28 @@
 
     const PERSONAS = {
       lucas: {
-        eyebrow: "Vous avez déverrouillé",
+        eyebrow: "Persona · Apprenti",
         name: "Alex",
         age: "19 ans — Apprenti CIFA Jean Lameloise",
-        desc: "Son premier logement. Abordable, fonctionnel, à deux minutes de son centre de formation.",
-        photo: "../assets/facade1.jpg",
+        desc: "Son premier logement. Abordable, fonctionnel, à deux minutes de son centre de formation. Un espace à lui, dans un immeuble qui l'ancre dans la vie du village.",
+        photo: "../assets/slides/slide-19.png",
+        tag: "La Perrière",
       },
       genevieve: {
-        eyebrow: "Vous avez déverrouillé",
+        eyebrow: "Persona · Jeune retraité",
         name: "Yann",
         age: "63 ans — Jeune retraité",
-        desc: "Il voulait du calme et du monde en même temps. Un jardin, des voisins, une vie collective.",
-        photo: "../assets/facade2.jpg",
+        desc: "Il voulait du calme et du monde en même temps. Un jardin, des voisins, une vie collective. Rester actif, mais autrement.",
+        photo: "../assets/slides/slide-23.png",
+        tag: "Les Morées",
       },
       raymond: {
-        eyebrow: "Vous avez déverrouillé",
+        eyebrow: "Persona · Retraitée",
         name: "Anne",
         age: "68 ans — Retraitée",
-        desc: "Sa maison était devenue trop grande. Elle voulait rester à Mercurey et garder son autonomie.",
-        photo: "../assets/facade3.jpg",
+        desc: "Sa maison était devenue trop grande. Elle voulait rester à Mercurey, garder son autonomie et ne plus être seule.",
+        photo: "../assets/slides/slide-27.png",
+        tag: "Les Puillets",
       }
     };
 
@@ -403,6 +406,8 @@
 
         pendingKey = personaKey;
         document.getElementById('c-photo').style.backgroundImage = `url('${p.photo}')`;
+        document.getElementById('c-eyebrow').textContent = p.eyebrow;
+        document.getElementById('hero-tag').textContent = p.tag;
         document.getElementById('c-name').textContent = p.name;
         document.getElementById('c-age').textContent = p.age;
         document.getElementById('c-desc').textContent = p.desc;
