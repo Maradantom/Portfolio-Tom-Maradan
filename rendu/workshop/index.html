@@ -55,13 +55,10 @@
     .veil {
       position: fixed; inset: 0; z-index: 100;
       background: var(--dark);
-      transform: translateX(100%);
-      pointer-events: none;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s ease;
     }
-    .veil.sweep-in  { animation: veil-in  0.65s cubic-bezier(0.76,0,0.24,1) forwards; }
-    .veil.sweep-out { animation: veil-out 0.55s cubic-bezier(0.76,0,0.24,1) forwards; }
-    @keyframes veil-in  { to { transform: translateX(0%);    } }
-    @keyframes veil-out { to { transform: translateX(-100%); } }
+    .veil.in { opacity: 1; }
 
     /* ── UI CHROME ── */
     #counter {
@@ -157,8 +154,14 @@
     .p-age { font-size: 16px; font-weight: 300; color: var(--ochre); margin-bottom: 24px; opacity: 0; }
     .p-age.in { animation: fade-up 0.7s 0.5s ease forwards; }
 
-    .p-desc { font-size: 16px; line-height: 1.75; color: var(--body); font-weight: 300; max-width: 360px; margin-bottom: 40px; opacity: 0; }
+    .p-desc { font-size: 16px; line-height: 1.75; color: var(--body); font-weight: 300; max-width: 360px; margin-bottom: 24px; opacity: 0; }
     .p-desc.in { animation: fade-up 0.7s 0.65s ease forwards; }
+
+    /* appartement + greffe */
+    .p-apt-block { margin-bottom: 28px; opacity: 0; }
+    .p-apt-block.in { animation: fade-up 0.7s 0.8s ease forwards; }
+    .p-apt-name { font-family: 'Playfair Display', serif; font-size: 19px; font-style: italic; color: rgba(248,244,240,0.5); margin-bottom: 6px; }
+    .p-greffe { font-size: 13px; line-height: 1.65; color: rgba(248,244,240,0.45); font-weight: 300; border-left: 2px solid rgba(200,134,90,0.35); padding-left: 14px; }
 
     .p-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; margin-bottom: 32px; }
     .spec { border-top: 1px solid rgba(248,244,240,0.1); padding-top: 12px; opacity: 0; }
@@ -202,21 +205,25 @@
     .slide:not(.active) .anim-fade { animation: none !important; opacity: 0; }
 
     /* ── ANIMATIONS ── */
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
     @keyframes fade-up {
       from { opacity: 0; transform: translateY(18px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 
-    .slide.active .anim-up  { animation: fade-up  0.75s cubic-bezier(0.16,1,0.3,1) both; }
-    .slide.active .anim-fade { animation: fade-in 0.8s ease both; }
+    .slide.active .anim-up  { animation: slide-up 0.8s cubic-bezier(0.16,1,0.3,1) both; }
+    .slide.active .anim-fade { animation: fade-in 0.9s ease both; }
 
-    .slide.active .anim-up:nth-child(1)  { animation-delay: 0.05s; }
-    .slide.active .anim-up:nth-child(2)  { animation-delay: 0.15s; }
-    .slide.active .anim-up:nth-child(3)  { animation-delay: 0.25s; }
-    .slide.active .anim-up:nth-child(4)  { animation-delay: 0.35s; }
-    .slide.active .anim-up:nth-child(5)  { animation-delay: 0.45s; }
-    .slide.active .anim-up:nth-child(6)  { animation-delay: 0.55s; }
+    .slide.active .anim-up:nth-child(1)  { animation-delay: 0.08s; }
+    .slide.active .anim-up:nth-child(2)  { animation-delay: 0.18s; }
+    .slide.active .anim-up:nth-child(3)  { animation-delay: 0.28s; }
+    .slide.active .anim-up:nth-child(4)  { animation-delay: 0.38s; }
+    .slide.active .anim-up:nth-child(5)  { animation-delay: 0.48s; }
+    .slide.active .anim-up:nth-child(6)  { animation-delay: 0.58s; }
 
     /* ── LAYOUTS ── */
     .s-center { align-items: center; justify-content: center; text-align: center; flex-direction: column; padding: 80px; }
@@ -377,6 +384,10 @@
       <div class="p-line" id="p-line"></div>
       <div class="p-age" id="p-age"></div>
       <div class="p-desc" id="p-desc"></div>
+      <div class="p-apt-block" id="p-apt-block">
+        <div class="p-apt-name" id="p-apt-name"></div>
+        <div class="p-greffe" id="p-greffe"></div>
+      </div>
       <div class="p-specs" id="p-specs"></div>
       <div class="p-tags" id="p-tags"></div>
     </div>
@@ -648,7 +659,9 @@
         age: "20 ans — Apprenti CIFA Jean Lameloise",
         desc: "Chaque soir, il parcourait 35 km pour rentrer chez ses parents. Désormais, il habite à deux minutes à pied de son centre de formation.",
         photo: "assets/facade1.jpg",
-        specs: [{l:"Surface",v:"32 m²"},{l:"Type",v:"Studio"},{l:"Loyer",v:"320 €/mois"},{l:"Statut",v:"Logement social"}],
+        apt: "La Perrière",
+        greffe: "Un claustra traversant en chêne structure l'espace sans cloisonner — il sépare le coin nuit du séjour et signe l'appartement d'une identité forte.",
+        specs: [{l:"Surface",v:"32 m²"},{l:"Type",v:"Studio duplex"},{l:"Loyer",v:"320 €/mois"},{l:"Statut",v:"Logement social"}],
         tags: ["Jeune actif","Mobilité douce","Espaces communs","Jardin partagé"]
       },
       genevieve: {
@@ -656,6 +669,8 @@
         age: "74 ans — Mercurey depuis 1978",
         desc: "Seule dans 160 m². La quitter était une trahison. Ici, elle reste au village — avec moins à entretenir, et plus de monde autour.",
         photo: "assets/facade2.jpg",
+        apt: "Les Morées",
+        greffe: "Une boîte dans la boîte — un volume compact en StoneLeaf et travertin qui flotte dans le séjour, libérant la lumière tout autour.",
         specs: [{l:"Surface",v:"58 m²"},{l:"Type",v:"T3 de plain-pied"},{l:"Loyer",v:"480 €/mois"},{l:"Statut",v:"Logement adapté"}],
         tags: ["Senior autonome","Plain-pied","Jardin privatif","Centre-village"]
       },
@@ -664,6 +679,8 @@
         age: "71 ans — En fauteuil roulant depuis 2021",
         desc: "Quarante ans de vendanges à Mercurey. Un logement pensé pour lui — pas d'obstacle, pas de compromis, et vue sur les vignes.",
         photo: "assets/facade3.jpg",
+        apt: "Les Caraby",
+        greffe: "Un meuble-cuisine en acier Corten et chêne massif, entièrement dimensionné PMR — il structure le rez-de-chaussée et devient la pièce maîtresse du logement.",
         specs: [{l:"Surface",v:"62 m²"},{l:"Type",v:"T3 PMR"},{l:"Loyer",v:"490 €/mois"},{l:"Accessibilité",v:"Norme PMR"}],
         tags: ["PMR","Rez-de-chaussée","Salle de bain adaptée","Accès sans obstacle"]
       }
@@ -695,19 +712,17 @@
       if (transitioning || next < 1 || next > TOTAL || next === current) return;
       transitioning = true;
       const veil = document.getElementById('veil');
-      veil.classList.remove('sweep-in','sweep-out');
-      void veil.offsetWidth;
-      veil.classList.add('sweep-in');
+      veil.classList.add('in');
       setTimeout(() => {
         getSlide(current).classList.remove('active');
         current = next;
         getSlide(current).classList.add('active');
         updateUI();
-        veil.classList.remove('sweep-in');
-        void veil.offsetWidth;
-        veil.classList.add('sweep-out');
-        setTimeout(() => { transitioning = false; }, 350);
-      }, 260);
+        setTimeout(() => {
+          veil.classList.remove('in');
+          setTimeout(() => { transitioning = false; }, 350);
+        }, 60);
+      }, 300);
     }
 
     /* ══ KEYBOARD ══ */
@@ -781,34 +796,28 @@
     function revealPersona(key) {
       const p = PERSONAS[key]; if (!p) return;
       const veil = document.getElementById('veil');
-      veil.classList.remove('sweep-in','sweep-out');
-      void veil.offsetWidth;
-      veil.classList.add('sweep-in');
+      veil.classList.add('in');
       setTimeout(() => {
         fillPersona(p);
         document.getElementById('screen-persona').classList.add('visible');
         document.getElementById('persona-nav').style.display = 'block';
         personaVisible = true;
-        veil.classList.remove('sweep-in');
-        void veil.offsetWidth;
-        veil.classList.add('sweep-out');
-        setTimeout(startAnimations, 100);
-      }, 650);
+        setTimeout(() => {
+          veil.classList.remove('in');
+          setTimeout(startAnimations, 100);
+        }, 60);
+      }, 320);
     }
 
     function dismissPersona() {
       const veil = document.getElementById('veil');
-      veil.classList.remove('sweep-in','sweep-out');
-      void veil.offsetWidth;
-      veil.classList.add('sweep-in');
+      veil.classList.add('in');
       setTimeout(() => {
         document.getElementById('screen-persona').classList.remove('visible');
         document.getElementById('persona-nav').style.display = 'none';
         personaVisible = false;
-        veil.classList.remove('sweep-in');
-        void veil.offsetWidth;
-        veil.classList.add('sweep-out');
-      }, 260);
+        setTimeout(() => veil.classList.remove('in'), 60);
+      }, 300);
     }
 
     function fillPersona(p) {
@@ -821,8 +830,10 @@
       document.getElementById('p-specs').innerHTML = p.specs.map((s,i) =>
         `<div class="spec" style="animation-delay:${0.7+i*0.1}s"><div class="spec-l">${s.l}</div><div class="spec-v">${s.v}</div></div>`
       ).join('');
+      document.getElementById('p-apt-name').textContent = p.apt;
+      document.getElementById('p-greffe').textContent = p.greffe;
       document.getElementById('p-tags').innerHTML = p.tags.map(t => `<span class="p-tag">${t}</span>`).join('');
-      ['p-eyebrow','p-name-inner','p-line','p-age','p-desc','p-tags'].forEach(id => {
+      ['p-eyebrow','p-name-inner','p-line','p-age','p-desc','p-apt-block','p-tags'].forEach(id => {
         const el = document.getElementById(id); if (el) el.classList.remove('in');
       });
       document.querySelectorAll('.spec').forEach(el => el.classList.remove('in'));
@@ -836,7 +847,8 @@
       setTimeout(() => document.getElementById('p-age').classList.add('in'), 400);
       setTimeout(() => document.getElementById('p-desc').classList.add('in'), 550);
       setTimeout(() => document.querySelectorAll('.spec').forEach(el => el.classList.add('in')), 700);
-      setTimeout(() => document.getElementById('p-tags').classList.add('in'), 1000);
+      setTimeout(() => document.getElementById('p-apt-block').classList.add('in'), 900);
+      setTimeout(() => document.getElementById('p-tags').classList.add('in'), 1100);
       const photo = document.getElementById('p-photo');
       void photo.offsetWidth; photo.classList.add('animating');
     }

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clés QR — INTERSTICE · Mercurey</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f3f0;
+      color: #1a1a1a;
+      padding: 40px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid #d4cfc9;
+    }
+
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-style: italic;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+
+    .header-sub {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #9a8f87;
+    }
+
+    .header-url {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #C8865A;
+      font-weight: 400;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .key-card {
+      background: #fff;
+      border: 1px solid #e5e0da;
+      border-radius: 4px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+    }
+
+    .key-card.lucas  { border-top: 3px solid #C8865A; }
+    .key-card.genevieve { border-top: 3px solid #7a9e8a; }
+    .key-card.raymond  { border-top: 3px solid #6b8cae; }
+
+    .key-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      font-style: italic;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+
+    .qr-img {
+      width: 160px;
+      height: 160px;
+      image-rendering: pixelated;
+      border: 6px solid #fff;
+      box-shadow: 0 0 0 1px #e5e0da;
+    }
+
+    .key-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #9a8f87;
+      text-align: center;
+    }
+
+    .key-persona {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: #1a1a1a;
+    }
+
+    .key-url {
+      font-size: 10px;
+      color: #b0a8a0;
+      word-break: break-all;
+      text-align: center;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #9a8f87;
+      margin-bottom: 20px;
+    }
+
+    .persona-legend {
+      max-width: 960px;
+      margin: 48px auto 0;
+      padding-top: 32px;
+      border-top: 1px solid #d4cfc9;
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 24px;
+    }
+
+    .legend-item {
+      padding: 20px 24px;
+      background: #fff;
+      border: 1px solid #e5e0da;
+      border-radius: 4px;
+    }
+
+    .legend-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-style: italic;
+      margin-bottom: 6px;
+    }
+
+    .legend-info {
+      font-size: 12px;
+      color: #6b6460;
+      line-height: 1.5;
+    }
+
+    .legend-keys {
+      margin-top: 10px;
+      font-size: 11px;
+      color: #C8865A;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    .print-note {
+      max-width: 960px;
+      margin: 32px auto 0;
+      text-align: center;
+      font-size: 11px;
+      color: #9a8f87;
+      line-height: 1.6;
+    }
+
+    @media print {
+      body { background: #fff; padding: 20px; }
+      .print-note { display: none; }
+      .key-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-title">INTERSTICE — Les 9 Clés</div>
+    <div class="header-sub">90 Grande Rue · Mercurey · Workshop 2026 · Groupe 13</div>
+    <div class="header-url">studiotm.fr/rendu/workshop/scan/?k=…</div>
+  </div>
+
+  <div class="section-title" style="margin-bottom:24px;">
+    Clés 1 à 3 · Lucas &nbsp;|&nbsp; Clés 4 à 6 · Geneviève &nbsp;|&nbsp; Clés 7 à 9 · Raymond
+  </div>
+
+  <div class="grid">
+
+    <!-- LUCAS : clés 1, 4, 7 -->
+    <div class="key-card lucas">
+      <div class="key-num">1</div>
+      <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&qzone=1&color=1a1a1a&bgcolor=ffffff&data=https%3A%2F%2Fstudiotm.fr%2Frendu%2Fworkshop%2Fscan%2F%3Fk%3D1" alt="QR clé 1" />
+      <div class="key-persona">Lucas</div>
+      <div class="key-label">Clé 1 · Studio · La Perrière</div>
+      <div class="key-url">studiotm.fr/rendu/workshop/scan/?k=1</div>
+    </div>
+
+    <div class="key-card genevieve">
+      <div class="key-num">2</div>
+      <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&qzone=1&color=1a1a1a&bgcolor=ffffff&data=https%3A%2F%2Fstudiotm.fr%2Frendu%2Fworkshop%2Fscan%2F%3Fk%3D2" alt="QR clé 2" />
+      <div class="key-persona">Geneviève</div>
+      <div class="key-label">Clé 2 · T3 · Les Morées</div>
+      <div class="key-url">studiotm.fr/rendu/workshop/scan/?k=2</div>
+    </div>
+
+    <div class="key-card raymond">
+      <div class="key-num">3</div>
+      <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&qzone=1&color=1a1a1a&bgcolor=ffffff&data=https%3A%2F%2Fstudiotm.fr%2Frendu%2Fworkshop%2Fscan%2F%3Fk%3D3" alt="QR clé 3" />
+      <div class="key-persona">Raymond</div>
+      <div class="key-label">Clé 3 · T3 PMR · Les Caraby</div>
+      <div class="key-url">studiotm.fr/rendu/workshop/scan/?k=3</div>
+    </div>
+
+    <div class="key-card lucas">
+      <div class="key-num">4</div>
+      <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&qzone=1&color=1a1a1a&bgcolor=ffffff&data=https%3A%2F%2Fstudiotm.fr%2Frendu%2Fworkshop%2Fscan%2F%3Fk%3D4" alt="QR clé 4" />
+      <div class="key-persona">Lucas</div>
+      <div class="key-label">Clé 4 · Studio · La Perrière</div>
+      <div class="key-url">studiotm.fr/rendu/workshop/scan/?k=4</div>
+    </div>
+
+    <div class="key-card genevieve">
+      <div class="key-num">5</div>
+      <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&qzone=1&color=1a1a1a&bgcolor=ffffff&data=https%3A%2F%2Fstudiotm.fr%2Frendu%2Fworkshop%2Fscan%2F%3Fk%3D5" alt="QR clé 5" />
+      <div class="key-persona">Geneviève</div>
+      <div class="key-label">Clé 5 · T3 · Les Morées</div>
+      <div class="key-url">studiotm.fr/rendu/workshop/scan/?k=5</div>
+    </div>
+
+    <div class="key-card raymond">
+      <div class="key-num">6</div>
+      <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&qzone=1&color=1a1a1a&bgcolor=ffffff&data=https%3A%2F%2Fstudiotm.fr%2Frendu%2Fworkshop%2Fscan%2F%3Fk%3D6" alt="QR clé 6" />
+      <div class="key-persona">Raymond</div>
+      <div class="key-label">Clé 6 · T3 PMR · Les Caraby</div>
+      <div class="key-url">studiotm.fr/rendu/workshop/scan/?k=6</div>
+    </div>
+
+    <div class="key-card lucas">
+      <div class="key-num">7</div>
+      <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&qzone=1&color=1a1a1a&bgcolor=ffffff&data=https%3A%2F%2Fstudiotm.fr%2Frendu%2Fworkshop%2Fscan%2F%3Fk%3D7" alt="QR clé 7" />
+      <div class="key-persona">Lucas</div>
+      <div class="key-label">Clé 7 · Studio · La Perrière</div>
+      <div class="key-url">studiotm.fr/rendu/workshop/scan/?k=7</div>
+    </div>
+
+    <div class="key-card genevieve">
+      <div class="key-num">8</div>
+      <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&qzone=1&color=1a1a1a&bgcolor=ffffff&data=https%3A%2F%2Fstudiotm.fr%2Frendu%2Fworkshop%2Fscan%2F%3Fk%3D8" alt="QR clé 8" />
+      <div class="key-persona">Geneviève</div>
+      <div class="key-label">Clé 8 · T3 · Les Morées</div>
+      <div class="key-url">studiotm.fr/rendu/workshop/scan/?k=8</div>
+    </div>
+
+    <div class="key-card raymond">
+      <div class="key-num">9</div>
+      <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&qzone=1&color=1a1a1a&bgcolor=ffffff&data=https%3A%2F%2Fstudiotm.fr%2Frendu%2Fworkshop%2Fscan%2F%3Fk%3D9" alt="QR clé 9" />
+      <div class="key-persona">Raymond</div>
+      <div class="key-label">Clé 9 · T3 PMR · Les Caraby</div>
+      <div class="key-url">studiotm.fr/rendu/workshop/scan/?k=9</div>
+    </div>
+
+  </div>
+
+  <div class="persona-legend">
+    <div class="legend-item">
+      <div class="legend-name" style="color:#C8865A;">Lucas</div>
+      <div class="legend-info">20 ans — Apprenti CIFA Jean Lameloise<br><strong>La Perrière</strong> · 32 m² · Studio duplex<br>Greffe : claustra traversant chêne</div>
+      <div class="legend-keys">Clés 1 · 4 · 7</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-name" style="color:#7a9e8a;">Geneviève</div>
+      <div class="legend-info">74 ans — Mercurey depuis 1978<br><strong>Les Morées</strong> · 58 m² · T3 plain-pied<br>Greffe : boîte dans la boîte (StoneLeaf)</div>
+      <div class="legend-keys">Clés 2 · 5 · 8</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-name" style="color:#6b8cae;">Raymond</div>
+      <div class="legend-info">71 ans — En fauteuil roulant depuis 2021<br><strong>Les Caraby</strong> · 62 m² · T3 PMR<br>Greffe : meuble-cuisine Corten PMR</div>
+      <div class="legend-keys">Clés 3 · 6 · 9</div>
+    </div>
+  </div>
+
+  <p class="print-note">
+    Imprimer en A4 paysage · Découper chaque clé · Plastifier si possible<br>
+    Chaque juré reçoit une clé de chaque couleur (une de chaque persona)<br>
+    <strong>studiotm.fr/rendu/workshop/qr/</strong>
+  </p>
+
+</body>
+</html>
