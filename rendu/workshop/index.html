@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>90 Grande Rue — Mercurey</title>
+  <title>INTERSTICE — 90 Grande Rue · Mercurey</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --ochre: #C8865A;
-      --ochre-dim: rgba(200,134,90,0.6);
       --dark: #0e0e0e;
       --white: #f8f4f0;
-      --mid: rgba(248,244,240,0.35);
+      --body: rgba(248,244,240,0.85);
+      --sub: rgba(248,244,240,0.60);
+      --dim: rgba(248,244,240,0.20);
     }
 
     html, body {
@@ -28,464 +29,315 @@
 
     /* ── CURSOR ── */
     .cursor {
-      position: fixed;
-      width: 6px; height: 6px;
-      background: var(--ochre);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
+      position: fixed; width: 6px; height: 6px;
+      background: var(--ochre); border-radius: 50%;
+      pointer-events: none; z-index: 9999;
       transform: translate(-50%,-50%);
-      transition: transform 0.1s;
     }
 
-    /* ── GRAIN OVERLAY ── */
+    /* ── GRAIN ── */
     .grain {
-      position: fixed; inset: 0; z-index: 100;
-      pointer-events: none;
-      opacity: 0.04;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      position: fixed; inset: 0; z-index: 200;
+      pointer-events: none; opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 128px;
       animation: grain-shift 0.4s steps(1) infinite;
     }
-
     @keyframes grain-shift {
       0%   { transform: translate(0,0); }
-      20%  { transform: translate(-2px,1px); }
-      40%  { transform: translate(1px,-2px); }
-      60%  { transform: translate(-1px,2px); }
-      80%  { transform: translate(2px,-1px); }
+      25%  { transform: translate(-2px,1px); }
+      50%  { transform: translate(1px,-2px); }
+      75%  { transform: translate(-1px,2px); }
       100% { transform: translate(0,0); }
     }
 
-    /* ── TRANSITION VEIL ── */
+    /* ── VEIL ── */
     .veil {
-      position: fixed; inset: 0; z-index: 50;
+      position: fixed; inset: 0; z-index: 100;
       background: var(--dark);
       transform: translateX(100%);
       pointer-events: none;
     }
+    .veil.sweep-in  { animation: veil-in  0.65s cubic-bezier(0.76,0,0.24,1) forwards; }
+    .veil.sweep-out { animation: veil-out 0.55s cubic-bezier(0.76,0,0.24,1) forwards; }
+    @keyframes veil-in  { to { transform: translateX(0%);    } }
+    @keyframes veil-out { to { transform: translateX(-100%); } }
 
-    .veil.sweep-in {
-      animation: veil-in 0.7s cubic-bezier(0.76,0,0.24,1) forwards;
+    /* ── UI CHROME ── */
+    #counter {
+      position: fixed; top: 28px; right: 36px;
+      font-size: 11px; letter-spacing: 3px;
+      color: var(--dim); z-index: 150;
     }
-
-    .veil.sweep-out {
-      animation: veil-out 0.6s cubic-bezier(0.76,0,0.24,1) forwards;
-    }
-
-    @keyframes veil-in {
-      0%   { transform: translateX(100%); }
-      100% { transform: translateX(0%); }
-    }
-
-    @keyframes veil-out {
-      0%   { transform: translateX(0%); }
-      100% { transform: translateX(-100%); }
-    }
-
-    /* ══════════════════════════════
-       ÉCRAN D'ATTENTE
-    ══════════════════════════════ */
-    #screen-waiting {
-      position: fixed; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      transition: opacity 0.4s;
-    }
-
-    #screen-waiting.hidden { opacity: 0; pointer-events: none; }
-
-    .w-photo {
-      position: absolute; inset: 0;
-      background: url('assets/facade2.jpg') center / cover no-repeat;
-      animation: ken-burns 20s ease-in-out infinite alternate;
-    }
-
-    @keyframes ken-burns {
-      from { transform: scale(1) translateX(0); }
-      to   { transform: scale(1.06) translateX(-1%); }
-    }
-
-    .w-overlay {
-      position: absolute; inset: 0;
-      background:
-        linear-gradient(to right, rgba(14,14,14,0.5) 0%, rgba(14,14,14,0.1) 50%, rgba(14,14,14,0.6) 100%),
-        linear-gradient(to bottom, rgba(14,14,14,0.3) 0%, rgba(14,14,14,0.15) 40%, rgba(14,14,14,0.7) 100%);
-    }
-
-    .w-content {
-      position: relative; z-index: 2;
-      display: flex; flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .w-eyebrow {
-      font-size: 10px;
-      font-weight: 400;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--ochre);
-      margin-bottom: 28px;
-      opacity: 0;
-      animation: fade-up 1s 0.3s ease forwards;
-    }
-
-    .w-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(72px, 10vw, 130px);
-      font-weight: 400;
-      font-style: italic;
-      line-height: 1;
-      color: var(--white);
-      margin-bottom: 6px;
-      opacity: 0;
-      animation: fade-up 1.1s 0.5s ease forwards;
-    }
-
-    .w-title-sub {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(36px, 5vw, 60px);
-      font-weight: 400;
-      color: rgba(248,244,240,0.45);
-      margin-bottom: 48px;
-      opacity: 0;
-      animation: fade-up 1.1s 0.65s ease forwards;
-    }
-
-    .w-divider {
-      width: 1px; height: 48px;
-      background: linear-gradient(to bottom, transparent, var(--ochre-dim), transparent);
-      margin-bottom: 32px;
-      opacity: 0;
-      animation: fade-up 1s 0.9s ease forwards;
-    }
-
-    .w-address {
-      font-size: 12px;
-      font-weight: 300;
-      letter-spacing: 2.5px;
-      color: var(--mid);
-      text-transform: uppercase;
-      margin-bottom: 64px;
-      opacity: 0;
-      animation: fade-up 1s 1s ease forwards;
-    }
-
-    .w-pulse-wrap {
-      display: flex; align-items: center; gap: 12px;
-      opacity: 0;
-      animation: fade-up 1s 1.3s ease forwards;
-    }
-
-    .pulse-ring {
-      position: relative;
-      width: 10px; height: 10px;
-    }
-
-    .pulse-ring::before {
-      content: '';
-      position: absolute; inset: 0;
-      border-radius: 50%;
-      background: var(--ochre);
-      animation: pulse-core 2.5s ease-in-out infinite;
-    }
-
-    .pulse-ring::after {
-      content: '';
-      position: absolute;
-      inset: -5px;
-      border-radius: 50%;
-      border: 1px solid var(--ochre);
-      opacity: 0;
-      animation: pulse-wave 2.5s ease-in-out infinite;
-    }
-
-    @keyframes pulse-core {
-      0%,100% { opacity:1; transform: scale(1); }
-      50% { opacity:0.5; transform: scale(0.7); }
-    }
-
-    @keyframes pulse-wave {
-      0% { transform: scale(0.5); opacity: 0.6; }
-      100% { transform: scale(2.5); opacity: 0; }
-    }
-
-    .w-pulse-label {
-      font-size: 11px;
-      font-weight: 300;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: rgba(248,244,240,0.3);
-    }
-
-    /* scan dots */
-    .scan-dots {
-      position: fixed;
-      bottom: 36px; left: 50%;
-      transform: translateX(-50%);
-      display: flex; gap: 8px; z-index: 10;
-    }
-
-    .sdot {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: rgba(248,244,240,0.15);
-      transition: background 0.5s, transform 0.3s;
-    }
-
-    .sdot.done {
-      background: var(--ochre);
-      transform: scale(1.3);
-    }
-
-    /* corner label */
     .corner-label {
-      position: fixed; top: 40px; right: 48px;
+      position: fixed; top: 28px; left: 36px;
+      font-size: 10px; letter-spacing: 2.5px;
+      color: var(--dim); text-transform: uppercase; z-index: 150;
+    }
+    #nav-hint {
+      position: fixed; bottom: 28px; right: 36px;
       font-size: 10px; letter-spacing: 2px;
-      color: rgba(248,244,240,0.2);
-      text-transform: uppercase;
-      z-index: 10;
+      color: var(--dim); text-transform: uppercase; z-index: 150;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-key {
+      border: 1px solid rgba(248,244,240,0.12);
+      border-radius: 2px; padding: 2px 6px;
+    }
+    #progress {
+      position: fixed; bottom: 0; left: 0; height: 2px;
+      background: var(--ochre); z-index: 150;
+      transition: width 0.5s ease; opacity: 0.5;
     }
 
-    /* ── NOTIFICATION PENDING ── */
+    /* ── PENDING NOTIF ── */
     #pending-notif {
-      position: fixed;
-      bottom: 40px; left: 50%;
-      transform: translateX(-50%) translateY(120px);
-      z-index: 200;
-      background: rgba(20,20,20,0.95);
-      border: 1px solid rgba(200,134,90,0.4);
-      border-radius: 4px;
-      padding: 18px 28px;
+      position: fixed; bottom: 48px; left: 50%;
+      transform: translateX(-50%) translateY(130px);
+      z-index: 180; opacity: 0; pointer-events: none;
+      background: rgba(18,18,18,0.97);
+      border: 1px solid rgba(200,134,90,0.5);
+      border-radius: 4px; padding: 20px 32px;
       display: flex; align-items: center; gap: 20px;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px); white-space: nowrap;
       transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), opacity 0.4s;
-      opacity: 0;
-      pointer-events: none;
-      white-space: nowrap;
     }
-
-    #pending-notif.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .notif-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--ochre);
-      animation: pulse-core 1.5s ease-in-out infinite;
-      flex-shrink: 0;
-    }
-
-    .notif-text {
-      font-size: 12px; font-weight: 300;
-      color: rgba(248,244,240,0.7);
-      letter-spacing: 0.5px;
-    }
-
-    .notif-text strong {
-      color: var(--white);
-      font-weight: 500;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-    }
-
+    #pending-notif.show { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
+    .notif-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ochre); flex-shrink: 0; animation: pulse-core 1.5s ease-in-out infinite; }
+    .notif-text { font-size: 14px; font-weight: 300; color: var(--body); letter-spacing: 0.3px; }
+    .notif-text strong { color: var(--white); font-weight: 500; font-family: 'Playfair Display', serif; font-style: italic; }
     .notif-btn {
-      padding: 8px 20px;
-      background: var(--ochre);
-      color: var(--white);
-      border: none; border-radius: 2px;
-      font-family: 'Inter', sans-serif;
-      font-size: 11px; font-weight: 500;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      cursor: pointer;
-      transition: filter 0.2s;
+      padding: 10px 24px; background: var(--ochre); color: var(--white);
+      border: none; border-radius: 2px; font-family: 'Inter', sans-serif;
+      font-size: 12px; font-weight: 500; letter-spacing: 1.5px;
+      text-transform: uppercase; cursor: pointer; transition: filter 0.2s;
     }
-
     .notif-btn:hover { filter: brightness(1.1); }
-
     .notif-dismiss {
-      font-size: 11px; letter-spacing: 1px;
-      color: rgba(248,244,240,0.25);
-      text-transform: uppercase;
-      cursor: pointer;
-      padding: 8px;
-      transition: color 0.2s;
+      font-size: 11px; letter-spacing: 1px; color: var(--sub);
+      text-transform: uppercase; cursor: pointer; padding: 10px;
     }
-
-    .notif-dismiss:hover { color: rgba(248,244,240,0.5); }
-
-    @keyframes fade-up {
-      from { opacity:0; transform: translateY(18px); }
-      to   { opacity:1; transform: translateY(0); }
-    }
+    .notif-dismiss:hover { color: var(--white); }
 
     /* ══════════════════════════════
-       ÉCRAN PERSONA
+       PERSONA OVERLAY
     ══════════════════════════════ */
     #screen-persona {
-      position: fixed; inset: 0;
-      display: flex;
-      opacity: 0;
-      pointer-events: none;
+      position: fixed; inset: 0; z-index: 80;
+      display: flex; opacity: 0; pointer-events: none;
     }
+    #screen-persona.visible { opacity: 1; pointer-events: auto; }
 
-    #screen-persona.visible {
-      opacity: 1;
-      pointer-events: auto;
+    .p-photo-col { width: 55%; position: relative; overflow: hidden; }
+    .p-photo-bg { position: absolute; inset: -5%; background-size: cover; background-position: center; }
+    .p-photo-bg.animating { animation: kb-persona 12s ease-out forwards; }
+    @keyframes kb-persona {
+      from { transform: scale(1.08); filter: brightness(0.25); }
+      to   { transform: scale(1.02); filter: brightness(0.5); }
     }
+    .p-photo-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(14,14,14,0) 40%, var(--dark) 100%); }
 
-    /* Photo col */
-    .p-photo-col {
-      width: 55%;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .p-photo-bg {
-      position: absolute; inset: -5%;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .p-photo-bg.animating {
-      animation: ken-burns-persona 12s ease-out forwards;
-    }
-
-    @keyframes ken-burns-persona {
-      from { transform: scale(1.08); filter: brightness(0.3); }
-      to   { transform: scale(1.02); filter: brightness(0.55); }
-    }
-
-    .p-photo-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to right, rgba(14,14,14,0) 40%, var(--dark) 100%);
-    }
-
-    /* Info col */
     .p-info-col {
-      width: 45%;
-      background: var(--dark);
+      width: 45%; background: var(--dark);
       display: flex; flex-direction: column;
       justify-content: center;
-      padding: 72px 80px 72px 60px;
-      position: relative;
+      padding: 72px 80px 72px 56px; position: relative;
     }
 
-    .p-numero {
-      font-size: 10px; letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--ochre);
-      margin-bottom: 32px;
-      opacity: 0;
-    }
-
+    .p-numero { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--ochre); margin-bottom: 28px; opacity: 0; }
     .p-numero.in { animation: fade-up 0.7s 0.1s ease forwards; }
 
-    .p-name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(64px, 7vw, 100px);
-      font-weight: 400;
-      line-height: 1;
-      color: var(--white);
-      margin-bottom: 20px;
-      overflow: hidden;
-    }
-
-    .p-name-inner {
-      display: block;
-      transform: translateY(110%);
-      transition: transform 0.9s cubic-bezier(0.16,1,0.3,1);
-    }
-
+    .p-name { font-family: 'Playfair Display', serif; font-size: clamp(64px, 7vw, 100px); font-weight: 400; line-height: 1; color: var(--white); margin-bottom: 20px; overflow: hidden; }
+    .p-name-inner { display: block; transform: translateY(110%); transition: transform 0.9s cubic-bezier(0.16,1,0.3,1); }
     .p-name-inner.in { transform: translateY(0); }
 
-    .p-line {
-      width: 0; height: 1px;
-      background: var(--ochre);
-      margin-bottom: 20px;
-      transition: width 0.8s 0.4s cubic-bezier(0.16,1,0.3,1);
-    }
-
+    .p-line { width: 0; height: 1px; background: var(--ochre); margin-bottom: 20px; transition: width 0.8s 0.4s cubic-bezier(0.16,1,0.3,1); }
     .p-line.in { width: 48px; }
 
-    .p-age {
-      font-size: 14px; font-weight: 300;
-      color: var(--ochre);
-      letter-spacing: 0.5px;
-      margin-bottom: 28px;
-      opacity: 0;
-    }
-
+    .p-age { font-size: 16px; font-weight: 300; color: var(--ochre); margin-bottom: 24px; opacity: 0; }
     .p-age.in { animation: fade-up 0.7s 0.5s ease forwards; }
 
-    .p-desc {
-      font-size: 14px; line-height: 1.8;
-      color: rgba(248,244,240,0.5);
-      font-weight: 300;
-      max-width: 340px;
-      margin-bottom: 44px;
-      opacity: 0;
-    }
-
+    .p-desc { font-size: 16px; line-height: 1.75; color: var(--body); font-weight: 300; max-width: 360px; margin-bottom: 40px; opacity: 0; }
     .p-desc.in { animation: fade-up 0.7s 0.65s ease forwards; }
 
-    .p-specs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px 36px;
-      margin-bottom: 36px;
-    }
-
-    .spec {
-      border-top: 1px solid rgba(248,244,240,0.07);
-      padding-top: 12px;
-      opacity: 0;
-    }
-
+    .p-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; margin-bottom: 32px; }
+    .spec { border-top: 1px solid rgba(248,244,240,0.1); padding-top: 12px; opacity: 0; }
     .spec.in { animation: fade-up 0.6s ease forwards; }
+    .spec-l { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--sub); margin-bottom: 5px; }
+    .spec-v { font-size: 17px; font-weight: 400; color: var(--white); }
 
-    .spec-l {
-      font-size: 9px; letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: rgba(248,244,240,0.25);
-      margin-bottom: 5px;
+    .p-tags { display: flex; flex-wrap: wrap; gap: 8px; opacity: 0; }
+    .p-tags.in { animation: fade-up 0.6s 1.1s ease forwards; }
+    .p-tag { font-size: 11px; letter-spacing: 0.8px; color: var(--sub); border: 1px solid rgba(248,244,240,0.18); padding: 6px 14px; border-radius: 1px; }
+
+    .p-photo-num {
+      position: absolute; bottom: 40px; left: 44px;
+      font-family: 'Playfair Display', serif;
+      font-size: 120px; font-style: italic;
+      color: rgba(248,244,240,0.04); line-height: 1;
+      pointer-events: none; z-index: 2;
     }
 
-    .spec-v {
-      font-size: 15px; font-weight: 400;
+    /* ── persona dismiss hint ── */
+    #persona-nav {
+      position: fixed; bottom: 28px; left: 36px; z-index: 160;
+      font-size: 10px; letter-spacing: 2px;
+      color: var(--dim); text-transform: uppercase;
+      display: none;
+    }
+    #screen-persona.visible ~ #persona-nav { display: block; }
+
+    /* ══════════════════════════════
+       SLIDE DECK
+    ══════════════════════════════ */
+    #deck { position: fixed; inset: 0; z-index: 10; }
+
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; opacity: 0; pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    .slide.active { opacity: 1; pointer-events: all; }
+    .slide:not(.active) .anim-up,
+    .slide:not(.active) .anim-fade { animation: none !important; opacity: 0; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+    .slide.active .anim-up  { animation: fade-up  0.75s cubic-bezier(0.16,1,0.3,1) both; }
+    .slide.active .anim-fade { animation: fade-in 0.8s ease both; }
+
+    .slide.active .anim-up:nth-child(1)  { animation-delay: 0.05s; }
+    .slide.active .anim-up:nth-child(2)  { animation-delay: 0.15s; }
+    .slide.active .anim-up:nth-child(3)  { animation-delay: 0.25s; }
+    .slide.active .anim-up:nth-child(4)  { animation-delay: 0.35s; }
+    .slide.active .anim-up:nth-child(5)  { animation-delay: 0.45s; }
+    .slide.active .anim-up:nth-child(6)  { animation-delay: 0.55s; }
+
+    /* ── LAYOUTS ── */
+    .s-center { align-items: center; justify-content: center; text-align: center; flex-direction: column; padding: 80px; }
+    .s-split { flex-direction: row; }
+    .s-split .col-left { flex: 0 0 52%; display: flex; flex-direction: column; justify-content: center; padding: 80px 64px 80px 80px; }
+    .s-split .col-right { flex: 1; position: relative; overflow: hidden; }
+    .col-bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: brightness(0.4); }
+    .col-grad { position: absolute; inset: 0; background: linear-gradient(to right, var(--dark) 0%, transparent 50%); }
+
+    .s-cols { align-items: stretch; }
+    .concept-col { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 64px 52px; border-right: 1px solid rgba(248,244,240,0.05); position: relative; overflow: hidden; }
+    .concept-col:last-child { border-right: none; }
+    .concept-num { position: absolute; top: 24px; right: 24px; font-family: 'Playfair Display', serif; font-size: 130px; font-weight: 700; font-style: italic; color: rgba(248,244,240,0.025); line-height: 1; }
+
+    .s-grid { align-items: center; justify-content: center; flex-direction: column; padding: 72px 80px; }
+
+    /* ── TYPOGRAPHY ── */
+    .eyebrow { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--ochre); margin-bottom: 20px; }
+    .sep { width: 44px; height: 1px; background: rgba(248,244,240,0.15); margin: 28px 0; }
+
+    .title-xl {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(60px, 9vw, 120px);
+      font-weight: 700; line-height: 0.93; letter-spacing: -1px;
+      color: var(--white);
+    }
+    .title-xl em { font-style: italic; font-weight: 400; }
+
+    .title-lg {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 5.5vw, 72px);
+      font-weight: 400; font-style: italic; line-height: 1.1;
       color: var(--white);
     }
 
-    .p-tags {
-      display: flex; flex-wrap: wrap; gap: 7px;
-      opacity: 0;
-    }
-
-    .p-tags.in { animation: fade-up 0.6s 1.1s ease forwards; }
-
-    .p-tag {
-      font-size: 10px; font-weight: 400;
-      letter-spacing: 0.8px;
-      color: rgba(248,244,240,0.4);
-      border: 1px solid rgba(248,244,240,0.1);
-      padding: 5px 12px;
-      border-radius: 1px;
-    }
-
-    /* numero coin photo */
-    .p-photo-num {
-      position: absolute;
-      bottom: 40px; left: 44px;
+    .title-md {
       font-family: 'Playfair Display', serif;
-      font-size: 120px; font-weight: 400; font-style: italic;
-      color: rgba(248,244,240,0.04);
-      line-height: 1;
-      pointer-events: none;
-      z-index: 2;
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 400; line-height: 1.15; color: var(--white);
     }
+    .title-md em { font-style: italic; }
+
+    .body-l { font-size: 18px; line-height: 1.75; color: var(--body); font-weight: 300; }
+    .body-m { font-size: 16px; line-height: 1.7; color: var(--body); font-weight: 300; }
+    .body-s { font-size: 14px; line-height: 1.65; color: var(--sub); font-weight: 300; }
+
+    /* ── COVER ── */
+    .cover-title { font-family: 'Playfair Display', serif; font-size: clamp(80px, 13vw, 170px); font-weight: 700; font-style: italic; line-height: 0.9; letter-spacing: -3px; color: var(--white); }
+    .cover-line { width: 60px; height: 1px; background: var(--ochre); margin: 28px auto; }
+    .cover-sub { font-size: 13px; letter-spacing: 6px; color: var(--sub); text-transform: uppercase; }
+    .cover-info { font-size: 11px; letter-spacing: 3px; color: var(--dim); text-transform: uppercase; margin-top: 14px; }
+
+    /* ── STATS ── */
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; width: 100%; max-width: 1100px; border-top: 1px solid rgba(248,244,240,0.08); }
+    .stat-item { padding: 44px 40px; border-right: 1px solid rgba(248,244,240,0.08); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: clamp(44px, 5.5vw, 72px); font-weight: 700; color: var(--ochre); line-height: 1; margin-bottom: 14px; }
+    .stat-label { font-size: 15px; line-height: 1.5; color: var(--body); font-weight: 300; }
+
+    /* ── QUESTION ── */
+    .q-mark { font-family: 'Playfair Display', serif; font-size: clamp(200px, 30vw, 360px); font-style: italic; font-weight: 700; color: rgba(200,134,90,0.05); position: absolute; right: -20px; top: 50%; transform: translateY(-60%); line-height: 1; pointer-events: none; user-select: none; }
+    .question-text { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.5vw, 44px); font-style: italic; line-height: 1.45; color: var(--white); max-width: 720px; position: relative; z-index: 1; }
+
+    /* ── CONCEPT ── */
+    .concept-tag { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--ochre); margin-bottom: 16px; }
+    .concept-title { font-family: 'Playfair Display', serif; font-size: 40px; font-style: italic; color: var(--white); margin-bottom: 20px; line-height: 1.1; }
+    .concept-desc { font-size: 15px; line-height: 1.75; color: var(--body); font-weight: 300; }
+
+    /* ── VALEURS ── */
+    .values-row { display: flex; width: 100%; max-width: 1200px; border-top: 1px solid rgba(248,244,240,0.08); }
+    .value-item { flex: 1; padding: 44px 40px; border-right: 1px solid rgba(248,244,240,0.08); }
+    .value-item:last-child { border-right: none; }
+    .value-num { font-size: 10px; letter-spacing: 3px; color: var(--ochre); display: block; margin-bottom: 16px; }
+    .value-word { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+    .value-sub { font-size: 14px; line-height: 1.6; color: var(--sub); font-weight: 300; }
+
+    /* ── QR SLIDE ── */
+    .w-photo { position: absolute; inset: 0; background: url('assets/facade2.jpg') center/cover no-repeat; animation: ken-burns 20s ease-in-out infinite alternate; filter: brightness(0.3); }
+    @keyframes ken-burns { from { transform: scale(1); } to { transform: scale(1.06) translateX(-1%); } }
+    .w-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(14,14,14,0.3) 0%, rgba(14,14,14,0.65) 100%); }
+    .w-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .w-title { font-family: 'Playfair Display', serif; font-size: clamp(72px, 10vw, 130px); font-style: italic; line-height: 1; color: var(--white); margin-bottom: 6px; }
+    .w-sub { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 60px); color: rgba(248,244,240,0.5); margin-bottom: 48px; }
+    .w-divider { width: 1px; height: 48px; background: linear-gradient(to bottom, transparent, var(--ochre), transparent); margin-bottom: 32px; }
+    .w-pulse-wrap { display: flex; align-items: center; gap: 14px; margin-bottom: 48px; }
+    .pulse-ring { position: relative; width: 10px; height: 10px; }
+    .pulse-ring::before { content:''; position:absolute; inset:0; border-radius:50%; background:var(--ochre); animation: pulse-core 2.5s ease-in-out infinite; }
+    .pulse-ring::after { content:''; position:absolute; inset:-5px; border-radius:50%; border:1px solid var(--ochre); opacity:0; animation: pulse-wave 2.5s ease-in-out infinite; }
+    @keyframes pulse-core { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
+    @keyframes pulse-wave { 0%{transform:scale(0.5);opacity:0.6} 100%{transform:scale(2.5);opacity:0} }
+    .w-pulse-label { font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--sub); font-weight: 300; }
+    .scan-dots-qr { display: flex; gap: 10px; }
+    .sdot { width: 7px; height: 7px; border-radius: 50%; background: rgba(248,244,240,0.2); transition: background 0.5s, transform 0.3s; }
+    .sdot.done { background: var(--ochre); transform: scale(1.4); }
+
+    /* ── LOGEMENTS GRID ── */
+    .apts-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(248,244,240,0.07); width: 100%; max-width: 1000px; }
+    .apt-item { background: var(--dark); padding: 24px 28px; }
+    .apt-name { font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic; color: var(--white); margin-bottom: 5px; }
+    .apt-info { font-size: 14px; color: var(--sub); font-weight: 300; }
+    .apt-tag { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--ochre); margin-top: 10px; display: block; }
+
+    /* ── PROJET ── */
+    .proj-items { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
+    .proj-item { display: flex; flex-direction: column; gap: 5px; padding-left: 20px; border-left: 2px solid rgba(200,134,90,0.4); }
+    .proj-item-title { font-size: 16px; color: var(--white); font-weight: 400; }
+    .proj-item-desc { font-size: 14px; color: var(--sub); font-weight: 300; line-height: 1.5; }
+
+    /* ── FACADE ── */
+    .facade-left { flex: 0 0 50%; position: relative; overflow: hidden; }
+    .facade-right { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 80px 64px; }
+
+    /* ── BUDGET ── */
+    .budget-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: rgba(248,244,240,0.07); width: 100%; max-width: 750px; }
+    .budget-item { background: var(--dark); padding: 20px 28px; }
+    .budget-cat { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--sub); margin-bottom: 7px; }
+    .budget-range { font-size: 20px; color: var(--white); font-weight: 300; }
+    .budget-total { margin-top: 28px; font-size: 13px; letter-spacing: 2px; color: var(--ochre); }
+
+    /* ── END ── */
+    .end-glow { position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(200,134,90,0.07) 0%, transparent 70%); }
   </style>
 </head>
 <body>
@@ -494,12 +346,17 @@
   <div class="grain"></div>
   <div class="veil" id="veil"></div>
 
-  <!-- COIN -->
+  <!-- UI CHROME -->
   <div class="corner-label">Mercurey — 2026</div>
-  <!-- Lien présentation — discret, coin supérieur gauche -->
-  <a href="pres/" target="_blank" style="position:fixed;top:20px;left:28px;z-index:150;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(248,244,240,0.12);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='rgba(248,244,240,0.4)'" onmouseout="this.style.color='rgba(248,244,240,0.12)'">Présentation →</a>
+  <div id="counter">1 / 12</div>
+  <div id="nav-hint">
+    <span class="nav-key">←</span>
+    <span class="nav-key">→</span>
+    naviguer
+  </div>
+  <div id="progress" style="width:8.33%"></div>
 
-  <!-- NOTIFICATION DOUBLE VALIDATION -->
+  <!-- NOTIFICATION DOUBLE VALIDATION (toujours visible au-dessus de tout) -->
   <div id="pending-notif">
     <div class="notif-dot"></div>
     <div class="notif-text">Demande de visite — <strong id="notif-name">—</strong></div>
@@ -507,31 +364,7 @@
     <span class="notif-dismiss" id="notif-dismiss">Ignorer</span>
   </div>
 
-  <!-- DOTS -->
-  <div class="scan-dots">
-    <div class="sdot" id="dot-0"></div>
-    <div class="sdot" id="dot-1"></div>
-    <div class="sdot" id="dot-2"></div>
-  </div>
-
-  <!-- WAITING -->
-  <div id="screen-waiting">
-    <div class="w-photo"></div>
-    <div class="w-overlay"></div>
-    <div class="w-content">
-      <div class="w-eyebrow">Conception sociale des habitats · CREAD 4</div>
-      <div class="w-title">90 Grande Rue</div>
-      <div class="w-title-sub">Mercurey</div>
-      <div class="w-divider"></div>
-      <div class="w-address">Saône-et-Loire · Bourgogne</div>
-      <div class="w-pulse-wrap">
-        <div class="pulse-ring"></div>
-        <span class="w-pulse-label">En attente d'une clé</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- PERSONA -->
+  <!-- PERSONA OVERLAY (fixe, par-dessus les slides) -->
   <div id="screen-persona">
     <div class="p-photo-col">
       <div class="p-photo-bg" id="p-photo"></div>
@@ -549,8 +382,244 @@
     </div>
   </div>
 
+  <!-- Hint dismiss persona -->
+  <div id="persona-nav">→ continuer</div>
+
+  <!-- SLIDE DECK -->
+  <div id="deck">
+
+    <!-- ── 1 COVER ── -->
+    <div class="slide s-center active" id="slide-1">
+      <div class="end-glow"></div>
+      <p class="cover-sub anim-up">Workshop · Conception Sociale des Habitats</p>
+      <div class="cover-line anim-up"></div>
+      <h1 class="cover-title anim-up">Inter<em>stice</em></h1>
+      <p class="cover-sub anim-up" style="margin-top:28px;">90 Grande Rue · Mercurey · Bourgogne</p>
+      <p class="cover-info anim-up">Groupe 13 · Classe 3C · 09.2026</p>
+    </div>
+
+    <!-- ── 2 CONTEXTE ── -->
+    <div class="slide s-split" id="slide-2">
+      <div class="col-left">
+        <p class="eyebrow anim-up">01 — Contexte</p>
+        <h2 class="title-lg anim-up">Mercurey,<br>village viticole<br>de Bourgogne</h2>
+        <div class="sep anim-up"></div>
+        <p class="body-l anim-up">
+          1 300 habitants. Un marché du logement bloqué, des générations qui ne se rencontrent plus.<br><br>
+          Au <strong>90 Grande Rue</strong>, un bâtiment de 500 m² sur trois niveaux appartenant à l'OPAC de Saône-et-Loire — à reconvertir.
+        </p>
+      </div>
+      <div class="col-right">
+        <div class="col-bg" style="background-image:url('assets/facade1.jpg')"></div>
+        <div class="col-grad"></div>
+      </div>
+    </div>
+
+    <!-- ── 3 CHIFFRES ── -->
+    <div class="slide s-grid" id="slide-3" style="gap:0;">
+      <p class="eyebrow anim-up" style="margin-bottom:52px;">02 — Données</p>
+      <div class="stats-grid anim-fade">
+        <div class="stat-item">
+          <div class="stat-num">28<span style="font-size:0.45em">%</span></div>
+          <div class="stat-label">de la population de Mercurey a plus de 60 ans</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">31<span style="font-size:0.45em">%</span></div>
+          <div class="stat-label">de seniors en France d'ici 2030 (INSEE)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">×2</div>
+          <div class="stat-label">résidences intergénérationnelles en Bourgogne en 10 ans</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">−4,9<span style="font-size:0.45em">%</span></div>
+          <div class="stat-label">d'entrées en CFA — chute des apprentis en zone rurale</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 4 PROBLÉMATIQUE ── -->
+    <div class="slide s-center" id="slide-4">
+      <div class="q-mark">?</div>
+      <p class="eyebrow anim-up">03 — Problématique</p>
+      <div class="sep anim-up" style="margin:0 auto 36px;"></div>
+      <p class="question-text anim-up">
+        « Comment la jonction entre ancien et nouveau peut-elle favoriser la coexistence des générations ? »
+      </p>
+    </div>
+
+    <!-- ── 5 CONCEPTS ── -->
+    <div class="slide s-cols" id="slide-5">
+      <div class="concept-col">
+        <div class="concept-num">01</div>
+        <div class="concept-tag anim-up">Concept 01</div>
+        <div class="concept-title anim-up">La Greffe</div>
+        <p class="concept-desc anim-up">Chaque logement reçoit un élément architectural fort — une intervention contemporaine qui dialogue avec l'existant sans l'effacer. La greffe signe chaque appartement d'une identité propre.</p>
+      </div>
+      <div class="concept-col">
+        <div class="concept-num">02</div>
+        <div class="concept-tag anim-up">Concept 02</div>
+        <div class="concept-title anim-up">Le Terroir</div>
+        <p class="concept-desc anim-up">Matériaux locaux : pierre de taille calcaire de Bourgogne, bois de chêne, acier Corten oxydé. Le blason de Mercurey devient le fil conducteur de la signalétique du bâtiment.</p>
+      </div>
+      <div class="concept-col">
+        <div class="concept-num">03</div>
+        <div class="concept-tag anim-up">Concept 03</div>
+        <div class="concept-title anim-up">Bioclimatique</div>
+        <p class="concept-desc anim-up">Orientation sud des séjours, végétalisation de la cour intérieure, isolation renforcée. Le projet maximise les apports solaires passifs et réduit les dépenses énergétiques.</p>
+      </div>
+    </div>
+
+    <!-- ── 6 VALEURS ── -->
+    <div class="slide s-grid" id="slide-6" style="gap:0;">
+      <p class="eyebrow anim-up" style="margin-bottom:52px;">05 — Valeurs du projet</p>
+      <div class="values-row anim-fade">
+        <div class="value-item">
+          <span class="value-num">01</span>
+          <div class="value-word">Conserver</div>
+          <p class="value-sub">L'identité bâtie du village. La mémoire du lieu. Les savoir-faire locaux.</p>
+        </div>
+        <div class="value-item">
+          <span class="value-num">02</span>
+          <div class="value-word">Greffer</div>
+          <p class="value-sub">Insérer le contemporain sans rupture. Chaque intervention est un dialogue.</p>
+        </div>
+        <div class="value-item">
+          <span class="value-num">03</span>
+          <div class="value-word">Coexister</div>
+          <p class="value-sub">Mélanger les âges, les usages, les modes de vie dans un même projet.</p>
+        </div>
+        <div class="value-item">
+          <span class="value-num">04</span>
+          <div class="value-word">Partager</div>
+          <p class="value-sub">Espaces communs à chaque niveau. Jardin partagé. Potager. Local vélos.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 7 QR / ATTENTE FIREBASE ── -->
+    <div class="slide s-center" id="slide-7" style="padding:0;">
+      <div class="w-photo"></div>
+      <div class="w-overlay"></div>
+      <div class="w-content">
+        <p class="eyebrow" style="opacity:0;animation:fade-up 1s 0.3s ease forwards;margin-bottom:28px;">Conception sociale des habitats · CREAD 4</p>
+        <div class="w-title" style="opacity:0;animation:fade-up 1.1s 0.5s ease forwards;">90 Grande Rue</div>
+        <div class="w-sub" style="opacity:0;animation:fade-up 1.1s 0.65s ease forwards;">Mercurey</div>
+        <div class="w-divider" style="opacity:0;animation:fade-up 1s 0.9s ease forwards;"></div>
+        <div class="w-pulse-wrap" style="opacity:0;animation:fade-up 1s 1.1s ease forwards;">
+          <div class="pulse-ring"></div>
+          <span class="w-pulse-label">En attente d'une clé</span>
+        </div>
+        <div class="scan-dots-qr" style="opacity:0;animation:fade-up 0.8s 1.4s ease forwards;">
+          <div class="sdot" id="dot-0"></div>
+          <div class="sdot" id="dot-1"></div>
+          <div class="sdot" id="dot-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 8 LE PROJET ── -->
+    <div class="slide s-split" id="slide-8">
+      <div class="col-left">
+        <p class="eyebrow anim-up">06 — Le projet</p>
+        <h2 class="title-md anim-up"><em>9 logements</em><br>sur 3 niveaux</h2>
+        <div class="sep anim-up"></div>
+        <p class="body-m anim-up">De 20 à 64 m² — du studio au triplex. Trois espaces communs généreux (98 m², 83 m², 99 m²) à chaque niveau.</p>
+        <div class="proj-items">
+          <div class="proj-item anim-up">
+            <div class="proj-item-title">R-1 · 98 m² communs</div>
+            <div class="proj-item-desc">Les Mugans (64 m²) · Duplex · Triplex · Local vélos</div>
+          </div>
+          <div class="proj-item anim-up">
+            <div class="proj-item-title">RDC · 83 m² communs</div>
+            <div class="proj-item-desc">4 logements de plein-pied · Jardin partagé · PMR</div>
+          </div>
+          <div class="proj-item anim-up">
+            <div class="proj-item-title">R+1 · 99 m² communs</div>
+            <div class="proj-item-desc">La Brigadière · Les Puillets (64 m²) · Pergola Corten</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-right">
+        <div class="col-bg" style="background-image:url('assets/facade2.jpg')"></div>
+        <div class="col-grad"></div>
+      </div>
+    </div>
+
+    <!-- ── 9 FAÇADE ── -->
+    <div class="slide" id="slide-9" style="flex-direction:row;">
+      <div class="facade-left">
+        <div class="col-bg" style="position:absolute;inset:0;background:url('assets/facade3.jpg') center/cover;filter:brightness(0.45)"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to right,transparent 50%,var(--dark) 100%)"></div>
+      </div>
+      <div class="facade-right">
+        <p class="eyebrow anim-up">07 — Matérialité</p>
+        <h2 class="title-md anim-up">La façade :<br><em>pierre et Corten</em></h2>
+        <div class="sep anim-up"></div>
+        <div class="proj-items">
+          <div class="proj-item anim-up">
+            <div class="proj-item-title">Pierre calcaire de Bourgogne</div>
+            <div class="proj-item-desc">Conservation de l'enveloppe existante. La mémoire du bâtiment comme fondation.</div>
+          </div>
+          <div class="proj-item anim-up">
+            <div class="proj-item-title">Acier Corten oxydé</div>
+            <div class="proj-item-desc">Vêture contemporaine sur la partie nouvelle. Teinte rouille qui ancre le projet dans le terroir.</div>
+          </div>
+          <div class="proj-item anim-up">
+            <div class="proj-item-title">Calepinage du blason</div>
+            <div class="proj-item-desc">Le motif du blason de Mercurey se décline en façade et guide la signalétique intérieure.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 10 LES 9 LOGEMENTS ── -->
+    <div class="slide s-grid" id="slide-10">
+      <p class="eyebrow anim-up" style="margin-bottom:36px;">08 — Les 9 logements · INTERSTICE</p>
+      <div class="apts-grid anim-fade">
+        <div class="apt-item"><div class="apt-name">La Perrière</div><div class="apt-info">26 m² · Duplex · Claustra traversant</div><span class="apt-tag">Apt. 1</span></div>
+        <div class="apt-item"><div class="apt-name">La Chiquette</div><div class="apt-info">20 m² · Duplex · Poteau architectural</div><span class="apt-tag">Apt. 2</span></div>
+        <div class="apt-item"><div class="apt-name">Les Marcoeurs</div><div class="apt-info">31 m² · Triplex · Courbe de plafond</div><span class="apt-tag">Apt. 3</span></div>
+        <div class="apt-item"><div class="apt-name">Les Caraby</div><div class="apt-info">28 m² · RDC · Meuble-cuisine PMR</div><span class="apt-tag">Apt. 4</span></div>
+        <div class="apt-item"><div class="apt-name">Les Morées</div><div class="apt-info">50 m² · R+1 · Boîte dans la boîte</div><span class="apt-tag">Apt. 5</span></div>
+        <div class="apt-item"><div class="apt-name">La Brigadière</div><div class="apt-info">31 m² · R+1 · Cadre cuisine Corten</div><span class="apt-tag">Apt. 6</span></div>
+        <div class="apt-item"><div class="apt-name">Les Murgers</div><div class="apt-info">64 m² · R-1 · Tête de lit architecturale</div><span class="apt-tag">Apt. 7</span></div>
+        <div class="apt-item"><div class="apt-name">La Châgnée</div><div class="apt-info">30 m² · Duplex · Paroi-douche courbe</div><span class="apt-tag">Apt. 8</span></div>
+        <div class="apt-item"><div class="apt-name">Les Puillets</div><div class="apt-info">64 m² · RDC · Bibliothèque-cloison</div><span class="apt-tag">Apt. 9</span></div>
+      </div>
+    </div>
+
+    <!-- ── 11 BUDGET ── -->
+    <div class="slide s-grid" id="slide-11">
+      <p class="eyebrow anim-up" style="margin-bottom:16px;">10 — Étude budgétaire estimative · 9 logements</p>
+      <h2 class="title-md anim-up" style="font-style:italic;margin-bottom:40px;"></h2>
+      <div class="budget-grid anim-fade">
+        <div class="budget-item"><div class="budget-cat">Gros œuvre</div><div class="budget-range">520 000 – 580 000 €</div></div>
+        <div class="budget-item"><div class="budget-cat">Isolation / Façades / Menuiseries</div><div class="budget-range">150 000 – 165 000 €</div></div>
+        <div class="budget-item"><div class="budget-cat">Charpente / Couverture</div><div class="budget-range">90 000 – 100 000 €</div></div>
+        <div class="budget-item"><div class="budget-cat">Plâtrerie / Cloisons</div><div class="budget-range">80 000 – 90 000 €</div></div>
+        <div class="budget-item"><div class="budget-cat">Menuiserie intérieure</div><div class="budget-range">70 000 – 80 000 €</div></div>
+        <div class="budget-item"><div class="budget-cat">Ascenseur / Monte-charge</div><div class="budget-range">130 000 – 140 000 €</div></div>
+        <div class="budget-item"><div class="budget-cat">Plomberie / Électricité / CVC</div><div class="budget-range">250 000 – 280 000 €</div></div>
+        <div class="budget-item"><div class="budget-cat">Aménagements intérieurs &amp; extérieurs</div><div class="budget-range">230 000 – 250 000 €</div></div>
+      </div>
+      <p class="budget-total anim-up">Total estimatif &nbsp;·&nbsp; 1 450 000 – 1 660 000 €</p>
+    </div>
+
+    <!-- ── 12 FIN ── -->
+    <div class="slide s-center" id="slide-12">
+      <div class="end-glow"></div>
+      <p class="cover-sub anim-up">Groupe 13 · 3C · 09.2026</p>
+      <div class="cover-line anim-up"></div>
+      <h1 class="cover-title anim-up">Inter<em>stice</em></h1>
+      <p class="cover-sub anim-up" style="margin-top:28px;max-width:480px;text-align:center;">L'espace entre hier et demain.<br>Entre pierre et Corten. Entre solitude et coexistence.</p>
+      <p class="cover-info anim-up" style="margin-top:24px;">Merci</p>
+    </div>
+
+  </div><!-- /deck -->
+
   <script>
-    // cursor
+    // Cursor
     const cur = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cur.style.left = e.clientX + 'px';
@@ -562,6 +631,7 @@
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
     import { getDatabase, ref, onValue, update } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
 
+    /* ══ CONFIG ══ */
     const firebaseConfig = {
       apiKey: "AIzaSyCQjIPdy6i_NZjH78ffiuZjUFW4cmlWp7o",
       authDomain: "mercurey-workshop.firebaseapp.com",
@@ -574,87 +644,110 @@
 
     const PERSONAS = {
       lucas: {
-        num: "I",
-        eyebrow: "Appartement A · Rez-de-chaussée",
-        name: "Lucas",
+        num: "I", eyebrow: "Appartement A · Rez-de-chaussée", name: "Lucas",
         age: "20 ans — Apprenti CIFA Jean Lameloise",
         desc: "Chaque soir, il parcourait 35 km pour rentrer chez ses parents. Désormais, il habite à deux minutes à pied de son centre de formation.",
         photo: "assets/facade1.jpg",
-        specs: [
-          { l:"Surface", v:"32 m²" },
-          { l:"Type", v:"Studio" },
-          { l:"Loyer", v:"320 €/mois" },
-          { l:"Statut", v:"Logement social" },
-        ],
+        specs: [{l:"Surface",v:"32 m²"},{l:"Type",v:"Studio"},{l:"Loyer",v:"320 €/mois"},{l:"Statut",v:"Logement social"}],
         tags: ["Jeune actif","Mobilité douce","Espaces communs","Jardin partagé"]
       },
       genevieve: {
-        num: "II",
-        eyebrow: "Appartement B · Rez-de-chaussée",
-        name: "Geneviève",
+        num: "II", eyebrow: "Appartement B · Rez-de-chaussée", name: "Geneviève",
         age: "74 ans — Mercurey depuis 1978",
         desc: "Seule dans 160 m². La quitter était une trahison. Ici, elle reste au village — avec moins à entretenir, et plus de monde autour.",
         photo: "assets/facade2.jpg",
-        specs: [
-          { l:"Surface", v:"58 m²" },
-          { l:"Type", v:"T3 de plain-pied" },
-          { l:"Loyer", v:"480 €/mois" },
-          { l:"Statut", v:"Logement adapté" },
-        ],
+        specs: [{l:"Surface",v:"58 m²"},{l:"Type",v:"T3 de plain-pied"},{l:"Loyer",v:"480 €/mois"},{l:"Statut",v:"Logement adapté"}],
         tags: ["Senior autonome","Plain-pied","Jardin privatif","Centre-village"]
       },
       raymond: {
-        num: "III",
-        eyebrow: "Appartement C · Rez-de-chaussée",
-        name: "Raymond",
+        num: "III", eyebrow: "Appartement C · Rez-de-chaussée", name: "Raymond",
         age: "71 ans — En fauteuil roulant depuis 2021",
         desc: "Quarante ans de vendanges à Mercurey. Un logement pensé pour lui — pas d'obstacle, pas de compromis, et vue sur les vignes.",
         photo: "assets/facade3.jpg",
-        specs: [
-          { l:"Surface", v:"62 m²" },
-          { l:"Type", v:"T3 PMR" },
-          { l:"Loyer", v:"490 €/mois" },
-          { l:"Accessibilité", v:"Norme PMR" },
-        ],
+        specs: [{l:"Surface",v:"62 m²"},{l:"Type",v:"T3 PMR"},{l:"Loyer",v:"490 €/mois"},{l:"Accessibilité",v:"Norme PMR"}],
         tags: ["PMR","Rez-de-chaussée","Salle de bain adaptée","Accès sans obstacle"]
       }
     };
 
+    const PERSONA_ORDER = ['lucas','genevieve','raymond'];
+
     const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
+    const db  = getDatabase(app);
     const stateRef = ref(db, 'workshop');
 
     let lastPersona = null;
     let lastPending = null;
+    let personaVisible = false;
 
-    const PERSONA_ORDER = ['lucas', 'genevieve', 'raymond'];
+    /* ══ SLIDES ══ */
+    const TOTAL = 12;
+    let current = 1;
+    let transitioning = false;
 
+    function getSlide(n) { return document.getElementById('slide-' + n); }
+
+    function updateUI() {
+      document.getElementById('counter').textContent = current + ' / ' + TOTAL;
+      document.getElementById('progress').style.width = (current / TOTAL * 100) + '%';
+    }
+
+    function goSlide(next) {
+      if (transitioning || next < 1 || next > TOTAL || next === current) return;
+      transitioning = true;
+      const veil = document.getElementById('veil');
+      veil.classList.remove('sweep-in','sweep-out');
+      void veil.offsetWidth;
+      veil.classList.add('sweep-in');
+      setTimeout(() => {
+        getSlide(current).classList.remove('active');
+        current = next;
+        getSlide(current).classList.add('active');
+        updateUI();
+        veil.classList.remove('sweep-in');
+        void veil.offsetWidth;
+        veil.classList.add('sweep-out');
+        setTimeout(() => { transitioning = false; }, 350);
+      }, 260);
+    }
+
+    /* ══ KEYBOARD ══ */
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        if (personaVisible) dismissPersona();
+        else goSlide(current + 1);
+      }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); if (!personaVisible) goSlide(current - 1); }
+      if (e.key === 'Home') { e.preventDefault(); if (!personaVisible) goSlide(1); }
+      if (e.key === 'End')  { e.preventDefault(); if (!personaVisible) goSlide(TOTAL); }
+    });
+
+    /* ══ FIREBASE ══ */
     onValue(stateRef, snap => {
       const d = snap.val() || {};
       const { current_persona, pending_persona } = d;
 
-      // Dots
+      // Dots sur la slide QR
       const idx = PERSONA_ORDER.indexOf(current_persona);
       for (let i = 0; i < 3; i++) {
-        document.getElementById(`dot-${i}`).classList.toggle('done', i <= idx && idx >= 0);
+        const dot = document.getElementById('dot-' + i);
+        if (dot) dot.classList.toggle('done', i <= idx && idx >= 0);
       }
 
-      // Persona confirmé → révéler
+      // Nouveau persona confirmé → révéler
       if (current_persona && current_persona !== lastPersona) {
         lastPersona = current_persona;
-        // Cacher la notif si elle était visible
         hidePendingNotif();
         revealPersona(current_persona);
       }
 
-      // Reset
-      if (!current_persona || current_persona === '') {
+      // Reset Firebase
+      if (!current_persona) {
         lastPersona = null;
-        document.getElementById('screen-waiting').classList.remove('hidden');
-        document.getElementById('screen-persona').classList.remove('visible');
+        if (personaVisible) dismissPersona();
       }
 
-      // Persona en attente → montrer notification à Tom
+      // Persona en attente → notif Tom
       if (pending_persona && pending_persona !== lastPending && pending_persona !== current_persona) {
         lastPending = pending_persona;
         showPendingNotif(pending_persona);
@@ -665,12 +758,10 @@
     });
 
     function showPendingNotif(key) {
-      const p = PERSONAS[key];
-      if (!p) return;
+      const p = PERSONAS[key]; if (!p) return;
       document.getElementById('notif-name').textContent = p.name;
       document.getElementById('pending-notif').classList.add('show');
     }
-
     function hidePendingNotif() {
       document.getElementById('pending-notif').classList.remove('show');
     }
@@ -681,41 +772,43 @@
       hidePendingNotif();
       await update(stateRef, { current_persona: key, pending_persona: '' });
     });
-
     document.getElementById('notif-dismiss').addEventListener('click', async () => {
-      hidePendingNotif();
-      lastPending = null;
+      hidePendingNotif(); lastPending = null;
       await update(stateRef, { pending_persona: '' });
     });
 
+    /* ══ PERSONA REVEAL ══ */
     function revealPersona(key) {
-      const p = PERSONAS[key];
-      if (!p) return;
-
+      const p = PERSONAS[key]; if (!p) return;
       const veil = document.getElementById('veil');
-
-      // Phase 1 : veil ferme
       veil.classList.remove('sweep-in','sweep-out');
       void veil.offsetWidth;
       veil.classList.add('sweep-in');
-
       setTimeout(() => {
-        // Remplir le contenu pendant que le veil est opaque
         fillPersona(p);
-
-        // Masquer waiting, montrer persona (sans transition, le veil couvre)
-        document.getElementById('screen-waiting').classList.add('hidden');
         document.getElementById('screen-persona').classList.add('visible');
-
-        // Phase 2 : veil s'ouvre
+        document.getElementById('persona-nav').style.display = 'block';
+        personaVisible = true;
         veil.classList.remove('sweep-in');
         void veil.offsetWidth;
         veil.classList.add('sweep-out');
+        setTimeout(startAnimations, 100);
+      }, 650);
+    }
 
-        // Lancer les animations de contenu
-        setTimeout(() => startAnimations(), 100);
-
-      }, 680);
+    function dismissPersona() {
+      const veil = document.getElementById('veil');
+      veil.classList.remove('sweep-in','sweep-out');
+      void veil.offsetWidth;
+      veil.classList.add('sweep-in');
+      setTimeout(() => {
+        document.getElementById('screen-persona').classList.remove('visible');
+        document.getElementById('persona-nav').style.display = 'none';
+        personaVisible = false;
+        veil.classList.remove('sweep-in');
+        void veil.offsetWidth;
+        veil.classList.add('sweep-out');
+      }, 260);
     }
 
     function fillPersona(p) {
@@ -725,47 +818,30 @@
       document.getElementById('p-name').textContent = p.name;
       document.getElementById('p-age').textContent = p.age;
       document.getElementById('p-desc').textContent = p.desc;
-
       document.getElementById('p-specs').innerHTML = p.specs.map((s,i) =>
-        `<div class="spec" style="animation-delay:${0.7+i*0.1}s">
-          <div class="spec-l">${s.l}</div>
-          <div class="spec-v">${s.v}</div>
-        </div>`
+        `<div class="spec" style="animation-delay:${0.7+i*0.1}s"><div class="spec-l">${s.l}</div><div class="spec-v">${s.v}</div></div>`
       ).join('');
-
-      document.getElementById('p-tags').innerHTML = p.tags.map(t =>
-        `<span class="p-tag">${t}</span>`
-      ).join('');
-
-      // Reset animation classes
+      document.getElementById('p-tags').innerHTML = p.tags.map(t => `<span class="p-tag">${t}</span>`).join('');
       ['p-eyebrow','p-name-inner','p-line','p-age','p-desc','p-tags'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.remove('in');
+        const el = document.getElementById(id); if (el) el.classList.remove('in');
       });
       document.querySelectorAll('.spec').forEach(el => el.classList.remove('in'));
-
-      // Reset ken burns
-      const photoBg = document.getElementById('p-photo');
-      photoBg.classList.remove('animating');
+      document.getElementById('p-photo').classList.remove('animating');
     }
 
     function startAnimations() {
       document.getElementById('p-eyebrow').classList.add('in');
       document.getElementById('p-name-inner').classList.add('in');
-
       setTimeout(() => document.getElementById('p-line').classList.add('in'), 200);
       setTimeout(() => document.getElementById('p-age').classList.add('in'), 400);
       setTimeout(() => document.getElementById('p-desc').classList.add('in'), 550);
-      setTimeout(() => {
-        document.querySelectorAll('.spec').forEach(el => el.classList.add('in'));
-      }, 700);
+      setTimeout(() => document.querySelectorAll('.spec').forEach(el => el.classList.add('in')), 700);
       setTimeout(() => document.getElementById('p-tags').classList.add('in'), 1000);
-
-      // Ken burns photo
-      const photoBg = document.getElementById('p-photo');
-      void photoBg.offsetWidth;
-      photoBg.classList.add('animating');
+      const photo = document.getElementById('p-photo');
+      void photo.offsetWidth; photo.classList.add('animating');
     }
+
+    updateUI();
   </script>
 </body>
 </html>
