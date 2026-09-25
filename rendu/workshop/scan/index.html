@@ -313,7 +313,7 @@
 
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-    import { getDatabase, ref, get, set } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+    import { getDatabase, ref, get, update } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
 
     const firebaseConfig = {
       apiKey: "AIzaSyCQjIPdy6i_NZjH78ffiuZjUFW4cmlWp7o",
@@ -425,7 +425,7 @@
       const btn = document.getElementById('btn-confirm');
       btn.disabled = true; btn.textContent = '…';
       try {
-        await set(stateRef, { current_persona: currentPersonaOnServer, pending_persona: pendingKey });
+        await update(stateRef, { current_persona: currentPersonaOnServer, pending_persona: pendingKey });
         show('success');
       } catch(e) {
         confirmed = false;
