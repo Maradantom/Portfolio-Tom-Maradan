@@ -319,12 +319,11 @@
     let lastPersona = null, lastPending = null;
     let cidx = 0, transitioning = false, firstLoad = true, pendingIsLive = false;
     let presentedState = {};
+    let stepCount = 0; // nombre de transitions → effectuées
 
-    // Fin de chaque bloc persona → slide suivant logique
-    // slide 20 → retour 17, slide 24 → retour 17, slide 28 → 17 ou 29
+    // Fin de chaque bloc persona → retour 17 ou 29 si tous présentés
     const BLOCK_END_NEXT = sid => {
-      if (sid === '20' || sid === '24') return idxOf('17');
-      if (sid === '28') {
+      if (sid === '20' || sid === '24' || sid === '28') {
         const allDone = ['lucas','genevieve','raymond'].every(k => presentedState[k]);
         return allDone ? idxOf('29') : idxOf('17');
       }
@@ -375,7 +374,7 @@
 
     function updateUI() {
       const sid = SLIDES[cidx];
-      document.getElementById('counter').textContent = (cidx + 1) + ' / ' + TOTAL;
+      document.getElementById('counter').textContent = stepCount || '';
       document.getElementById('progress').style.width = ((cidx + 1) / TOTAL * 100) + '%';
       document.getElementById('section-badge').textContent = SECTIONS[sid] || '';
       document.getElementById('scan-dots').classList.toggle('visible', APT_IDS.has(sid));
@@ -406,10 +405,11 @@
       if (e.key === 'ArrowRight' || e.key === ' ') {
         e.preventDefault();
         const sid = SLIDES[cidx];
-        // Bloqué sur slide 17 tant qu'aucun scan n'est validé
         if (sid === '17') return;
+        const prev = cidx;
         const override = BLOCK_END_NEXT(sid);
         goSlide(override !== null ? override : cidx + 1);
+        if (cidx !== prev) { stepCount++; document.getElementById('counter').textContent = stepCount; }
       }
       if (e.key === 'ArrowLeft')  { e.preventDefault(); goSlide(cidx - 1); }
       if (e.key === 'Home')       { e.preventDefault(); goSlide(0); }
