@@ -319,7 +319,7 @@
     let lastPersona = null, lastPending = null;
     let cidx = 0, transitioning = false, firstLoad = true, pendingIsLive = false;
     let presentedState = {};
-    let stepCount = 0; // nombre de transitions → effectuées
+    let stepCount = 1; // numéro de la diapo courante (compte les transitions)
 
     // Fin de chaque bloc persona → retour 17 ou 29 si tous présentés
     const BLOCK_END_NEXT = sid => {
@@ -374,7 +374,7 @@
 
     function updateUI() {
       const sid = SLIDES[cidx];
-      document.getElementById('counter').textContent = stepCount || '';
+      document.getElementById('counter').textContent = stepCount;
       document.getElementById('progress').style.width = ((cidx + 1) / TOTAL * 100) + '%';
       document.getElementById('section-badge').textContent = SECTIONS[sid] || '';
       document.getElementById('scan-dots').classList.toggle('visible', APT_IDS.has(sid));
