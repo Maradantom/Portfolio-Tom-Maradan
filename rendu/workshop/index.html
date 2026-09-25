@@ -340,7 +340,9 @@
     const BLOCK_END_NEXT = sid => {
       if (sid === '20' || sid === '24' || sid === '28') {
         blocksDone.add(sid);
-        return blocksDone.size >= 3 ? idxOf('29') : idxOf('17');
+        const allDone = blocksDone.size >= 3 ||
+                        ['lucas','genevieve','raymond'].every(k => presentedState[k]);
+        return allDone ? idxOf('29') : idxOf('17');
       }
       return null; // navigation normale
     };
