@@ -4,27 +4,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, follow">
-  <title>Tom Maradan | StudioTM — Architecte d'intérieur</title>
   
-  <meta name="description" content="Portfolio de Tom Maradan — architecte d'intérieur basé à Lyon. Découvrez mes projets : villa, showroom, rénovations & design.">
-  <meta name="google-site-verification" content="NeZlJppmijT2qp7ZVZu-EZVwxVvQLuAlR4TCEcOWRX8" />
-  <link rel="canonical" href="https://studiotm.fr/">
+  <title>Tom Maradan | StudioTM - Portfolio (chantier v2)</title>
+
+  <meta name="description" content="Portfolio de Tom Maradan - chantier V2, non public.">
+  <link rel="canonical" href="https://studiotm.fr/portfolio/">
 
   <!-- Open Graph (partage WhatsApp, LinkedIn, iMessage…) -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://studiotm.fr/">
-  <meta property="og:title" content="Tom Maradan | StudioTM — Architecte d'intérieur">
+  <meta property="og:title" content="Tom Maradan | StudioTM - Architecte d'intérieur">
   <meta property="og:description" content="Portfolio d'architecture intérieure & design. Projets, photos et visites 360°.">
   <meta property="og:image" content="https://studiotm.fr/photoprojet/6-projet-villa-annecy-2025/3D/1.webp">
   <meta property="og:image:width" content="1600">
   <meta property="og:image:height" content="1280">
   <meta property="og:locale" content="fr_FR">
-  <meta property="og:site_name" content="Tom Maradan — StudioTM">
+  <meta property="og:site_name" content="Tom Maradan - StudioTM">
 
   <!-- Twitter Card (partage X / Twitter) -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Tom Maradan | StudioTM — Architecte d'intérieur">
+  <meta name="twitter:title" content="Tom Maradan | StudioTM - Architecte d'intérieur">
   <meta name="twitter:description" content="Portfolio d'architecture intérieure & design. Projets, photos et visites 360°.">
   <meta name="twitter:image" content="https://studiotm.fr/photoprojet/6-projet-villa-annecy-2025/3D/1.webp">
 
@@ -51,7 +50,7 @@
 <meta name="theme-color" content="#ffffff">
 
 
-    <!-- Google Tag Manager + GA — chargés APRÈS le load pour ne pas bloquer le LCP -->
+    <!-- Google Tag Manager + GA - chargés APRÈS le load pour ne pas bloquer le LCP -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
@@ -85,9 +84,13 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"></noscript>
+  <!-- V2 : police Nunito Sans (proxy web d'Avenir), même que la home preview -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500;600&display=swap">
   <link rel="preload" as="image" href="/photosite/début/1.webp" fetchpriority="high">
   <link rel="stylesheet" href="/assets/css/accueil.css">
   <link rel="stylesheet" href="/assets/css/main.css">
+  <!-- V2 : styles dédiés, chargés en DERNIER pour override -->
+  <link rel="stylesheet" href="/assets/portfolio-v2/css/portfolio-v2.css?v=21">
 
   <!-- Données structurées Schema.org (pour Google) -->
   <script type="application/ld+json">
@@ -114,7 +117,7 @@
       {
         "@type": "ProfessionalService",
         "@id": "https://studiotm.fr/#studiotm",
-        "name": "StudioTM — Tom Maradan",
+        "name": "StudioTM - Tom Maradan",
         "alternateName": "Tom Maradan StudioTM",
         "description": "Studio d'architecture intérieure et de design basé à Lyon. Conception d'espaces, rénovations, design sur mesure, visites 360° et photographie par drone.",
         "url": "https://studiotm.fr/",
@@ -151,7 +154,7 @@
         "@type": "WebSite",
         "@id": "https://studiotm.fr/#website",
         "url": "https://studiotm.fr/",
-        "name": "Tom Maradan — StudioTM",
+        "name": "Tom Maradan - StudioTM",
         "publisher": { "@id": "https://studiotm.fr/#studiotm" },
         "inLanguage": "fr-FR"
       }
@@ -162,12 +165,12 @@
 </head>
 
 <body>
-  <!-- BANDEAU DE NAVIGATION FIXE (partial partagé) -->
-  <div data-include="header-portfolio"></div>
+  <!-- BANDEAU DE NAVIGATION FIXE (partial V2 - liens vers /portfolio-v2/) -->
+  <div data-include="header-portfolio-v2"></div>
   <header>
     <div class="section-content"></div>
     <h1>Tom Maradan</h1>
-    <p>Architecture intérieure & design — CREAD </p>
+    <p>Architecture intérieure & design - CREAD </p>
     
     <!-- HEADER AVEC LOGO -->
     <div class="site-header">
@@ -196,7 +199,7 @@
   </header>
   
   <script>
-    // Slider infini — calcul réel des largeurs (corrige le saut en fin de boucle)
+    // Slider infini - calcul réel des largeurs (corrige le saut en fin de boucle)
     (function() {
       const track = document.querySelector('.slider-track');
       const originals = Array.from(track.children);
@@ -224,23 +227,73 @@
     })();
     </script>
 
+  <!-- V2 : nav cachée au départ, apparaît quand on scroll (comme /portfolio/) -->
+  <script>
+    (function() {
+      function initNav() {
+        const nav = document.getElementById('fixed-nav');
+        if (!nav) return;
+        function onScroll() {
+          const y = window.scrollY || window.pageYOffset;
+          // Nav devient visible dès qu'on a scrollé un peu (~ hauteur du bandeau image)
+          nav.classList.toggle('scrolled', y > 80);
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+      if (document.getElementById('fixed-nav')) initNav();
+      else {
+        const obs = new MutationObserver(() => {
+          if (document.getElementById('fixed-nav')) { obs.disconnect(); initNav(); }
+        });
+        obs.observe(document.body, { childList: true, subtree: true });
+      }
+    })();
+  </script>
+
+  <!-- V2 : bouton de contact flottant (toggle .open) -->
+  <script>
+    (function() {
+      function initFloatContact() {
+        const floatBtn = document.querySelector('.float-contact');
+        const floatTrigger = document.querySelector('.float-contact-trigger');
+        if (!floatTrigger || !floatBtn) return false;
+        floatTrigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          floatBtn.classList.toggle('open');
+        });
+        document.addEventListener('click', (e) => {
+          if (!floatBtn.contains(e.target)) floatBtn.classList.remove('open');
+        });
+        return true;
+      }
+      if (!initFloatContact()) {
+        const obs = new MutationObserver(() => {
+          if (initFloatContact()) obs.disconnect();
+        });
+        obs.observe(document.body, { childList: true, subtree: true });
+      }
+    })();
+  </script>
+
 
   <section id="histoire">
-    <h2>Mon histoire et parcours</h2>
     <div class="histoire-container">
       <div class="histoire-texte">
+        <h2>Mon histoire et parcours</h2>
         <p>
-          Animé par une véritable passion pour l’architecture, je poursuis mes études en école d’architecture afin de 
+          Animé par une véritable passion pour l’architecture, je poursuis mes études en école d’architecture d’intérieur afin de
           développer une expertise solide et contribuer à la création d’espaces.<br><br>
-          La photographie, que je pratique en parallèle, enrichit mon regard. Elle m’apprend à capter la lumière, les
+          La photographie associée au drone, que je pratique en parallèle, enrichit mon regard. Elle m’apprend à capter la lumière, les
           matières et les lignes, autant d’éléments que je retrouve et valorise dans mes projets architecturaux.<br><br>
           À travers cette double approche, je développe une sensibilité particulière à l’esthétique et à l’identité des
-          lieux. La photo ci-contre, prise à Megève devant la boutique AAllard — symbole d’élégance et de raffinement —
-          illustre cette recherche constante d’un équilibre entre exigence visuelle et cohérence architecturale.
+          lieux. La photo ci-contre, prise lors d’une réunion de chantier d’un chalet de 600 m², illustre l’importance
+          de la coordination fine entre tous les corps de métier, indispensable dans les projets haut de gamme.
+          Le dialogue permanent avec le client est ce qui garantit le niveau d’exigence et de qualité attendu à chaque étape du projet.
         </p>
       </div>
       <div class="histoire-image">
-        <img src="/photosite/passion-photo/IMG_7398.webp" alt="photo de Tom Maradan" loading="lazy" decoding="async">
+        <img src="/photosite/passion-photo/IMG_8686.webp" alt="Workshop architecture - Tom Maradan" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
@@ -248,42 +301,80 @@
 
 
 
-  <section id="projets-titre" style="margin-bottom: 0; padding-bottom: 0;" class="reveal reveal-strong">
-    <h2 style="margin-bottom: -2rem;">Mes projets</h2>
-  </section>
-  <section id="projets" class="reveal reveal-strong">
-    <div class="projets-grid">
-
-      <!-- Projet 1 -->
-      <div class="projet" onclick="openModal('modal1')">
-        <img src="/photoprojet/6-projet-villa-annecy-2025/3D/1.webp" alt="Projet villa" loading="lazy" decoding="async">
-        <div class="chiffres">
-          <span>2025</span><span>Rénovation</span><span>Résidentiel</span><span>Annecy</span>
-        </div>
-        <p>Rénovation d’un ancien hangar en maison moderne au bord du lac d’Annecy</p>
-      </div>
-
-      <!-- Projet 2 -->
-      <div class="projet" onclick="openModal('modal2')">
-        <img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E1.webp" alt="Projet Showroom" loading="lazy" decoding="async">
-        <div class="chiffres">
-          <span>2025</span><span>Construction</span><span>Tertiaire</span><span>Lyon</span>
-        </div>
-        <p>Création d'un nouveau showroom pour SamplesRoom</p>
-      </div>
-
-      <!-- Projet 3 -->
-      <div class="projet" onclick="openModal('modal3')">
-        <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-2-C03-1.webp" alt="Projet Appartement" loading="lazy" decoding="async">
-        <div class="chiffres">
-          <span>2025</span><span>Réalisation fictif</span><span>Résidentiel</span><span>Lyon</span>
-        </div>
-        <p>Visualiser la matière en 3D — SamplesRoom</p>
-      </div>
-      <div></div>
+  <section id="projets-v2" class="reveal reveal-strong">
+    <div class="projets-v2-header">
+      <h2>Mes projets</h2>
+      <p class="lead">Un aperçu de projets récents. Chaque vignette ouvre la fiche détaillée (plans, 3D, photos).</p>
     </div>
-    <div style="text-align: center; margin: 3rem 0;">
-      <a href="/portfolio/projets/" class="voir-projets-btn">Voir tous mes projets</a>
+
+    <div class="projets-v2-grid">
+
+      <!-- Ligne 1 : 1 grand à gauche + colonne droite (Showroom + texte éditorial) -->
+      <a href="javascript:void(0)" onclick="openModal('modal1')" class="pcard wide-8">
+        <img src="/photoprojet/6-projet-villa-annecy-2025/3D/1.webp" alt="Projet Villa Annecy" loading="lazy" decoding="async">
+        <div class="pcard-caption">
+          <div class="pcard-meta"><span>2025</span><span>·</span><span>Rénovation résidentiel</span><span>·</span><span>Annecy</span></div>
+          <h3>Projet Villa - Ancien hangar transformé</h3>
+          <div class="pcard-desc">Rénovation d'un ancien hangar en maison moderne au bord du lac d'Annecy. Volumes repensés, lumière naturelle maximisée.</div>
+        </div>
+        <div class="pcard-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+      </a>
+
+      <div class="pcard-side">
+        <a href="javascript:void(0)" onclick="openModal('modal2')" class="pcard">
+          <img src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E1.webp" alt="Projet Showroom" loading="lazy" decoding="async">
+          <div class="pcard-caption">
+            <div class="pcard-meta"><span>2025</span><span>·</span><span>Tertiaire</span><span>·</span><span>Lyon</span></div>
+            <h3>Projet Showroom</h3>
+            <div class="pcard-desc">Création d'un nouveau showroom pour SamplesRoom - plans, 3D matériaux, concept global.</div>
+          </div>
+          <div class="pcard-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+        </a>
+
+        <div class="pcard-text">
+          <p><strong>Chaque projet est une histoire différente.</strong> Une villa au bord du lac d'Annecy, un showroom lyonnais, une maison contemporaine - autant d'univers à faire exister avant même que le chantier ne commence : par les plans, la 3D, la lumière.</p>
+          <p>Ces réalisations, menées dans le cadre de ma formation à CREAD Lyon ou en stage en agence, posent les bases d'une pratique qui mêle rigueur technique et sensibilité visuelle.</p>
+        </div>
+      </div>
+
+      <!-- Ligne 2 : 3 cartes égales -->
+      <a href="javascript:void(0)" onclick="openModal('modal3')" class="pcard wide-4">
+        <img src="/photoprojet/8-projet-presentation-2025/3D/Scène 7-2-C03-1.webp" alt="Projet Présentation" loading="lazy" decoding="async">
+        <div class="pcard-caption">
+          <div class="pcard-meta"><span>2025</span><span>·</span><span>Réalisation fictif</span><span>·</span><span>Lyon</span></div>
+          <h3>Visualiser la matière</h3>
+          <div class="pcard-desc">Mise en scène 3D de matériaux pour SamplesRoom - rendus photo-réalistes.</div>
+        </div>
+        <div class="pcard-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+      </a>
+
+      <a href="/portfolio/projets/" class="pcard wide-4">
+        <img src="/photoprojet/5-projet-maison-2025/3D/Maison__Canapé.webp" alt="Projet Maison" loading="lazy" decoding="async">
+        <div class="pcard-caption">
+          <div class="pcard-meta"><span>2025</span><span>·</span><span>Construction</span><span>·</span><span>Résidentiel</span></div>
+          <h3>Projet Maison</h3>
+          <div class="pcard-desc">Projet de maison contemporaine - étude des espaces de vie et des circulations.</div>
+        </div>
+        <div class="pcard-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+      </a>
+
+      <a href="/portfolio/projets/" class="pcard wide-4">
+        <img src="/photoprojet/3-projet-escalier-2024/3D/1_Coté G.effectsResult.webp" alt="Projet Escalier" loading="lazy" decoding="async">
+        <div class="pcard-caption">
+          <div class="pcard-meta"><span>2024</span><span>·</span><span>Construction</span><span>·</span><span>Résidentiel</span></div>
+          <h3>Projet Escalier</h3>
+          <div class="pcard-desc">Conception d'un escalier central - étude structurelle et esthétique.</div>
+        </div>
+        <div class="pcard-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+      </a>
+
+    </div>
+
+    <div class="projets-v2-cta">
+      <a href="/portfolio/projets/" class="btn-outline-v2">
+        <span>Voir tous mes projets</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
     </div>
   </section>
 
@@ -369,246 +460,138 @@
 
   </div>
 
-  <section id="passion" style="margin-bottom: 0; padding-bottom: 0;" class="reveal reveal-strong">
-    <h2 style="margin-bottom: 0.5rem;">Ma passion pour les drones & la photo</h2>
-  </section>
-  <section id="photo-passion" class="photo-section reveal reveal-strong" style="padding-top: 0px;">
-    <p>
-      J'ai depuis plusieurs années pu mettre en valeur différents éléments architecturaux grâce à des prises de vue
-      aériennes par drones (DJI Air 3 / Drones FPV).
-      La photo permet d'avoir un regard particulier sur une réalisation et apporte une touche et un point de vue unique. 
-      Je réalise des montages et les publie sur les réseaux
-      <a href="https://www.instagram.com/_tpics._" target="_blank">(@_tpics._)</a>.
-    </p>
+  <section id="passion-v2" class="reveal reveal-strong">
+    <div class="passion-v2-header">
+      <h2>Photo & drone - un outil de projet.</h2>
+      <p class="lead">
+        Documenter l'architecture, depuis le ciel et depuis le sol. Drones stabilisé & FPV -
+        pour lire une volumétrie, suivre un chantier, capter un détail.
+      </p>
+    </div>
 
-<div class="photo-grid">
-  <div class="photo-item">
-    <div class="photo-container">
-      <video class="lazy-video" data-src="/photosite/passion-photo/Vidéo2.mp4" muted loop playsinline preload="none"></video>
-    </div>
-    <span>@camping bois simonet</span>
-  </div>
-  <div class="photo-item">
-    <div class="photo-container">
-      <video class="lazy-video" data-src="/photosite/passion-photo/FPV.mp4" muted loop playsinline preload="none"></video>
-    </div>
-    <span>@work and play</span>
-  </div>
-  <div class="photo-item">
-    <div class="photo-container">
-      <video class="lazy-video" data-src="/photosite/passion-photo/Vidéo1.mp4" muted loop playsinline preload="none"></video>
-    </div>
-    <span>@work and play</span>
-  </div>
-  <div class="photo-item">
-    <div class="photo-container">
-      <img src="/photosite/passion-photo/IMG_0292.webp" alt="Drone 4" loading="lazy" decoding="async">
-    </div>
-    <span>@samplesroom</span>
-  </div>
-  <div class="photo-item">
-    <div class="photo-container">
-      <img src="/photosite/passion-photo/dji_fly_20250413_135444_0009_1744545593668_photo.webp" alt="Drone 5" loading="lazy" decoding="async">
-    </div>
-    <span>@privé</span>
-  </div>
-</div>
-  </section>
+    <div class="passion-v2-grid">
+      <!-- Grand paysage à gauche (row 1-2) -->
+      <div class="phcard big">
+        <img src="/photosite/passion-photo/dji_fly_20260730_125704_0363_1785601341574_aeb.webp" alt="Vue drone - chalet">
+        <div class="phcap"><div class="m">DJI Air 3</div><h5>Chalet en construction</h5></div>
+      </div>
 
-  
+      <!-- Petit paysage top-right -->
+      <div class="phcard toppetit">
+        <img src="/photosite/passion-photo/DJI_20260611120757_0327_D.webp" alt="Vue drone - panorama">
+        <div class="phcap"><div class="m">DJI Air 3</div><h5>Panorama</h5></div>
+      </div>
+
+      <!-- Vertical descend sur row 2-3 -->
+      <div class="phcard vertical">
+        <video class="lazy-video" data-src="/photosite/passion-photo/FPV.mp4" muted loop playsinline preload="none"></video>
+        <div class="phcap"><div class="m">Drone FPV · Vidéo</div><h5>Immersion</h5></div>
+      </div>
+
+      <!-- Carré 1 bottom-left -->
+      <div class="phcard carre1">
+        <img src="/photosite/passion-photo/dji_fly_20260730_161106_0454_1785601242063_aeb.webp" alt="Au-dessus du chantier">
+        <div class="phcap"><div class="m">DJI Air 3</div><h5>Au-dessus du chantier</h5></div>
+      </div>
+
+      <!-- Carré 2 bottom-middle -->
+      <div class="phcard carre2">
+        <img src="/photosite/passion-photo/dji_fly_20260730_125626_0357_1785601050201_aeb.webp" alt="Vue drone - en plongée">
+        <div class="phcap"><div class="m">DJI Air 3</div><h5>Vue en plongée</h5></div>
+      </div>
+    </div>
+
+    <div class="passion-v2-cta">
+      <a href="/portfolio/photo/" class="btn-outline-v2">
+        <span>Explorer ma passion photo & drone</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const videos = document.querySelectorAll(".lazy-video");
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const video = entry.target;
         if (entry.isIntersecting) {
-          // Charge la vidéo la 1ère fois qu'elle entre dans le viewport
-          if (video.dataset.src && !video.src) {
-            video.src = video.dataset.src;
-          }
+          if (video.dataset.src && !video.src) video.src = video.dataset.src;
           video.play().catch(() => {});
         } else {
           video.pause();
         }
       });
     }, { root: null, rootMargin: "200px", threshold: 0.25 });
-
     videos.forEach(video => observer.observe(video));
   });
 </script>
-
-
-      <div><div style="text-align: center; margin-top: 0rem;">
-    <a href="/portfolio/photo/" class="voir-projets-btn"> Explorer ma passion photo & drone</a>
-</div></div>
       
 
 
 
-<section id="activité" style="margin-bottom: -10px;" class="reveal reveal-strong">
-  <h2 style="margin-bottom: -2rem;">Mon activité</h2>
-</section>
+<section id="about-v2" class="reveal reveal-strong" aria-labelledby="about-title">
+  <div class="about-v2-grid">
 
-<section id="about" class="about-section reveal reveal-strong" aria-labelledby="about-title" style="padding-top: 10px;">
-  <div class="about-card">
-    <figure class="about-image">
-      <img src="/photosite/logo/IMG_1901.webp" alt="Tom Maradan, architecte d'intérieur" width="600" height="600" loading="lazy" decoding="async">
-    </figure>
-
-    <div class="about-text">
-      <h2 id="about-title">À propos de moi</h2>
-
-      <p class="lead">
-        Je m'appelle <strong>Tom Maradan</strong>, étudiant en 3<sup>ème</sup> année d’architecture d’intérieure à <strong>CREAD Lyon</strong>.  
-        En parallèle de mes études, je propose des prestations professionnelles : <strong>Plans techniques</strong>, 
-        <strong>modélisation 3D</strong> et <strong>rendus photo-réalistes</strong>.
-      </p>
-
-      <p>
-        Mon objectif est simple : <strong>transformer des idées en visuels clairs et inspirants</strong>, pour
-        permettre à chacun de mieux se projeter dans son futur espace. 
-        J’accorde une importance particulière à une </em>conception claire et structurée</em>, toujours enrichie d’une touche créative 
-        qui signe l’identité de chaque projet.
-      </p>
- 
-      <p>
-        J’accompagne particuliers et professionnels avec rigueur technique et sensibilité esthétique — une
-        approche jeune, professionnelle et engagée.
-      </p>
-
-      <p class="cta">
-        <a class="btn" href="/portfolio/contact/" title="Contactez Tom">Discutons de votre projet</a>
-      </p>
+    <div class="about-v2-photo">
+      <img src="/photosite/logo/IMG_1901.webp" alt="Tom Maradan, portrait" width="600" height="600" loading="lazy" decoding="async">
+      <div class="about-v2-badge">Tom Maradan</div>
     </div>
+
+    <div class="about-v2-text">
+      <span class="eyebrow">À propos</span>
+      <h2 id="about-title">Une approche visuelle de l'architecture.</h2>
+
+      <div class="about-v2-stats">
+        <div class="stat">
+          <strong>4<sup>ème</sup></strong>
+          <span>Année CREAD</span>
+        </div>
+        <div class="stat">
+          <strong>5</strong>
+          <span>Stages en agence</span>
+        </div>
+        <div class="stat">
+          <strong>8+</strong>
+          <span>Projets réalisés</span>
+        </div>
+      </div>
+
+      <div class="about-v2-body">
+        <p>
+          Je m'appelle <strong>Tom Maradan</strong>, étudiant en 4<sup>ème</sup> année d’architecture
+          d’intérieure à <strong>CREAD Lyon</strong>. En parallèle de mes études, je propose des prestations
+          professionnelles : <strong>plans techniques</strong>, <strong>modélisation 3D</strong>
+          et <strong>rendus photo-réalistes</strong>.
+        </p>
+        <p>
+          Mon objectif est simple : <strong>transformer des idées en visuels clairs et inspirants</strong>,
+          pour permettre à chacun de mieux se projeter dans son futur espace.
+          J’accorde une importance particulière à une conception claire et structurée, toujours enrichie
+          d’une touche créative qui signe l’identité de chaque projet.
+        </p>
+        <p>
+          J’accompagne particuliers et professionnels avec rigueur technique et sensibilité esthétique -
+          une approche jeune, professionnelle et engagée.
+        </p>
+      </div>
+
+      <a class="btn btn-outline-v2" href="/portfolio/studiotm/" title="Voir mes services">
+        <span>Mes services</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+
   </div>
 </section>
-
-
-
-      <div><div style="text-align: center; margin-top: -2rem; margin-bottom: 3rem;">
-    <a href="/portfolio/studiotm/" class="voir-projets-btn"> Mes services</a>
-</div></div>
       
 
-
-  <div class="scene">
-    <div class="card" id="card">
-      <div class="face front"></div>
-      <div class="face back"></div>
-    </div>
-  </div>
-
-  
-
-  <script>
-    const card = document.getElementById('card');
-    let isDragging = false;
-    let startX, startY;
-    let currentX = 20, currentY = -15;
-    let targetX = currentX, targetY = currentY;
-    let baseX = currentX, baseY = currentY;
-    let animationId = null;
-    let autoRotate = true;
-    let autoSpeedX = 0.2; // vitesse de rotation horizontale
-    let autoSpeedY = 0;   // tu peux aussi mettre une rotation verticale lente si tu veux
-
-    function updateTransform() {
-      if (!isDragging && autoRotate) {
-        targetX += autoSpeedX;
-        targetY += autoSpeedY;
-      }
-
-      currentX += (targetX - currentX) * 0.1;
-      currentY += (targetY - currentY) * 0.1;
-      card.style.transform = `rotateY(${currentX}deg) rotateX(${-currentY}deg)`;
-      animationId = requestAnimationFrame(updateTransform);
-    }
-
-    function startAnimation() {
-      if (!animationId) {
-        animationId = requestAnimationFrame(updateTransform);
-      }
-    }
-
-    function stopAnimation() {
-      cancelAnimationFrame(animationId);
-      animationId = null;
-    }
-
-function updateTarget(deltaX, deltaY) {
-  if (isBackFaceVisible()) {
-    deltaY = -deltaY; 
-  }
-  targetX = baseX + deltaX * 0.3;
-  targetY = baseY + deltaY * 0.3;
-}
-    function isBackFaceVisible() {
-  const y = (currentX % 360 + 360) % 360; 
-  return y > 90 && y < 270;
-}
-    // Souris
-    document.addEventListener('mousedown', (e) => {
-      if (e.target.closest('#card')) {
-        isDragging = true;
-        autoRotate = false;
-        startX = e.clientX;
-        startY = e.clientY;
-        baseX = currentX;
-        baseY = currentY;
-        startAnimation();
-      }
-    });
-
-    document.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      const deltaX = e.clientX - startX;
-      const deltaY = e.clientY - startY;
-      updateTarget(deltaX, deltaY);
-    });
-
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
-      autoRotate = true;
-    });
-
-    // Mobile
-    card.addEventListener('touchstart', (e) => {
-      isDragging = true;
-      autoRotate = false;
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-      baseX = currentX;
-      baseY = currentY;
-      startAnimation();
-      e.preventDefault();
-    }, { passive: false });
-
-    card.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      const deltaX = e.touches[0].clientX - startX;
-      const deltaY = e.touches[0].clientY - startY;
-      updateTarget(deltaX, deltaY);
-      e.preventDefault();
-    }, { passive: false });
-
-    card.addEventListener('touchend', () => {
-      isDragging = false;
-      autoRotate = true;
-    });
-
-    // Lancer l'animation au chargement
-    card.style.transform = `rotateY(${currentX}deg) rotateX(${-currentY}deg)`;
-    startAnimation();
-  </script>
 
   <section id="contact" class="reveal reveal-strong">
     <h2>Contact & Réseaux</h2>
     <p class="coordonnees">
       <strong>Email :</strong>
-      <a href="mailto:contact@studiotm.fr">contact@studiotm.fr</a><br>
+      <a href="mailto:maradantom@gmail.com">maradantom@gmail.com</a><br>
       <strong>Téléphone :</strong>
       <a href="tel:+33672256783">+33 6 72 25 67 83</a>
   </section>
@@ -616,8 +599,8 @@ function updateTarget(deltaX, deltaY) {
 
   <!-- Boutons Me contacter et Mon CV centrés -->
 <div style="text-align: center; margin: -20px 0 20px 0; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-  <a href="/portfolio/contact/" class="me-contacter-btn">Me contacter</a>
-  <a href="/photosite/Stage - C.V Tom Maradan.pdf" download="photosite/Stage - C.V Tom Maradan.pdf" class="me-contacter-btn">Mon CV</a>
+  <a href="/portfolio/contact/" class="me-contacter-btn btn-outline-v2"><span>Me contacter</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  <a href="/photosite/Stage - C.V Tom Maradan.pdf" download="CV Tom Maradan.pdf" class="me-contacter-btn btn-outline-v2"><span>Mon CV</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg></a>
 </div>
 
 
@@ -627,7 +610,7 @@ function updateTarget(deltaX, deltaY) {
   <div data-include="footer-portfolio"></div>
 
   <!-- ICÔNES SOCIALES FLOTTANTES (partial partagé) -->
-  <div data-include="footer-socials-portfolio"></div>
+  <div data-include="footer-socials-portfolio-v2"></div>
 <div id="dowm"></div>
   <a href="#top" class="back-to-top">↑</a>
 
@@ -1320,7 +1303,7 @@ function updateTarget(deltaX, deltaY) {
   </div>
 </div>
 
-<!-- ===== LIGHTBOXES — sorties des modales pour éviter le problème de containing block (backdrop-filter) ===== -->
+<!-- ===== LIGHTBOXES - sorties des modales pour éviter le problème de containing block (backdrop-filter) ===== -->
 <div id="lightbox1" class="lightbox" onclick="closeLightbox1(event)">
   <span class="close-lightbox" onclick="closeLightbox1(event)">
     <svg viewBox="0 0 24 24"><path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" /></svg>
