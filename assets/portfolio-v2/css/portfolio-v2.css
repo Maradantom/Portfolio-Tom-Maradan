@@ -419,7 +419,7 @@ header .slider-track img {
 }
 @media (max-width: 640px) {
   .pcard-side { grid-column: span 12; overflow: visible; align-self: auto; }
-  .pcard-text { padding: 1.25rem; }
+  .pcard-text { padding: 1.25rem; flex: 0 0 auto; overflow: visible; height: auto; }
   .pcard-text p { font-size: 0.9rem; }
 }
 
