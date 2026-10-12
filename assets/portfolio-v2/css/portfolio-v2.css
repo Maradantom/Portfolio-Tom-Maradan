@@ -759,4 +759,5 @@ a.me-contacter-btn.btn-outline-v2:hover {
 @media (max-width: 640px) {
   #about-v2 { padding: 3rem 1rem !important; }
   .about-v2-stats { grid-template-columns: 1fr; gap: 1rem; padding: 1rem 0; }
+  a.me-contacter-btn.btn-outline-v2 { width: fit-content !important; }
 }
