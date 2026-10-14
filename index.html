@@ -53,22 +53,32 @@
     }
     a { color: inherit; text-decoration: none; }
 
-    /* Fond image très sombre */
+    /* Carousel fond image avec fondu + zoom lent */
     .bg {
-      position: fixed; inset: 0; z-index: -2;
-      background: url('/photosite/passion-photo/hero-drone-optimized.jpg') center/cover no-repeat;
-      filter: grayscale(0.5) brightness(0.55);
-      transform: scale(1.05);
-      animation: bgZoom 18s ease-in-out infinite alternate;
+      position: fixed; inset: 0; z-index: -2; overflow: hidden;
+    }
+    .bg-slide {
+      position: absolute; inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(0.4) brightness(0.55);
+      opacity: 0;
+      transform: scale(1.08);
+      transition: opacity 1.8s ease;
+    }
+    .bg-slide.active {
+      opacity: 1;
+      animation: bgZoom 10s ease-in-out forwards;
     }
     .bg::after {
       content: "";
-      position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.75) 50%, rgba(10,10,10,0.9) 100%);
+      position: fixed; inset: 0; z-index: -1;
+      background: linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.65) 50%, rgba(10,10,10,0.85) 100%);
+      pointer-events: none;
     }
     @keyframes bgZoom {
-      from { transform: scale(1.05); }
-      to   { transform: scale(1.15); }
+      from { transform: scale(1.08); }
+      to   { transform: scale(1.18); }
     }
 
     /* Header minimal */
@@ -219,7 +229,13 @@
 </head>
 <body>
 
-<div class="bg" aria-hidden="true"></div>
+<div class="bg" aria-hidden="true">
+  <div class="bg-slide active" style="background-image: url('/photoprojet/6-projet-villa-annecy-2025/3D/1.webp');"></div>
+  <div class="bg-slide" style="background-image: url('/photosite/passion-photo/hero-combles.jpg'); background-position: center 40%;"></div>
+  <div class="bg-slide" style="background-image: url('/photosite/passion-photo/hero-pettoreaux.jpg');"></div>
+  <div class="bg-slide" style="background-image: url('/photoprojet/6-projet-villa-annecy-2025/3D/7.webp');"></div>
+  <div class="bg-slide" style="background-image: url('/photosite/passion-photo/hero-drone-optimized.jpg'); background-position: center 35%;"></div>
+</div>
 
 <header>
   <a class="brand" href="/" aria-label="StudioTM">
@@ -329,6 +345,18 @@
     localStorage.setItem('stm_lang', l);
     apply(l);
   }));
+
+  // Carousel fond image avec fondu
+  (function () {
+    const slides = document.querySelectorAll('.bg-slide');
+    if (slides.length < 2) return;
+    let i = 0;
+    setInterval(() => {
+      slides[i].classList.remove('active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('active');
+    }, 6500);
+  })();
 
   // Bandeau cookies
   const banner = document.getElementById('cookie-banner');
