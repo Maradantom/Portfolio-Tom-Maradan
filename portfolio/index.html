@@ -90,7 +90,7 @@
   <link rel="stylesheet" href="/assets/css/accueil.css">
   <link rel="stylesheet" href="/assets/css/main.css">
   <!-- V2 : styles dédiés, chargés en DERNIER pour override -->
-  <link rel="stylesheet" href="/assets/portfolio-v2/css/portfolio-v2.css?v=42">
+  <link rel="stylesheet" href="/assets/portfolio-v2/css/portfolio-v2.css?v=43">
 
   <!-- Données structurées Schema.org (pour Google) -->
   <script type="application/ld+json">
@@ -1014,31 +1014,56 @@
 <script>
 /* ── Carrousels modales V2 ── */
 (function() {
-  function initCarousel(imgId, counterId, stripId, prevSel, nextSel, images) {
+  var AUTOPLAY_MS = 7000;
+
+  function initCarousel(imgId, counterId, stripId, prevSel, nextSel, modalId, images) {
     var img = document.getElementById(imgId);
     var counter = document.getElementById(counterId);
     var strip = document.getElementById(stripId);
     if (!img || !strip) return;
     var current = 0;
+    var timer = null;
+
+    /* Préchargement de toutes les images */
+    images.forEach(function(src) { (new Image()).src = src; });
+
+    /* Tirets de navigation */
     images.forEach(function(_, i) {
       var s = document.createElement('span');
       if (i === 0) s.classList.add('active');
-      s.addEventListener('click', function() { set(i); });
+      s.addEventListener('click', function() { set(i); resetTimer(); });
       strip.appendChild(s);
     });
+
     function set(i) {
       current = (i + images.length) % images.length;
       img.src = images[current];
       counter.textContent = (current + 1) + ' / ' + images.length;
       strip.querySelectorAll('span').forEach(function(s, idx) { s.classList.toggle('active', idx === current); });
     }
-    document.querySelectorAll(prevSel).forEach(function(btn) { btn.addEventListener('click', function() { set(current - 1); }); });
-    document.querySelectorAll(nextSel).forEach(function(btn) { btn.addEventListener('click', function() { set(current + 1); }); });
-    /* Reset quand la modale s'ouvre */
+
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(function() { set(current + 1); }, AUTOPLAY_MS);
+    }
+
+    document.querySelectorAll(prevSel).forEach(function(btn) {
+      btn.addEventListener('click', function() { set(current - 1); resetTimer(); });
+    });
+    document.querySelectorAll(nextSel).forEach(function(btn) {
+      btn.addEventListener('click', function() { set(current + 1); resetTimer(); });
+    });
+
+    /* Démarre / reset autoplay à l'ouverture, arrête à la fermeture */
     var origOpen = window.openModal;
     window.openModal = function(id) {
       origOpen(id);
-      if (id === imgId.replace('-img','').replace('m','modal')) set(0);
+      if (id === modalId) { set(0); resetTimer(); }
+    };
+    var origClose = window.closeModal;
+    window.closeModal = function(id) {
+      origClose(id);
+      if (id === modalId) clearInterval(timer);
     };
   }
 
@@ -1056,8 +1081,8 @@
   ];
 
   document.addEventListener('DOMContentLoaded', function() {
-    initCarousel('m1-img', 'm1-counter', 'm1-strip', '.m1-prev', '.m1-next', m1Images);
-    initCarousel('m2-img', 'm2-counter', 'm2-strip', '.m2-prev', '.m2-next', m2Images);
+    initCarousel('m1-img', 'm1-counter', 'm1-strip', '.m1-prev', '.m1-next', 'modal1', m1Images);
+    initCarousel('m2-img', 'm2-counter', 'm2-strip', '.m2-prev', '.m2-next', 'modal2', m2Images);
   });
 })();
 </script>
