@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maquette Modal Projet — StudioTM</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0d0d0d;
+      --bg: #fafafa;
+      --line: #e0e0e0;
+      --soft: #f4f4f4;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: "Nunito Sans", sans-serif;
+      background: #1a1a1a;
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    /* ── Bouton démo ── */
+    .demo-trigger {
+      font-family: "Nunito Sans", sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 1rem 2rem;
+      border: 1px solid #fff;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+    .demo-trigger:hover { background: #fff; color: #0d0d0d; }
+
+    /* ── Overlay ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: stretch;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s var(--ease);
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ── Panel ── */
+    .modal-panel {
+      background: var(--bg);
+      width: 100%;
+      max-width: 1100px;
+      margin: auto;
+      max-height: 92vh;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      overflow: hidden;
+      transform: translateY(24px);
+      transition: transform 0.35s var(--ease);
+    }
+    .modal-overlay.open .modal-panel {
+      transform: translateY(0);
+    }
+
+    /* ── Colonne gauche : image ── */
+    .modal-visual {
+      position: relative;
+      background: #111;
+      overflow: hidden;
+    }
+    .modal-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s;
+    }
+
+    /* Compteur */
+    .img-counter {
+      position: absolute;
+      bottom: 1.25rem;
+      left: 1.25rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.7);
+      font-weight: 300;
+    }
+
+    /* Flèches carousel */
+    .carousel-nav {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+      padding: 0 1rem;
+    }
+    .carousel-nav button {
+      pointer-events: all;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      backdrop-filter: blur(6px);
+    }
+    .carousel-nav button:hover { background: rgba(255,255,255,0.18); }
+    .carousel-nav svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.5; fill: none; }
+
+    /* ── Colonne droite : infos ── */
+    .modal-info {
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      border-left: 1px solid var(--line);
+    }
+
+    /* Header */
+    .modal-header {
+      padding: 2rem 2rem 1.5rem;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 2;
+    }
+    .modal-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #888;
+      font-weight: 400;
+      margin-bottom: 0.6rem;
+    }
+    .modal-title {
+      font-size: 1.45rem;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      color: var(--ink);
+    }
+    .modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #888;
+      padding: 0.25rem;
+      transition: color 0.2s;
+      display: flex;
+    }
+    .modal-close:hover { color: var(--ink); }
+    .modal-close svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.5; fill: none; }
+
+    /* Tags */
+    .modal-tags {
+      padding: 1.25rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border: 1px solid var(--line);
+      color: #555;
+    }
+
+    /* Corps */
+    .modal-body {
+      padding: 1.5rem 2rem;
+      flex: 1;
+    }
+    .modal-section { margin-bottom: 2rem; }
+    .modal-section h4 {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #888;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    .modal-section p {
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: #444;
+      font-weight: 300;
+    }
+
+    /* Mini galerie plans */
+    .plans-mini {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.4rem;
+    }
+    .plans-mini img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      cursor: pointer;
+      filter: grayscale(20%);
+      transition: filter 0.2s, transform 0.2s;
+    }
+    .plans-mini img:hover { filter: none; transform: scale(1.02); }
+
+    /* CTA bas */
+    .modal-footer {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--line);
+    }
+    .modal-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      border: 1px solid var(--ink);
+      padding: 0.75rem 1.25rem;
+      transition: background 0.3s, color 0.3s;
+      font-family: "Nunito Sans", sans-serif;
+    }
+    .modal-cta:hover { background: var(--ink); color: #fff; }
+    .modal-cta svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 1.5; fill: none; }
+
+    /* ── Mobile ── */
+    @media (max-width: 700px) {
+      body { padding: 0; align-items: flex-end; }
+      .modal-panel {
+        grid-template-columns: 1fr;
+        grid-template-rows: 55vw 1fr;
+        max-height: 95vh;
+        max-width: 100%;
+        margin: 0;
+        width: 100%;
+      }
+      .modal-visual { min-height: 55vw; }
+      .modal-info { border-left: none; border-top: 1px solid var(--line); }
+      .modal-header { padding: 1.25rem 1.25rem 1rem; }
+      .modal-title { font-size: 1.1rem; }
+      .modal-tags, .modal-body, .modal-footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .modal-panel { transform: translateY(100%); }
+      .modal-overlay.open .modal-panel { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="demo-trigger" onclick="openModal()">VOIR LA MAQUETTE → Projet Villa Annecy</button>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalDemo" onclick="handleOverlayClick(event)">
+    <div class="modal-panel">
+
+      <!-- COLONNE GAUCHE : IMAGE -->
+      <div class="modal-visual">
+        <img id="modalImg" src="https://studiotm.fr/photoprojet/6-projet-villa-annecy-2025/3D/1.webp" alt="Projet Villa Annecy">
+        <div class="carousel-nav">
+          <button onclick="prevImg()">
+            <svg viewBox="0 0 24 24"><path d="M15 18L9 12L15 6"/></svg>
+          </button>
+          <button onclick="nextImg()">
+            <svg viewBox="0 0 24 24"><path d="M9 6L15 12L9 18"/></svg>
+          </button>
+        </div>
+        <div class="img-counter" id="imgCounter">1 / 17</div>
+      </div>
+
+      <!-- COLONNE DROITE : INFOS -->
+      <div class="modal-info">
+
+        <!-- HEADER -->
+        <div class="modal-header">
+          <div class="modal-eyebrow">Projet Villa — Rénovation résidentielle</div>
+          <div class="modal-title">Rénovation d'un hangar<br>en villa contemporaine</div>
+          <button class="modal-close" onclick="closeModal()">
+            <svg viewBox="0 0 24 24"><path d="M6 6L18 18M6 18L18 6"/></svg>
+          </button>
+        </div>
+
+        <!-- TAGS -->
+        <div class="modal-tags">
+          <span class="tag">2025</span>
+          <span class="tag">Rénovation</span>
+          <span class="tag">Résidentiel</span>
+          <span class="tag">Annecy</span>
+        </div>
+
+        <!-- BODY -->
+        <div class="modal-body">
+          <div class="modal-section">
+            <h4>Documents initiaux</h4>
+            <p>Diagnostic du bâti existant, relevés de l'état des lieux, contraintes du terrain et attentes des clients. Fondation d'une démarche sur-mesure.</p>
+          </div>
+
+          <div class="modal-section">
+            <h4>Plans & rendus</h4>
+            <div class="plans-mini">
+              <img src="https://studiotm.fr/photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents%20initiaux/Tom%20Maradan%20-%20Projet%20Annecy4.webp" alt="">
+              <img src="https://studiotm.fr/photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents%20initiaux/Tom%20Maradan%20-%20Projet%20Annecy5.webp" alt="">
+              <img src="https://studiotm.fr/photoprojet/6-projet-villa-annecy-2025/Rendu/1-Documents%20initiaux/Tom%20Maradan%20-%20Projet%20Annecy6.webp" alt="">
+            </div>
+          </div>
+
+          <div class="modal-section">
+            <h4>Étude esthétique & architecturale</h4>
+            <p>Inspiration japonaise et scandinave. Lumière naturelle, textures authentiques, rapport fort au paysage lacustre.</p>
+          </div>
+
+          <div class="modal-section">
+            <h4>Rendus</h4>
+            <div class="plans-mini">
+              <img src="https://studiotm.fr/photoprojet/6-projet-villa-annecy-2025/3D/3.webp" alt="">
+              <img src="https://studiotm.fr/photoprojet/6-projet-villa-annecy-2025/3D/5.webp" alt="">
+              <img src="https://studiotm.fr/photoprojet/6-projet-villa-annecy-2025/3D/8.webp" alt="">
+            </div>
+          </div>
+        </div>
+
+        <!-- FOOTER CTA -->
+        <div class="modal-footer">
+          <a href="/portfolio/projets/" class="modal-cta">
+            Voir la fiche complète
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const images = Array.from({length: 17}, (_, i) =>
+      `https://studiotm.fr/photoprojet/6-projet-villa-annecy-2025/3D/${i+1}.webp`
+    );
+    let current = 0;
+
+    function openModal() {
+      document.getElementById('modalDemo').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      document.getElementById('modalDemo').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('modalDemo')) closeModal();
+    }
+    function setImg(i) {
+      current = (i + images.length) % images.length;
+      const img = document.getElementById('modalImg');
+      img.style.opacity = 0;
+      setTimeout(() => {
+        img.src = images[current];
+        img.style.opacity = 1;
+      }, 150);
+      document.getElementById('imgCounter').textContent = `${current + 1} / ${images.length}`;
+    }
+    function nextImg() { setImg(current + 1); }
+    function prevImg() { setImg(current - 1); }
+
+    document.addEventListener('keydown', e => {
+      if (!document.getElementById('modalDemo').classList.contains('open')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowRight') nextImg();
+      if (e.key === 'ArrowLeft') prevImg();
+    });
+  </script>
+</body>
+</html>
