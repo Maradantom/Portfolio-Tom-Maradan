@@ -817,7 +817,6 @@ a.me-contacter-btn.btn-outline-v2:hover {
   object-fit: cover;
   object-position: center center;
   display: block;
-  transition: opacity 0.25s;
 }
 .modal-v2-counter {
   position: absolute;

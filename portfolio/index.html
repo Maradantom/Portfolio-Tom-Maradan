@@ -90,7 +90,7 @@
   <link rel="stylesheet" href="/assets/css/accueil.css">
   <link rel="stylesheet" href="/assets/css/main.css">
   <!-- V2 : styles dédiés, chargés en DERNIER pour override -->
-  <link rel="stylesheet" href="/assets/portfolio-v2/css/portfolio-v2.css?v=41">
+  <link rel="stylesheet" href="/assets/portfolio-v2/css/portfolio-v2.css?v=42">
 
   <!-- Données structurées Schema.org (pour Google) -->
   <script type="application/ld+json">
@@ -1028,8 +1028,7 @@
     });
     function set(i) {
       current = (i + images.length) % images.length;
-      img.style.opacity = 0;
-      setTimeout(function() { img.src = images[current]; img.style.opacity = 1; }, 200);
+      img.src = images[current];
       counter.textContent = (current + 1) + ' / ' + images.length;
       strip.querySelectorAll('span').forEach(function(s, idx) { s.classList.toggle('active', idx === current); });
     }
