@@ -780,6 +780,8 @@ a.me-contacter-btn.btn-outline-v2:hover {
 .modal.modal-v2 {
   overflow-y: auto;
   background: #fafafa !important;
+  padding: 0 !important;
+  backdrop-filter: none !important;
 }
 .modal-v2-close {
   position: fixed;
