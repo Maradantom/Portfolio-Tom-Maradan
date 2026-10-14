@@ -812,7 +812,10 @@ a.me-contacter-btn.btn-outline-v2:hover {
   background: #111;
   overflow: hidden;
 }
-.modal-v2-visual img {
+.modal-v2-visual img,
+.modal-v2-slide {
+  position: absolute;
+  inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: center center;

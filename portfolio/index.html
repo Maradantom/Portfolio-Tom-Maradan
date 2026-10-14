@@ -90,7 +90,7 @@
   <link rel="stylesheet" href="/assets/css/accueil.css">
   <link rel="stylesheet" href="/assets/css/main.css">
   <!-- V2 : styles dédiés, chargés en DERNIER pour override -->
-  <link rel="stylesheet" href="/assets/portfolio-v2/css/portfolio-v2.css?v=43">
+  <link rel="stylesheet" href="/assets/portfolio-v2/css/portfolio-v2.css?v=44">
 
   <!-- Données structurées Schema.org (pour Google) -->
   <script type="application/ld+json">
@@ -652,7 +652,8 @@
 
         <!-- GAUCHE : image sticky -->
         <div class="modal-v2-visual">
-          <img id="m1-img" src="/photoprojet/6-projet-villa-annecy-2025/3D/1.webp" alt="Projet Villa Annecy" loading="eager" decoding="async">
+          <img id="m1-img" class="modal-v2-slide" src="/photoprojet/6-projet-villa-annecy-2025/3D/1.webp" alt="Projet Villa Annecy" loading="eager" decoding="async">
+          <img id="m1-img-b" class="modal-v2-slide" src="" alt="" decoding="async" style="display:none">
           <div class="modal-v2-nav">
             <button class="m1-prev"><svg viewBox="0 0 24 24"><path d="M15 18L9 12L15 6"/></svg></button>
             <button class="m1-next"><svg viewBox="0 0 24 24"><path d="M9 6L15 12L9 18"/></svg></button>
@@ -786,7 +787,8 @@
 
         <!-- GAUCHE : image sticky -->
         <div class="modal-v2-visual">
-          <img id="m2-img" src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E1.webp" alt="Projet Showroom" loading="eager" decoding="async">
+          <img id="m2-img" class="modal-v2-slide" src="/photoprojet/7-projet-showroom-2025/3D/Entrée/E1.webp" alt="Projet Showroom" loading="eager" decoding="async">
+          <img id="m2-img-b" class="modal-v2-slide" src="" alt="" decoding="async" style="display:none">
           <div class="modal-v2-nav">
             <button class="m2-prev"><svg viewBox="0 0 24 24"><path d="M15 18L9 12L15 6"/></svg></button>
             <button class="m2-next"><svg viewBox="0 0 24 24"><path d="M9 6L15 12L9 18"/></svg></button>
@@ -1035,11 +1037,19 @@
       strip.appendChild(s);
     });
 
+    var imgB = document.getElementById(imgId + '-b');
     function set(i) {
       current = (i + images.length) % images.length;
-      img.src = images[current];
       counter.textContent = (current + 1) + ' / ' + images.length;
       strip.querySelectorAll('span').forEach(function(s, idx) { s.classList.toggle('active', idx === current); });
+      if (!imgB) { img.src = images[current]; return; }
+      imgB.onload = function() {
+        img.style.display = 'none';
+        imgB.style.display = 'block';
+        var tmp = img; img = imgB; imgB = tmp;
+      };
+      imgB.style.display = 'none';
+      imgB.src = images[current];
     }
 
     function resetTimer() {
