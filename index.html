@@ -63,22 +63,19 @@
       background-position: center;
       filter: grayscale(0.4) brightness(0.55);
       opacity: 0;
-      transform: scale(1.08);
-      transition: opacity 1.8s ease;
+      transform: scale(1.05);
+      transition: opacity 2.5s ease, transform 10s ease-out;
+      will-change: opacity, transform;
     }
     .bg-slide.active {
       opacity: 1;
-      animation: bgZoom 10s ease-in-out forwards;
+      transform: scale(1.14);
     }
     .bg::after {
       content: "";
       position: fixed; inset: 0; z-index: -1;
       background: linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.65) 50%, rgba(10,10,10,0.85) 100%);
       pointer-events: none;
-    }
-    @keyframes bgZoom {
-      from { transform: scale(1.08); }
-      to   { transform: scale(1.18); }
     }
 
     /* Header minimal */
@@ -355,7 +352,7 @@
       slides[i].classList.remove('active');
       i = (i + 1) % slides.length;
       slides[i].classList.add('active');
-    }, 6500);
+    }, 7500);
   })();
 
   // Bandeau cookies
