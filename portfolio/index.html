@@ -321,7 +321,7 @@
       </a>
 
       <div class="pcard-side">
-        <a href="/portfolio/projets/" class="pcard">
+        <a href="javascript:void(0)" onclick="openModal('modal4')" class="pcard">
           <img src="/photosite/splash/splash-3-chalet-montagne.webp" alt="Projet Chalet Mégève" loading="lazy" decoding="async">
           <div class="pcard-caption">
             <div class="pcard-meta"><span>2025</span><span>·</span><span>Résidentiel</span><span>·</span><span>Mégève</span></div>
@@ -338,7 +338,7 @@
       </div>
 
       <!-- Ligne 2 : 3 cartes égales -->
-      <a href="/portfolio/projets/" class="pcard wide-4">
+      <a href="javascript:void(0)" onclick="openModal('modal5')" class="pcard wide-4">
         <img src="/photosite/splash/splash-6-piscine.webp" alt="Villa Vue Lac" loading="lazy" decoding="async">
         <div class="pcard-caption">
           <div class="pcard-meta"><span>2025</span><span>·</span><span>Résidentiel</span><span>·</span><span>Annecy</span></div>
@@ -972,6 +972,123 @@
   </div>
 </div>
 
+
+    <!-- MODALE 4 — Chalet Mégève -->
+    <div id="modal4" class="modal modal-v2">
+      <button class="modal-v2-close" onclick="closeModal('modal4')" aria-label="Fermer">
+        <svg viewBox="0 0 24 24"><path d="M6 6L18 18M6 18L18 6"/></svg>
+      </button>
+      <div class="modal-v2-panel">
+
+        <div class="modal-v2-visual">
+          <img id="m4-img" class="modal-v2-slide" src="/photosite/splash/splash-3-chalet-montagne.webp" alt="Projet Chalet Mégève" loading="eager" decoding="async">
+          <img id="m4-img-b" class="modal-v2-slide" src="" alt="" decoding="async" style="display:none">
+          <div class="modal-v2-nav">
+            <button class="m4-prev"><svg viewBox="0 0 24 24"><path d="M15 18L9 12L15 6"/></svg></button>
+            <button class="m4-next"><svg viewBox="0 0 24 24"><path d="M9 6L15 12L9 18"/></svg></button>
+          </div>
+          <div class="modal-v2-counter" id="m4-counter">1 / 2</div>
+          <div class="modal-v2-thumb" id="m4-strip"></div>
+        </div>
+
+        <div class="modal-v2-info">
+          <div class="modal-v2-header">
+            <div class="modal-v2-eyebrow">Projet Chalet — Résidentiel · Mégève</div>
+            <div class="modal-v2-title">Conception intérieure<br>d'un chalet de montagne</div>
+          </div>
+          <div class="modal-v2-tags">
+            <span class="modal-v2-tag">2025</span>
+            <span class="modal-v2-tag">Résidentiel</span>
+            <span class="modal-v2-tag">Montagne</span>
+            <span class="modal-v2-tag">Mégève</span>
+          </div>
+          <div class="modal-v2-body">
+
+            <div class="modal-v2-section">
+              <h4>Concept</h4>
+              <p>À compléter — ambiance, parti pris architectural, matériaux choisis.</p>
+            </div>
+
+            <div class="modal-v2-section">
+              <h4>Rendu 3D</h4>
+              <p>À compléter — description des rendus photo-réalistes.</p>
+            </div>
+
+            <div class="modal-v2-section">
+              <h4>Matériaux & finitions</h4>
+              <p>À compléter — sélection de matériaux, carnets de détails.</p>
+            </div>
+
+          </div>
+          <div class="modal-v2-footer">
+            <a href="/portfolio/projets/" class="modal-v2-cta">
+              Voir la fiche complète
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MODALE 5 — Villa Vue Lac -->
+    <div id="modal5" class="modal modal-v2">
+      <button class="modal-v2-close" onclick="closeModal('modal5')" aria-label="Fermer">
+        <svg viewBox="0 0 24 24"><path d="M6 6L18 18M6 18L18 6"/></svg>
+      </button>
+      <div class="modal-v2-panel">
+
+        <div class="modal-v2-visual">
+          <img id="m5-img" class="modal-v2-slide" src="/photosite/splash/splash-6-piscine.webp" alt="Villa Vue Lac" loading="eager" decoding="async">
+          <img id="m5-img-b" class="modal-v2-slide" src="" alt="" decoding="async" style="display:none">
+          <div class="modal-v2-nav">
+            <button class="m5-prev"><svg viewBox="0 0 24 24"><path d="M15 18L9 12L15 6"/></svg></button>
+            <button class="m5-next"><svg viewBox="0 0 24 24"><path d="M9 6L15 12L9 18"/></svg></button>
+          </div>
+          <div class="modal-v2-counter" id="m5-counter">1 / 1</div>
+          <div class="modal-v2-thumb" id="m5-strip"></div>
+        </div>
+
+        <div class="modal-v2-info">
+          <div class="modal-v2-header">
+            <div class="modal-v2-eyebrow">Villa Vue Lac — Résidentiel · Annecy</div>
+            <div class="modal-v2-title">Villa contemporaine<br>avec piscine à débordement</div>
+          </div>
+          <div class="modal-v2-tags">
+            <span class="modal-v2-tag">2025</span>
+            <span class="modal-v2-tag">Résidentiel</span>
+            <span class="modal-v2-tag">Construction</span>
+            <span class="modal-v2-tag">Annecy</span>
+          </div>
+          <div class="modal-v2-body">
+
+            <div class="modal-v2-section">
+              <h4>Concept</h4>
+              <p>À compléter — ambiance, parti pris architectural, relation intérieur/extérieur.</p>
+            </div>
+
+            <div class="modal-v2-section">
+              <h4>Espaces extérieurs</h4>
+              <p>À compléter — piscine à débordement, terrasses, paysagisme.</p>
+            </div>
+
+            <div class="modal-v2-section">
+              <h4>Rendu 3D</h4>
+              <p>À compléter — rendus photo-réalistes des espaces.</p>
+            </div>
+
+          </div>
+          <div class="modal-v2-footer">
+            <a href="/portfolio/projets/" class="modal-v2-cta">
+              Voir la fiche complète
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
 <!-- ===== LIGHTBOXES - sorties des modales pour éviter le problème de containing block (backdrop-filter) ===== -->
 <div id="lightbox1" class="lightbox" onclick="closeLightbox1(event)">
   <span class="close-lightbox" onclick="closeLightbox1(event)">
@@ -1080,6 +1197,13 @@
   var m1Images = Array.from({length: 17}, function(_, i) {
     return '/photoprojet/6-projet-villa-annecy-2025/3D/' + (i + 1) + '.webp';
   });
+  var m4Images = [
+    '/photosite/splash/splash-3-chalet-montagne.webp',
+    '/photosite/splash/splash-2-chalet-ete.webp'
+  ];
+  var m5Images = [
+    '/photosite/splash/splash-6-piscine.webp'
+  ];
   var m2Images = [
     '/photoprojet/7-projet-showroom-2025/3D/Entrée/E1.webp',
     '/photoprojet/7-projet-showroom-2025/3D/Entrée/E2.webp',
@@ -1093,6 +1217,8 @@
   document.addEventListener('DOMContentLoaded', function() {
     initCarousel('m1-img', 'm1-counter', 'm1-strip', '.m1-prev', '.m1-next', 'modal1', m1Images);
     initCarousel('m2-img', 'm2-counter', 'm2-strip', '.m2-prev', '.m2-next', 'modal2', m2Images);
+    initCarousel('m4-img', 'm4-counter', 'm4-strip', '.m4-prev', '.m4-next', 'modal4', m4Images);
+    initCarousel('m5-img', 'm5-counter', 'm5-strip', '.m5-prev', '.m5-next', 'modal5', m5Images);
   });
 })();
 </script>
