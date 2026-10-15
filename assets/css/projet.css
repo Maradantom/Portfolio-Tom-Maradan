@@ -170,8 +170,8 @@ main {
 html { scroll-behavior: smooth; }
 .to-top {
   position: fixed;
-  bottom: 60px;
-  left: 15px;
+  bottom: 1.5rem;
+  left: 1.5rem;
   font-size: 40px;
   text-decoration: none;
   color: #999;
