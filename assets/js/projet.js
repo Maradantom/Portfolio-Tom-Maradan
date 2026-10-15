@@ -46,3 +46,26 @@ function closeLightbox1(event) {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeLightbox1();
 });
+
+/* ----- Bouton contact flottant ----- */
+(function() {
+  function initFloatContact() {
+    var floatBtn = document.querySelector('.float-contact');
+    var floatTrigger = document.querySelector('.float-contact-trigger');
+    if (!floatTrigger || !floatBtn) return false;
+    floatTrigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      floatBtn.classList.toggle('open');
+    });
+    document.addEventListener('click', function(e) {
+      if (!floatBtn.contains(e.target)) floatBtn.classList.remove('open');
+    });
+    return true;
+  }
+  if (!initFloatContact()) {
+    var obs = new MutationObserver(function() {
+      if (initFloatContact()) obs.disconnect();
+    });
+    obs.observe(document.body, { childList: true, subtree: true });
+  }
+})();
