@@ -1068,7 +1068,7 @@
   <div data-include="footer-socials-portfolio-v2"></div>
 
   <!-- BACK TO TOP -->
-  <a href="#" class="back-to-top" id="backToTop">↑</a>
+  <a href="#top" class="back-to-top" id="backToTop">↑</a>
 
   <script>
 
@@ -1153,14 +1153,7 @@
       // Bandeau
       checkScrollPosition();
       
-      // Back to top
-      if (scrollY > 300) {
-        backToTop.style.opacity = '1';
-        backToTop.style.visibility = 'visible';
-      } else {
-        backToTop.style.opacity = '0';
-        backToTop.style.visibility = 'hidden';
-      }
+      // Back to top — toujours visible
     });
     
     // Vérifier la position au chargement
