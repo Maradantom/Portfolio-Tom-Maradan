@@ -166,6 +166,20 @@ main {
   color: #fff;
 }
 
+/* ===== FLECHE RETOUR EN HAUT ===== */
+html { scroll-behavior: smooth; }
+.to-top {
+  position: fixed;
+  bottom: 60px;
+  left: 15px;
+  font-size: 40px;
+  text-decoration: none;
+  color: #999;
+  z-index: 9999;
+  line-height: 1;
+}
+.to-top:hover { color: #0d0d0d; }
+
 /* ===== BOUTON CONTACT FLOTTANT ===== */
 .float-contact {
   position: fixed;
