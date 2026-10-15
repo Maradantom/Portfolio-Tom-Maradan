@@ -186,7 +186,23 @@
 
     @media (max-width: 560px) {
       header, footer { padding-left: 1rem; padding-right: 1rem; }
-      .contacts a { padding: 0.75rem 1.1rem; font-size: 0.72rem; }
+      /* Contacts en 2 colonnes propres sur mobile */
+      .contacts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.65rem;
+        max-width: 340px;
+        margin: 0 auto;
+      }
+      .contacts a {
+        padding: 0.85rem 0.5rem;
+        font-size: 0.68rem;
+        justify-content: center;
+      }
+      /* Email seul en pleine largeur (CTA principal) */
+      .contacts a:first-child { grid-column: 1 / -1; }
+      /* On masque le div break desktop sur mobile */
+      .contacts > div[aria-hidden="true"] { display: none; }
       footer { justify-content: center; text-align: center; }
     }
     @media (prefers-reduced-motion: reduce) {
