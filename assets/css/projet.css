@@ -170,15 +170,16 @@ main {
 html { scroll-behavior: smooth; }
 .to-top {
   position: fixed;
-  bottom: 1.5rem;
-  left: 1.5rem;
-  font-size: 40px;
+  bottom: 2rem;
+  left: 2rem;
+  font-size: 2rem;
   text-decoration: none;
-  color: #999;
-  z-index: 9999;
+  color: #666;
+  z-index: 999;
+  transition: all 0.3s ease;
   line-height: 1;
 }
-.to-top:hover { color: #0d0d0d; }
+.to-top:hover { color: #111; transform: scale(1.2); }
 
 /* ===== BOUTON CONTACT FLOTTANT ===== */
 .float-contact {
