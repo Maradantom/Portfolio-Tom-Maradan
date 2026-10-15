@@ -227,10 +227,10 @@
 <body>
 
 <div class="bg" aria-hidden="true">
-  <div class="bg-slide active" style="background-image: url('/photosite/splash/splash-2-chalet-ete.webp');"></div>
-  <div class="bg-slide" style="background-image: url('/photosite/splash/splash-5-interieur-bois.webp');"></div>
-  <div class="bg-slide" style="background-image: url('/photosite/splash/splash-6-piscine.webp');"></div>
   <div class="bg-slide" style="background-image: url('/photosite/splash/splash-3-chalet-montagne.webp');"></div>
+  <div class="bg-slide" style="background-image: url('/photosite/splash/splash-6-piscine.webp');"></div>
+  <div class="bg-slide" style="background-image: url('/photosite/splash/splash-2-chalet-ete.webp');"></div>
+  <div class="bg-slide" style="background-image: url('/photosite/splash/splash-5-interieur-bois.webp');"></div>
   <div class="bg-slide" style="background-image: url('/photosite/splash/splash-1-couloir.webp');"></div>
   <div class="bg-slide" style="background-image: url('/photosite/splash/splash-4-drone-chantier.webp');"></div>
   <div class="bg-slide" style="background-image: url('/photosite/splash/splash-7-garage.webp');"></div>
@@ -345,11 +345,16 @@
     apply(l);
   }));
 
-  // Carousel fond image avec fondu
+  // Carousel fond image avec fondu — la 1ère image a aussi son animation à l'entrée
   (function () {
     const slides = document.querySelectorAll('.bg-slide');
-    if (slides.length < 2) return;
+    if (!slides.length) return;
     let i = 0;
+    // Active la 1ère après un court délai → déclenche le fondu + zoom
+    requestAnimationFrame(() => {
+      setTimeout(() => slides[0].classList.add('active'), 50);
+    });
+    if (slides.length < 2) return;
     setInterval(() => {
       slides[i].classList.remove('active');
       i = (i + 1) % slides.length;
