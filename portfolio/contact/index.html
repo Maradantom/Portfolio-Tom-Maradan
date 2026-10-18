@@ -200,7 +200,7 @@
       resize: vertical;
     }
 
-    button {
+    form button {
       background-color: #111;
       color: #fff;
       border: none;
@@ -215,11 +215,11 @@
       overflow: hidden;
     }
 
-    button.loading {
+    form button.loading {
       color: transparent;
     }
 
-    button.loading::before {
+    form button.loading::before {
       content: 'ENVOI...';
       position: absolute;
       top: 50%;
@@ -229,7 +229,7 @@
       z-index: 2;
     }
 
-    button.loading::after {
+    form button.loading::after {
       content: '';
       position: absolute;
       top: 0;
@@ -302,7 +302,7 @@
         box-sizing: border-box;
       }
 
-      button {
+      form button {
         width: 100%;
       }
     }
