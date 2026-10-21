@@ -54,7 +54,7 @@ function openLightbox1(index) {
   const img = document.getElementById('lightbox1-img');
   if (img && lightboxImages1[index]) img.src = lightboxImages1[index];
   const lb = document.getElementById('lightbox1');
-  if (lb) lb.style.display = 'flex';
+  if (lb) { document.documentElement.appendChild(lb); lb.style.display = 'flex'; }
   document.body.classList.add('modal-open');
 }
 function changeLightboxImage1(direction) {
@@ -68,6 +68,7 @@ function closeLightbox1(event) {
   if (!lb) return;
   if (!event || event.target === lb || event.target.closest('.close-lightbox')) {
     lb.style.display = 'none';
+    document.body.appendChild(lb);
     if (!document.querySelector('.modal[style*="block"]')) {
       document.body.classList.remove('modal-open');
       window.scrollTo(0, scrollY);
@@ -87,7 +88,7 @@ function openLightbox(index) {
   const img = document.getElementById('lightbox-img');
   if (img && lightboxImages[index]) img.src = lightboxImages[index];
   const lb = document.getElementById('lightbox');
-  if (lb) lb.style.display = 'flex';
+  if (lb) { document.documentElement.appendChild(lb); lb.style.display = 'flex'; }
   document.body.classList.add('modal-open');
 }
 function changeLightboxImage(direction) {
@@ -101,6 +102,7 @@ function closeLightbox(event) {
   if (!lb) return;
   if (!event || event.target === lb || event.target.closest('.close-lightbox')) {
     lb.style.display = 'none';
+    document.body.appendChild(lb);
     if (!document.querySelector('.modal[style*="block"]')) {
       document.body.classList.remove('modal-open');
       window.scrollTo(0, scrollY);
@@ -125,7 +127,7 @@ function openLightbox2(index) {
   const img = document.getElementById('lightbox2-img');
   if (img && lightboxImages2[index]) img.src = lightboxImages2[index];
   const lb = document.getElementById('lightbox2');
-  if (lb) lb.style.display = 'flex';
+  if (lb) { document.documentElement.appendChild(lb); lb.style.display = 'flex'; }
   document.body.classList.add('modal-open');
 }
 function changeLightboxImage2(direction) {
@@ -139,6 +141,7 @@ function closeLightbox2(event) {
   if (!lb) return;
   if (!event || event.target === lb || event.target.closest('.close-lightbox')) {
     lb.style.display = 'none';
+    document.body.appendChild(lb);
     if (!document.querySelector('.modal[style*="block"]')) {
       document.body.classList.remove('modal-open');
       window.scrollTo(0, scrollY);
@@ -168,7 +171,7 @@ function openLightbox3(index) {
   const img = document.getElementById('lightbox3-img');
   if (img) img.src = lightboxImages3[index];
   const lb = document.getElementById('lightbox3');
-  if (lb) lb.style.display = 'flex';
+  if (lb) { document.documentElement.appendChild(lb); lb.style.display = 'flex'; }
   document.body.classList.add('modal-open');
 }
 function changeLightboxImage3(direction) {
@@ -181,6 +184,7 @@ function closeLightbox3(event) {
   if (!lb) return;
   if (!event || event.target === lb || event.target.closest('.close-lightbox')) {
     lb.style.display = 'none';
+    document.body.appendChild(lb);
     if (!document.querySelector('.modal[style*="block"]')) {
       document.body.classList.remove('modal-open');
       window.scrollTo(0, scrollY);

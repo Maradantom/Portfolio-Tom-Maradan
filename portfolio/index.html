@@ -1339,7 +1339,7 @@ function openLightbox4(index) {
   var img = document.getElementById('lightbox4-img');
   if (img) img.src = lightboxImages4[index];
   var lb = document.getElementById('lightbox4');
-  if (lb) lb.style.display = 'flex';
+  if (lb) { document.documentElement.appendChild(lb); lb.style.display = 'flex'; }
   document.body.classList.add('modal-open');
 }
 function changeLightboxImage4(dir) {
@@ -1352,6 +1352,7 @@ function closeLightbox4(event) {
   if (!lb) return;
   if (!event || event.target === lb || event.target.closest('.close-lightbox')) {
     lb.style.display = 'none';
+    document.body.appendChild(lb);
     if (!document.querySelector('.modal[style*="block"]')) {
       document.body.classList.remove('modal-open');
       window.scrollTo(0, window._scrollY4 || 0);
@@ -1376,7 +1377,7 @@ function openLightbox5(index) {
   var img = document.getElementById('lightbox5-img');
   if (img) img.src = lightboxImages5[index];
   var lb = document.getElementById('lightbox5');
-  if (lb) lb.style.display = 'flex';
+  if (lb) { document.documentElement.appendChild(lb); lb.style.display = 'flex'; }
   document.body.classList.add('modal-open');
 }
 function changeLightboxImage5(dir) {
@@ -1389,6 +1390,7 @@ function closeLightbox5(event) {
   if (!lb) return;
   if (!event || event.target === lb || event.target.closest('.close-lightbox')) {
     lb.style.display = 'none';
+    document.body.appendChild(lb);
     if (!document.querySelector('.modal[style*="block"]')) {
       document.body.classList.remove('modal-open');
       window.scrollTo(0, window._scrollY5 || 0);
@@ -1418,7 +1420,7 @@ function openLightbox6(index) {
   var img = document.getElementById('lightbox6-img');
   if (img) img.src = lightboxImages6[index];
   var lb = document.getElementById('lightbox6');
-  if (lb) lb.style.display = 'flex';
+  if (lb) { document.documentElement.appendChild(lb); lb.style.display = 'flex'; }
   document.body.classList.add('modal-open');
 }
 function changeLightboxImage6(dir) {
@@ -1431,6 +1433,7 @@ function closeLightbox6(event) {
   if (!lb) return;
   if (!event || event.target === lb || event.target.closest('.close-lightbox')) {
     lb.style.display = 'none';
+    document.body.appendChild(lb);
     if (!document.querySelector('.modal[style*="block"]')) {
       document.body.classList.remove('modal-open');
       window.scrollTo(0, window._scrollY6 || 0);
