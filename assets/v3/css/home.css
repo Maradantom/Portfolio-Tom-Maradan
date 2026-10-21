@@ -363,7 +363,19 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.75rem); }
   background: var(--bg-soft); padding: var(--pad-y) var(--pad-x); text-align: center;
 }
 .contact-strip .eyebrow { display: inline-block; margin-bottom: 1rem; }
-.contact-strip h2 { max-width: 1100px; margin: 0 auto 2rem; }
+.contact-strip h2 {
+  max-width: none;
+  margin: 0 auto 2rem;
+  white-space: nowrap;
+  font-size: clamp(1.5rem, 3.2vw, 3rem);
+}
+@media (max-width: 760px) {
+  .contact-strip h2 {
+    white-space: normal;
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
+    max-width: 540px;
+  }
+}
 .contact-strip .buttons { display: inline-flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
 
 /* ---------- Footer ---------- */
