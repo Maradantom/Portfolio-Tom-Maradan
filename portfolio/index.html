@@ -1332,7 +1332,7 @@ function showLbInline(images, idx) {
   ov.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.94);display:flex;align-items:center;justify-content:center;z-index:2147483647;cursor:zoom-out;box-sizing:border-box;';
   var img = document.createElement('img');
   img.src = images[cur];
-  img.style.cssText = 'max-width:90vw;max-height:90vh;width:auto;height:auto;object-fit:contain;cursor:default;display:block;';
+  img.style.cssText = 'width:90vw;height:90vh;object-fit:contain;cursor:default;display:block;';
   ov.appendChild(img);
   var btn = function(css, html) { var b=document.createElement('button'); b.innerHTML=html; b.style.cssText=css+'position:absolute;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;'; return b; };
   var cls = btn('top:1.25rem;right:1.25rem;','<svg viewBox="0 0 24 24" style="width:24px;height:24px;stroke:#fff;stroke-width:2;fill:none"><path d="M6 6L18 18M6 18L18 6"/></svg>');
