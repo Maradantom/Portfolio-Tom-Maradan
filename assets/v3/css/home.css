@@ -363,7 +363,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.75rem); }
   background: var(--bg-soft); padding: var(--pad-y) var(--pad-x); text-align: center;
 }
 .contact-strip .eyebrow { display: inline-block; margin-bottom: 1rem; }
-.contact-strip h2 { max-width: 800px; margin: 0 auto 2rem; }
+.contact-strip h2 { max-width: 1100px; margin: 0 auto 2rem; }
 .contact-strip .buttons { display: inline-flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
 
 /* ---------- Footer ---------- */
