@@ -46,6 +46,7 @@ function refreshLightbox1() {
 }
 function openLightbox1(index) {
   if (!lightboxImages1.length) refreshLightbox1();
+  if (window.showLbInline) { window.showLbInline(lightboxImages1, index); return; }
   if (!document.body.classList.contains('modal-open')) {
     scrollY = window.scrollY;
     document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
@@ -80,6 +81,7 @@ function closeLightbox1(event) {
 let lightboxImages = [];
 let currentLightboxIndex = 0;
 function openLightbox(index) {
+  if (window.showLbInline && lightboxImages.length) { window.showLbInline(lightboxImages, index); return; }
   if (!document.body.classList.contains('modal-open')) {
     scrollY = window.scrollY;
     document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
@@ -119,6 +121,7 @@ function refreshLightbox2() {
 }
 function openLightbox2(index) {
   if (!lightboxImages2.length) refreshLightbox2();
+  if (window.showLbInline) { window.showLbInline(lightboxImages2, index); return; }
   if (!document.body.classList.contains('modal-open')) {
     scrollY = window.scrollY;
     document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
@@ -163,6 +166,7 @@ const lightboxImages3 = [
 ];
 let currentLightboxIndex3 = 0;
 function openLightbox3(index) {
+  if (window.showLbInline) { window.showLbInline(lightboxImages3, index); return; }
   if (!document.body.classList.contains('modal-open')) {
     scrollY = window.scrollY;
     document.body.style.setProperty('--scroll-y', `-${scrollY}px`);
