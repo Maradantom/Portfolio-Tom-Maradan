@@ -628,6 +628,15 @@
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: .4; transform: scale(1.3); }
     }
+    /* Lightbox pour modal6 (projet.css non chargé sur cette page) */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(4px); overflow: hidden; }
+    .lightbox img { max-width: 90%; max-height: 90%; box-shadow: 0 0 40px rgba(0,0,0,0.5); }
+    .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 0.5rem; z-index: 10000; }
+    .lightbox-nav svg { width: 25px; height: 25px; stroke: white !important; stroke-width: 2; fill: none; }
+    .lightbox-nav.prev { left: 2rem; }
+    .lightbox-nav.next { right: 2rem; }
+    .close-lightbox { position: absolute; top: 30px; right: 30px; cursor: pointer; z-index: 10000; }
+    .close-lightbox svg { width: 32px; height: 32px; stroke: white !important; }
   </style>
 
   
@@ -1186,6 +1195,11 @@
             <span class="modal-v2-tag">Avec architecte</span>
           </div>
           <div class="modal-v2-body">
+
+            <div class="modal-v2-section">
+              <h4>Le projet</h4>
+              <p>Surélévation d'une maison existante à Jonage. Ajout d'un étage complet en ossature bois avec toiture-terrasse, pour créer 3 chambres, un dressing et une suite parentale. Architecture contemporaine avec grandes baies vitrées et façades enduit clair et de la pierre. Projet réalisé en collaboration avec un architecte.</p>
+            </div>
 
             <div class="modal-v2-section">
               <h4>Plans</h4>
