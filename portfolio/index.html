@@ -230,6 +230,7 @@
       }
 
       track.addEventListener('pointerdown', e => {
+        e.preventDefault();
         track.setPointerCapture(e.pointerId);
         dragging = true; paused = true;
         startX = e.clientX; startScroll = scrollX;

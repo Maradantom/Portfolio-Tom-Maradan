@@ -313,6 +313,9 @@
       flex-shrink: 0;
       object-fit: cover;
       border-radius: px;
+      pointer-events: none;
+      -webkit-user-drag: none;
+      draggable: false;
     }
 
     /* Taille plus grande sur ordinateur */
