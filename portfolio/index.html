@@ -200,14 +200,16 @@
   </header>
   
   <script>
-    // Slider infini - calcul réel des largeurs (corrige le saut en fin de boucle)
     (function() {
       const track = document.querySelector('.slider-track');
       const originals = Array.from(track.children);
       for (let i = 0; i < 2; i++) originals.forEach(img => track.appendChild(img.cloneNode(true)));
-      let scrollX = 0, setWidth = 0;
+      let scrollX = 0, setWidth = 0, paused = false;
+      let dragging = false, startX = 0, startScroll = 0;
       const speed = 1.2;
+
       function measure() { setWidth = originals.reduce((s, img) => s + img.offsetWidth, 0); }
+
       function waitImages(cb) {
         const all = originals.every(img => img.complete && img.naturalWidth > 0);
         if (all) return cb();
@@ -216,13 +218,40 @@
           img.addEventListener('error', res, { once: true });
         }))).then(cb);
       }
+
       function animate() {
-        if (!setWidth) measure();
-        scrollX += speed;
-        if (setWidth && scrollX >= setWidth) scrollX -= setWidth;
-        track.style.transform = `translate3d(-${scrollX}px,0,0)`;
+        if (!paused) {
+          if (!setWidth) measure();
+          scrollX += speed;
+          if (setWidth && scrollX >= setWidth) scrollX -= setWidth;
+          track.style.transform = `translate3d(-${scrollX}px,0,0)`;
+        }
         requestAnimationFrame(animate);
       }
+
+      track.addEventListener('pointerdown', e => {
+        track.setPointerCapture(e.pointerId);
+        dragging = true; paused = true;
+        startX = e.clientX; startScroll = scrollX;
+        track.style.cursor = 'grabbing';
+      });
+
+      track.addEventListener('pointermove', e => {
+        if (!dragging) return;
+        const delta = startX - e.clientX;
+        scrollX = startScroll + delta;
+        if (setWidth) scrollX = ((scrollX % setWidth) + setWidth) % setWidth;
+        track.style.transform = `translate3d(-${scrollX}px,0,0)`;
+      });
+
+      function stopDrag() {
+        if (!dragging) return;
+        dragging = false; paused = false;
+        track.style.cursor = 'grab';
+      }
+      track.addEventListener('pointerup', stopDrag);
+      track.addEventListener('pointercancel', stopDrag);
+
       waitImages(() => { measure(); animate(); });
       window.addEventListener('resize', measure);
     })();
