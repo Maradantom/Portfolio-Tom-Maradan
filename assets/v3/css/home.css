@@ -471,3 +471,10 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.75rem); }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   .hero-slide { animation: none; transform: none; }
 }
+
+/* ---------- Header clair sur image (pages projet) ---------- */
+.site-header.header-light:not(.scrolled):not(.menu-open) .header-brand img { filter: invert(1); }
+.site-header.header-light:not(.scrolled):not(.menu-open) .signature-line { background: #fff; }
+.site-header.header-light:not(.scrolled):not(.menu-open) .header-nav { color: #fff; }
+.site-header.header-light:not(.scrolled):not(.menu-open) .burger span { background: #fff; }
+.site-header.menu-open { background: #fff; }
