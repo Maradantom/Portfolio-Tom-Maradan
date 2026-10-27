@@ -478,3 +478,18 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.75rem); }
 .site-header.header-light:not(.scrolled):not(.menu-open) .header-nav { color: #fff; }
 .site-header.header-light:not(.scrolled):not(.menu-open) .burger span { background: #fff; }
 .site-header.menu-open { background: #fff; }
+/* Logo et croix restent visibles au-dessus du menu mobile ouvert */
+.site-header .header-brand, .site-header .burger { position: relative; z-index: 2; }
+
+/* Écrans tactiles : légendes des projets toujours visibles (pas de survol) */
+@media (hover: none) {
+  .project-card .caption { opacity: 1; transform: none; }
+  .project-card::before {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55) 100%);
+  }
+  .project-card .caption { z-index: 2; }
+}
+@media (max-width: 900px) {
+  .about-photo { margin: 0 auto; }
+}
