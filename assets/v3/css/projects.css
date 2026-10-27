@@ -835,11 +835,74 @@ body.lightbox-open { overflow: hidden; }
 .fb3-more-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
 }
-.fb3-more-grid .fb3-card { aspect-ratio: 4/5; border-radius: 8px; }
-.fb3-more-grid .fb3-card .category { font-size: 0.6rem; letter-spacing: 0.22em; }
-.fb3-more-grid .fb3-card h3 { font-size: clamp(0.95rem, 1.15vw, 1.1rem); }
+/* Cartes "Plus de projets" — style pcard-proj (image + infos dessous) */
+.fb3-more-grid .fb3-card {
+  aspect-ratio: unset;
+  border-radius: 0;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.fb3-more-grid .fb3-card:hover {
+  border-color: #0d0d0d;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+/* Supprime l'overlay dégradé */
+.fb3-more-grid .fb3-card::before { display: none; }
+/* Image fixe en haut */
+.fb3-more-grid .fb3-card img {
+  position: static;
+  height: 200px;
+  flex-shrink: 0;
+  filter: none;
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.fb3-more-grid .fb3-card:hover img { transform: scale(1.03); }
+/* Catégorie = ligne méta grise */
+.fb3-more-grid .fb3-card .category {
+  position: static;
+  color: #999;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  font-weight: 400;
+  padding: 1rem 1.1rem 0.25rem;
+  opacity: 1;
+}
+/* Titre + flèche sur la même ligne */
+.fb3-more-grid .fb3-card h3 {
+  position: static;
+  color: #0d0d0d;
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  padding: 0 3.2rem 1.1rem 1.1rem;
+  margin: 0;
+}
+/* Flèche carrée positionnée en bas à droite */
+.fb3-more-grid .fb3-card h3::after {
+  content: "";
+  position: absolute;
+  bottom: 1.1rem;
+  right: 1.1rem;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #0d0d0d;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 17L17 7M9 7h8v8' stroke='%230d0d0d' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") center/14px no-repeat;
+  transition: background-color 0.25s;
+}
+.fb3-more-grid .fb3-card:hover h3::after {
+  background-color: #0d0d0d;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 17L17 7M9 7h8v8' stroke='%23ffffff' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+}
 @media (max-width: 900px) {
   .fb3-more-grid { grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
+}
+@media (max-width: 480px) {
+  .fb3-more-grid { grid-template-columns: 1fr; }
 }
 
 /* ---------- Variantes de mise en page projet ---------- */
