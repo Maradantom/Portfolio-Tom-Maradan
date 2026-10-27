@@ -22,7 +22,7 @@
 
   <link rel="stylesheet" href="/assets/v3/css/home.css?v=11">
   <link rel="stylesheet" href="/assets/v3/css/page.css?v=2">
-  <link rel="stylesheet" href="/assets/v3/css/projects.css?v=10">
+  <link rel="stylesheet" href="/assets/v3/css/projects.css?v=11">
 </head>
 <body>
 
@@ -131,25 +131,25 @@
     <section class="fb3-more">
       <h4>Plus de projets</h4>
       <div class="fb3-more-grid">
-        <a href="/preview/projets/algor-jonage/" class="fb3-card">
-          <img src="/photoprojet/13-projet-algor-jonage-2026/3D/cbcf84e3-53b5-4d45-804b-e3004648e666.webp" alt="Surélévation Algor" loading="lazy">
+        <a href="/preview/projets/maison/" class="fb3-card">
+          <img src="/photoprojet/5-projet-maison-2025/3D/Maison__Drone.webp" alt="Maison La Biolle" loading="lazy">
           <span class="category">Résidentiel</span>
-          <h3>Surélévation Algor</h3>
+          <h3>Maison La Biolle</h3>
         </a>
-        <a href="/preview/projets/chalet-megeve/" class="fb3-card">
-          <img src="/photoprojet/11-projet-athome-chalet-megeve-2026/Drone/dji_fly_20260730_125704_0363_1785601341574_aeb.webp" alt="Chalet Mégève" loading="lazy">
+        <a href="/preview/projets/appartement-lyon/" class="fb3-card">
+          <img src="/photoprojet/4-projet-appartement-lyon-2024/3D/Cuisine-salon.webp" alt="Shelter — Appartement Lyon" loading="lazy">
           <span class="category">Résidentiel</span>
-          <h3>Chalet Mégève</h3>
+          <h3>Shelter — Appartement Lyon</h3>
         </a>
-        <a href="/preview/projets/villa-vue-lac/" class="fb3-card">
-          <img src="/photoprojet/12-projet-athome-villa-lac-2026/3D/SAM-CUISINE.webp" alt="Villa Vue Lac" loading="lazy">
+        <a href="/preview/projets/escalier/" class="fb3-card">
+          <img src="/photoprojet/3-projet-escalier-2024/3D/1_o.effectsResult.webp" alt="Escalier sur mesure" loading="lazy">
           <span class="category">Résidentiel</span>
-          <h3>Villa Vue Lac</h3>
+          <h3>Escalier sur mesure</h3>
         </a>
-        <a href="/preview/projets/showroom/" class="fb3-card">
-          <img src="/photoprojet/7-projet-showroom-2025/3D/Bati/Ext%C3%A9rieur.webp" alt="Showroom Samples Room" loading="lazy">
-          <span class="category">Tertiaire</span>
-          <h3>Showroom Samples Room</h3>
+        <a href="/preview/projets/cabane/" class="fb3-card">
+          <img src="/photoprojet/2-projet-cabane-2024/3D/Zoom%2060mm.webp" alt="Cabane dans les arbres" loading="lazy">
+          <span class="category">Résidentiel</span>
+          <h3>Cabane dans les arbres</h3>
         </a>
       </div>
     </section>
@@ -278,7 +278,7 @@
     const close = document.getElementById('lightboxClose');
     const prev = document.getElementById('lightboxPrev');
     const next = document.getElementById('lightboxNext');
-    const figures = document.querySelectorAll('.fb3-gallery figure img');
+    const figures = document.querySelectorAll('.fb3-gallery figure img, .chapter-media img, .chapter-gallery figure img, .proj-immersive figure img, .proj-magazine figure img');
     if (!figures.length) return;
 
     const items = Array.from(figures).map(el => ({ src: el.src, alt: el.alt || '' }));
