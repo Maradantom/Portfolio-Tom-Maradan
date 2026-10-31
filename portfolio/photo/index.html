@@ -1141,11 +1141,12 @@
     
     // Références pour le scroll
     const hero = document.querySelector('.hero');
-    const fixedNav = document.getElementById('fixed-nav');
+    let fixedNav = document.getElementById('fixed-nav');
     
     // Script pour le bandeau fixe
     function checkScrollPosition() {
-      // Afficher le bandeau après 200px de scroll
+      if (!fixedNav) fixedNav = document.getElementById('fixed-nav');
+      if (!fixedNav) return;
       if (window.scrollY > 200) {
         fixedNav.classList.add('visible');
       } else {
